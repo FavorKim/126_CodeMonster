@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("UI List")]
+    public GameObject InventoryUI;
+
+    [Header("Inventory UI")]
+    public int InventoryNum;
+    public GameObject InventoryListPrefab;
+
+    private RectTransform InventoryUIRectTransform;
+
     void Start()
     {
-        
+        // InventoryNum = datamanager.instance.getstagedata(stageindex).codeblocklength;
+        SetInventoryUISize();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetInventoryUISize()
     {
-        
+        InventoryUIRectTransform = InventoryUI.GetComponent<RectTransform>();
+        InventoryUIRectTransform.sizeDelta = new Vector2(InventoryNum * 60, 60);
+
+        for(int i =0; i< InventoryNum; i++)
+        {
+            Instantiate(InventoryListPrefab, InventoryUI.transform);
+        }
     }
 }
