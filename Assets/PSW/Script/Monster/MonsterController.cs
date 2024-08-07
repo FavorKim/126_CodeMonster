@@ -28,20 +28,17 @@ public class MonsterController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //기획과 협의 필요
-        //플레이어가 공격실패시 바로 오버인지
-        // 적이 공격하고 나서 오버인지
+
         if(other.gameObject.GetComponent<MonsterController>() != null)
         {
             var enemy = other.gameObject.GetComponent<MonsterController>();
+            _enemyType = enemy._enemyType;
         }
     }
 
 
     protected void Attack()
     {
-        //기획과 협의 필요
-        //플레이어가 공격실패시 바로 오버인지
-        // 적이 공격하고 나서 오버인지
+       
     }
 }
