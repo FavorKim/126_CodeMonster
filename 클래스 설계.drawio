@@ -11,7 +11,7 @@
           <mxGeometry x="-210" y="565" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8Fbl0JBF0OxlYefqDnbC-5" value="연출" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-500" y="740" width="120" height="60" as="geometry" />
+          <mxGeometry x="-140" y="410" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8Fbl0JBF0OxlYefqDnbC-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Fbl0JBF0OxlYefqDnbC-6" target="8Fbl0JBF0OxlYefqDnbC-10">
           <mxGeometry relative="1" as="geometry" />
@@ -121,9 +121,6 @@
         </mxCell>
         <mxCell id="8Fbl0JBF0OxlYefqDnbC-46" value="코드블럭 컨테이너 결과&lt;div&gt;연산 후 플레이어 행동 양식을 산출&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="8Fbl0JBF0OxlYefqDnbC-44">
           <mxGeometry y="30" width="140" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8Fbl0JBF0OxlYefqDnbC-54" value="현재 보유한 몬스터 목록" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-190" y="370" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8Fbl0JBF0OxlYefqDnbC-67" value="코드블럭" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="337.5" width="140" height="60" as="geometry" />
@@ -247,6 +244,18 @@
         </mxCell>
         <mxCell id="8Fbl0JBF0OxlYefqDnbC-118" value="UIManager" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="590" y="432" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8Fbl0JBF0OxlYefqDnbC-125" value="List" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-170" y="190" width="140" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="8Fbl0JBF0OxlYefqDnbC-126" value="Item 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="8Fbl0JBF0OxlYefqDnbC-125">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Fbl0JBF0OxlYefqDnbC-127" value="Item 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="8Fbl0JBF0OxlYefqDnbC-125">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Fbl0JBF0OxlYefqDnbC-128" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="8Fbl0JBF0OxlYefqDnbC-125">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
