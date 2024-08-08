@@ -51,7 +51,7 @@ public class MonsterController : MonoBehaviour
 
         float startTime = stateInfo.length + 0.5f;
 
-        //기획과 협의 필요 배틀후 시체가 남는지 안남는지
+        //플레이어는 남지만 몬스터는 사라짐
         Invoke(nameof(Die), startTime);
     }
 
