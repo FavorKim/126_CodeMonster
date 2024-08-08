@@ -13,9 +13,9 @@ public class DataManger : MonoBehaviour
     private string filePath;
     public Dictionary<string, Monster> LoadedMonsterList { get; private set; }
     public Dictionary<string, CodeBlock> LoadedCodeBlockList { get; private set; }
-    public Dictionary<int, Type> LoadedType { get; private set; }
+    public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
-    public Dictionary<int, Text> LoadedText { get; private set; }
+    public Dictionary<int, UIText> LoadedText { get; private set; }
     public Dictionary<string, TextType> LoadedTextType { get; private set; }
 
     private readonly string _dataRootPath = "C:/Users/KGA/Desktop/PizzaDataTable";//읽는거 실패시 \\을 /로
@@ -34,9 +34,9 @@ public class DataManger : MonoBehaviour
 
         ReadData(nameof(Monster));
         ReadData(nameof(CodeBlock));
-        ReadData(nameof(Type));
+        ReadData(nameof(MonsterType));
         ReadData(nameof(StageMap));
-        ReadData(nameof(Text));
+        ReadData(nameof(UIText));
         ReadData(nameof(TextType));
 
         //if (File.Exists(filePath))
@@ -71,13 +71,13 @@ public class DataManger : MonoBehaviour
             case nameof(CodeBlock):
                 ReadCodeBlockTable(name);
                 break;
-            case nameof(Type):
-                ReadTypeTable(name);
+            case nameof(MonsterType):
+                ReadMonsterTypeTable(name);
                 break;
             case nameof(StageMap):
                 ReadStageMapTable(name);
                 break;
-            case nameof(Text):
+            case nameof(UIText):
                 ReadTextTable(name);
                 break;
             case nameof(TextType):
@@ -182,9 +182,9 @@ public class DataManger : MonoBehaviour
 
 
     }
-    private void ReadTypeTable(string name)
+    private void ReadMonsterTypeTable(string name)
     {
-        LoadedType = new Dictionary<int, Type>();
+        LoadedMonsterType = new Dictionary<int, MonsterType>();
 
         XDocument doc = XDocument.Load($"{_dataRootPath}/{name}.xml");
 
@@ -192,11 +192,11 @@ public class DataManger : MonoBehaviour
 
         foreach (var data in dataElements)
         {
-            var tempType = new Type();
+            var tempType = new MonsterType();
             tempType.TypeIndex = int.Parse(data.Attribute(nameof(tempType.TypeIndex)).Value);
             tempType.TypeName = data.Attribute(nameof(tempType.TypeName)).Value;
             tempType.Viewname = data.Attribute(nameof(tempType.Viewname)).Value;
-            LoadedType.Add(tempType.TypeIndex, tempType);
+            LoadedMonsterType.Add(tempType.TypeIndex, tempType);
         }
 
 
@@ -205,7 +205,7 @@ public class DataManger : MonoBehaviour
     }
     private void ReadTextTable(string name)
     {
-        LoadedText = new Dictionary<int, Text>();
+        LoadedText = new Dictionary<int, UIText>();
 
         XDocument doc = XDocument.Load($"{_dataRootPath}/{name}.xml");
 
@@ -213,7 +213,7 @@ public class DataManger : MonoBehaviour
 
         foreach (var data in dataElements)
         {
-            var tempText = new Text();
+            var tempText = new UIText();
             tempText.TextIndex = int.Parse(data.Attribute(nameof(tempText.TextIndex)).Value);
             tempText.TextTypeIndex = int.Parse(data.Attribute(nameof(tempText.TextTypeIndex)).Value);
             tempText.Description = data.Attribute(nameof(tempText.Description)).Value;
@@ -272,16 +272,16 @@ public class DataManger : MonoBehaviour
         //딕셔너리는 찾아주는게 빠르다
         return LoadedStageMap[dataIndex];
     }
-    public Type GetTypeData(int dataIndex)
+    public MonsterType GetTypeData(int dataIndex)
     {
-        if (LoadedType.Count == 0
-            || !LoadedType.ContainsKey(dataIndex))
+        if (LoadedMonsterType.Count == 0
+            || !LoadedMonsterType.ContainsKey(dataIndex))
             return null;
 
         //딕셔너리는 찾아주는게 빠르다
-        return LoadedType[dataIndex];
+        return LoadedMonsterType[dataIndex];
     }
-    public Text GetTextMapData(int dataIndex)
+    public UIText GetTextMapData(int dataIndex)
     {
         if (LoadedText.Count == 0
             || !LoadedText.ContainsKey(dataIndex))

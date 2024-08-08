@@ -32,14 +32,14 @@ public class StageMap
     public List<int> MonsterSpawnPosYList = new List<int>();
 }
 
-public class Type
+public class MonsterType
 {
     public int TypeIndex { get; set; }
     public string TypeName { get; set; }
     public string Viewname {  get; set; }
 }
 
-public class Text
+public class UIText
 {
     public int TextIndex { get; set; }
     public int TextTypeIndex { get; set; }
