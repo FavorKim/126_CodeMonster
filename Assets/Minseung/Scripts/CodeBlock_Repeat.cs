@@ -11,13 +11,13 @@ public class CodeBlock_Repeat : CodeBlock
         this.blocksToRepeat = blocksToRepeat;
     }
 
-    public override void Execute()
+    public override void Execute(Player player)
     {
         for (int i = 0; i < repeatCount; i++)
         {
             foreach (var block in blocksToRepeat)
             {
-                block.Execute();
+                block.Execute(player);
             }
         }
     }

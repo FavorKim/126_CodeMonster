@@ -11,11 +11,11 @@ public class CodeBlock_Condition : CodeBlock
         this.blockToExecute = blockToExecute;
     }
 
-    public override void Execute()
+    public override void Execute(Player player)
     {
         if (condition())
         {
-            blockToExecute.Execute();
+            blockToExecute.Execute(player);
         }
     }
 }

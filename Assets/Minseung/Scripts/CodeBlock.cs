@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class CodeBlock : MonoBehaviour
+public abstract class CodeBlock : MonoBehaviour, ICommand
 {
-    public abstract void Execute();
+    public abstract void Execute(Player player);
 }
