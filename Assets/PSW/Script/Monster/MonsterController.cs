@@ -8,10 +8,11 @@ public class MonsterController : MonoBehaviour
     private int _monsterType;
     private int _enemyType;
 
+    protected Animator _animator;
 
     private void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -40,5 +41,22 @@ public class MonsterController : MonoBehaviour
     protected void Attack()
     {
        
+    }
+
+    protected virtual void Hit()
+    {
+        //애니메이션 재생
+
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+
+        float startTime = stateInfo.length + 0.5f;
+
+        //기획과 협의 필요 배틀후 시체가 남는지 안남는지
+        Invoke(nameof(Die), startTime);
+    }
+
+    protected void Die()
+    {
+        this.gameObject.SetActive(false);
     }
 }
