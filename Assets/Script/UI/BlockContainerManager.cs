@@ -16,30 +16,12 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     {
         BlockCountainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
-        //CodeBlockprefabDictionary = new Dictionary<BlockType, GameObject>
-        //{
-        //    { BlockType.RedCodeBlock, RedCodeBlock },
-        //    { BlockType.BlueCodeBlock, BlueCodeBlock },
-        //    { BlockType.GreenCodeBlock, GreenCodeBlock }
-        //};
     }
 
     public void SetBlockContainerUISize(int InventoryNum)
     {
         BlockCountainerUIRectTransform.sizeDelta = new Vector2(InventoryNum * 60, 60);
         BlockContainerBoxCollider.size = new Vector2(InventoryNum * 60, 60);
-    }
-
-    public void AddCodeBlock(BlockType blockType)
-    {
-        if (CodeBlockprefabDictionary.TryGetValue(blockType, out GameObject prefabToAdd))
-        {
-            GameObject instance = Instantiate(prefabToAdd, this.transform);
-        }
-        else
-        {
-            Debug.LogWarning("Prefab type not found: " + blockType);
-        }
     }
 
     public void AddBlock(GameObject gameObject)

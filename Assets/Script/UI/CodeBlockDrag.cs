@@ -7,10 +7,11 @@ public class CodeBlockDrag : MonoBehaviour
     private Vector3 offset;
     private float zCoordinate;
 
-    public BlockContainerManager inventory;
+    public BlockContainerManager BlockContainerUI;
     public BlockType blockType;
 
     private RectTransform rectTransform;
+    public Vector3 originalPosition; // 원래 위치를 저장할 변수
 
     private void Start()
     {
@@ -19,9 +20,21 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // 부모 변경 전에 현재 월드 좌표를 저장
+        Vector3 worldPositionBeforeChange = rectTransform.position;
+
+        // 부모를 UIManager로 변경
+        Transform uiManagerTransform = GameObject.Find("UIManager").transform;
+        transform.SetParent(uiManagerTransform, false); // 부모 변경, 월드 좌표는 일단 무시
+
+        // 부모 변경 후에도 같은 월드 좌표를 유지하도록 다시 설정
+        rectTransform.position = worldPositionBeforeChange;
+
         zCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         offset = GetMouseWorldPos() - (Vector3)rectTransform.anchoredPosition;
         isDragging = true;
+
+        originalPosition = rectTransform.anchoredPosition;
     }
 
     private void OnMouseDrag()
@@ -29,7 +42,6 @@ public class CodeBlockDrag : MonoBehaviour
         if (isDragging)
         {
             Vector3 newPosition = GetMouseWorldPos() - offset;
-
             rectTransform.anchoredPosition = new Vector2(newPosition.x, newPosition.y);
         }
     }
@@ -37,11 +49,9 @@ public class CodeBlockDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
-        if (inventory == null)
-        {
-            BlockContainerManager.Instance.RemoveCodeBlock(gameObject);
-        }
-        else
+        //rectTransform.anchoredPosition = originalPosition;
+
+        if (BlockContainerUI != null)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
         }
@@ -49,29 +59,28 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 코드 블럭이 UICodeBlockCollider랑 닿았을시
         if (other.tag == "BlockContainerUI")
         {
-            inventory = other.GetComponent<BlockContainerManager>();
+            BlockContainerUI = other.GetComponent<BlockContainerManager>();
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
-        // 코드 블럭이 UICodeBlockCollider랑 닿았을시
         if (other.CompareTag("BlockContainerUI"))
         {
-            inventory = other.GetComponent<BlockContainerManager>();
+            BlockContainerUI = other.GetComponent<BlockContainerManager>();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // 코드 블럭이 UI Code Block Collider랑 나갔을때는 _inventoryList null로 
         if (other.tag == "BlockContainerUI")
         {
-            inventory = null;
+            BlockContainerUI = null;
         }
     }
+
     private Vector3 GetMouseWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;

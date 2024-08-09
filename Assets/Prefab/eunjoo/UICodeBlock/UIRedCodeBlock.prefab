@@ -123,8 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  BlockContainerUI: {fileID: 0}
   blockType: 0
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &3947697832130028750
 Rigidbody:
   m_ObjectHideFlags: 0

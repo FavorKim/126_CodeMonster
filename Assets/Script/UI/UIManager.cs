@@ -14,10 +14,10 @@ public class UIManager : Singleton<UIManager>
 
     [Header("StageBlockList UI")]
     public int[] BlockIndexList;
-    public int BlockIndexLength;
+    private int BlockIndexLength;
 
-    public BlockContainerManager BlockContainerManager;
-    public StageBlockManager StageBlockManager;
+    private BlockContainerManager BlockContainerManager;
+    private StageBlockManager StageBlockManager;
 
     void Start()
     {
@@ -26,7 +26,6 @@ public class UIManager : Singleton<UIManager>
 
         BlockIndexLength = BlockIndexList.Length;
         BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength);
-        StageBlockManager.Instance.SetStageBlockUISize(BlockIndexLength);
-        StageBlockManager.Instance.SetStageBlock(BlockIndexList);
+        StageBlockManager.Instance.SetStageUI(BlockIndexLength, BlockIndexList);
     }
 }

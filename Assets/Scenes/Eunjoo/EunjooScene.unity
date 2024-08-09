@@ -822,8 +822,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  BlockContainerUI: {fileID: 0}
   blockType: 0
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!33 &4759096136097359
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -954,8 +955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
+  BlockContainerUI: {fileID: 0}
   blockType: 1
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2670661161234621353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1096,7 @@ GameObject:
   - component: {fileID: 1048714020}
   m_Layer: 5
   m_Name: BlockContainer UI
-  m_TagString: Untagged
+  m_TagString: BlockContainerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

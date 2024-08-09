@@ -3,43 +3,43 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [Header("Pool Settings")]
-    public GameObject prefab;  // 풀링할 프리팹
-    public int initialPoolSize = 10;  // 초기 생성할 오브젝트 수
+    private Queue<GameObject> availableObjects = new Queue<GameObject>();
+    private GameObject prefab;
 
-    private Queue<GameObject> pool = new Queue<GameObject>();
-
-    private void Start()
+    public void Initialize(GameObject prefab, int initialCount = 10)
     {
-        // 초기 오브젝트 풀링 설정
-        for (int i = 0; i < initialPoolSize; i++)
+        this.prefab = prefab;
+
+        // 초기 오브젝트 생성
+        for (int i = 0; i < initialCount; i++)
         {
-            GameObject obj = Instantiate(prefab, transform);
+            GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
-            pool.Enqueue(obj);
+            availableObjects.Enqueue(obj);
+            obj.transform.SetParent(transform); // 풀의 오브젝트로 등록
         }
     }
 
-    // 오브젝트 풀에서 오브젝트 가져오기
     public GameObject GetObject()
     {
-        if (pool.Count > 0)
+        if (availableObjects.Count > 0)
         {
-            GameObject obj = pool.Dequeue();
+            GameObject obj = availableObjects.Dequeue();
             obj.SetActive(true);
             return obj;
         }
         else
         {
-            GameObject newObj = Instantiate(prefab, transform);
-            return newObj;
+            GameObject obj = Instantiate(prefab);
+            obj.transform.SetParent(transform);
+            return obj;
         }
     }
 
-    // 사용한 오브젝트를 다시 풀로 반환하기
     public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false);
-        pool.Enqueue(obj);
+        availableObjects.Enqueue(obj);
+        obj.transform.SetParent(transform); // 풀로 되돌아갈 때도 부모 설정
     }
 }
