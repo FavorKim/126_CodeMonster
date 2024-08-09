@@ -4,9 +4,64 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public void Move(Vector3 direction, float distance)
+    private Vector2Int currentPosition;  // 현재 위치
+    private StageManager stageManager;   // StageManager 참조
+
+    private void Start()
     {
-        transform.Translate(direction.normalized * distance);
+        stageManager = FindObjectOfType<StageManager>();  // StageManager 인스턴스를 찾음
+
+        if (stageManager != null)
+        {
+            Initialize(stageManager.GetGrid(), stageManager.GetStartPosition());
+        }
+        else
+        {
+            Debug.LogError("StageManager not found in the scene!");
+        }
+    }
+
+    // 플레이어를 초기화하는 메서드
+    public void Initialize(int[,] grid, Vector2Int startPosition)
+    {
+        currentPosition = startPosition;
+        transform.position = new Vector3(currentPosition.x, transform.position.y, currentPosition.y);
+    }
+
+    public void Move(Direction direction)
+    {
+        Vector2Int newPosition = currentPosition;
+
+        // 이동 방향에 따라 위치 업데이트
+        switch (direction)
+        {
+            case Direction.Up:
+                newPosition.y += 1;
+                break;
+            case Direction.Down:
+                newPosition.y -= 1;
+                break;
+            case Direction.Left:
+                newPosition.x -= 1;
+                break;
+            case Direction.Right:
+                newPosition.x += 1;
+                break;
+        }
+
+        int[,] grid = stageManager.GetGrid(); // StageManager로부터 그리드 정보 획득
+
+        // 경계 체크: 그리드 범위 내에 있는지 확인
+        if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
+            newPosition.y >= 0 && newPosition.y < grid.GetLength(1))
+        {
+            currentPosition = newPosition;  // 현재 위치 업데이트
+            transform.position = new Vector3(currentPosition.x, transform.position.y, currentPosition.y);
+        }
+        else
+        {
+            Debug.LogWarning("Cannot move outside the grid boundaries!");
+        }
     }
 
     // 속성 기반 공격 메서드
