@@ -5,8 +5,8 @@ public class CodeBlock_Move : CodeBlock
     public Vector3 direction;
     public float distance;
 
-    public override void Execute(Player player)
+    public override void Execute(Player partner)
     {
-        player.Move(direction, distance);
+        partner.Move(direction, distance);
     }
 }

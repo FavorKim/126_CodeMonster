@@ -2,8 +2,8 @@ public class CodeBlock_Attack : CodeBlock
 {
     public string target;
 
-    public override void Execute(Player player)
+    public override void Execute(Player partner)
     {
-        player.Attack(target);
+        partner.Attack(target);
     }
 }

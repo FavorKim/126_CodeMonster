@@ -1,21 +1,24 @@
 using System;
+using UnityEngine;
 
 public class CodeBlock_Condition : CodeBlock
 {
     private Func<bool> condition;
     private CodeBlock blockToExecute;
 
-    public CodeBlock_Condition(Func<bool> condition, CodeBlock blockToExecute)
+    // 플레이어(사용자)가 조건과 실행할 코드 블록을 설정하는 메서드
+    public void SetCondition(Func<bool> condition, CodeBlock block)
     {
         this.condition = condition;
-        this.blockToExecute = blockToExecute;
+        this.blockToExecute = block;
     }
 
-    public override void Execute(Player player)
+    // 조건을 평가하고, 참일 경우 파트너가 행동을 수행하도록 하는 메서드
+    public override void Execute(Player partner)
     {
-        if (condition())
+        if (condition != null && condition())
         {
-            blockToExecute.Execute(player);
+            blockToExecute.Execute(partner); // 조건이 참일 경우 파트너가 행동을 수행
         }
     }
 }
