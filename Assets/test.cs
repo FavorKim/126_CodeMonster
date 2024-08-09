@@ -1,26 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner;
 using BehaviorDesigner.Runtime.Tasks;
-
-public class test : MonoBehaviour
+[TaskCategory("Test")]
+public class test : Action
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-
-    }
+    
 
     // Update is called once per frame
-    void Update()
+    public override TaskStatus OnUpdate()
     {
-        
+        aaa();
+        return TaskStatus.Success;
     }
 
-    public TaskStatus aaa()
+    public void aaa()
     {
         Debug.Log("asdasd");
-        return TaskStatus.Success;
     }
 }
