@@ -12,5 +12,7 @@ public class GameManager : MonoBehaviour
         {
             command.Execute(player);
         }
+
+        
     }
 }
