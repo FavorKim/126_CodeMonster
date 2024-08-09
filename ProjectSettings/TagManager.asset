@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - CodeBlock
-  - UICodeBlockCollider
+  - InventoryManager
+  - BlockContainerUI
+  - StageBlockUI
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - CodeBlockLayer
   - 
   - 
   - 

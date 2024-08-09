@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CodeBlock : MonoBehaviour
 {
-
     public InventoryList _inventoryList;
     
     private void OnTriggerEnter(Collider other)

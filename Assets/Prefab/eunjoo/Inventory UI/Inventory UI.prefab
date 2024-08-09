@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 5247835364407561762}
   - component: {fileID: 8442419991150879867}
   - component: {fileID: 5736147794669930520}
-  - component: {fileID: 4225808740997935085}
   m_Layer: 5
   m_Name: Inventory UI
-  m_TagString: Untagged
+  m_TagString: InventoryManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,10 +61,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.008547783, g: 0, b: 1, a: 0.68235296}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -117,8 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6672559136a7a46a9e851f99cfa91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryBoxColliderRectTransform: {fileID: 0}
-  InventoryBoxCollider: {fileID: 0}
+  RedCodeBlock: {fileID: 3369126874611500125, guid: f356f0c4ebf2624468890e5aed604164, type: 3}
+  BlueCodeBlock: {fileID: 1905676607421280362, guid: 15323082139a49742992b89cd4aa9487, type: 3}
+  GreenCodeBlock: {fileID: 3392943102465053282, guid: 81f1a152f83ac534ea24161414076bca, type: 3}
 --- !u!65 &5736147794669930520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,30 +140,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 300, y: 60, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4225808740997935085
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4484447412039543891}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
