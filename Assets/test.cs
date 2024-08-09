@@ -21,3 +21,17 @@ public class test : Action
         Debug.Log("asdasd");
     }
 }
+[TaskCategory("Test")]
+public class Logasd : Action
+{
+    public override TaskStatus OnUpdate()
+    {
+        aaa();
+        return TaskStatus.Success;
+    }
+
+    public void aaa()
+    {
+        Debug.Log("ssssss");
+    }
+}
