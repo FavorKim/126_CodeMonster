@@ -1,9 +1,14 @@
+using UnityEngine;
+using BehaviorDesigner.Runtime.Tasks;
+
 public class CodeBlock_Attack : CodeBlock
 {
     public string target;
 
-    public override void Execute(Player player)
+    public override Task CreateBehaviorTask()
     {
-        player.Attack(target);
+        var task = new AttackTask(); 
+        task.target = target;
+        return task;
     }
 }

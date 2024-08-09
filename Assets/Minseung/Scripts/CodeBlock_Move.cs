@@ -1,12 +1,16 @@
 using UnityEngine;
+using BehaviorDesigner.Runtime.Tasks;
 
 public class CodeBlock_Move : CodeBlock
 {
     public Vector3 direction;
     public float distance;
 
-    public override void Execute(Player player)
+    public override Task CreateBehaviorTask()
     {
-        player.Move(direction, distance);
+        var task = new MoveTask(); 
+        task.direction = direction;
+        task.distance = distance;
+        return task;
     }
 }

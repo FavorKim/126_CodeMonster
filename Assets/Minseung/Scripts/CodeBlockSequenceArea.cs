@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CodeBlockSequenceArea : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class CodeBlockSequenceArea : MonoBehaviour
     {
         List<CodeBlock> newOrder = new List<CodeBlock>();
 
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             CodeBlock block = child.GetComponent<CodeBlock>();
             if (block != null)

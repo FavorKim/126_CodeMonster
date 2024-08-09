@@ -1,24 +1,28 @@
+using UnityEngine;
+using BehaviorDesigner.Runtime.Tasks;
 using System.Collections.Generic;
 
 public class CodeBlock_Repeat : CodeBlock
 {
-    private int repeatCount;
-    private List<CodeBlock> blocksToRepeat;
+    public int repeatCount;
+    public List<CodeBlock> blocksToRepeat;
 
-    public CodeBlock_Repeat(int repeatCount, List<CodeBlock> blocksToRepeat)
+    public override Task CreateBehaviorTask()
     {
-        this.repeatCount = repeatCount;
-        this.blocksToRepeat = blocksToRepeat;
-    }
+        var sequence = new Sequence();
 
-    public override void Execute(Player player)
-    {
         for (int i = 0; i < repeatCount; i++)
         {
             foreach (var block in blocksToRepeat)
             {
-                block.Execute(player);
+                Task task = block.CreateBehaviorTask();
+                if (task != null)
+                {
+                    sequence.AddChild(task, sequence.Children.Count);
+                }
             }
         }
+
+        return sequence;
     }
 }

@@ -1,6 +1,7 @@
+using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-public abstract class CodeBlock : MonoBehaviour, ICommand
+public abstract class CodeBlock : MonoBehaviour
 {
-    public abstract void Execute(Player player);
+    public abstract Task CreateBehaviorTask();
 }
