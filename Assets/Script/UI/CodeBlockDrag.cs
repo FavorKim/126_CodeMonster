@@ -11,11 +11,13 @@ public class CodeBlockDrag : MonoBehaviour
     public BlockType blockType;
 
     private RectTransform rectTransform;
-    public Vector3 originalPosition; // 원래 위치를 저장할 변수
+
+    public GameObject PoolParent;
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        PoolParent = transform.parent.gameObject;
     }
 
     private void OnMouseDown()
@@ -34,10 +36,10 @@ public class CodeBlockDrag : MonoBehaviour
         offset = GetMouseWorldPos() - (Vector3)rectTransform.anchoredPosition;
         isDragging = true;
 
-        originalPosition = rectTransform.anchoredPosition;
-
-        GameObject objInstance = ObjectPoolManager.GetObject(blockType);
-
+        if(BlockContainerUI == null)
+        {
+            GameObject objInstance = ObjectPoolManager.GetObject(blockType);
+        }
     }
 
     private void OnMouseDrag()
@@ -52,7 +54,6 @@ public class CodeBlockDrag : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
-        //rectTransform.anchoredPosition = originalPosition;
 
         if (BlockContainerUI != null)
         {
@@ -60,9 +61,16 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
+            transform.SetParent(PoolParent.transform, false);
+
+            // SetParent 바뀌어서 피벗 맞춰주기
+            rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+            rectTransform.localPosition = Vector3.zero;
             ObjectPoolManager.Instance.ReturnObject(gameObject, blockType);
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
