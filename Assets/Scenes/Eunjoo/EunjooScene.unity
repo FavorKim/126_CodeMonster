@@ -638,7 +638,7 @@ MonoBehaviour:
   BlockContainerUI: {fileID: 6052806502595805656}
   StageBlockUI: {fileID: 7187678405708000472}
   BlockContainerLength: 3
-  BlockIndexList: 000000000100000002000000
+  BlockIndexList: 0000000002000000
 --- !u!1001 &1533566377
 PrefabInstance:
   m_ObjectHideFlags: 0

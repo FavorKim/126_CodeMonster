@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 public class UIManager : Singleton<UIManager>
 {
     [Header("UI List")]
@@ -26,6 +24,6 @@ public class UIManager : Singleton<UIManager>
 
         BlockIndexLength = BlockIndexList.Length;
         BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength);
-        StageBlockManager.Instance.SetStageUI(BlockIndexLength, BlockIndexList);
+        StageBlockManager.Instance.SetStageBlockUISize(BlockIndexLength);
     }
 }

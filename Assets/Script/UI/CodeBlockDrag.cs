@@ -35,6 +35,9 @@ public class CodeBlockDrag : MonoBehaviour
         isDragging = true;
 
         originalPosition = rectTransform.anchoredPosition;
+
+        GameObject objInstance = ObjectPoolManager.GetObject(blockType);
+
     }
 
     private void OnMouseDrag()
@@ -55,6 +58,11 @@ public class CodeBlockDrag : MonoBehaviour
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
         }
+        else
+        {
+            ObjectPoolManager.Instance.ReturnObject(gameObject, blockType);
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

@@ -10,7 +10,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     private RectTransform BlockCountainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
-    public Dictionary<BlockType, GameObject> CodeBlockprefabDictionary;
+    public Dictionary<EnumTypes.BlockType, GameObject> CodeBlockprefabDictionary;
 
     public void Start()
     {
