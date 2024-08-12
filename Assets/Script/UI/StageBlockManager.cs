@@ -15,6 +15,6 @@ public class StageBlockManager : Singleton<StageBlockManager>
     public void SetStageBlockUISize(int BlockIndexLength)
     {
         StageBlockUIRectTransform.sizeDelta = new Vector2(BlockIndexLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
-        StageBlockUBoxCollider.size = new Vector2(BlockIndexLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
+        //StageBlockUBoxCollider.size = new Vector2(BlockIndexLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
     }
 }

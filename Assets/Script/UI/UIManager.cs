@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class UIConstants
 {
-    public const int RegularUISize = 60;
+    public const int RegularUISize = 50;
     public const int BigUISize = 120;
 }
 
