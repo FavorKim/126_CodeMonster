@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public static class UIConstants
+{
+    public const float RegularBoxSize = 60f;
+    public const float ConditionalCodeBoxSize = 90f;
+}
+
+
 public class UIManager : Singleton<UIManager>
 {
     [Header("UI List")]
@@ -9,11 +16,12 @@ public class UIManager : Singleton<UIManager>
 
     [Header("BlockContainer UI")]
     public int BlockContainerLength;
+    private bool PlusContainerUI = false;
 
     [Header("StageBlockList UI")]
     public int[] BlockIndexList;
     private int BlockIndexLength;
-    private int PlusUISizeNum = 0;
+    private int PlusBlockListUISizeNum = 0;
 
     private BlockContainerManager BlockContainerManager;
     private StageBlockManager StageBlockManager;
@@ -29,12 +37,12 @@ public class UIManager : Singleton<UIManager>
         {
             if(index == 7 || index ==8)
             {
-                Debug.Log(PlusUISizeNum);
-                PlusUISizeNum += 1;
+                PlusBlockListUISizeNum += 1;
+                PlusContainerUI = true;
             }
         }
 
-        BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength);
-        StageBlockManager.Instance.SetStageBlockUISize(BlockIndexLength + PlusUISizeNum);
+        BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
+        StageBlockManager.Instance.SetStageBlockUISize(BlockIndexLength + PlusBlockListUISizeNum);
     }
 }

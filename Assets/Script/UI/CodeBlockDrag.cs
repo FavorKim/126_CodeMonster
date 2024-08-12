@@ -1,5 +1,7 @@
-using EnumTypes;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI; // 드롭다운을 확인하기 위해 필요
 
 public class CodeBlockDrag : MonoBehaviour
 {
@@ -36,7 +38,7 @@ public class CodeBlockDrag : MonoBehaviour
         _offset = GetMouseWorldPos() - (Vector3)_rectTransform.anchoredPosition;
         _isDragging = true;
 
-        if(BlockContainerUI == null)
+        if (BlockContainerUI == null)
         {
             GameObject objInstance = ObjectPoolManager.GetObject(BlockName);
         }

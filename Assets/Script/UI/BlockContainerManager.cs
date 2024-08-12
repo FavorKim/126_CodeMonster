@@ -5,21 +5,31 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+
 public class BlockContainerManager : Singleton<BlockContainerManager>
 {
-    private RectTransform BlockCountainerUIRectTransform;
+    private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
     public void Start()
     {
-        BlockCountainerUIRectTransform = GetComponent<RectTransform>();
+        BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
     }
 
-    public void SetBlockContainerUISize(int InventoryNum)
+    public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
     {
-        BlockCountainerUIRectTransform.sizeDelta = new Vector2(InventoryNum * 60, 60);
-        BlockContainerBoxCollider.size = new Vector2(InventoryNum * 60, 60);
+        if( PlusContainerUI == true)
+        {
+            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.ConditionalCodeBoxSize, UIConstants.RegularBoxSize);
+            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.ConditionalCodeBoxSize, UIConstants.RegularBoxSize);
+        }
+        else
+        {
+            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.RegularBoxSize, UIConstants.RegularBoxSize);
+            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.RegularBoxSize, UIConstants.RegularBoxSize);
+        }
+
     }
 
     public void AddBlock(GameObject newBlock)
@@ -66,4 +76,36 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks[i].SetSiblingIndex(i);
         }
     }
+
+    private void UpdateBlockContainerSize()
+    {
+        // 모든 자식 요소의 경계를 계산
+        Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
+        bool hasBounds = false;
+
+        foreach (Transform child in transform)
+        {
+            RectTransform rect = child.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                if (hasBounds)
+                {
+                    // Vector2를 Vector3로 변환하여 더하기
+                    bounds.Encapsulate(rect.localPosition + new Vector3(rect.rect.min.x, rect.rect.min.y, 0));
+                    bounds.Encapsulate(rect.localPosition + new Vector3(rect.rect.max.x, rect.rect.max.y, 0));
+                }
+                else
+                {
+                    // 처음에는 Vector3로 중앙을 설정
+                    bounds = new Bounds(rect.localPosition + new Vector3(rect.rect.center.x, rect.rect.center.y, 0), new Vector3(rect.rect.size.x, rect.rect.size.y, 0));
+                    hasBounds = true;
+                }
+            }
+        }
+
+        // 새로운 크기를 RectTransform과 BoxCollider에 반영
+        BlockContainerUIRectTransform.sizeDelta = new Vector2(bounds.size.x, BlockContainerUIRectTransform.sizeDelta.y);
+        BlockContainerBoxCollider.size = new Vector3(bounds.size.x, BlockContainerBoxCollider.size.y, BlockContainerBoxCollider.size.z);
+    }
+
 }
