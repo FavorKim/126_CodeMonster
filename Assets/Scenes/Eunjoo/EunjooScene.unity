@@ -556,7 +556,7 @@ MonoBehaviour:
   BlockContainerUI: {fileID: 6052806502595805656}
   StageBlockUI: {fileID: 7187678405708000472}
   BlockContainerLength: 3
-  BlockIndexList: 0400000008000000
+  BlockIndexList: 04000000050000000600000008000000
 --- !u!1 &1673624672
 GameObject:
   m_ObjectHideFlags: 0

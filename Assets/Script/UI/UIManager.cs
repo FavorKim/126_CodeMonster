@@ -2,8 +2,8 @@ using UnityEngine;
 
 public static class UIConstants
 {
-    public const float RegularBoxSize = 60f;
-    public const float ConditionalCodeBoxSize = 90f;
+    public const int RegularUISize = 60;
+    public const int BigUISize = 120;
 }
 
 
