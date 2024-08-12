@@ -14,6 +14,10 @@ public class TestMonster : MonoBehaviour
         _tree = GetComponent<BehaviorTree>();
         _isPlayer = (SharedBool)_tree.GetVariable("IsPlayer");
         _isPlayer.Value = IsValue;
+        if (_isPlayer.Value == true)
+        {
+            _tree.StartWhenEnabled = true;
+        }
     }
     // Start is called before the first frame update
     void Start()
