@@ -10,8 +10,6 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     private RectTransform BlockCountainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
-    public Dictionary<EnumTypes.BlockType, GameObject> CodeBlockprefabDictionary;
-
     public void Start()
     {
         BlockCountainerUIRectTransform = GetComponent<RectTransform>();

@@ -539,15 +539,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolInfoList:
-  - type: 0
+  - BlockName: 0
+    BlockType: 0
     initCount: 5
     prefab: {fileID: 3369126874611500125, guid: f356f0c4ebf2624468890e5aed604164, type: 3}
     container: {fileID: 7187678405708000472}
-  - type: 1
+  - BlockName: 0
+    BlockType: 0
     initCount: 5
     prefab: {fileID: 1905676607421280362, guid: 15323082139a49742992b89cd4aa9487, type: 3}
     container: {fileID: 7187678405708000472}
-  - type: 2
+  - BlockName: 0
+    BlockType: 0
     initCount: 5
     prefab: {fileID: 3392943102465053282, guid: 81f1a152f83ac534ea24161414076bca, type: 3}
     container: {fileID: 7187678405708000472}
