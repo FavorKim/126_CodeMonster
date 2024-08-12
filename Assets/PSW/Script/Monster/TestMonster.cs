@@ -5,7 +5,7 @@ using BehaviorDesigner.Runtime;
 
 public class TestMonster : MonoBehaviour
 {
-
+    public bool IsValue;
     SharedBool _isPlayer;
     public BehaviorTree _tree;
 
@@ -13,7 +13,7 @@ public class TestMonster : MonoBehaviour
     {
         _tree = GetComponent<BehaviorTree>();
         _isPlayer = (SharedBool)_tree.GetVariable("IsPlayer");
-        _isPlayer.Value = true;
+        _isPlayer.Value = IsValue;
     }
     // Start is called before the first frame update
     void Start()
