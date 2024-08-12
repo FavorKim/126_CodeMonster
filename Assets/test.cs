@@ -18,7 +18,7 @@ public class test : Action
 
     public void aaa()
     {
-        Debug.Log("asdasd");
+        Debug.Log("player");
     }
 }
 [TaskCategory("Test")]
@@ -32,6 +32,6 @@ public class Logasd : Action
 
     public void aaa()
     {
-        Debug.Log("ssssss");
+        Debug.Log("monster");
     }
 }
