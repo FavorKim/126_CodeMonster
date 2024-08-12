@@ -16,9 +16,9 @@ public class GameInitializer : MonoBehaviour
     {
         // 데이터 로드 후 스테이지 데이터 가져오기
         var stageMapData = dataManagerTest.GetStageMapData(1); // 예: 스테이지 인덱스 1
-
+        var stageIndex = 1;
         // StageManager에 전달하여 스테이지 생성
-        stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab, enemyPrefab);
+        stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab, enemyPrefab,stageIndex);
 
         // StageManager 설정 이벤트 호출
         OnStageManagerSet?.Invoke(stageManager);

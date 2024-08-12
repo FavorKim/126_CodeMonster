@@ -10,7 +10,7 @@ public static class EntityRules
         { Element.Grass, Element.Water }
     };
 
-    // 공격 성공 여부를 판단하는 규칙
+    // 공격 성공 여부를 판단하는 규칙 -> 대미지 주는 함수
     public static bool CanAttack(Entity attacker, Entity target, Element attackElement)
     {
         // 공격자가 타겟과 같은 위치에 있는지 확인
@@ -31,17 +31,12 @@ public static class EntityRules
     }
 
     // 이동 가능 여부를 판단하는 규칙
-    public static bool CanMove(Vector2Int newPosition, int[,] grid)
+    public static bool CanMove(Vector2Int newPosition)
     {
         // 경계 체크: 그리드 범위 내에 있는지 확인
-        if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
-            newPosition.y >= 0 && newPosition.y < grid.GetLength(1))
-        {
-            return true;  // 이동 가능
-        }
+        bool canMove = StageManager.Inst.CanMove2(newPosition);
 
-        Debug.LogWarning("Cannot move outside the grid boundaries!");
-        return false;  // 이동 불가능
+        return canMove;
     }
 
     // 추가적인 게임 규칙 메서드들을 여기에 추가할 수 있음

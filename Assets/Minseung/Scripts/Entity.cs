@@ -15,29 +15,29 @@ public class Entity : MonoBehaviour
 
     private void OnEnable()
     {
-        GameInitializer.OnStageManagerSet += SetStageManager;
+        //GameInitializer.OnStageManagerSet += SetStageManager;
     }
 
     private void OnDisable()
     {
-        GameInitializer.OnStageManagerSet -= SetStageManager;
+       // GameInitializer.OnStageManagerSet -= SetStageManager;
     }
 
-    public void SetStageManager(StageManager manager)
-    {
-        stageManager = manager;
+    //public void SetStageManager(StageManager manager)
+    //{
+    //    stageManager = manager;
 
-        if (stageManager != null && entityType == EntityType.Player)
-        {
-            Initialize(stageManager.GetGrid(), stageManager.GetStartPosition());
-        }
-    }
+    //    if (stageManager != null && entityType == EntityType.Player)
+    //    {
+    //        Initialize(stageManager.GetGrid(), stageManager.GetStartPosition());
+    //    }
+    //}
 
-    public void Initialize(int[,] grid, Vector2Int startPosition)
-    {
-        position = startPosition;
-        transform.position = new Vector3(position.x, transform.position.y, position.y);
-    }
+    //public void Initialize(int[,] grid, Vector2Int startPosition)
+    //{
+    //    position = startPosition;
+    //    transform.position = new Vector3(position.x, transform.position.y, position.y);
+    //}
 
     public void Move(Direction direction)
     {
@@ -61,9 +61,8 @@ public class Entity : MonoBehaviour
                 break;
         }
 
-        int[,] grid = stageManager.GetGrid();
 
-        if (EntityRules.CanMove(newPosition, grid))
+        if (EntityRules.CanMove(newPosition))
         {
             StartCoroutine(MoveToPosition(new Vector3(newPosition.x, transform.position.y, newPosition.y)));
             position = newPosition;
