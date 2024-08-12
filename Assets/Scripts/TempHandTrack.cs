@@ -1,10 +1,37 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HandTrackingGrab : MonoBehaviour
 {
-    public OVRHand leftHand;
-    public OVRHand rightHand;
+    public enum CustomHandState
+    {
+        None = 0,
+        Grab,
+        Poke,
+        Release
+    }
+
+    public class CustomHand
+    {
+        public CustomHand(OVRHand hand, Transform indexFinger, bool isRight)
+        {
+            this.hand = hand;
+            this.indexFinger = indexFinger;
+            this.isRight = isRight;
+            state = CustomHandState.None;
+        }
+        public OVRHand hand;
+        public Transform indexFinger;
+        public bool isRight;
+        public CustomHandState state;
+    }
+
+    CustomHand leftHand;
+    CustomHand rightHand;
+
+    public OVRHand leftOVRHand;
+    public OVRHand rightOVRHand;
     public float pinchThreshold = 0.7f;
     [SerializeField] private OVRGrabbable rightGrabbedObject;
     [SerializeField] private OVRGrabbable leftGrabbedObject;
@@ -61,8 +88,19 @@ public class HandTrackingGrab : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 0.01f;
 
+    private event Action<CustomHand> OnGrab;
+    private event Action<CustomHand> OnRelease;
+    private event Action<CustomHand> OnPoke;
+
+    private void Awake()
+    {
+        leftHand = new CustomHand(leftOVRHand, leftIndexFinger, false);
+        rightHand = new CustomHand(rightOVRHand, rightIndexFinger, true);
+    }
+
     private void OnEnable()
     {
+        /*
         leftGrapInput.action.performed += OnGrabObject_Left;
         leftGrapInput.action.canceled += OnReleaseObject_Left;
 
@@ -71,21 +109,36 @@ public class HandTrackingGrab : MonoBehaviour
 
         rightGrapInput.action.Enable();
         leftGrapInput.action.Enable();
+        */
+        OnGrab += TryGrab;
+        OnRelease += Release;
+        OnPoke += TryPoke;
+    }
+    private void OnDisable()
+    {
+        OnPoke -= TryPoke;
+        OnRelease -= Release;
+        OnGrab -= TryGrab;
     }
 
 
 
     void Update()
     {
-        MoveHand(leftHand, leftIndexFinger, KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
-        MoveHand(rightHand, rightIndexFinger, KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        MoveHand(leftOVRHand, KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
+        MoveHand(rightOVRHand, KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
         MoveGrabbableObject();
 
+        GetHandState(leftHand);
+        GetHandState(rightHand);
+
+        InteractHand(leftHand);
+        InteractHand(rightHand);
 
     }
 
 
-    private void MoveHand(OVRHand hand, Transform indexFinger, KeyCode up, KeyCode down, KeyCode left, KeyCode right)
+    private void MoveHand(OVRHand hand, KeyCode up, KeyCode down, KeyCode left, KeyCode right)
     {
         Vector3 movement = Vector3.zero;
 
@@ -108,7 +161,6 @@ public class HandTrackingGrab : MonoBehaviour
 
         hand.transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        TryPoke(indexFinger);
         /*
         if (isGrabbing)
         {
@@ -127,15 +179,15 @@ public class HandTrackingGrab : MonoBehaviour
         }
         */
     }
-
+    /*
     private void OnGrabObject_Left(InputAction.CallbackContext con)
     {
-        TryGrab(leftHand, false);
+        TryGrab(leftOVRHand, false);
         Debug.Log("Left Grabbed");
     }
     private void OnGrabObject_Right(InputAction.CallbackContext con)
     {
-        TryGrab(rightHand, true);
+        TryGrab(rightOVRHand, true);
         Debug.Log("Right Grabbed");
     }
 
@@ -163,26 +215,27 @@ public class HandTrackingGrab : MonoBehaviour
             Debug.Log("Right Released");
         }
     }
-
-    private void TryGrab(OVRHand hand, bool grabObjisRight)
+    */
+    private void TryGrab(CustomHand hand)
     {
-        Collider[] colliders = Physics.OverlapSphere(hand.PointerPose.position, 0.05f);
+        Debug.Log(hand + "is Grab");
+        Collider[] colliders = Physics.OverlapSphere(hand.hand.PointerPose.position, 0.05f);
 
 
         foreach (var collider in colliders)
         {
             if (collider.gameObject.TryGetComponent(out OVRGrabbable grabbable))
             {
-                if (grabObjisRight)
+                if (hand.isRight)
                 {
                     rightGrabbedObject = grabbable;
-                    rightGrabbedObject.transform.SetParent(hand.transform);
+                    rightGrabbedObject.transform.SetParent(hand.hand.transform);
                     rightGrabbedObject.GetComponent<Rigidbody>().isKinematic = true;
                 }
                 else
                 {
                     leftGrabbedObject = grabbable;
-                    leftGrabbedObject.transform.SetParent(hand.transform);
+                    leftGrabbedObject.transform.SetParent(hand.hand.transform);
                     leftGrabbedObject.GetComponent<Rigidbody>().isKinematic = true;
                 }
 
@@ -191,11 +244,11 @@ public class HandTrackingGrab : MonoBehaviour
         }
     }
 
-    private void TryPoke(Transform indexFinger)
+    private void TryPoke(CustomHand hand)
     {
 
 
-        Collider[] indexColliders = Physics.OverlapSphere(indexFinger.position, 0.01f);
+        Collider[] indexColliders = Physics.OverlapSphere(hand.indexFinger.position, 0.01f);
 
         foreach (var collider in indexColliders)
         {
@@ -207,9 +260,9 @@ public class HandTrackingGrab : MonoBehaviour
 
     }
 
-    private void Release(bool isLeft)
+    private void Release(CustomHand hand)
     {
-        var grabObj = isLeft ? leftGrabbedObject : rightGrabbedObject;
+        var grabObj = hand.isRight ? rightGrabbedObject : leftGrabbedObject;
         if (grabObj != null)
         {
             grabObj.transform.SetParent(null);
@@ -221,14 +274,100 @@ public class HandTrackingGrab : MonoBehaviour
     {
         if (leftGrabbedObject != null)
         {
-            leftGrabbedObject.transform.position = new Vector3(leftHand.transform.position.x, leftHand.transform.position.y, 0);
+            leftGrabbedObject.transform.position = new Vector3(leftOVRHand.transform.position.x, leftOVRHand.transform.position.y, 0);
         }
         if (rightGrabbedObject != null)
         {
-            rightGrabbedObject.transform.position = new Vector3(rightHand.transform.position.x, rightHand.transform.position.y, 0);
+            rightGrabbedObject.transform.position = new Vector3(rightOVRHand.transform.position.x, rightOVRHand.transform.position.y, 0);
         }
     }
 
+    private void InteractHand(CustomHand hand)
+    {
+        Debug.Log(hand + "'s state is" + hand.state);
+        switch (hand.state)
+        {
+            case CustomHandState.Grab:
+                OnGrab.Invoke(hand);
+                break;
+            case CustomHandState.Poke:
+                OnPoke.Invoke(hand);
+                break;
+            case CustomHandState.Release:
+                OnRelease.Invoke(hand);
+                break;
+            default:
+                break;
+        }
+    }
+
+    CustomHandState GetHandState(CustomHand hand)
+    {
+        CustomHandState handState;
+        if (IsGrab(hand))
+            handState = CustomHandState.Grab;
+        else if (IsPoke(hand))
+            handState = CustomHandState.Poke;
+        else if (IsRelease(hand))
+            handState = CustomHandState.Release;
+        else
+            handState = CustomHandState.None;
+
+        return handState;
+    }
+
+    bool IsPoke(CustomHand hand)
+    {
+        bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
+        for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
+        {
+            fingerPinchings[i] = hand.hand.GetFingerIsPinching((OVRHand.HandFinger)i);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (i == 1 && fingerPinchings[i] == true)
+            {
+                return false;
+            }
+            if (fingerPinchings[i] == true)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool IsGrab(CustomHand hand)
+    {
+        bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
+
+        for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
+        {
+            fingerPinchings[i] = hand.hand.GetFingerIsPinching((OVRHand.HandFinger)i);
+        }
+        foreach (bool isPinch in fingerPinchings)
+        {
+            if (!isPinch)
+                return false;
+        }
+        return true;
+    }
+
+    bool IsRelease(CustomHand hand)
+    {
+        bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
+
+        for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
+        {
+            fingerPinchings[i] = hand.hand.GetFingerIsPinching((OVRHand.HandFinger)i);
+        }
+        foreach (bool isPinch in fingerPinchings)
+        {
+            if (isPinch)
+                return false;
+        }
+        return true;
+    }
 }
 
 
