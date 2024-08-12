@@ -13,14 +13,22 @@ public enum BlockName
 
 public enum BlockType
 {
-
+    MoveCodeBlock,
+    AttackCodeBlock,
+    ConditionalCodeBlock,
+    LoopCodeBlock
 }
 
 // 오브젝트 풀
 [Serializable]
 public class PoolInfo
 {
-    public BlockName type;
+    [HideInInspector]
+    public BlockName BlockName;
+
+    [HideInInspector]
+    public BlockType BlockType;
+
     public int initCount;
     public GameObject prefab;
     public GameObject container;
@@ -44,6 +52,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
 
     // 각 풀마다 정해진 개수의 오브젝트를 생성해주는 초기화 함수 
+    // 오브젝트 풀 초기화 함수
     private void Initialize()
     {
         poolContainers = new Dictionary<BlockName, RectTransform>();
@@ -53,36 +62,47 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
         foreach (PoolInfo poolInfo in poolInfoList)
         {
+            // Prefab의 BlockName과 BlockType을 가져오기 위해 임시 객체를 생성하지 않고 접근합니다.
+            CodeBlockDrag blockDrag = poolInfo.prefab.GetComponent<CodeBlockDrag>();
+
+            if (blockDrag == null)
+            {
+                Debug.LogWarning($"Prefab {poolInfo.prefab.name}에는 CodeBlockDrag 컴포넌트가 없습니다.");
+                continue;
+            }
+
+            poolInfo.BlockName = blockDrag.BlockName;
+            poolInfo.BlockType = blockDrag.BlockType;
+
             // blockIndices에 현재 poolInfo.type의 인덱스가 포함되어 있는지 확인합니다.
-            if (Array.Exists(blockIndices, index => (int)poolInfo.type == index))
+            if (Array.Exists(blockIndices, index => (int)poolInfo.BlockName == index))
             {
                 // Create a new empty GameObject with RectTransform under the container
-                GameObject typeContainer = new GameObject(poolInfo.type.ToString());
+                GameObject typeContainer = new GameObject(poolInfo.BlockName.ToString());
                 RectTransform rectTransform = typeContainer.AddComponent<RectTransform>();
 
                 // Set the parent to the container and adjust RectTransform
                 rectTransform.SetParent(poolInfo.container.transform, false);
                 rectTransform.sizeDelta = new Vector2(1, 1); // Set width and height to 1
 
-                poolContainers[poolInfo.type] = rectTransform;
+                poolContainers[poolInfo.BlockName] = rectTransform;
 
                 for (int i = 0; i < poolInfo.initCount; i++)
                 {
                     poolInfo.poolQueue.Enqueue(CreatNewObject(poolInfo));
                 }
 
-                GameObject objInstance = GetObject(poolInfo.type);
+                GameObject objInstance = GetObject(poolInfo.BlockName);
 
                 // SetActive(true)를 사용하지 않고, 필요한 초기화 작업을 수행합니다.
                 // 예: objInstance.transform.position = new Vector3(0, 0, 0);
                 // 다른 초기화 작업을 여기에 추가
 
                 // 작업이 끝나면 다시 풀에 반환할 수도 있습니다.
-                
-
             }
         }
     }
+
 
 
 
@@ -90,7 +110,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     private GameObject CreatNewObject(PoolInfo poolInfo)
     {
         // Instantiate the prefab as a child of the corresponding RectTransform container
-        GameObject newObject = Instantiate(poolInfo.prefab, poolContainers[poolInfo.type]);
+        GameObject newObject = Instantiate(poolInfo.prefab, poolContainers[poolInfo.BlockName]);
         newObject.gameObject.SetActive(false);
         return newObject;
     }
@@ -100,7 +120,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         foreach (PoolInfo poolInfo in poolInfoList)
         {
-            if (type == poolInfo.type)
+            if (type == poolInfo.BlockName)
             {
                 return poolInfo;
             }
