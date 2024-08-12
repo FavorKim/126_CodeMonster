@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public enum EntityType
 {
@@ -7,42 +8,43 @@ public enum EntityType
 
 public class Entity : MonoBehaviour
 {
-    public Element element;  // 엔티티의 속성
-    public Vector2Int position;  // 엔티티의 위치
-    public EntityType entityType;  // 엔티티가 플레이어인지 적인지 구분
+    public Element element;
+    public Vector2Int position;
+    public EntityType entityType;
+    private StageManager stageManager;
 
-    private StageManager stageManager;  // StageManager 참조
-
-    private void Start()
+    private void OnEnable()
     {
-        stageManager = FindObjectOfType<StageManager>();  // StageManager 인스턴스를 찾음
+        GameInitializer.OnStageManagerSet += SetStageManager;
+    }
+
+    private void OnDisable()
+    {
+        GameInitializer.OnStageManagerSet -= SetStageManager;
+    }
+
+    public void SetStageManager(StageManager manager)
+    {
+        stageManager = manager;
 
         if (stageManager != null && entityType == EntityType.Player)
         {
             Initialize(stageManager.GetGrid(), stageManager.GetStartPosition());
         }
-        else if (stageManager == null)
-        {
-            Debug.LogError("StageManager not found in the scene!");
-        }
     }
 
-    // 엔티티를 초기화하는 메서드 (주로 플레이어일 때 사용)
     public void Initialize(int[,] grid, Vector2Int startPosition)
     {
         position = startPosition;
         transform.position = new Vector3(position.x, transform.position.y, position.y);
     }
 
-    // 이동 메서드 (플레이어일 경우)
     public void Move(Direction direction)
     {
-        if (entityType != EntityType.Player)
-            return;  // 플레이어가 아니면 이동하지 않음
+        if (entityType != EntityType.Player) return;
 
         Vector2Int newPosition = position;
 
-        // 이동 방향에 따라 위치 업데이트
         switch (direction)
         {
             case Direction.Up:
@@ -59,44 +61,54 @@ public class Entity : MonoBehaviour
                 break;
         }
 
-        int[,] grid = stageManager.GetGrid(); // StageManager로부터 그리드 정보 획득
+        int[,] grid = stageManager.GetGrid();
 
-        // 규칙을 사용하여 이동 가능 여부 판단
         if (EntityRules.CanMove(newPosition, grid))
         {
-            position = newPosition;  // 현재 위치 업데이트
-            transform.position = new Vector3(position.x, transform.position.y, position.y);
+            StartCoroutine(MoveToPosition(new Vector3(newPosition.x, transform.position.y, newPosition.y)));
+            position = newPosition;
         }
     }
 
-    // 공격 메서드 (플레이어가 적을 공격할 때 사용)
     public void Attack(Entity targetEntity, Element attackElement)
     {
-        // 규칙을 사용하여 공격 가능 여부 판단
         if (EntityRules.CanAttack(this, targetEntity, attackElement))
         {
-            targetEntity.Defeat();  // 적을 쓰러뜨림
+            targetEntity.Defeat();
             Debug.Log("Attack successful!");
         }
         else
         {
-            Defeat();  // 플레이어가 패배
+            Defeat();
         }
     }
 
-    // 엔티티가 쓰러졌을 때 처리 로직
     public void Defeat()
     {
         if (entityType == EntityType.Player)
         {
             Debug.Log(gameObject.name + " has been defeated!");
-            // 플레이어 패배 시 추가 처리 로직 (게임 오버 화면 등)을 여기에 구현
         }
         else
         {
             Debug.Log("Enemy defeated!");
-            // 적을 제거하거나 상태를 변경하는 로직을 여기에 구현
-            gameObject.SetActive(false);  // 예시로 비활성화
+            gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    {
+        float duration = 0.5f;
+        float elapsed = 0f;
+        Vector3 startingPosition = transform.position;
+
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(startingPosition, targetPosition, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
     }
 }

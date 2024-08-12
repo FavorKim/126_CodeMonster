@@ -1,7 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class EntityRules
 {
+    private static readonly Dictionary<Element, Element> elementWeaknesses = new Dictionary<Element, Element>
+    {
+        { Element.Fire, Element.Grass },
+        { Element.Water, Element.Fire },
+        { Element.Grass, Element.Water }
+    };
+
     // 공격 성공 여부를 판단하는 규칙
     public static bool CanAttack(Entity attacker, Entity target, Element attackElement)
     {
@@ -12,10 +20,8 @@ public static class EntityRules
             return false;
         }
 
-        // 속성 비교에 따른 공격 성공 여부 판단
-        if ((attackElement == Element.Fire && target.element == Element.Grass) ||
-            (attackElement == Element.Water && target.element == Element.Fire) ||
-            (attackElement == Element.Grass && target.element == Element.Water))
+        // 사전에 정의한 속성 상성 관계를 사용하여 공격 판단
+        if (elementWeaknesses.TryGetValue(attackElement, out Element targetWeakness) && target.element == targetWeakness)
         {
             return true;  // 공격 성공
         }

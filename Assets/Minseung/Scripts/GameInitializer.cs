@@ -4,10 +4,13 @@ public class GameInitializer : MonoBehaviour
 {
     public StageManager stageManager;
     public DataManagerTest dataManagerTest;
-    public GameObject[] floorPrefabs; // 바닥 타일 프리팹 리스트
-    public GameObject[] wallPrefabs;  // 벽 타일 프리팹 리스트
+    public GameObject[] floorPrefabs;
+    public GameObject[] wallPrefabs;
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
+
+    public delegate void StageManagerSetHandler(StageManager manager);
+    public static event StageManagerSetHandler OnStageManagerSet;
 
     private void Start()
     {
@@ -16,5 +19,8 @@ public class GameInitializer : MonoBehaviour
 
         // StageManager에 전달하여 스테이지 생성
         stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab, enemyPrefab);
+
+        // StageManager 설정 이벤트 호출
+        OnStageManagerSet?.Invoke(stageManager);
     }
 }
