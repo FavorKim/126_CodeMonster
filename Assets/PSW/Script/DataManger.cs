@@ -172,9 +172,10 @@ public class DataManger : MonoBehaviour
             tempStageMap.BlockContainerLength = int.Parse(data.Attribute(nameof(tempStageMap.BlockContainerLength)).Value);
             SetDataList(out tempStageMap.ArrayInfo, data, "ArrayInfo");
             SetDataList(out tempStageMap.BlockIndexList, data, "BlockIndexList");
-            SetDataList(out tempStageMap.MonsterIDList, data, "MonsterIDList");
+            SetDataList(out tempStageMap.MonsterNameList, data, "MonsterNameList");
             SetDataList(out tempStageMap.MonsterSpawnPosXList, data, "MonsterSpawnPosXList");
             SetDataList(out tempStageMap.MonsterSpawnPosYList, data, "MonsterSpawnPosYList");
+            SetDataList(out tempStageMap.PlayerSpawnPosList, data, "PlayerSpawnPosList");
             LoadedStageMap.Add(tempStageMap.StageIndex, tempStageMap);
         }
 
