@@ -12,7 +12,7 @@ public class DataManger : MonoBehaviour
 {
     private string filePath;
     public Dictionary<string, Monster> LoadedMonsterList { get; private set; }
-    public Dictionary<string, CodeBlock> LoadedCodeBlockList { get; private set; }
+    public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }
     public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
@@ -137,7 +137,7 @@ public class DataManger : MonoBehaviour
     
     private void ReadCodeBlockTable(string name)
     {
-        LoadedCodeBlockList = new Dictionary<string, CodeBlock>();
+        LoadedCodeBlockList = new Dictionary<string, CodeBlockData>();
 
         XDocument doc = XDocument.Load($"{_dataRootPath}/{name}.xml");
 
@@ -145,7 +145,7 @@ public class DataManger : MonoBehaviour
 
         foreach (var data in dataElements)
         {
-            var tempCodeBlock = new CodeBlock();
+            var tempCodeBlock = new CodeBlockData();
             tempCodeBlock.BlockIndex = int.Parse(data.Attribute(nameof(tempCodeBlock.BlockIndex)).Value);
             tempCodeBlock.BlockName = data.Attribute(nameof(tempCodeBlock.BlockName)).Value;
             tempCodeBlock.Description = data.Attribute(nameof(tempCodeBlock.Description)).Value;
@@ -254,7 +254,7 @@ public class DataManger : MonoBehaviour
         //딕셔너리는 찾아주는게 빠르다
         return LoadedMonsterList[dataName];
     }
-    public CodeBlock GetCodeBlockData(string dataClassName)
+    public CodeBlockData GetCodeBlockData(string dataClassName)
     {
         if (LoadedCodeBlockList.Count == 0
             || !LoadedCodeBlockList.ContainsKey(dataClassName))

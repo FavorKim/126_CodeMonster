@@ -96,7 +96,7 @@ public class DataManagerTest : MonoBehaviour
 
         SetDataList(out tempStageMap.ArrayInfo, data, "ArrayInfo");
         SetDataList(out tempStageMap.BlockIndexList, data, "BlockIndexList");
-        SetDataList(out tempStageMap.MonsterIDList, data, "MonsterIDList");
+        SetDataList(out tempStageMap.MonsterNameList, data, "MonsterNameList");
         SetDataList(out tempStageMap.MonsterSpawnPosXList, data, "MonsterSpawnPosXList");
         SetDataList(out tempStageMap.MonsterSpawnPosYList, data, "MonsterSpawnPosYList");
 

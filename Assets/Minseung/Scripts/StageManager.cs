@@ -39,7 +39,7 @@ public class StageManager : MonoBehaviour
         }
 
         // 적 생성 및 위치 설정
-        for (int i = 1; i < currentStageMap.MonsterIDList.Count; i++)
+        for (int i = 1; i < currentStageMap.MonsterNameList.Count; i++)
         {
             if (enemyPrefab != null)
             {

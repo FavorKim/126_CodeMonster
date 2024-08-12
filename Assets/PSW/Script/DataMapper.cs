@@ -11,7 +11,7 @@ public class Monster
     public int TypeIndex {  get; set; }
 }
 
-public class CodeBlock
+public class CodeBlockData
 {
     public int BlockIndex {  get; set; }
     public string BlockName { get; set; }
