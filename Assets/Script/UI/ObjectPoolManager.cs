@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 오브젝트 구분을 위한 타입
-public enum BlockType
+public enum BlockName
 {
     RedCodeBlock,
     BlueCodeBlock,
@@ -11,11 +11,16 @@ public enum BlockType
     Test
 }
 
+public enum BlockType
+{
+
+}
+
 // 오브젝트 풀
 [Serializable]
 public class PoolInfo
 {
-    public BlockType type;
+    public BlockName type;
     public int initCount;
     public GameObject prefab;
     public GameObject container;
@@ -30,7 +35,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     // 오브젝트 풀 리스트
     [SerializeField] private List<PoolInfo> poolInfoList;
 
-    private Dictionary<BlockType, RectTransform> poolContainers;
+    private Dictionary<BlockName, RectTransform> poolContainers;
 
     private void Awake()
     {
@@ -41,7 +46,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     // 각 풀마다 정해진 개수의 오브젝트를 생성해주는 초기화 함수 
     private void Initialize()
     {
-        poolContainers = new Dictionary<BlockType, RectTransform>();
+        poolContainers = new Dictionary<BlockName, RectTransform>();
 
         // UIManager에서 BlockIndexList 값을 가져옵니다.
         int[] blockIndices = UIManager.Instance.BlockIndexList;
@@ -91,7 +96,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
 
     // ObjectType(Enum)으로 해당하는 PoolInfo를 반환해주는 함수
-    private PoolInfo GetPoolByType(BlockType type)
+    private PoolInfo GetPoolByType(BlockName type)
     {
         foreach (PoolInfo poolInfo in poolInfoList)
         {
@@ -104,7 +109,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
 
     // 오브젝트가 필요할 때 호출하는 함수
-    public static GameObject GetObject(BlockType type)
+    public static GameObject GetObject(BlockName type)
     {
         PoolInfo poolInfo = Instance.GetPoolByType(type);
         GameObject objInstance = null;
@@ -121,7 +126,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
 
     // 오브젝트 사용 후 다시 풀에 반환하는 함수
-    public void ReturnObject(GameObject obj, BlockType type)
+    public void ReturnObject(GameObject obj, BlockName type)
     {
         PoolInfo poolInfo = Instance.GetPoolByType(type);
         poolInfo.poolQueue.Enqueue(obj);

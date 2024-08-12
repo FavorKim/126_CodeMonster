@@ -26,7 +26,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 
     public void AddBlock(GameObject newBlock)
     {
-        // 현재 BlockContainer에 있는 모든 자식 블록들을 가져옵니다.
+        // 기존 블록들 existingBlocks에 저장
         List<Transform> existingBlocks = new List<Transform>();
         foreach (Transform child in this.transform)
         {
@@ -36,7 +36,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         // 새로 추가될 블록의 월드 좌표
         Vector3 newBlockWorldPosition = newBlock.transform.position;
 
-        // 모든 블록들의 월드 좌표를 비교하여 새로운 순서를 계산합니다.
+        // existingBlocks에 있는 블럭들과 새 블록의 월드 좌표를 비교해서
+        // 순서대로 sortedBlocks List에 저장
         List<Transform> sortedBlocks = new List<Transform>();
 
         bool blockInserted = false;
@@ -50,13 +51,13 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks.Add(block);
         }
 
-        // 새 블록이 제일 마지막에 위치해야 할 경우
+        // 새 블록이 제일 마지막에 위치할 경우
         if (!blockInserted)
         {
             sortedBlocks.Add(newBlock.transform);
         }
 
-        // 이제 블록들을 새로운 순서대로 배치합니다.
+        // sortedBlock 순대로 BlockContainer UI 하위로 정렬
         for (int i = 0; i < sortedBlocks.Count; i++)
         {
             sortedBlocks[i].SetParent(this.transform, false);
@@ -67,27 +68,4 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks[i].SetSiblingIndex(i);
         }
     }
-
-
-    public void RemoveCodeBlock(GameObject RemoveBlock)
-    {
-        Destroy(RemoveBlock);
-    }
-
-    public void ChangeChildOrder(int oldIndex, int newIndex)
-    {
-        if (oldIndex < 0 || newIndex < 0 || oldIndex >= transform.childCount || newIndex >= transform.childCount)
-        {
-            Debug.LogWarning("Invalid indices provided for changing child order.");
-            return;
-        }
-
-        Transform child = transform.GetChild(oldIndex);
-        child.SetSiblingIndex(newIndex);
-    }
-
-
-
-
-
 }

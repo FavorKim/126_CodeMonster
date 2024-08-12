@@ -8,7 +8,7 @@ public class CodeBlockDrag : MonoBehaviour
     private float zCoordinate;
 
     public BlockContainerManager BlockContainerUI;
-    public BlockType blockType;
+    public BlockName blockType;
 
     private RectTransform rectTransform;
 
@@ -55,7 +55,7 @@ public class CodeBlockDrag : MonoBehaviour
     {
         isDragging = false;
 
-        if (BlockContainerUI != null)
+        if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
         }
