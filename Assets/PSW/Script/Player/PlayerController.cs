@@ -6,6 +6,7 @@ using BehaviorDesigner.Runtime;
 public class PlayerController : Entity
 {
     public Vector2Int position;
+    public SharedVector2Int sharedPos;
     public void CheckBlock()
     {
         List<int> blockList = new List<int>();
@@ -14,6 +15,8 @@ public class PlayerController : Entity
     public void SetPlayerStartPos()
     {
         position = new Vector2Int(StageManager.Inst.GetPlayerSpawnPosX(), StageManager.Inst.GetPlayerSpawnPosY());
+        sharedPos = (SharedVector2Int)_tree.GetVariable("playerPos");
+        sharedPos.Value = position;
     }
     public void Move(Direction direction)
     {

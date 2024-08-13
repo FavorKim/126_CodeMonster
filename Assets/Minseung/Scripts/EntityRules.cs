@@ -11,7 +11,7 @@ public static class EntityRules
     };
 
     // 공격 성공 여부를 판단하는 규칙 -> 대미지 주는 함수
-    public static bool CanAttack(Entity attacker, Entity target, Element attackElement)
+    public static bool CanAttack(Entity attacker, PlayerController target, Element attackElement)
     {
         // 공격자가 타겟과 같은 위치에 있는지 확인
         if (Vector2Int.RoundToInt(attacker.transform.position) != target.position)

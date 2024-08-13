@@ -55,15 +55,15 @@ public class Entity : MonoBehaviour
 
     public void Attack(Entity targetEntity, Element attackElement)
     {
-        if (EntityRules.CanAttack(this, targetEntity, attackElement))
-        {
-            targetEntity.Defeat();
-            Debug.Log("Attack successful!");
-        }
-        else
-        {
-            Defeat();
-        }
+        //if (EntityRules.CanAttack(this, targetEntity, attackElement))
+        //{
+        //    targetEntity.Defeat();
+        //    Debug.Log("Attack successful!");
+        //}
+        //else
+        //{
+        //    Defeat();
+        //}
     }
 
     public void Defeat()
