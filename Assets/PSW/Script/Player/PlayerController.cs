@@ -7,14 +7,19 @@ public class PlayerController : Entity
 {
     public Vector2Int position;
     public SharedVector2Int sharedPos;
+    List<int> blockList = new List<int>();
     public void CheckBlock()
     {
-        List<int> blockList = new List<int>();
         blockList = CodeBlockManager.Inst.ExecuteAll();
     }
     public void SetPlayerStartPos()
     {
         position = new Vector2Int(StageManager.Inst.GetPlayerSpawnPosX(), StageManager.Inst.GetPlayerSpawnPosY());
+        SetSharedPlayerPos();
+    }
+
+    public void SetSharedPlayerPos()
+    {
         sharedPos = (SharedVector2Int)_tree.GetVariable("playerPos");
         sharedPos.Value = position;
     }
