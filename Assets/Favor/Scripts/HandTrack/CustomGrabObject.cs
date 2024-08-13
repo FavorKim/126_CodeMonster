@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +7,10 @@ using UnityEngine;
 
 public class CustomGrabObject : MonoBehaviour
 {
-    GrabInteractable grab;
+    [SerializeField] HandGrabInteractable grab;
     void Start()
     {
-        grab = GetComponent<GrabInteractable>();
+        grab = GetComponent<HandGrabInteractable>();
     }
 
     public event Action OnGrab;
@@ -18,14 +19,14 @@ public class CustomGrabObject : MonoBehaviour
     private void OnEnable()
     {
         grab.WhenStateChanged += OnGrabStateChanged;
-        OnGrab += OnGrab_ChangeColor;
-        OnRelease += OnRelease_ChangeColor;
+        OnGrab += OnGrab_ChangeSize;
+        OnRelease += OnRelease_ChangeSize;
     }
 
     private void OnDisable()
     {
-        OnRelease -= OnRelease_ChangeColor;
-        OnGrab -= OnGrab_ChangeColor;
+        OnRelease -= OnRelease_ChangeSize;
+        OnGrab -= OnGrab_ChangeSize;
         grab.WhenStateChanged -= OnGrabStateChanged;
     }
 
@@ -44,17 +45,13 @@ public class CustomGrabObject : MonoBehaviour
         }
     }
 
-    private void OnGrab_ChangeColor()
+    private void OnGrab_ChangeSize()
     {
-        Material mat = GetComponent<MeshRenderer>().material;
-        mat = new Material(mat);
-        mat.color = Color.red;
+        transform.localScale = transform.localScale * 1.5f;
     }
 
-    private void OnRelease_ChangeColor()
+    private void OnRelease_ChangeSize()
     {
-        Material mat = GetComponent<MeshRenderer>().material;
-        mat = new Material(mat);
-        mat.color = Color.white;
+        transform.localScale = transform.localScale / 1.5f;
     }
 }
