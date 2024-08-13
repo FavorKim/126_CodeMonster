@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Eunjoo/EunjooScene.unity
+    guid: fbd5151cbec8d7844be3abdac9097b45
   m_configObjects: {}
