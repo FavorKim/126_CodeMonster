@@ -11,6 +11,7 @@ public class HandTrackingGrab : MonoBehaviour
         Poke,
         Release
     }
+    
 
     public class CustomHand
     {
@@ -178,6 +179,7 @@ public class HandTrackingGrab : MonoBehaviour
             Debug.Log(hand.name + " is releasing.");
         }
         */
+
     }
     /*
     private void OnGrabObject_Left(InputAction.CallbackContext con)
@@ -321,7 +323,8 @@ public class HandTrackingGrab : MonoBehaviour
         bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
         for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
         {
-            fingerPinchings[i] = hand.hand.GetFingerIsPinching((OVRHand.HandFinger)i);
+            fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i) > 0.5f);
+
         }
         for (int i = 0; i < 5; i++)
         {
@@ -343,7 +346,7 @@ public class HandTrackingGrab : MonoBehaviour
 
         for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
         {
-            fingerPinchings[i] = hand.hand.GetFingerIsPinching((OVRHand.HandFinger)i);
+            fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i)>0.5f);
         }
         foreach (bool isPinch in fingerPinchings)
         {
@@ -359,7 +362,8 @@ public class HandTrackingGrab : MonoBehaviour
 
         for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
         {
-            fingerPinchings[i] = hand.hand.GetFingerIsPinching((OVRHand.HandFinger)i);
+            fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i) > 0.5f);
+
         }
         foreach (bool isPinch in fingerPinchings)
         {
