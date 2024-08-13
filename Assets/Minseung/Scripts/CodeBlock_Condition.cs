@@ -14,11 +14,11 @@ public class CodeBlock_Condition : CodeBlock
     }
 
     // 조건을 평가하고, 참일 경우 파트너가 행동을 수행하도록 하는 메서드
-    public override void Execute(Player partner)
-    {
-        if (condition != null && condition())
-        {
-            blockToExecute.Execute(partner); // 조건이 참일 경우 파트너가 행동을 수행
-        }
-    }
+    //public override void Execute(Player partner)
+    //{
+    //    if (condition != null && condition())
+    //    {
+    //        blockToExecute.Execute(partner); // 조건이 참일 경우 파트너가 행동을 수행
+    //    }
+    //}
 }

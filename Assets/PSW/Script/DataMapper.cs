@@ -25,7 +25,7 @@ public class StageMap
     public int StageXSize { get; set; }
     public int StageYSize { get; set; }
     public List<int> ArrayInfo = new List<int>();
-    public List<int> BlockIndexList = new List<int>();
+    public List<string> BlockNameList = new List<string>();
     public int BlockContainerLength {  get; set; }
     public List<string> MonsterNameList = new List<string>();
     public List<int>MonsterSpawnPosXList = new List<int>();

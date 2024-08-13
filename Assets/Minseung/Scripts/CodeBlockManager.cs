@@ -6,24 +6,27 @@ public class CodeBlockManager : MonoBehaviour
     public CodeBlockContainer container;
     public CodeBlockSequenceArea sequenceArea;
     private GameManager gameManager;
+    private Dictionary<string, CodeBlockData> codeBlocks = new Dictionary<string, CodeBlockData>();
+    public static CodeBlockManager Inst { get; private set; }
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
     }
-    public void ExecuteAll()
+    private void Start()
     {
-        List<ICommand> commands = new List<ICommand>();
+        codeBlocks = DataManagerTest.Inst.LoadedCodeBlockList;
+    }
+    public List<int> ExecuteAll()
+    {
+        List<int> blockIndexList = new List<int>();
 
-        foreach(Transform child in sequenceArea.transform)
+        for(int i = 0; i < this.gameObject.transform.childCount; i++) 
         {
-            CodeBlock block = child.GetComponent<CodeBlock>();
-            if(block != null)
-            {
-                commands.Add(block);
-            }
+            int blockIndex = codeBlocks[this.gameObject.transform.GetChild(i).name].BlockIndex;
+            blockIndexList.Add(blockIndex);
         }
 
-        gameManager.ExecuteCommands(commands);
+        return blockIndexList;
+
     }
 }

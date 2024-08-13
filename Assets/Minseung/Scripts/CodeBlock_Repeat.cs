@@ -14,14 +14,14 @@ public class CodeBlock_Repeat : CodeBlock
     }
 
     // 파트너에 명령을 전달하여 반복 실행하는 메서드
-    public override void Execute(Player partner)
-    {
-        for (int i = 0; i < repeatCount; i++)
-        {
-            foreach (var block in blocksToRepeat)
-            {
-                block.Execute(partner); // 파트너에게 명령을 전달
-            }
-        }
-    }
+    //public override void Execute(Player partner)
+    //{
+    //    for (int i = 0; i < repeatCount; i++)
+    //    {
+    //        foreach (var block in blocksToRepeat)
+    //        {
+    //            block.Execute(partner); // 파트너에게 명령을 전달
+    //        }
+    //    }
+    //}
 }

@@ -14,9 +14,9 @@ public class CodeBlock_Attack : CodeBlock
         this.enemy = enemy;
     }
 
-    public override void Execute(Player partner)
-    {
-        // 파트너가 적을 공격
-        partner.Attack(enemy, attackElement);
-    }
+    //public override void Execute(Player partner)
+    //{
+    //    // 파트너가 적을 공격
+    //    partner.Attack(enemy, attackElement);
+    //}
 }

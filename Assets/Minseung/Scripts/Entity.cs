@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using BehaviorDesigner.Runtime;
 
 public enum EntityType
 {
@@ -9,18 +11,23 @@ public enum EntityType
 public class Entity : MonoBehaviour
 {
     public Element element;
-    public Vector2Int position;
+    
     public EntityType entityType;
     private StageManager stageManager;
 
-    private void OnEnable()
-    {
-        //GameInitializer.OnStageManagerSet += SetStageManager;
-    }
+    public bool IsValue;
+    protected SharedBool _isPlayer;
+    public BehaviorTree _tree;
 
-    private void OnDisable()
+    protected virtual void Awake()
     {
-       // GameInitializer.OnStageManagerSet -= SetStageManager;
+        _tree = GetComponent<BehaviorTree>();
+        _isPlayer = (SharedBool)_tree.GetVariable("IsPlayer");
+        _isPlayer.Value = IsValue;
+        if (_isPlayer.Value == true)
+        {
+            _tree.StartWhenEnabled = true;
+        }
     }
 
     //public void SetStageManager(StageManager manager)
@@ -39,35 +46,12 @@ public class Entity : MonoBehaviour
     //    transform.position = new Vector3(position.x, transform.position.y, position.y);
     //}
 
-    public void Move(Direction direction)
-    {
-        if (entityType != EntityType.Player) return;
-
-        Vector2Int newPosition = position;
-
-        switch (direction)
-        {
-            case Direction.Up:
-                newPosition.y += 1;
-                break;
-            case Direction.Down:
-                newPosition.y -= 1;
-                break;
-            case Direction.Left:
-                newPosition.x -= 1;
-                break;
-            case Direction.Right:
-                newPosition.x += 1;
-                break;
-        }
+    
 
 
-        if (EntityRules.CanMove(newPosition))
-        {
-            StartCoroutine(MoveToPosition(new Vector3(newPosition.x, transform.position.y, newPosition.y)));
-            position = newPosition;
-        }
-    }
+    
+
+    
 
     public void Attack(Entity targetEntity, Element attackElement)
     {
@@ -95,19 +79,5 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition)
-    {
-        float duration = 0.5f;
-        float elapsed = 0f;
-        Vector3 startingPosition = transform.position;
-
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(startingPosition, targetPosition, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-    }
+    
 }
