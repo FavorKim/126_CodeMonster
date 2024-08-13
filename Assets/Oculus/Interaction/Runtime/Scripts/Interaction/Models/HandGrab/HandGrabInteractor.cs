@@ -91,6 +91,9 @@ namespace Oculus.Interaction.HandGrab
         private HandGrabResult _cachedResult = new HandGrabResult();
         private HandGrabInteractable _selectedInteractableOverride;
 
+        public event Action OnGrab;
+        public event Action OnRelease;
+
         #region IHandGrabInteractor
         public IMovement Movement { get; set; }
         public bool MovementFinished { get; set; }
