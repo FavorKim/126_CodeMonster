@@ -1,6 +1,8 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class HandTrackingGrab : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class HandTrackingGrab : MonoBehaviour
         Poke,
         Release
     }
-    
+
 
     public class CustomHand
     {
@@ -42,6 +44,8 @@ public class HandTrackingGrab : MonoBehaviour
 
     public InputActionReference rightGrapInput;
     public InputActionReference leftGrapInput;
+
+    [SerializeField] TMP_Text Debug_DebugPanelTextField;
 
     private bool rightIsGrabbing = false;
     private bool RightIsGrabbing
@@ -130,14 +134,34 @@ public class HandTrackingGrab : MonoBehaviour
         MoveHand(rightOVRHand, KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
         MoveGrabbableObject();
 
-        GetHandState(leftHand);
-        GetHandState(rightHand);
+        leftHand.state = GetHandState(leftHand);
+        rightHand.state = GetHandState(rightHand);
 
         InteractHand(leftHand);
         InteractHand(rightHand);
 
+        Debug_ShowPinchAndState();
     }
 
+    void Debug_ShowPinchAndState()
+    {
+        Debug_DebugPanelTextField.text = "left hand\n";
+        for (int i = 0; i < 5; i++)
+        {
+            string pinch = $"{i + 1} : " + (leftHand.hand.GetFingerPinchStrength((OVRHand.HandFinger)1).ToString());
+            Debug_DebugPanelTextField.text += pinch + "\n";
+        }
+        Debug_DebugPanelTextField.text += "state : " + leftHand.state.ToString();
+        Debug_DebugPanelTextField.text += "\n\n";
+
+        Debug_DebugPanelTextField.text += "right \n";
+        for (int i = 0; i < 5; i++)
+        {
+            string pinch = $"{i+1} : " + (rightHand.hand.GetFingerPinchStrength((OVRHand.HandFinger)1).ToString());
+            Debug_DebugPanelTextField.text += pinch + "\n";
+        }
+        Debug_DebugPanelTextField.text += "state : "+ rightHand.state.ToString();
+    }
 
     private void MoveHand(OVRHand hand, KeyCode up, KeyCode down, KeyCode left, KeyCode right)
     {
@@ -305,7 +329,7 @@ public class HandTrackingGrab : MonoBehaviour
 
     CustomHandState GetHandState(CustomHand hand)
     {
-        CustomHandState handState;
+        CustomHandState handState = CustomHandState.None;
         if (IsGrab(hand))
             handState = CustomHandState.Grab;
         else if (IsPoke(hand))
@@ -321,7 +345,7 @@ public class HandTrackingGrab : MonoBehaviour
     bool IsPoke(CustomHand hand)
     {
         bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
-        for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
+        for (int i = 0; i < 5; i++)
         {
             fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i) > 0.5f);
 
@@ -344,9 +368,9 @@ public class HandTrackingGrab : MonoBehaviour
     {
         bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
 
-        for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
+        for (int i = 0; i < 5; i++)
         {
-            fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i)>0.5f);
+            fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i) > 0.5f);
         }
         foreach (bool isPinch in fingerPinchings)
         {
@@ -360,7 +384,7 @@ public class HandTrackingGrab : MonoBehaviour
     {
         bool[] fingerPinchings = new bool[(int)OVRHand.HandFinger.Max];
 
-        for (int i = 0; i < (int)OVRHand.HandFinger.Max; i++)
+        for (int i = 0; i < 5; i++)
         {
             fingerPinchings[i] = (hand.hand.GetFingerPinchStrength((OVRHand.HandFinger)i) > 0.5f);
 
