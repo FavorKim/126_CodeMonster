@@ -8,11 +8,12 @@ using UnityEngine;
 
 public class BlockContainerManager : Singleton<BlockContainerManager>
 {
-    private RectTransform BlockContainerUIRectTransform;
+    [SerializeField]private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
-    public void Start()
+    protected override void Awake()
     {
+        base.Awake();
         BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
     }
@@ -74,6 +75,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             newPosition.z = 0;
             sortedBlocks[i].localPosition = newPosition;
             sortedBlocks[i].SetSiblingIndex(i);
+            sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45,0,0));
         }
     }
 }

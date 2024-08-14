@@ -16,10 +16,49 @@ public class CodeBlockDrag : MonoBehaviour
     public BlockContainerManager BlockContainerUI;
     public GameObject PoolParent;
 
+    [SerializeField] private CustomGrabObject grab;
+
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
+        /*
+        if (TryGetComponent(out CustomGrabObject grabb))
+        {
+            grab = grabb;
+            //grab.OnGrab += OnBoxGrabbed;
+            //grab.OnRelease += OnBoxRelease;
+            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist\n";
+        }
+        else
+        {
+            DebugBoxManager.Instance.Txt_DebugMsg.text += "grab Didn't Init\n";
+        }
+        */
         PoolParent = transform.parent.gameObject;
+    }
+
+
+
+    private void OnEnable()
+    {
+        if (grab != null)
+        {
+            grab.OnGrab += OnBoxGrabbed;
+            grab.OnRelease += OnBoxRelease;
+            DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist";
+        }
+        else
+        {
+            DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
+        }
+    }
+    private void OnDisable()
+    {
+        if (grab != null)
+        {
+            grab.OnRelease -= OnBoxRelease;
+            grab.OnGrab -= OnBoxGrabbed;
+        }
     }
 
     //private void OnMouseDown()
@@ -77,14 +116,15 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxRelease()
     {
-        _isDragging = false;
-
+        if (!_isDragging) return;
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
+            DebugBoxManager.Instance.Txt_DebugMsg.text += "Add Box";
         }
         else
         {
+            DebugBoxManager.Instance.Txt_DebugMsg.text += "Reset Box";
             transform.SetParent(PoolParent.transform, false);
 
             // SetParent 바뀌어서 피벗 맞춰주기
@@ -95,6 +135,8 @@ public class CodeBlockDrag : MonoBehaviour
             _rectTransform.localPosition = Vector3.zero;
             ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
         }
+
+        _isDragging = false;
     }
     private void OnBoxGrabbed()
     {
@@ -115,7 +157,12 @@ public class CodeBlockDrag : MonoBehaviour
         if (BlockContainerUI == null)
         {
             GameObject objInstance = ObjectPoolManager.GetObject(BlockName);
+            objInstance.transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0));
+
+            DebugBoxManager.Instance.Txt_DebugMsg.text += "Copied";
         }
+        else
+            DebugBoxManager.Instance.Txt_DebugMsg.text += "NotCopied";
     }
 
     private void OnTriggerEnter(Collider other)

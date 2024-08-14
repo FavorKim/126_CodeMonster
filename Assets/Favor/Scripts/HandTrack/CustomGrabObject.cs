@@ -19,26 +19,34 @@ public class CustomGrabObject : MonoBehaviour
     private void OnEnable()
     {
         grab.WhenStateChanged += OnGrabStateChanged;
-        OnGrab += OnGrab_ChangeSize;
-        OnRelease += OnRelease_ChangeSize;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            OnGrab.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            OnRelease.Invoke();
+        }
     }
 
     private void OnDisable()
     {
-        OnRelease -= OnRelease_ChangeSize;
-        OnGrab -= OnGrab_ChangeSize;
         grab.WhenStateChanged -= OnGrabStateChanged;
     }
 
     private void OnGrabStateChanged(InteractableStateChangeArgs args)
     {
-        // Grabµ∆¿ª ∂ß
+        // GrabÎêêÏùÑ Îïå
         if (args.NewState == InteractableState.Select)
         {
             OnGrab.Invoke();
         }
 
-        // Release µ∆¿ª ∂ß
+        // Release ÎêêÏùÑ Îïå
         else if (args.PreviousState == InteractableState.Select && args.NewState != InteractableState.Select)
         {
             OnRelease.Invoke();
