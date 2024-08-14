@@ -29,19 +29,19 @@ public class CustomPokedObject : MonoBehaviour
 
     private void OnPokeStateChanged(InteractableStateChangeArgs args)
     {
-        // Æ÷Å©µÆÀ» ¶§
+        // í¬í¬ëì„ ë•Œ
         if(args.NewState == InteractableState.Select)
         {
             OnPoke.Invoke();
         }
 
-        // È£¹ö µÆÀ» ¶§
+        // í˜¸ë²„ ëì„ ë•Œ
         else if (args.NewState == InteractableState.Hover)
         {
             OnHover.Invoke();
         }
 
-        // Æ÷Å© ÇØÁ¦µÆÀ» ¶§
+        // í¬í¬ í•´ì œëì„ ë•Œ
         else if(args.PreviousState == InteractableState.Hover && args.NewState != InteractableState.Select)
         {
             OnPokeRelease.Invoke();

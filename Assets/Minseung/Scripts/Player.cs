@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Action
+public enum PlayerAction
 {
     Up = 1,
     Down = 2,
@@ -15,7 +16,7 @@ public class Player : Entity
 {
     private Vector2Int position;
     private StageManager stageManager;
-
+    
     public Player(StageManager stageManager)
     {
         this.stageManager = stageManager;
@@ -53,12 +54,12 @@ public class Player : Entity
 
     //    int[,] grid = stageManager.GetGrid();
 
-    //    // ±×¸®µå ¹üÀ§ ³»¿¡ ÀÖ°í ÀÌµ¿ °¡´ÉÇÑ À§Ä¡ÀÎÁö È®ÀÎ
+    //    // ê·¸ë¦¬ë“œ ë²”ìœ„ ë‚´ì— ìˆê³  ì´ë™ ê°€ëŠ¥í•œ ìœ„ì¹˜ì¸ì§€ í™•ì¸
     //    if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
     //        newPosition.y >= 0 && newPosition.y < grid.GetLength(1) &&
     //        GameRule.CanMove(newPosition, grid))
     //    {
-    //        // À§Ä¡ µ¥ÀÌÅÍ¸¸ °»½Å
+    //        // ìœ„ì¹˜ ë°ì´í„°ë§Œ ê°±ì‹ 
     //        position = newPosition;
     //        transform.position = new Vector3(newPosition.x, 0, newPosition.y);
     //    }
@@ -70,27 +71,27 @@ public class Player : Entity
 
     //public override void Attack()
     //{
-    //    // ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç À§Ä¡¿Í StageMapÀÇ MonsterSpawnPosList¸¦ ºñ±³ÇÏ¿© ÀûÀÇ À§Ä¡¸¦ È®ÀÎ
+    //    // í”Œë ˆì´ì–´ì˜ í˜„ì¬ ìœ„ì¹˜ì™€ StageMapì˜ MonsterSpawnPosListë¥¼ ë¹„êµí•˜ì—¬ ì ì˜ ìœ„ì¹˜ë¥¼ í™•ì¸
     //    int enemyIndex = GetEnemyIndexAtPosition(position);
     //    if (enemyIndex == -1)
     //    {
-    //        // ÀûÀÌ °°Àº À§Ä¡¿¡ ¾øÀ¸¹Ç·Î Çã°ø °ø°İ -> ÆĞ¹è Ã³¸®
+    //        // ì ì´ ê°™ì€ ìœ„ì¹˜ì— ì—†ìœ¼ë¯€ë¡œ í—ˆê³µ ê³µê²© -> íŒ¨ë°° ì²˜ë¦¬
     //        Debug.Log("Player attacked into the air and missed!");
     //        Defeat();
     //        return;
     //    }
 
-    //    // ÀûÀÌ °°Àº À§Ä¡¿¡ ÀÖÀ» °æ¿ì, »ó¼º°ü°è¸¦ ÆÇ´Ü
+    //    // ì ì´ ê°™ì€ ìœ„ì¹˜ì— ìˆì„ ê²½ìš°, ìƒì„±ê´€ê³„ë¥¼ íŒë‹¨
     //    Element enemyElement = stageManager.GetEnemyElementAtIndex(enemyIndex);
     //    if (GameRule.CanAttack(this.element, enemyElement))
     //    {
-    //        // ÀÌ±â´Â »ó¼º°ü°è -> ÀûÀ» ¾²·¯¶ß¸²
+    //        // ì´ê¸°ëŠ” ìƒì„±ê´€ê³„ -> ì ì„ ì“°ëŸ¬ëœ¨ë¦¼
     //        Debug.Log("Player's attack was successful!");
     //        stageManager.DefeatEnemyAtIndex(enemyIndex);
     //    }
     //    else
     //    {
-    //        // Áö´Â »ó¼º°ü°è -> ÀûÀÇ °ø°İ ¼º°ø, ÇÃ·¹ÀÌ¾î ÆĞ¹è
+    //        // ì§€ëŠ” ìƒì„±ê´€ê³„ -> ì ì˜ ê³µê²© ì„±ê³µ, í”Œë ˆì´ì–´ íŒ¨ë°°
     //        Debug.Log("Player's attack failed! Enemy counterattacks!");
     //        Defeat();
     //    }
@@ -103,7 +104,7 @@ public class Player : Entity
 
     private int GetEnemyIndexAtPosition(Vector2Int position)
     {
-        // StageMapÀÇ MonsterSpawnPosList¿¡¼­ À§Ä¡ ºñ±³
+        // StageMapì˜ MonsterSpawnPosListì—ì„œ ìœ„ì¹˜ ë¹„êµ
         for (int i = 0; i < stageManager.GetMonsterSpawnPosList().Count; i++)
         {
             if (stageManager.GetMonsterSpawnPosList()[i] == position)
@@ -111,6 +112,6 @@ public class Player : Entity
                 return i;
             }
         }
-        return -1; // ÀûÀÌ ¾øÀ» °æ¿ì -1 ¹İÈ¯
+        return -1; // ì ì´ ì—†ì„ ê²½ìš° -1 ë°˜í™˜
     }
 }
