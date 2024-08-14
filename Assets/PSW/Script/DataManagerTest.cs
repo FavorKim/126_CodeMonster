@@ -24,6 +24,7 @@ public class DataManagerTest : MonoBehaviour
         ReadAllDataOnAwake();
     }
 
+    #region 데이터테이블 로드
     private void ReadAllDataOnAwake()
     {
         LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
@@ -33,7 +34,7 @@ public class DataManagerTest : MonoBehaviour
         LoadedText = LoadDataTable(nameof(UIText), ParseUIText, ut => ut.TextIndex);
         LoadedTextType = LoadDataTable(nameof(TextType), ParseTextType, tt => tt.TypeName);
     }
-
+    
     private Dictionary<TKey, TValue> LoadDataTable<TKey, TValue>(string fileName, Func<XElement, TValue> parseElement, Func<TValue, TKey> getKey)
     {
         var dataTable = new Dictionary<TKey, TValue>();
@@ -50,14 +51,16 @@ public class DataManagerTest : MonoBehaviour
 
         return dataTable;
     }
+    #endregion
 
+    #region 데이터 파싱
     private Monster ParseMonster(XElement data)
     {
         return new Monster
         {
             ID = int.Parse(data.Attribute(nameof(Monster.ID)).Value),
             MonsterName = data.Attribute(nameof(Monster.MonsterName)).Value,
-            ViewName = data.Attribute(nameof(Monster.ViewName)).Value,
+            MonsterViewName = data.Attribute(nameof(Monster.MonsterViewName)).Value,
             Description = data.Attribute(nameof(Monster.Description)).Value,
             TypeIndex = int.Parse(data.Attribute(nameof(Monster.TypeIndex)).Value)
         };
@@ -80,7 +83,8 @@ public class DataManagerTest : MonoBehaviour
         {
             TypeIndex = int.Parse(data.Attribute(nameof(MonsterType.TypeIndex)).Value),
             TypeName = data.Attribute(nameof(MonsterType.TypeName)).Value,
-            Viewname = data.Attribute(nameof(MonsterType.Viewname)).Value
+            TypeViewname = data.Attribute(nameof(MonsterType.TypeViewname)).Value,
+            Weakness = int.Parse(data.Attribute(nameof(MonsterType.Weakness)).Value)
         };
     }
 
@@ -89,16 +93,18 @@ public class DataManagerTest : MonoBehaviour
         var tempStageMap = new StageMap
         {
             StageIndex = int.Parse(data.Attribute(nameof(StageMap.StageIndex)).Value),
-            StageXSize = int.Parse(data.Attribute(nameof(StageMap.StageXSize)).Value),
-            StageYSize = int.Parse(data.Attribute(nameof(StageMap.StageYSize)).Value),
-            BlockContainerLength = int.Parse(data.Attribute(nameof(StageMap.BlockContainerLength)).Value)
+            StageSize = new Vector2Int(
+                int.Parse(data.Attribute("StageXSize").Value),
+                int.Parse(data.Attribute("StageYSize").Value)
+            ),
+            BlockContainerLength = int.Parse(data.Attribute(nameof(StageMap.BlockContainerLength)).Value),
+            PlayerSpawnPos = ParseVector2Int(data.Attribute("PlayerSpawnPos").Value)
         };
 
         SetDataList(out tempStageMap.ArrayInfo, data, "ArrayInfo");
-        SetDataList(out tempStageMap.BlockIndexList, data, "BlockIndexList");
-        SetDataList(out tempStageMap.MonsterIDList, data, "MonsterIDList");
-        SetDataList(out tempStageMap.MonsterSpawnPosXList, data, "MonsterSpawnPosXList");
-        SetDataList(out tempStageMap.MonsterSpawnPosYList, data, "MonsterSpawnPosYList");
+        SetDataList(out tempStageMap.BlockNameList, data, "BlockNameList");
+        SetDataList(out tempStageMap.MonsterNameList, data, "MonsterNameList");
+        SetDataList(out tempStageMap.MonsterSpawnPosList, data, "MonsterSpawnPosList", ParseVector2Int);
 
         return tempStageMap;
     }
@@ -122,25 +128,30 @@ public class DataManagerTest : MonoBehaviour
         };
     }
 
-    private void SetDataList<T>(out List<T> usingList, XElement data, string listName)
+    private Vector2Int ParseVector2Int(string value)
     {
-        string ListStr = data.Attribute(listName).Value;
+        var values = value.Replace("(", "").Replace(")", "").Split(',');
+        return new Vector2Int(int.Parse(values[0]), int.Parse(values[1]));
+    }
+
+    #endregion
+
+    #region 데이터 세팅
+    private void SetDataList<T>(out List<T> usingList, XElement data, string listName, Func<string, T> parseElement = null)
+    {
+        string ListStr = data.Attribute(listName)?.Value;
         if (!string.IsNullOrEmpty(ListStr))
         {
-            ListStr = ListStr.Replace("{", string.Empty);
-            ListStr = ListStr.Replace("}", string.Empty);
+            ListStr = ListStr.Replace("{", "").Replace("}", "");
 
-            var names = ListStr.Split(',');
+            var elements = ListStr.Split(',');
 
             var list = new List<T>();
 
-            if (names.Length > 0)
+            foreach (var element in elements)
             {
-                foreach (var name in names)
-                {
-                    T value = (T)Convert.ChangeType(name, typeof(T));
-                    list.Add(value);
-                }
+                T value = parseElement != null ? parseElement(element) : (T)Convert.ChangeType(element, typeof(T));
+                list.Add(value);
             }
             usingList = list;
         }
@@ -149,11 +160,12 @@ public class DataManagerTest : MonoBehaviour
             usingList = null;
         }
     }
+    #endregion 
 
+    #region 데이터 불러오기
     public Monster GetMonsterData(string dataName)
     {
-        if (LoadedMonsterList.Count == 0
-            || !LoadedMonsterList.ContainsKey(dataName))
+        if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(dataName))
             return null;
 
         return LoadedMonsterList[dataName];
@@ -161,8 +173,7 @@ public class DataManagerTest : MonoBehaviour
 
     public CodeBlockData GetCodeBlockData(string dataClassName)
     {
-        if (LoadedCodeBlockList.Count == 0
-            || !LoadedCodeBlockList.ContainsKey(dataClassName))
+        if (LoadedCodeBlockList.Count == 0 || !LoadedCodeBlockList.ContainsKey(dataClassName))
             return null;
 
         return LoadedCodeBlockList[dataClassName];
@@ -170,17 +181,15 @@ public class DataManagerTest : MonoBehaviour
 
     public StageMap GetStageMapData(int dataIndex)
     {
-        if (LoadedStageMap.Count == 0
-            || !LoadedStageMap.ContainsKey(dataIndex))
+        if (LoadedStageMap.Count == 0 || !LoadedStageMap.ContainsKey(dataIndex))
             return null;
 
         return LoadedStageMap[dataIndex];
     }
 
-    public MonsterType GetTypeData(int dataIndex)
+    public MonsterType GetMonsterTypeData(int dataIndex)
     {
-        if (LoadedMonsterType.Count == 0
-            || !LoadedMonsterType.ContainsKey(dataIndex))
+        if (LoadedMonsterType.Count == 0 || !LoadedMonsterType.ContainsKey(dataIndex))
             return null;
 
         return LoadedMonsterType[dataIndex];
@@ -188,8 +197,7 @@ public class DataManagerTest : MonoBehaviour
 
     public UIText GetTextMapData(int dataIndex)
     {
-        if (LoadedText.Count == 0
-            || !LoadedText.ContainsKey(dataIndex))
+        if (LoadedText.Count == 0 || !LoadedText.ContainsKey(dataIndex))
             return null;
 
         return LoadedText[dataIndex];
@@ -197,10 +205,10 @@ public class DataManagerTest : MonoBehaviour
 
     public TextType GetTextTypeData(string dataClassName)
     {
-        if (LoadedTextType.Count == 0
-            || !LoadedTextType.ContainsKey(dataClassName))
+        if (LoadedTextType.Count == 0 || !LoadedTextType.ContainsKey(dataClassName))
             return null;
 
         return LoadedTextType[dataClassName];
     }
+    #endregion
 }

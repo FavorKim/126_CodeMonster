@@ -2,98 +2,115 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public enum Action
 {
-    private Vector2Int currentPosition;  // 현재 위치
-    private StageManager stageManager;   // StageManager 참조
+    Up = 1,
+    Down = 2,
+    Left = 3,
+    Right = 4,
+    Attack = 5
+}
 
-    private void Start()
+public class Player : Entity
+{
+    private Vector2Int position;
+    private StageManager stageManager;
+
+    public Player(StageManager stageManager)
     {
-        stageManager = FindObjectOfType<StageManager>();  // StageManager 인스턴스를 찾음
-
-        if (stageManager != null)
-        {
-            Initialize(stageManager.GetGrid(), stageManager.GetStartPosition());
-        }
-        else
-        {
-            Debug.LogError("StageManager not found in the scene!");
-        }
+        this.stageManager = stageManager;
+        position = stageManager.GetStartPosition();
     }
 
-    // 플레이어를 초기화하는 메서드
-    public void Initialize(int[,] grid, Vector2Int startPosition)
+    //public void Execute(Action action)
+    //{
+    //    switch (action)
+    //    {
+    //        case Action.Up:
+    //            Move(Vector2Int.up);
+    //            break;
+    //        case Action.Down:
+    //            Move(Vector2Int.down);
+    //            break;
+    //        case Action.Left:
+    //            Move(Vector2Int.left);
+    //            break;
+    //        case Action.Right:
+    //            Move(Vector2Int.right);
+    //            break;
+    //        case Action.Attack:
+    //            Attack();
+    //            break;
+    //        default:
+    //            Debug.LogWarning("Invalid action.");
+    //            break;
+    //    }
+    //}
+
+    //public override void Move(Vector2Int direction)
+    //{
+    //    Vector2Int newPosition = position + direction;
+
+    //    int[,] grid = stageManager.GetGrid();
+
+    //    // 그리드 범위 내에 있고 이동 가능한 위치인지 확인
+    //    if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
+    //        newPosition.y >= 0 && newPosition.y < grid.GetLength(1) &&
+    //        GameRule.CanMove(newPosition, grid))
+    //    {
+    //        // 위치 데이터만 갱신
+    //        position = newPosition;
+    //        transform.position = new Vector3(newPosition.x, 0, newPosition.y);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning("Invalid move attempt.");
+    //    }
+    //}
+
+    //public override void Attack()
+    //{
+    //    // 플레이어의 현재 위치와 StageMap의 MonsterSpawnPosList를 비교하여 적의 위치를 확인
+    //    int enemyIndex = GetEnemyIndexAtPosition(position);
+    //    if (enemyIndex == -1)
+    //    {
+    //        // 적이 같은 위치에 없으므로 허공 공격 -> 패배 처리
+    //        Debug.Log("Player attacked into the air and missed!");
+    //        Defeat();
+    //        return;
+    //    }
+
+    //    // 적이 같은 위치에 있을 경우, 상성관계를 판단
+    //    Element enemyElement = stageManager.GetEnemyElementAtIndex(enemyIndex);
+    //    if (GameRule.CanAttack(this.element, enemyElement))
+    //    {
+    //        // 이기는 상성관계 -> 적을 쓰러뜨림
+    //        Debug.Log("Player's attack was successful!");
+    //        stageManager.DefeatEnemyAtIndex(enemyIndex);
+    //    }
+    //    else
+    //    {
+    //        // 지는 상성관계 -> 적의 공격 성공, 플레이어 패배
+    //        Debug.Log("Player's attack failed! Enemy counterattacks!");
+    //        Defeat();
+    //    }
+    //}
+
+    //public override void Defeat()
+    //{
+    //    base.Defeat();
+    //}
+
+    private int GetEnemyIndexAtPosition(Vector2Int position)
     {
-        currentPosition = startPosition;
-        transform.position = new Vector3(currentPosition.x, transform.position.y, currentPosition.y);
-    }
-
-    public void Move(Direction direction)
-    {
-        Vector2Int newPosition = currentPosition;
-
-        // 이동 방향에 따라 위치 업데이트
-        switch (direction)
+        // StageMap의 MonsterSpawnPosList에서 위치 비교
+        for (int i = 0; i < stageManager.GetMonsterSpawnPosList().Count; i++)
         {
-            case Direction.Up:
-                newPosition.y += 1;
-                break;
-            case Direction.Down:
-                newPosition.y -= 1;
-                break;
-            case Direction.Left:
-                newPosition.x -= 1;
-                break;
-            case Direction.Right:
-                newPosition.x += 1;
-                break;
-        }
-
-        int[,] grid = stageManager.GetGrid(); // StageManager로부터 그리드 정보 획득
-
-        // 경계 체크: 그리드 범위 내에 있는지 확인
-        if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
-            newPosition.y >= 0 && newPosition.y < grid.GetLength(1))
-        {
-            currentPosition = newPosition;  // 현재 위치 업데이트
-            transform.position = new Vector3(currentPosition.x, transform.position.y, currentPosition.y);
-        }
-        else
-        {
-            Debug.LogWarning("Cannot move outside the grid boundaries!");
-        }
-    }
-
-    // 속성 기반 공격 메서드
-    public void Attack(Enemy enemy, Element attackElement)
-    {
-        // 파트너와 적의 위치가 같을 때만 공격 실행
-        if (Vector2Int.RoundToInt(transform.position) == enemy.position)
-        {
-            // 속성 비교
-            if ((attackElement == Element.Fire && enemy.element == Element.Grass) ||
-                (attackElement == Element.Water && enemy.element == Element.Fire) ||
-                (attackElement == Element.Grass && enemy.element == Element.Water))
+            if (stageManager.GetMonsterSpawnPosList()[i] == position)
             {
-                enemy.Defeat();  // 적을 쓰러뜨림
-                Debug.Log("Attack successful!");
-            }
-            else
-            {
-                Defeat();  // 파트너가 패배
-                Debug.Log("Attack failed. Player has been defeated due to wrong element.");
+                return i;
             }
         }
-        else
-        {
-            Debug.Log("Attack failed. Partner is not at the enemy's position.");
-        }
-    }
-
-    // 패배 처리 메서드
-    public void Defeat()
-    {
-        Debug.Log(gameObject.name + " has been defeated!");
-        // 패배 시의 추가 처리 로직 (게임 오버 화면, 상태 변경 등)을 여기에 구현
+        return -1; // 적이 없을 경우 -1 반환
     }
 }
