@@ -45,11 +45,11 @@ public class CodeBlockDrag : MonoBehaviour
         {
             grab.OnGrab += OnBoxGrabbed;
             grab.OnRelease += OnBoxRelease;
-            DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist";
+            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist";
         }
         else
         {
-            DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
+            //DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
         }
     }
     private void OnDisable()
@@ -120,11 +120,11 @@ public class CodeBlockDrag : MonoBehaviour
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
-            DebugBoxManager.Instance.Txt_DebugMsg.text += "Add Box";
+            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Add Box";
         }
         else
         {
-            DebugBoxManager.Instance.Txt_DebugMsg.text += "Reset Box";
+            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Reset Box";
             transform.SetParent(PoolParent.transform, false);
 
             // SetParent 바뀌어서 피벗 맞춰주기
@@ -159,10 +159,10 @@ public class CodeBlockDrag : MonoBehaviour
             GameObject objInstance = ObjectPoolManager.GetObject(BlockName);
             objInstance.transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0));
 
-            DebugBoxManager.Instance.Txt_DebugMsg.text += "Copied";
+            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Copied";
         }
-        else
-            DebugBoxManager.Instance.Txt_DebugMsg.text += "NotCopied";
+        //else
+            //DebugBoxManager.Instance.Txt_DebugMsg.text += "NotCopied";
     }
 
     private void OnTriggerEnter(Collider other)
