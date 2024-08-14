@@ -260,6 +260,7 @@ MonoBehaviour:
   BlockType: 0
   BlockContainerUI: {fileID: 0}
   PoolParent: {fileID: 0}
+  grab: {fileID: 0}
 --- !u!1 &3914775743989842952
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ GameObject:
   - component: {fileID: 8533320994217920860}
   - component: {fileID: 2203240834702588673}
   - component: {fileID: 4538918083379557272}
-  - component: {fileID: 6748563619952739165}
+  - component: {fileID: 9173605638012902658}
   m_Layer: 5
   m_Name: MoveBlockUI
   m_TagString: StageBlockUI
@@ -440,7 +441,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6748563619952739165
+--- !u!114 &9173605638012902658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -449,7 +450,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4776451766569959550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -866,6 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8c986b65574f747a272f099e56a0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockContainerUIRectTransform: {fileID: 0}
 --- !u!1 &6991629212338766228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,58 +1133,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[0].prefab
-      value: 
-      objectReference: {fileID: 2925191314554406931}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[1].prefab
-      value: 
-      objectReference: {fileID: 2925191314554406931}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 2925191314554406931}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[3].prefab
-      value: 
-      objectReference: {fileID: 2925191314554406931}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[0].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[1].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[2].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[3].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[4].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[5].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[6].container
-      value: 
-      objectReference: {fileID: 7895903523279074623}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[7].container
-      value: 
-      objectReference: {fileID: 6991629212338766228}
-    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
-      propertyPath: poolInfoList.Array.data[8].container
-      value: 
-      objectReference: {fileID: 6991629212338766228}
     - target: {fileID: 6950330999182370816, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager
