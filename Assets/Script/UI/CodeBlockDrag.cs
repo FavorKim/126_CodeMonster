@@ -18,12 +18,24 @@ public class CodeBlockDrag : MonoBehaviour
 
     [SerializeField] private CustomGrabObject grab;
 
-    public CodeBlockData _data;
-
+    private CodeBlockData _data;
+    public CodeBlockData Data
+    {
+        get { return _data; }
+        private set
+        {
+            _data = value;
+        }
+    }
+    
 
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
+        if(TryGetComponent(out CustomGrabObject grabobj))
+        {
+            grab = grabobj;
+        }
         /*
         if (TryGetComponent(out CustomGrabObject grabb))
         {
@@ -38,7 +50,7 @@ public class CodeBlockDrag : MonoBehaviour
         }
         */
         PoolParent = transform.parent.gameObject;
-        _data = SetData(BlockName);
+        //Data = SetData(BlockName);
     }
 
     private CodeBlockData SetData (BlockName bName)
@@ -101,6 +113,8 @@ public class CodeBlockDrag : MonoBehaviour
             grab.OnRelease -= OnBoxRelease;
             grab.OnGrab -= OnBoxGrabbed;
         }
+        else
+            Debug.LogWarning("grab is null");
     }
 
     //private void OnMouseDown()
@@ -158,7 +172,8 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxRelease()
     {
-        if (!_isDragging) return;
+        if (_isDragging == false) return;
+        _isDragging = false;
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
@@ -178,7 +193,6 @@ public class CodeBlockDrag : MonoBehaviour
             ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
         }
 
-        _isDragging = false;
     }
     private void OnBoxGrabbed()
     {
@@ -198,7 +212,7 @@ public class CodeBlockDrag : MonoBehaviour
 
         if (BlockContainerUI == null)
         {
-            GameObject objInstance = ObjectPoolManager.GetObject(BlockName);
+            GameObject objInstance = ObjectPoolManager.Instance.GetObject(BlockName);
             objInstance.transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0));
 
             //DebugBoxManager.Instance.Txt_DebugMsg.text += "Copied";
@@ -215,6 +229,7 @@ public class CodeBlockDrag : MonoBehaviour
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("BlockContainerUI"))
@@ -222,6 +237,7 @@ public class CodeBlockDrag : MonoBehaviour
             BlockContainerUI = other.GetComponent<BlockContainerManager>();
         }
     }
+    */
 
     private void OnTriggerExit(Collider other)
     {

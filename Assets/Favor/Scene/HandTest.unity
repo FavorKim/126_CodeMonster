@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5277657285523295628, guid: c27730fdc22a2134eb9164ab8d26e151, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.046
+      value: -0.051
       objectReference: {fileID: 0}
     - target: {fileID: 5277657285523295628, guid: c27730fdc22a2134eb9164ab8d26e151, type: 3}
       propertyPath: m_LocalRotation.w
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5816000549118537647, guid: c27730fdc22a2134eb9164ab8d26e151, type: 3}
       propertyPath: m_Name
-      value: UIManager_NotFollow
+      value: UIManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

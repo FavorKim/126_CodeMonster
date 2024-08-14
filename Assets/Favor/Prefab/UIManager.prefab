@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 6575457564834547163}
   - component: {fileID: 7463427224959960103}
   - component: {fileID: 8689432833727804235}
-  - component: {fileID: 6180524984680301273}
   m_Layer: 5
   m_Name: DebugBox
   m_TagString: BlockContainerUI
@@ -313,27 +312,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!65 &6180524984680301273
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785013835046561709}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 300, y: 50, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2158565954118620224
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +560,7 @@ GameObject:
   - component: {fileID: 3007403105325811206}
   - component: {fileID: 6775677338094148295}
   - component: {fileID: 1962377835200682857}
-  - component: {fileID: 7529976931242797045}
+  - component: {fileID: 1966279743016336796}
   m_Layer: 5
   m_Name: MoveBlockUI
   m_TagString: StageBlockUI
@@ -647,7 +625,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7529976931242797045
+--- !u!114 &1966279743016336796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -656,7 +634,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5180417911227199741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -789,7 +767,7 @@ GameObject:
   - component: {fileID: 3117984744614898097}
   - component: {fileID: 9132063582925140007}
   m_Layer: 5
-  m_Name: UIManager_NotFollow
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1298,6 +1276,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2839910896775222717, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839910896775222717, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5c093e4058df12042a75bcb967ca1554, type: 2}
@@ -1394,6 +1376,10 @@ PrefabInstance:
     - target: {fileID: 2839910896775222717, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839910896775222717, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2839910896775222717, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
       propertyPath: m_Materials.Array.data[0]

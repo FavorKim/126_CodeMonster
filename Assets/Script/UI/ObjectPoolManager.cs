@@ -45,16 +45,16 @@ public class PoolInfo
 
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
-    public static ObjectPoolManager Instance;
+    //public static ObjectPoolManager Instance;
 
     // 오브젝트 풀 리스트
     [SerializeField] private List<PoolInfo> poolInfoList;
 
     private Dictionary<BlockName, RectTransform> poolContainers;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
         Initialize();
     }
 
@@ -136,7 +136,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
 
     // 오브젝트가 필요할 때 호출하는 함수
-    public static GameObject GetObject(BlockName type)
+    public GameObject GetObject(BlockName type)
     {
         PoolInfo poolInfo = Instance.GetPoolByType(type);
         GameObject objInstance = null;
