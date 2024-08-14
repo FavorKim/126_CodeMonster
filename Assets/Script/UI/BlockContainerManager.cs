@@ -11,6 +11,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     [SerializeField]private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
+    List<CodeBlockData> blocks = new List<CodeBlockData>();
+
     protected override void Awake()
     {
         base.Awake();
@@ -37,6 +39,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     {
         // 기존 블록들 existingBlocks에 저장
         List<Transform> existingBlocks = new List<Transform>();
+
+        blocks.Clear();
         foreach (Transform child in this.transform)
         {
             existingBlocks.Add(child);
@@ -76,6 +80,13 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks[i].localPosition = newPosition;
             sortedBlocks[i].SetSiblingIndex(i);
             sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45,0,0));
+
+            blocks.Add(sortedBlocks[i].gameObject.GetComponent<CodeBlockDrag>()._data);
         }
+    }
+
+    public List<CodeBlockData> GetContatinerBlocks()
+    {
+        return blocks;
     }
 }

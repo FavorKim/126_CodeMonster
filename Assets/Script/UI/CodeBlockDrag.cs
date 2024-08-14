@@ -18,6 +18,9 @@ public class CodeBlockDrag : MonoBehaviour
 
     [SerializeField] private CustomGrabObject grab;
 
+    public CodeBlockData _data;
+
+
     private void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -35,9 +38,48 @@ public class CodeBlockDrag : MonoBehaviour
         }
         */
         PoolParent = transform.parent.gameObject;
+        _data = SetData(BlockName);
     }
 
+    private CodeBlockData SetData (BlockName bName)
+    {
+        CodeBlockData data = null;
 
+        switch (bName)
+        {
+            case BlockName.LeftMoveCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.RightMoveCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.UpMoveCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.DownMoveCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.FireAttackCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.WaterAttackCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.GrassAttackCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.LoopCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            case BlockName.CondionalCodeBlock:
+                DataManagerTest.Inst.GetCodeBlockData("");
+                break;
+            default:
+                break;
+        }
+
+        return data;
+    }
 
     private void OnEnable()
     {
