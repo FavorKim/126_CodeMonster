@@ -7,7 +7,7 @@ public class DataManagerTest : MonoBehaviour
 {
     private string filePath;
     public Dictionary<string, Monster> LoadedMonsterList { get; private set; }
-    public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }
+    public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }    
     public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }

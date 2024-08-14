@@ -19,6 +19,18 @@ public class CodeBlockData
     public string Description { get; set; }
 }
 
+public class MoveBlock
+{
+    public int BlockIndex { get; set; }
+    public int MoveDirection { get; set; }
+}
+
+public class AttackBlock
+{
+    public int BlockIndex { get; set; }
+    public int AttackType { get; set; }
+}
+
 public class StageMap
 {
     public int StageIndex { get; set; }

@@ -3,28 +3,18 @@ using UnityEngine;
 
 public static class GameRule
 {
-    public static bool CanAttack()
+    private static DataManagerTest dataManager = DataManagerTest.Inst;
+
+    public static bool CompareType(int playerTypeIndex, int monsterTypeIndex)
     {
-        //// 공격자와 대상의 타입 인덱스를 가져옴
-        //int attackerTypeIndex = DataManagerTest.Inst.GetMonsterTypeData(); 
-        //int targetTypeIndex = 
-
-        //// 해당 타입의 상성을 가져옴
-        //MonsterType attackerType = DataManagerTest.Inst.GetMonsterTypeData(attackerTypeIndex);
-        //if (attackerType == null)
-        //{
-        //    Debug.LogWarning("Attacker's type not found.");
-        //    return false;
-        //}
-
-        //// 타겟의 타입과 공격자의 약점 타입을 비교
-        //if (attackerType.Weakness == targetTypeIndex)
-        //{
-        //    return true;  // 공격 성공
-        //}
-
-        //return false;  // 공격 실패
+        //어떤 공격 블록을 사용하는지 확인 후, 공격블록의 속성과 몬스터의 약점속성을 비교
+        //약점속성과 같을 경우 true, 다를 경우 false.
         return true;
+    }
+
+    public static bool ComparePosition(Vector2Int curPlayerPosition, Vector2Int monsterPos)
+    {
+        return curPlayerPosition == monsterPos;
     }
 
     // 이동 가능 여부를 판단하는 규칙
@@ -40,6 +30,4 @@ public static class GameRule
         Debug.LogWarning("Cannot move outside the grid boundaries!");
         return false;  // 이동 불가능
     }
-
-    // 추가적인 게임 규칙 메서드들을 여기에 추가할 수 있음
 }

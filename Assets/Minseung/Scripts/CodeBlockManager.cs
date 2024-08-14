@@ -42,17 +42,13 @@ public class CodeBlockManager : MonoBehaviour
 
     private PlayerAction ConvertBlockIndexToAction(int blockIndex)
     {
-        // BlockIndex에 따라 적절한 PlayerAction을 반환하는 로직을 구현
-        switch (blockIndex)
+        if(blockIndex == 0)
         {
-            case 1: return PlayerAction.Up;
-            case 2: return PlayerAction.Down;
-            case 3: return PlayerAction.Left;
-            case 4: return PlayerAction.Right;
-            case 5: return PlayerAction.Attack;
-            default:
-                Debug.LogWarning("Invalid block index.");
-                return PlayerAction.Up; // 기본값
+            return PlayerAction.Move;
+        }
+        else
+        {
+            return PlayerAction.Attack;
         }
     }
 }

@@ -4,11 +4,8 @@ using UnityEngine;
 
 public enum PlayerAction
 {
-    Up = 1,
-    Down = 2,
-    Left = 3,
-    Right = 4,
-    Attack = 5
+    Move = 0,
+    Attack = 1
 }
 
 public class Player : Entity
@@ -24,26 +21,13 @@ public class Player : Entity
 
     public void Execute(PlayerAction playerAction)
     {
-        switch (playerAction)
+        if (playerAction == PlayerAction.Move)
         {
-            case PlayerAction.Up:
-                Move(Vector2Int.up);
-                break;
-            case PlayerAction.Down:
-                Move(Vector2Int.down);
-                break;
-            case PlayerAction.Left:
-                Move(Vector2Int.left);
-                break;
-            case PlayerAction.Right:
-                Move(Vector2Int.right);
-                break;
-            case PlayerAction.Attack:
-                Attack();
-                break;
-            default:
-                Debug.LogWarning("Invalid action.");
-                break;
+
+        }
+        else
+        {
+
         }
     }
 
@@ -53,12 +37,8 @@ public class Player : Entity
 
         int[,] grid = stageManager.GetGrid();
 
-        // 그리드 범위 내에 있고 이동 가능한 위치인지 확인
-        if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
-            newPosition.y >= 0 && newPosition.y < grid.GetLength(1) &&
-            GameRule.CanMove(newPosition, grid))
+        if (GameRule.CanMove(newPosition, grid))
         {
-            // 위치 데이터만 갱신
             position = newPosition;
             transform.position = new Vector3(newPosition.x, 0, newPosition.y);
         }
@@ -70,6 +50,16 @@ public class Player : Entity
 
     protected override void Attack()
     {
-        
+        BattleManager.Instance.BattlePhase();
+    }
+
+    public void Win()
+    {
+
+    }
+
+    public void Defeat()
+    {
+
     }
 }
