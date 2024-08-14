@@ -4,5 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Favor/Scene/HandTest.unity
+    guid: cc5180515de4efd459b0305617ff8367
+  - enabled: 0
+    path: Assets/Favor/Scene/PokeTest.unity
+    guid: fef2800244b0b3d4aabbb0e9acd8a3c6
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1bcd49750a3084148b01287d2da71cd9, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2c6a954a224a382409c1d469141655a8, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 1ac2566c48623f348af69e5164693bc9, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5feb993b6d60daf4da4af7eb4e03818a, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 71f6ef4d954a71947a0ffc65b812640b, type: 2}
