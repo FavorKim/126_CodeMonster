@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
         playerInstance = Instantiate(stageBuilder.playerPrefab, startPosition, Quaternion.identity);
     }
 
+    
+
     public void MoveUp()
     {
         MovePlayer(0, 1);
@@ -70,4 +72,5 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
 }
