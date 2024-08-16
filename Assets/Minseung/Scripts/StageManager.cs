@@ -12,6 +12,9 @@ public class StageManager : MonoBehaviour
 
     public GameObject tilePrefab;
 
+    private Dictionary<int, GameObject> monsterDic = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> stageBlockDic = new Dictionary<int, GameObject>();
+
     public void InitializeStage(StageMap stageMap, GameObject[] floorPrefabs, GameObject[] wallPrefabs, GameObject playerPrefab, GameObject enemyPrefab)
     {
         this.currentStageMap = stageMap;
@@ -29,13 +32,14 @@ public class StageManager : MonoBehaviour
             {
                 Vector3 tilePosition = new Vector3(x, 0, y);
 
-                // ArrayInfoÀÇ °ª¿¡ µû¶ó »ç¿ëÇÒ ÇÁ¸®ÆÕ ¸®½ºÆ® ¼±ÅÃ
+                // ArrayInfoì˜ ê°’ì— ë”°ë¼ ì‚¬ìš©í•  í”„ë¦¬íŒ¹ ë¦¬ìŠ¤íŠ¸ ì„ íƒ
                 GameObject[] selectedPrefabs = currentStageMap.ArrayInfo[index] == 1 ? floorPrefabs : wallPrefabs;
 
-                // ·£´ıÇÑ ÇÁ¸®ÆÕ ¼±ÅÃ
+                // ëœë¤í•œ í”„ë¦¬íŒ¹ ì„ íƒ
                 GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
                 Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity);
+                stageBlockDic.Add(ChangePosToKeyValue(x, y), prefabToInstantiate);
                 index++;
             }
         }
@@ -43,28 +47,31 @@ public class StageManager : MonoBehaviour
 
     private void SetPlayer(GameObject playerPrefab)
     {
-        // ÇÃ·¹ÀÌ¾î »ı¼º ¹× À§Ä¡ ¼³Á¤
+        // í”Œë ˆì´ì–´ ìƒì„± ë° ìœ„ì¹˜ ì„¤ì •
         if (playerPrefab != null && currentStageMap.PlayerSpawnPos != null)
         {
             Vector3 playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
-            playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity).GetComponent<Player>(); ;
+            playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity).GetComponent<Player>(); 
         }
     }
 
     private void SetEnemies(GameObject enemyPrefab)
     {
-        // Àû »ı¼º ¹× À§Ä¡ ¼³Á¤
+        // ì  ìƒì„± ë° ìœ„ì¹˜ ì„¤ì •
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
             if (enemyPrefab != null)
             {
-                Vector3 enemyPosition = new Vector3(currentStageMap.MonsterSpawnPosList[i].x, 0, currentStageMap.MonsterSpawnPosList[i].y);
-                GameObject enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
+                Vector3 enemyPosition = stageBlockDic[ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y)].transform.GetChild(0).gameObject.transform.position;
+                GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(currentStageMap.MonsterNameList[i]);
+                enemy.SetActive(true);
+                enemy.transform.position = enemyPosition;
+                monsterDic.Add(ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y), enemy);
             }
         }
     }
 
-    // GetGrid ¸Ş¼­µå
+    // GetGrid ë©”ì„œë“œ
     public int[,] GetGrid()
     {
         int[,] grid = new int[currentStageMap.StageSize.x, currentStageMap.StageSize.y];
@@ -104,5 +111,49 @@ public class StageManager : MonoBehaviour
             return currentStageMap.MonsterNameList[index];
         }
         return null;
+    }
+
+    public int ChangePosToKeyValue(Vector2Int pos)
+    {
+        return currentStageMap.StageSize.x * pos.x + pos.y;
+    }
+    public int ChangePosToKeyValue(int posX,int posY)
+    {
+        return currentStageMap.StageSize.x * posX + posY;
+    }
+
+    public bool CheckMonsterAndPlayerPos(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+        if (monsterDic.ContainsKey(playerPosKey) && monsterDic[playerPosKey].activeSelf == true) 
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CheckPlayerPosToDeadZone(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+        if (currentStageMap.ArrayInfo[playerPosKey] == 1)//ì´ë™ ê°€ëŠ¥
+        {
+            return false;
+
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public Vector3 GetPlayerPosWithMonsterStage(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+
+        return stageBlockDic[playerPosKey].transform.GetChild(2).transform.position;
     }
 }

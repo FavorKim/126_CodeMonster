@@ -85,8 +85,22 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
     }
 
-    public List<CodeBlockDrag> GetContatinerBlocks()
+    public List<int> GetContatinerBlocks()
     {
-        return blocks;
+
+        if (this.transform.childCount <= 0)
+        {
+            return null;
+        }
+
+        List<int> list = new List<int>();
+
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            int blockIndex = DataManagerTest.Inst.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
+            list.Add(blockIndex);
+        }
+
+        return list;
     }
 }

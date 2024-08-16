@@ -17,17 +17,13 @@ public static class GameRule
         return curPlayerPosition == monsterPos;
     }
 
-    // ÀÌµ¿ °¡´É ¿©ºÎ¸¦ ÆÇ´ÜÇÏ´Â ±ÔÄ¢
-    public static bool CanMove(Vector2Int newPosition, int[,] grid)
+    // ì´ë™ ê°€ëŠ¥ ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ëŠ” ê·œì¹™
+    public static bool CheckPlayerPosAndMonster(Vector2Int newPosition)
     {
-        // °æ°è Ã¼Å©: ±×¸®µå ¹üÀ§ ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
-        if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
-            newPosition.y >= 0 && newPosition.y < grid.GetLength(1))
-        {
-            return true;  // ÀÌµ¿ °¡´É
-        }
-
-        Debug.LogWarning("Cannot move outside the grid boundaries!");
-        return false;  // ÀÌµ¿ ºÒ°¡´É
+        return StageManager.Instance.CheckMonsterAndPlayerPos(newPosition);
+    }
+    public static bool CheckPlayerPosInDeadzone(Vector2Int newPosition)
+    {
+        return StageManager.Instance.CheckPlayerPosToDeadZone(newPosition);
     }
 }

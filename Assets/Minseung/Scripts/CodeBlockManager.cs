@@ -3,40 +3,46 @@ using UnityEngine;
 
 public class CodeBlockManager : MonoBehaviour
 {
-    private Dictionary<string, CodeBlockData> codeBlocks = new Dictionary<string, CodeBlockData>();
-    public static CodeBlockManager Inst { get; private set; }
-    List<int> blockIndexList = new List<int>();
-    private Player player;
+   
+    //public void InitCodeBlockSequence()
+    //{
+    //    blockIndexList.Clear();
 
-    private void Start()
-    {
-        codeBlocks = DataManagerTest.Inst.LoadedCodeBlockList;
+    //    for (int i = 0; i < this.gameObject.transform.childCount; i++)
+    //    {
+    //        int blockIndex = codeBlocks[this.gameObject.transform.GetChild(i).name].BlockIndex;
+    //        blockIndexList.Add(blockIndex);
+    //    }
 
-        player = StageManager.Instance.GetPlayer();
-    }
+    //    if (codeBlocks.Count > 0)
+    //    {
+    //        SetCodeBlockSequence();
+    //    }
+    //}
 
-    public void InitCodeBlockSequence()
-    {
-        blockIndexList.Clear();
+    //private void SetCodeBlockSequence()
+    //{
+    //    var player = StageManager.Instance.GetPlayer();
 
-        for (int i = 0; i < this.gameObject.transform.childCount; i++)
-        {
-            int blockIndex = codeBlocks[this.gameObject.transform.GetChild(i).name].BlockIndex;
-            blockIndexList.Add(blockIndex);
-        }
+    //    if(player == null )
+    //    {
+    //        return;
+    //    }
 
-        if (codeBlocks.Count > 0)
-        {
-            SetCodeBlockSequence();
-        }
-    }
 
-    private void SetCodeBlockSequence()
-    {
-        // blockIndexList에 있는 각 blockIndex를 사용해 Player의 Execute 메서드를 호출
-        foreach (var blockIndex in blockIndexList)
-        {
-            player.Execute(blockIndex);
-        }
-    }
+    //    var blockIndexList = BlockContainerManager.Instance.GetContatinerBlocks();
+
+    //    StartCoroutine(sss,)
+
+    //    player.Execute(blockIndex);
+
+    //}
+
+    //private IEnumerator sss(List<int> indexList)
+    //{
+    //    while( indexList.Count > 0 ) 
+    //    {
+    //        player.Execute(indexList);
+    //    }
+    //}
 }
