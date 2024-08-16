@@ -33,22 +33,10 @@ public class CodeBlockManager : MonoBehaviour
 
     private void SetCodeBlockSequence()
     {
-        foreach(var codeBlock in codeBlocks.Values)
+        // blockIndexList에 있는 각 blockIndex를 사용해 Player의 Execute 메서드를 호출
+        foreach (var blockIndex in blockIndexList)
         {
-            PlayerAction action = ConvertBlockIndexToAction(codeBlock.BlockIndex);
-            player.Execute(action);
-        }
-    }
-
-    private PlayerAction ConvertBlockIndexToAction(int blockIndex)
-    {
-        if(blockIndex == 0)
-        {
-            return PlayerAction.Move;
-        }
-        else
-        {
-            return PlayerAction.Attack;
+            player.Execute(blockIndex);
         }
     }
 }

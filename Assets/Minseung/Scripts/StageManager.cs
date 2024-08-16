@@ -82,7 +82,6 @@ public class StageManager : MonoBehaviour
         return grid;
     }
 
-    // GetStartPosition ¸Ş¼­µå
     public Vector2Int GetStartPosition()
     {
         return currentStageMap.PlayerSpawnPos;
@@ -96,5 +95,14 @@ public class StageManager : MonoBehaviour
     public Player GetPlayer()
     {
         return playerInstance;
+    }
+
+    public string GetMonsterNameAtIndex(int index)
+    {
+        if(index >= 0 && index < currentStageMap.MonsterNameList.Count)
+        {
+            return currentStageMap.MonsterNameList[index];
+        }
+        return null;
     }
 }

@@ -5,11 +5,11 @@ public static class GameRule
 {
     private static DataManagerTest dataManager = DataManagerTest.Inst;
 
-    public static bool CompareType(int playerTypeIndex, int monsterTypeIndex)
+    public static bool CompareType(int attackBlockType, int monsterTypeIndex)
     {
-        //어떤 공격 블록을 사용하는지 확인 후, 공격블록의 속성과 몬스터의 약점속성을 비교
-        //약점속성과 같을 경우 true, 다를 경우 false.
-        return true;
+        MonsterType monsterType = dataManager.GetMonsterTypeData(monsterTypeIndex);
+
+        return attackBlockType == monsterType.Weakness;
     }
 
     public static bool ComparePosition(Vector2Int curPlayerPosition, Vector2Int monsterPos)
