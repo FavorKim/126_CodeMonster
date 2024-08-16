@@ -502,6 +502,7 @@ MonoBehaviour:
   Txt_DebugMsg: {fileID: 8017694521892667459}
   startBtn: {fileID: 0}
   resetBtn: {fileID: 0}
+  blockContainer: {fileID: 0}
 --- !u!1 &4522001644733621897
 GameObject:
   m_ObjectHideFlags: 0

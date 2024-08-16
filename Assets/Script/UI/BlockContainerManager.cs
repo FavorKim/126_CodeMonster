@@ -8,10 +8,8 @@ using UnityEngine;
 
 public class BlockContainerManager : Singleton<BlockContainerManager>
 {
-    [SerializeField]private RectTransform BlockContainerUIRectTransform;
+    [SerializeField] private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
-
-    List<CodeBlockDrag> blocks = new List<CodeBlockDrag>();
 
     protected override void Awake()
     {
@@ -22,7 +20,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
     {
-        if( PlusContainerUI == true)
+        if (PlusContainerUI == true)
         {
             BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.BigUISize, UIConstants.RegularUISize);
             BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.BigUISize, UIConstants.RegularUISize);
@@ -40,7 +38,6 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         // 기존 블록들 existingBlocks에 저장
         List<Transform> existingBlocks = new List<Transform>();
 
-        blocks.Clear();
         foreach (Transform child in this.transform)
         {
             existingBlocks.Add(child);
@@ -79,14 +76,18 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             newPosition.z = 0;
             sortedBlocks[i].localPosition = newPosition;
             sortedBlocks[i].SetSiblingIndex(i);
-            sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45,0,0));
+            sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45, 0, 0));
 
-            blocks.Add(sortedBlocks[i].gameObject.GetComponent<CodeBlockDrag>());
         }
     }
 
-    public List<CodeBlockDrag> GetContatinerBlocks()
+    public List<string> GetContatinerBlocks()
     {
+        var blocks = new List<string>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            blocks[i] = transform.GetChild(i).name;
+        }
         return blocks;
     }
 }

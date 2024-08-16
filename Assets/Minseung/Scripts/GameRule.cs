@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class GameRule
 {
-    private static DataManagerTest dataManager = DataManagerTest.Inst;
+    private static DataManagerTest dataManager = DataManagerTest.Instance;
 
     public static bool CompareType(int attackBlockType, int monsterTypeIndex)
     {
@@ -17,17 +17,17 @@ public static class GameRule
         return curPlayerPosition == monsterPos;
     }
 
-    // ÀÌµ¿ °¡´É ¿©ºÎ¸¦ ÆÇ´ÜÇÏ´Â ±ÔÄ¢
+    // ì´ë™ ê°€ëŠ¥ ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ëŠ” ê·œì¹™
     public static bool CanMove(Vector2Int newPosition, int[,] grid)
     {
-        // °æ°è Ã¼Å©: ±×¸®µå ¹üÀ§ ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+        // ê²½ê³„ ì²´í¬: ê·¸ë¦¬ë“œ ë²”ìœ„ ë‚´ì— ìžˆëŠ”ì§€ í™•ì¸
         if (newPosition.x >= 0 && newPosition.x < grid.GetLength(0) &&
             newPosition.y >= 0 && newPosition.y < grid.GetLength(1))
         {
-            return true;  // ÀÌµ¿ °¡´É
+            return true;  // ì´ë™ ê°€ëŠ¥
         }
 
         Debug.LogWarning("Cannot move outside the grid boundaries!");
-        return false;  // ÀÌµ¿ ºÒ°¡´É
+        return false;  // ì´ë™ ë¶ˆê°€ëŠ¥
     }
 }

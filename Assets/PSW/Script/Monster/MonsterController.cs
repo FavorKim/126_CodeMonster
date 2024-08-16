@@ -18,7 +18,7 @@ public class MonsterController : MonoBehaviour
     void Start()
     {
         _monsterName = this.transform.gameObject.name;
-        _monsterType = DataManagerTest.Inst.GetMonsterData(_monsterName).TypeIndex;
+        _monsterType = DataManagerTest.Instance.GetMonsterData(_monsterName).TypeIndex;
     }
 
     // Update is called once per frame
@@ -45,13 +45,13 @@ public class MonsterController : MonoBehaviour
 
     protected virtual void Hit()
     {
-        //¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        //ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
 
         AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
 
         float startTime = stateInfo.length + 0.5f;
 
-        //ÇÃ·¹ÀÌ¾î´Â ³²Áö¸¸ ¸ó½ºÅÍ´Â »ç¶óÁü
+        //í”Œë ˆì´ì–´ëŠ” ë‚¨ì§€ë§Œ ëª¬ìŠ¤í„°ëŠ” ì‚¬ë¼ì§
         Invoke(nameof(Die), startTime);
     }
 

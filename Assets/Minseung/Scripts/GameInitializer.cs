@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameInitializer : MonoBehaviour
 {
     public StageManager stageManager;
-    public DataManagerTest dataManagerTest;
+    //public DataManagerTest dataManagerTest;
     public GameObject[] floorPrefabs;
     public GameObject[] wallPrefabs;
     public GameObject playerPrefab;
@@ -14,13 +14,13 @@ public class GameInitializer : MonoBehaviour
 
     private void Start()
     {
-        // µ¥ÀÌÅÍ ·Îµå ÈÄ ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ °¡Á®¿À±â
-        var stageMapData = dataManagerTest.GetStageMapData(1); // ¿¹: ½ºÅ×ÀÌÁö ÀÎµ¦½º 1
+        // ë°ì´í„° ë¡œë“œ í›„ ìŠ¤í…Œì´ì§€ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
+        var stageMapData = DataManagerTest.Instance.GetStageMapData(1); // ì˜ˆ: ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤ 1
 
-        // StageManager¿¡ Àü´ŞÇÏ¿© ½ºÅ×ÀÌÁö »ı¼º
+        // StageManagerì— ì „ë‹¬í•˜ì—¬ ìŠ¤í…Œì´ì§€ ìƒì„±
         stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab, enemyPrefab);
 
-        // StageManager ¼³Á¤ ÀÌº¥Æ® È£Ãâ
+        // StageManager ì„¤ì • ì´ë²¤íŠ¸ í˜¸ì¶œ
         OnStageManagerSet?.Invoke(stageManager);
     }
 }

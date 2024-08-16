@@ -2,55 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour 
+public class BattleManager : Singleton<BattleManager> 
 {
-    //ÇÃ·¹ÀÌ¾î¿¡¼­ ³Ñ¾î¿Â °ø°İ¸í·É¿¡ ´ëÇÑ ¹èÆ²ÆäÀÌÁî ½ÇÇà.
+    //í”Œë ˆì´ì–´ì—ì„œ ë„˜ì–´ì˜¨ ê³µê²©ëª…ë ¹ì— ëŒ€í•œ ë°°í‹€í˜ì´ì¦ˆ ì‹¤í–‰.
 
-    public static BattleManager Instance { get; private set; }
+    //public static BattleManager Instance { get; private set; }
 
     private DataManagerTest dataManager;
     private Player player;
     private StageManager stageManager;
 
-    private void Awake()
+    protected override void Awake()
     {
-        dataManager = DataManagerTest.Inst;
+        base.Awake();
+        dataManager = DataManagerTest.Instance;
         stageManager = StageManager.Instance;
         player = stageManager.GetPlayer();
     }
 
     public void BattlePhase(Vector2Int playerPosition, int attackBlockType)
     {
-        // ÀûÀÇ À§Ä¡¸¦ ¾ò±â À§ÇØ ÀûµéÀÌ ÀÖ´Â ½ºÆù ¸®½ºÆ®¸¦ °¡Á®¿È
+        // ì ì˜ ìœ„ì¹˜ë¥¼ ì–»ê¸° ìœ„í•´ ì ë“¤ì´ ìˆëŠ” ìŠ¤í° ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì˜´
         List<Vector2Int> monsterPositions = stageManager.GetMonsterSpawnList();
 
-        // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿Í ÀûÀÇ À§Ä¡¸¦ ºñ±³ÇÏ¿© °°Àº À§Ä¡¿¡ ÀÖ´ÂÁö È®ÀÎ
+        // í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì™€ ì ì˜ ìœ„ì¹˜ë¥¼ ë¹„êµí•˜ì—¬ ê°™ì€ ìœ„ì¹˜ì— ìˆëŠ”ì§€ í™•ì¸
         for (int i = 0; i < monsterPositions.Count; i++)
         {
             if (GameRule.ComparePosition(playerPosition, monsterPositions[i]))
             {
                 string monsterName = stageManager.GetMonsterNameAtIndex(i);
-                Monster monster = DataManagerTest.Inst.GetMonsterData(monsterName);
-                MonsterType monsterType = DataManagerTest.Inst.GetMonsterTypeData(monster.TypeIndex);
+                Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
+                MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
 
-                // °ø°İ ºí·ÏÀÇ Å¸ÀÔ°ú ¸ó½ºÅÍÀÇ ¾àÁ¡ ºñ±³
+                // ê³µê²© ë¸”ë¡ì˜ íƒ€ì…ê³¼ ëª¬ìŠ¤í„°ì˜ ì•½ì  ë¹„êµ
                 if (GameRule.CompareType(attackBlockType, monsterType.Weakness))
                 {
                     Debug.Log("Attack successful! Monster defeated.");
-                    // ½Â¸® Ã³¸®: ÇÃ·¹ÀÌ¾îÀÇ ½Â¸® ¸Ş¼­µå È£Ãâ
+                    // ìŠ¹ë¦¬ ì²˜ë¦¬: í”Œë ˆì´ì–´ì˜ ìŠ¹ë¦¬ ë©”ì„œë“œ í˜¸ì¶œ
                     StageManager.Instance.GetPlayer().Win();
                 }
                 else
                 {
                     Debug.Log("Attack failed! Player defeated.");
-                    // ÆĞ¹è Ã³¸®: ÇÃ·¹ÀÌ¾îÀÇ ÆĞ¹è ¸Ş¼­µå È£Ãâ
+                    // íŒ¨ë°° ì²˜ë¦¬: í”Œë ˆì´ì–´ì˜ íŒ¨ë°° ë©”ì„œë“œ í˜¸ì¶œ
                     StageManager.Instance.GetPlayer().Defeat();
                 }
                 return;
             }
         }
 
-        // ÀûÀÇ À§Ä¡¿Í ÀÏÄ¡ÇÏÁö ¾Ê´Â °æ¿ì, °ø°İÀÌ ºø³ª°£ °ÍÀ¸·Î °£ÁÖÇÏ¿© ÆĞ¹è Ã³¸®
+        // ì ì˜ ìœ„ì¹˜ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ê²½ìš°, ê³µê²©ì´ ë¹—ë‚˜ê°„ ê²ƒìœ¼ë¡œ ê°„ì£¼í•˜ì—¬ íŒ¨ë°° ì²˜ë¦¬
         Debug.Log("Attack missed! Player defeated.");
         StageManager.Instance.GetPlayer().Defeat();
     }

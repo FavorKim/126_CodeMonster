@@ -1,42 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CodeBlockManager : MonoBehaviour
+public class CodeBlockManager 
 {
-    private Dictionary<string, CodeBlockData> codeBlocks = new Dictionary<string, CodeBlockData>();
-    public static CodeBlockManager Inst { get; private set; }
-    List<int> blockIndexList = new List<int>();
-    private Player player;
+    //private Dictionary<string, CodeBlockData> codeBlocks = new Dictionary<string, CodeBlockData>();
+    //public static CodeBlockManager Inst { get; private set; }
+    //private static List<int> blockIndexList = new List<int>();
+    //private Player player;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    codeBlocks = DataManagerTest.Inst.LoadedCodeBlockList;
+
+    //    player = StageManager.Instance.GetPlayer();
+    //}
+
+    public static void StartCodeBlocks()
     {
-        codeBlocks = DataManagerTest.Inst.LoadedCodeBlockList;
-
-        player = StageManager.Instance.GetPlayer();
+        ExcuteCodeBlockSequence(BlockContainerManager.Instance.GetContatinerBlocks());
     }
 
-    public void InitCodeBlockSequence()
+    private static void ExcuteCodeBlockSequence(List<string> sequence)
     {
-        blockIndexList.Clear();
-
-        for (int i = 0; i < this.gameObject.transform.childCount; i++)
+        var player = StageManager.Instance.GetPlayer();
+        // blockIndexListì— ìžˆëŠ” ê° blockIndexë¥¼ ì‚¬ìš©í•´ Playerì˜ Execute ë©”ì„œë“œë¥¼ í˜¸ì¶œ
+        foreach (var blockName in sequence)
         {
-            int blockIndex = codeBlocks[this.gameObject.transform.GetChild(i).name].BlockIndex;
-            blockIndexList.Add(blockIndex);
-        }
-
-        if (codeBlocks.Count > 0)
-        {
-            SetCodeBlockSequence();
-        }
-    }
-
-    private void SetCodeBlockSequence()
-    {
-        // blockIndexList¿¡ ÀÖ´Â °¢ blockIndex¸¦ »ç¿ëÇØ PlayerÀÇ Execute ¸Þ¼­µå¸¦ È£Ãâ
-        foreach (var blockIndex in blockIndexList)
-        {
-            player.Execute(blockIndex);
+            //player.Execute(DataManagerTest.Instance.GetCodeBlockData(blockName));
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class DataManagerTest : MonoBehaviour
+public class DataManagerTest : Singleton<DataManagerTest>
 {
     private string filePath;
     public Dictionary<string, Monster> LoadedMonsterList { get; private set; }
@@ -17,16 +17,15 @@ public class DataManagerTest : MonoBehaviour
 
     private readonly string _dataRootPath = "C:/Users/KGA/Desktop/PizzaDataTable";
 
-    public static DataManagerTest Inst { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         filePath = Application.persistentDataPath + "/playerData.json";
-        Inst = this;
         ReadAllDataOnAwake();
     }
 
-    #region µ¥ÀÌÅÍÅ×ÀÌºí ·Îµå
+    #region ë°ì´í„°í…Œì´ë¸” ë¡œë“œ
     private void ReadAllDataOnAwake()
     {
         LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
@@ -57,7 +56,7 @@ public class DataManagerTest : MonoBehaviour
     }
     #endregion
 
-    #region µ¥ÀÌÅÍ ÆÄ½Ì
+    #region ë°ì´í„° íŒŒì‹±
     private Monster ParseMonster(XElement data)
     {
         return new Monster
@@ -158,7 +157,7 @@ public class DataManagerTest : MonoBehaviour
 
     #endregion
 
-    #region µ¥ÀÌÅÍ ¼¼ÆÃ
+    #region ë°ì´í„° ì„¸íŒ…
     private void SetDataList<T>(out List<T> usingList, XElement data, string listName, Func<string, T> parseElement = null)
     {
         string ListStr = data.Attribute(listName)?.Value;
@@ -184,7 +183,7 @@ public class DataManagerTest : MonoBehaviour
     }
     #endregion 
 
-    #region µ¥ÀÌÅÍ ºÒ·¯¿À±â
+    #region ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
     public Monster GetMonsterData(string dataName)
     {
         if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(dataName))

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageManager : Singleton<StageManager>
 {
-    public static StageManager Instance { get; private set; }
 
     private StageMap currentStageMap;
     private DataManagerTest dataManagerTest;
@@ -29,10 +28,10 @@ public class StageManager : MonoBehaviour
             {
                 Vector3 tilePosition = new Vector3(x, 0, y);
 
-                // ArrayInfoÀÇ °ª¿¡ µû¶ó »ç¿ëÇÒ ÇÁ¸®ÆÕ ¸®½ºÆ® ¼±ÅÃ
+                // ArrayInfoì˜ ê°’ì— ë”°ë¼ ì‚¬ìš©í•  í”„ë¦¬íŒ¹ ë¦¬ìŠ¤íŠ¸ ì„ íƒ
                 GameObject[] selectedPrefabs = currentStageMap.ArrayInfo[index] == 1 ? floorPrefabs : wallPrefabs;
 
-                // ·£´ıÇÑ ÇÁ¸®ÆÕ ¼±ÅÃ
+                // ëœë¤í•œ í”„ë¦¬íŒ¹ ì„ íƒ
                 GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
                 Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity);
@@ -43,7 +42,7 @@ public class StageManager : MonoBehaviour
 
     private void SetPlayer(GameObject playerPrefab)
     {
-        // ÇÃ·¹ÀÌ¾î »ı¼º ¹× À§Ä¡ ¼³Á¤
+        // í”Œë ˆì´ì–´ ìƒì„± ë° ìœ„ì¹˜ ì„¤ì •
         if (playerPrefab != null && currentStageMap.PlayerSpawnPos != null)
         {
             Vector3 playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
@@ -53,7 +52,7 @@ public class StageManager : MonoBehaviour
 
     private void SetEnemies(GameObject enemyPrefab)
     {
-        // Àû »ı¼º ¹× À§Ä¡ ¼³Á¤
+        // ì  ìƒì„± ë° ìœ„ì¹˜ ì„¤ì •
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
             if (enemyPrefab != null)
@@ -64,7 +63,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    // GetGrid ¸Ş¼­µå
+    // GetGrid ë©”ì„œë“œ
     public int[,] GetGrid()
     {
         int[,] grid = new int[currentStageMap.StageSize.x, currentStageMap.StageSize.y];
