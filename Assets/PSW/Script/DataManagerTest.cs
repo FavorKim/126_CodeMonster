@@ -8,6 +8,8 @@ public class DataManagerTest : MonoBehaviour
     private string filePath;
     public Dictionary<string, Monster> LoadedMonsterList { get; private set; }
     public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }
+    public Dictionary<int, MoveBlock> LoadedMoveBlockList { get; private set; }
+    public Dictionary<int, AttackBlock> LoadedAttackBlockList { get; private set; }
     public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
@@ -29,6 +31,8 @@ public class DataManagerTest : MonoBehaviour
     {
         LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
         LoadedCodeBlockList = LoadDataTable(nameof(CodeBlockData), ParseCodeBlockData, cb => cb.BlockName);
+        LoadedMoveBlockList = LoadDataTable(nameof(MoveBlock), ParseMoveBlock, mb => mb.BlockIndex);
+        LoadedAttackBlockList = LoadDataTable(nameof(AttackBlock), ParseAttackBlock, ab => ab.BlockIndex);
         LoadedMonsterType = LoadDataTable(nameof(MonsterType), ParseMonsterType, mt => mt.TypeIndex);
         LoadedStageMap = LoadDataTable(nameof(StageMap), ParseStageMap, sm => sm.StageIndex);
         LoadedText = LoadDataTable(nameof(UIText), ParseUIText, ut => ut.TextIndex);
@@ -74,6 +78,24 @@ public class DataManagerTest : MonoBehaviour
             BlockName = data.Attribute(nameof(CodeBlockData.BlockName)).Value,
             ViewName = data.Attribute(nameof(CodeBlockData.ViewName)).Value,
             Description = data.Attribute(nameof(CodeBlockData.Description)).Value
+        };
+    }
+
+    private MoveBlock ParseMoveBlock(XElement data)
+    {
+        return new MoveBlock
+        {
+            BlockIndex = int.Parse(data.Attribute(nameof(MoveBlock.BlockIndex)).Value),
+            MoveDirection = int.Parse(data.Attribute(nameof(MoveBlock.MoveDirection)).Value)
+        };
+    }
+
+    private AttackBlock ParseAttackBlock(XElement data)
+    {
+        return new AttackBlock
+        {
+            BlockIndex = int.Parse(data.Attribute(nameof(AttackBlock.BlockIndex)).Value),
+            AttackType = int.Parse(data.Attribute(nameof(AttackBlock.AttackType)).Value)
         };
     }
 
@@ -177,6 +199,22 @@ public class DataManagerTest : MonoBehaviour
             return null;
 
         return LoadedCodeBlockList[dataClassName];
+    }
+
+    public MoveBlock GetMoveBlockData(int blockIndex)
+    {
+        if (LoadedMoveBlockList.Count == 0 || !LoadedMoveBlockList.ContainsKey(blockIndex))
+            return null;
+
+        return LoadedMoveBlockList[blockIndex];
+    }
+
+    public AttackBlock GetAttackBlockData(int blockIndex)
+    {
+        if (LoadedAttackBlockList.Count == 0 || !LoadedAttackBlockList.ContainsKey(blockIndex))
+            return null;
+
+        return LoadedAttackBlockList[blockIndex];
     }
 
     public StageMap GetStageMapData(int dataIndex)
