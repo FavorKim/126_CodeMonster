@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -4889243595519333434}
   - component: {fileID: -5620798050236748967}
   - component: {fileID: -6075006855654281152}
+  - component: {fileID: 700629264064379877}
   m_Layer: 0
   m_Name: UILeftMoveBlock
   m_TagString: Untagged
@@ -248,6 +249,19 @@ MonoBehaviour:
   blockId: 5c5184f2-c2f5-4063-b14b-3b1264fb3c1a
   instanceId: 761533c9-a77d-4d1d-836d-8357e60ed80d
   version: 1
+--- !u!114 &700629264064379877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369126874611500125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
 --- !u!1 &7364824350858062219
 GameObject:
   m_ObjectHideFlags: 0

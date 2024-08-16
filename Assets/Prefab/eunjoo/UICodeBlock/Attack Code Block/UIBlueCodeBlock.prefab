@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -4119358358787938390}
   - component: {fileID: -3429574482847648162}
   - component: {fileID: 1492274203717634720}
+  - component: {fileID: -9039626658968755354}
   m_Layer: 0
   m_Name: UIBlueCodeBlock
   m_TagString: Untagged
@@ -247,3 +248,16 @@ MonoBehaviour:
   blockId: 5c5184f2-c2f5-4063-b14b-3b1264fb3c1a
   instanceId: 761533c9-a77d-4d1d-836d-8357e60ed80d
   version: 1
+--- !u!114 &-9039626658968755354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905676607421280362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}

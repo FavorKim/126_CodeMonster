@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -7524998989410714383}
   - component: {fileID: -7449912989996629175}
   - component: {fileID: -7469155815689872302}
+  - component: {fileID: 6874218316210472169}
   m_Layer: 0
   m_Name: UIGreenCodeBlock
   m_TagString: Untagged
@@ -247,3 +248,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grab: {fileID: -7449912989996629175}
+--- !u!114 &6874218316210472169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392943102465053282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
