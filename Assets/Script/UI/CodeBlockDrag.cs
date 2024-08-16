@@ -60,31 +60,31 @@ public class CodeBlockDrag : MonoBehaviour
         switch (bName)
         {
             case BlockName.LeftMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Left");
                 break;
             case BlockName.RightMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Right");
                 break;
             case BlockName.UpMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Up");
                 break;
             case BlockName.DownMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Down");
                 break;
             case BlockName.FireAttackCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Attack_Fire");
                 break;
             case BlockName.WaterAttackCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Attack_Water");
                 break;
             case BlockName.GrassAttackCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Attac_Grass");
                 break;
             case BlockName.LoopCodeBlock:
                 DataManagerTest.Inst.GetCodeBlockData("");
                 break;
             case BlockName.CondionalCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
+                DataManagerTest.Inst.GetCodeBlockData("Block_Condition_Attribute");
                 break;
             default:
                 break;

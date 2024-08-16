@@ -7,6 +7,7 @@ using UnityEngine;
 public class CustomPokedObject : MonoBehaviour
 {
     [SerializeField]PokeInteractable poke;
+     
     void Start()
     {
         poke = GetComponent<PokeInteractable>();
