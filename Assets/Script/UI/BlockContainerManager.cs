@@ -11,7 +11,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     [SerializeField]private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
-    List<CodeBlockData> blocks = new List<CodeBlockData>();
+    List<CodeBlockDrag> blocks = new List<CodeBlockDrag>();
 
     protected override void Awake()
     {
@@ -81,11 +81,11 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks[i].SetSiblingIndex(i);
             sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45,0,0));
 
-            blocks.Add(sortedBlocks[i].gameObject.GetComponent<CodeBlockDrag>().Data);
+            blocks.Add(sortedBlocks[i].gameObject.GetComponent<CodeBlockDrag>());
         }
     }
 
-    public List<CodeBlockData> GetContatinerBlocks()
+    public List<CodeBlockDrag> GetContatinerBlocks()
     {
         return blocks;
     }

@@ -1,27 +1,73 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private GameObject playerInstance; // »ı¼ºµÈ ÇÃ·¹ÀÌ¾î ÀÎ½ºÅÏ½º
+    private GameObject playerInstance; // ìƒì„±ëœ í”Œë ˆì´ì–´ ì¸ìŠ¤í„´ìŠ¤
 
-    private int playerX, playerY;      // ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç À§Ä¡
-    public StageBuilder stageBuilder;  // StageBuilder Å¬·¡½º ÂüÁ¶
+    private int playerX, playerY;      // í”Œë ˆì´ì–´ì˜ í˜„ì¬ ìœ„ì¹˜
+    public StageBuilder stageBuilder;  // StageBuilder í´ë˜ìŠ¤ ì°¸ì¡°
+    [SerializeField] CustomPokedObject startBtn;
 
     void Start()
     {
         SetPlayerInitialPosition();
     }
 
+    private void OnEnable()
+    {
+        startBtn.OnPoke += MoveStart;
+    }
+
+    private void OnDisable()
+    {
+        startBtn.OnPoke -= MoveStart;
+    }
+    private void MoveStart()
+    {
+        List<CodeBlockDrag> blocks = BlockContainerManager.Instance.GetContatinerBlocks();
+        for (int i = 0; i < blocks.Count; i++) 
+        {
+            switch (blocks[i].BlockName)
+            {
+                case BlockName.LeftMoveCodeBlock:
+                    MoveLeft();
+                    break;
+                case BlockName.RightMoveCodeBlock:
+                    MoveRight();
+                    break;
+                case BlockName.UpMoveCodeBlock:
+                    MoveUp();
+                    break;
+                case BlockName.DownMoveCodeBlock:
+                    MoveDown();
+                    break;
+                case BlockName.FireAttackCodeBlock:
+                    break;
+                case BlockName.WaterAttackCodeBlock:
+                    break;
+                case BlockName.GrassAttackCodeBlock:
+                    break;
+                case BlockName.LoopCodeBlock:
+                    break;
+                case BlockName.CondionalCodeBlock:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     void SetPlayerInitialPosition()
     {
-        // StageBuilder¿¡¼­ ¼³Á¤µÈ ÃÊ±â À§Ä¡¸¦ »ç¿ë
+        // StageBuilderì—ì„œ ì„¤ì •ëœ ì´ˆê¸° ìœ„ì¹˜ë¥¼ ì‚¬ìš©
         Vector3 startPosition = stageBuilder.playerStartPosition;
 
-        // ÃÊ±â À§Ä¡¸¦ Á¤¼öÇü ÁÂÇ¥·Î º¯È¯
+        // ì´ˆê¸° ìœ„ì¹˜ë¥¼ ì •ìˆ˜í˜• ì¢Œí‘œë¡œ ë³€í™˜
         playerX = Mathf.RoundToInt(startPosition.x);
-        playerY = Mathf.RoundToInt(startPosition.z);  // 2D ¹è¿­ÀÇ y°ªÀ» zÃàÀ¸·Î »ç¿ë
+        playerY = Mathf.RoundToInt(startPosition.z);  // 2D ë°°ì—´ì˜ yê°’ì„ zì¶•ìœ¼ë¡œ ì‚¬ìš©
 
-        // ÇÃ·¹ÀÌ¾î ÀÎ½ºÅÏ½º »ı¼º
+        // í”Œë ˆì´ì–´ ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
         playerInstance = Instantiate(stageBuilder.playerPrefab, startPosition, Quaternion.identity);
     }
 

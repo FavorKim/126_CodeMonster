@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Favor/Scene/HandTest.unity
     guid: cc5180515de4efd459b0305617ff8367
   - enabled: 0
     path: Assets/Favor/Scene/PokeTest.unity
     guid: fef2800244b0b3d4aabbb0e9acd8a3c6
+  - enabled: 1
+    path: Assets/Favor/Scene/TestScene.unity
+    guid: fd4952e8a934cc740901d59dcc0198d1
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1bcd49750a3084148b01287d2da71cd9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2c6a954a224a382409c1d469141655a8, type: 2}

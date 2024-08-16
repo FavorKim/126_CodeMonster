@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI; // 드롭다운을 확인하기 위해 필요
@@ -53,6 +54,7 @@ public class CodeBlockDrag : MonoBehaviour
         //Data = SetData(BlockName);
     }
 
+    /* 데이터 드리븐 SetData
     private CodeBlockData SetData (BlockName bName)
     {
         CodeBlockData data = null;
@@ -89,10 +91,10 @@ public class CodeBlockDrag : MonoBehaviour
             default:
                 break;
         }
-
+        
         return data;
     }
-
+    */
     private void OnEnable()
     {
         if (grab != null)
