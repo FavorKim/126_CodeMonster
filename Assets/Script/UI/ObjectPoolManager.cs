@@ -100,12 +100,6 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
                 }
 
                 GameObject objInstance = GetObject(poolInfo.BlockName);
-
-                // SetActive(true)를 사용하지 않고, 필요한 초기화 작업을 수행합니다.
-                // 예: objInstance.transform.position = new Vector3(0, 0, 0);
-                // 다른 초기화 작업을 여기에 추가
-
-                // 작업이 끝나면 다시 풀에 반환할 수도 있습니다.
             }
         }
     }
