@@ -1,4 +1,5 @@
 using EnumTypes;
+using EventLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -77,5 +78,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks[i].SetSiblingIndex(i);
             sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45,0,0));
         }
+
+        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - sortedBlocks.Count);
+
     }
 }

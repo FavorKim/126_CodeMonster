@@ -1,3 +1,5 @@
+using EnumTypes;
+using EventLibrary;
 using UnityEngine;
 
 public static class UIConstants
@@ -44,5 +46,6 @@ public class UIManager : Singleton<UIManager>
 
         BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
         StageBlockManager.Instance.SetStageBlockUISize(BlockIndexLength + PlusBlockListUISizeNum);
+        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
     }
 }
