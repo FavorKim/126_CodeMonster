@@ -197,18 +197,21 @@ public class DataManagerTest : Singleton<DataManagerTest>
     #region 데이터 불러오기
     public Monster GetMonsterData(string dataName)
     {
-        if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(dataName))
+        string name = RemoveTextAfterParenthesis(dataName);
+
+        if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(name))
             return null;
 
-        return LoadedMonsterList[dataName];
+        return LoadedMonsterList[name];
     }
 
     public CodeBlockData GetCodeBlockData(string dataClassName)
     {
-        if (LoadedCodeBlockList.Count == 0 || !LoadedCodeBlockList.ContainsKey(dataClassName))
+        string name = RemoveTextAfterParenthesis(dataClassName);
+        if (LoadedCodeBlockList.Count == 0 || !LoadedCodeBlockList.ContainsKey(name))
             return null;
 
-        return LoadedCodeBlockList[dataClassName];
+        return LoadedCodeBlockList[name];
     }
 
     public MoveBlock GetMoveBlockData(int blockIndex)
@@ -253,17 +256,34 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
     public TextType GetTextTypeData(string dataClassName)
     {
-        if (LoadedTextType.Count == 0 || !LoadedTextType.ContainsKey(dataClassName))
+        string name = RemoveTextAfterParenthesis(dataClassName);
+        if (LoadedTextType.Count == 0 || !LoadedTextType.ContainsKey(name))
             return null;
 
-        return LoadedTextType[dataClassName];
+        return LoadedTextType[name];
     }
     public PlayerData GetPlayerData(string dataClassName)
     {
-        if (LoadedPlayerData.Count == 0 || !LoadedPlayerData.ContainsKey(dataClassName))
+        string name= RemoveTextAfterParenthesis(dataClassName);
+
+        if (LoadedPlayerData.Count == 0 || !LoadedPlayerData.ContainsKey(name))
             return null;
 
-        return LoadedPlayerData[dataClassName];
+        return LoadedPlayerData[name];
     }
     #endregion
+
+    public string RemoveTextAfterParenthesis(string input)
+    {
+        int index = input.IndexOf('(');
+
+        // 만약 '('가 문자열에 없다면, 원본 문자열을 그대로 반환
+        if (index == -1)
+        {
+            return input;
+        }
+
+        // '(' 전까지의 문자열만 반환
+        return input.Substring(0, index).Trim();
+    }
 }
