@@ -36,8 +36,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
         else
         {
-            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.ATTACK_MOVE_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
-            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.ATTACK_MOVE_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
+            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
+            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
         }
     }
 

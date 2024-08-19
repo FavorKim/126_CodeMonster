@@ -7,6 +7,8 @@ public static class UIConstants
     public const int ATTACK_BLOCK_COUNT = 3;
     public const int MOVE_BLOCK_COUNT = 4;
     public const int ATTACK_MOVE_BLOCK_SIZE = 50;
+    public const int CONTAINER_WIDTH_SIZE = 60;
+    public const int CONTAINER_HEIGHT_SIZE = 50;
     public const int LOOP_CON_BLOCK_SIZE = 120;
 }
 
