@@ -18,7 +18,7 @@ public class CustomPokedObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.LogWarning($"{name} : OnPoke");
+            OnPoke.Invoke();
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InteractEventManager : Singleton<InteractEventManager>
 {
-    [SerializeField] CustomPokedObject startBtn;
+    [SerializeField] public CustomPokedObject startBtn;
     [SerializeField] CustomPokedObject resetBtn;
   
     public void RegistOnClickStartBtn(Action action)

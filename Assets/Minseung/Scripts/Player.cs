@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     {
         SetPlayerType();
         SetPlayerPrefab();
-        InteractEventManager.Instance.RegistOnClickStartBtn(StartPlayerAction);
+        InteractEventManager.Instance.startBtn.OnPoke += StartPlayerAction;
     }
 
     private void SetPlayerType()
@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
         isMove = false;
         isGameOver = false;
 
-        while (indexList.Count < index && isGameOver == false)
+        while (indexList.Count > index && isGameOver == false)
         {
             //이동중일때 멈춤
             yield return new WaitWhile(() => isMove);
@@ -256,6 +256,7 @@ public class Player : MonoBehaviour
     public void StartPlayerAction()
     {
         Debug.LogWarning("start player action");
+        DebugBoxManager.Instance.Log("start player action");
         StartCoroutine(PlayerAction());
     }
 }
