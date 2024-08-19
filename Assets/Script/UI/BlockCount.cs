@@ -26,6 +26,7 @@ public class BlockCount : MonoBehaviour
 
     public void SetBlockCountText(int count)
     {
-        BlockCountText.text = count.ToString();
+        if(count <= UIManager.Instance.BlockContainerLength)
+            BlockCountText.text = count.ToString();
     }
 }

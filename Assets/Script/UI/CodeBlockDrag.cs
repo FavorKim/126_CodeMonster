@@ -1,3 +1,5 @@
+using EnumTypes;
+using EventLibrary;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -259,5 +261,6 @@ public class CodeBlockDrag : MonoBehaviour
 
         _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
+        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - BlockContainerManager.Instance.CountCodeBlockDragComponents());
     }
 }

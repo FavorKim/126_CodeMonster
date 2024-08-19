@@ -102,13 +102,40 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     // 컨테이너에 있던 블럭들 리셋
     public void ResetBlockContainer()
     {
+        // 현재 컨테이너 하위에 있는 모든 자식 객체를 리스트에 저장
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in transform)
+        {
+            children.Add(child);
+        }
+
+        // 저장한 리스트를 순회하면서 블록들을 리셋
+        foreach (Transform child in children)
+        {
+            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+            if (codeBlockDrag != null)
+            {
+                codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
+            }
+        }
+    }
+
+
+    public int CountCodeBlockDragComponents()
+    {
+        int count = 0;
+
+        // 하위 객체들을 순회하면서 CodeBlockDrag 컴포넌트를 가진 객체의 수를 카운트
         foreach (Transform child in transform)
         {
             CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
             if (codeBlockDrag != null)
             {
-                codeBlockDrag.ReturnToPool();
+                count++;
             }
         }
+
+        return count; // 발견된 CodeBlockDrag 컴포넌트의 개수를 반환
     }
+
 }
