@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class DataManagerTest : Singleton<DataManagerTest>
 {
@@ -39,22 +41,85 @@ public class DataManagerTest : Singleton<DataManagerTest>
         LoadedTextType = LoadDataTable(nameof(TextType), ParseTextType, tt => tt.TypeName);
         LoadedPlayerData = LoadDataTable(nameof(PlayerData), ParsePlayerData, p => p.PlayerName);
     }
-    
+    void CopyFileToPersistentDataPath(string fileName)
+    {
+        string sourcePath = Path.Combine(Application.streamingAssetsPath, fileName);
+        string destinationPath = Path.Combine(Application.persistentDataPath, fileName);
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (!File.Exists(destinationPath))
+            {
+                UnityWebRequest www = UnityWebRequest.Get(sourcePath);
+                www.SendWebRequest();
+
+                while (!www.isDone) { }
+
+                if (www.result == UnityWebRequest.Result.Success)
+                {
+                    File.WriteAllBytes(destinationPath, www.downloadHandler.data);
+                }
+                else
+                {
+                    Debug.LogError("Failed to copy file from StreamingAssets: " + www.error);
+                }
+            }
+        }
+        else
+        {
+            if (File.Exists(sourcePath))
+            {
+                File.Copy(sourcePath, destinationPath, true);
+            }
+            else
+            {
+                Debug.LogError("File not found in StreamingAssets: " + sourcePath);
+            }
+        }
+    }
+
     private Dictionary<TKey, TValue> LoadDataTable<TKey, TValue>(string fileName, Func<XElement, TValue> parseElement, Func<TValue, TKey> getKey)
     {
         var dataTable = new Dictionary<TKey, TValue>();
 
-        XDocument doc = XDocument.Load($"{_dataRootPath}/{fileName}.xml");
-        var dataElements = doc.Descendants("data");
+        // 파일을 먼저 복사
+        CopyFileToPersistentDataPath($"{fileName}.xml");
 
-        foreach (var data in dataElements)
+        // 데이터를 persistentDataPath에서 로드
+        string filePath = Path.Combine(Application.persistentDataPath, $"{fileName}.xml");
+
+        if (File.Exists(filePath))
         {
-            TValue value = parseElement(data);
-            TKey key = getKey(value);
-            dataTable.Add(key, value);
+            XDocument doc = XDocument.Load(filePath);
+            var dataElements = doc.Descendants("data");
+
+            foreach (var data in dataElements)
+            {
+                TValue value = parseElement(data);
+                TKey key = getKey(value);
+                dataTable.Add(key, value);
+            }
+        }
+        else
+        {
+            Debug.LogError($"File not found: {filePath}");
         }
 
         return dataTable;
+
+        //var dataTable = new Dictionary<TKey, TValue>();
+
+        //XDocument doc = XDocument.Load($"{_dataRootPath}/{fileName}.xml");
+        //var dataElements = doc.Descendants("data");
+
+        //foreach (var data in dataElements)
+        //{
+        //    TValue value = parseElement(data);
+        //    TKey key = getKey(value);
+        //    dataTable.Add(key, value);
+        //}
+
+        //return dataTable;
     }
     #endregion
 
