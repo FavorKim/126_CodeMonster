@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StageMap>
+  <dataCategory>
+    <data StageIndex="1" StageSize="{6,6}" ArrayInfo="{&#xA;0,0,0,0,0,0,&#xA;0,1,0,0,0,0,&#xA;0,1,0,0,0,0,&#xA;0,1,1,1,1,0,&#xA;0,0,0,0,1,0,&#xA;0,0,0,0,0,0&#xA;}" BlockNameList="{UIUpMoveBlock,UIDownMoveBlock,UILeftMoveBlock,UIRightMoveBlock,UIWaterAttackBlock,UIGrassAttackBlock,UIFireAttackBlock}" BlockContainerLength="10" MonsterNameList="{}" MonsterSpawnPosList="{{4,4}}" PlayerSpawnPos="{1,1}" />
+  </dataCategory>
+</StageMap>

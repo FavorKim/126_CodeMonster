@@ -14,8 +14,9 @@ public class DataManagerTest : MonoBehaviour
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
     public Dictionary<string, TextType> LoadedTextType { get; private set; }
+    public Dictionary<string, PlayerData> LoadedPlayerData { get; private set; }
 
-    private readonly string _dataRootPath = "C:/Users/KGA/Desktop/PizzaDataTable";
+    private readonly string _dataRootPath = "Application.streamingAssetsPath";
 
     public static DataManagerTest Inst { get; private set; }
 
@@ -26,7 +27,7 @@ public class DataManagerTest : MonoBehaviour
         ReadAllDataOnAwake();
     }
 
-    #region µ•¿Ã≈Õ≈◊¿Ã∫Ì ∑ŒµÂ
+    #region Îç∞Ïù¥ÌÑ∞ÌÖåÏù¥Î∏î Î°úÎìú
     private void ReadAllDataOnAwake()
     {
         LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
@@ -37,6 +38,7 @@ public class DataManagerTest : MonoBehaviour
         LoadedStageMap = LoadDataTable(nameof(StageMap), ParseStageMap, sm => sm.StageIndex);
         LoadedText = LoadDataTable(nameof(UIText), ParseUIText, ut => ut.TextIndex);
         LoadedTextType = LoadDataTable(nameof(TextType), ParseTextType, tt => tt.TypeName);
+        LoadedPlayerData = LoadDataTable(nameof(PlayerData), ParsePlayerData, p => p.PlayerName);
     }
     
     private Dictionary<TKey, TValue> LoadDataTable<TKey, TValue>(string fileName, Func<XElement, TValue> parseElement, Func<TValue, TKey> getKey)
@@ -57,7 +59,7 @@ public class DataManagerTest : MonoBehaviour
     }
     #endregion
 
-    #region µ•¿Ã≈Õ ∆ƒΩÃ
+    #region Îç∞Ïù¥ÌÑ∞ ÌååÏã±
     private Monster ParseMonster(XElement data)
     {
         return new Monster
@@ -149,6 +151,17 @@ public class DataManagerTest : MonoBehaviour
             TypeName = data.Attribute(nameof(TextType.TypeName)).Value
         };
     }
+    private PlayerData ParsePlayerData(XElement data)
+    {
+        var tempPlayerData = new PlayerData
+        {
+            PlayerName = data.Attribute(nameof(PlayerData.PlayerName)).Value
+        };
+
+        SetDataList(out tempPlayerData.StartMonsterNameList, data, "StartMonsterNameList");
+        
+        return tempPlayerData;
+    }
 
     private Vector2Int ParseVector2Int(string value)
     {
@@ -158,7 +171,7 @@ public class DataManagerTest : MonoBehaviour
 
     #endregion
 
-    #region µ•¿Ã≈Õ ºº∆√
+    #region Îç∞Ïù¥ÌÑ∞ ÏÑ∏ÌåÖ
     private void SetDataList<T>(out List<T> usingList, XElement data, string listName, Func<string, T> parseElement = null)
     {
         string ListStr = data.Attribute(listName)?.Value;
@@ -184,7 +197,7 @@ public class DataManagerTest : MonoBehaviour
     }
     #endregion 
 
-    #region µ•¿Ã≈Õ ∫“∑Øø¿±‚
+    #region Îç∞Ïù¥ÌÑ∞ Î∂àÎü¨Ïò§Í∏∞
     public Monster GetMonsterData(string dataName)
     {
         if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(dataName))
@@ -247,6 +260,13 @@ public class DataManagerTest : MonoBehaviour
             return null;
 
         return LoadedTextType[dataClassName];
+    }
+    public PlayerData GetPlayerData(string dataClassName)
+    {
+        if (LoadedPlayerData.Count == 0 || !LoadedPlayerData.ContainsKey(dataClassName))
+            return null;
+
+        return LoadedPlayerData[dataClassName];
     }
     #endregion
 }

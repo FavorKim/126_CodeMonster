@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private List<GameObject> monsterPrefabs;
+
     private Vector2Int position;
     private StageManager stageManager;
 
@@ -16,6 +20,92 @@ public class Player : MonoBehaviour
     {
         this.stageManager = stageManager;
         position = stageManager.GetStartPosition();
+    }
+
+    public void Start()
+    {
+        SetPlayerType();
+        SetPlayerPrefab();
+    }
+
+    private void SetPlayerType()
+    {
+        int index = DataManagerTest.Inst.LoadedMonsterType.Count;
+
+        for (int i = 0; i < index; i++)
+        {
+            GameObject typeObj = Instantiate(new GameObject(), this.gameObject.transform);
+            typeObj.gameObject.name = DataManagerTest.Inst.GetMonsterTypeData(i).TypeName;
+        }
+    }
+
+    private void SetPlayerPrefab()
+    {
+        for (int i = 3; i < monsterPrefabs.Count; i++)
+        {
+            SetPrefabsParent(monsterPrefabs[i]);
+            
+        }
+
+        DisableTypeMonsterPrefab();
+        EnableTypeMonsterPrefab(5);
+    }
+
+    private void SetPrefabsParent(GameObject monster)
+    {
+        int monsterTypeIndex = DataManagerTest.Inst.GetMonsterTypeData(DataManagerTest.Inst.GetMonsterData(monster.name).TypeIndex).TypeIndex;
+
+        switch (monsterTypeIndex)
+        {
+            case 5:
+                monster.transform.SetParent(this.transform.GetChild(0));
+                break;
+            case 6:
+                monster.transform.SetParent(this.transform.GetChild(1));
+                break;
+            case 7:
+                monster.transform.SetParent(this.transform.GetChild(2));
+                break;
+        }
+
+        monster.SetActive(false);
+    }
+    //private void EnableTypeMonster(int monsterTypeIndex)
+    //{
+    //    switch (monsterTypeIndex)
+    //    {
+    //        case 5:
+    //            EnableTypeMonsterPrefab(monsterTypeIndex);
+    //            break;
+    //        case 6:
+    //            transform.GetChild(1).gameObject.SetActive(true);
+    //            break;
+    //        case 7:
+    //            transform.GetChild(2).gameObject.SetActive(true);
+    //            break;
+    //    }
+    //}
+    private void DisableTypeMonsterPrefab()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    private void EnableTypeMonsterPrefab(int monsterTypeIndex)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == monsterTypeIndex - 5) 
+            {
+                this.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            else
+            {
+                this.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
 
     public void Execute(int blockIndex)
@@ -44,8 +134,9 @@ public class Player : MonoBehaviour
     {
         Vector2Int newPosition = position + direction;
         Vector3 movePos = new Vector3(newPosition.x, 0, newPosition.y);
-        int[,] grid = stageManager.GetGrid();
+        
         isMove = true;
+
         while (MoveFinsh(transform.position,movePos))
         {
             transform.position = Vector3.Lerp(transform.position, movePos, 2);
@@ -79,17 +170,18 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
+        EnableTypeMonsterPrefab(attackBlockType);
         BattleManager.Instance.BattlePhase(position, attackBlockType);
     }
 
     public void Win()
     {
-
+        isAttack = false;
     }
 
     public void Defeat()
     {
-
+        this.gameObject.SetActive(false);
     }
 
     public Vector2Int GetCurrentPosition()
@@ -104,7 +196,7 @@ public class Player : MonoBehaviour
 
     private int GetAttackTypeFromBlock(int blockIndex)
     {
-        // AttackBlock의 타입에 따른 처리 (1: Grass, 2: Water, 3: Fire)
+        // AttackBlock의 타입에 따른 처리 (5: Grass, 6: Water, 7: Fire)
         return blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
     }
 
@@ -130,7 +222,7 @@ public class Player : MonoBehaviour
         isMove = false;
         isGameOver = false;
 
-        while (indexList.Count < index && isGameOver)
+        while (indexList.Count < index && isGameOver == false)
         {
             //이동중일때 멈춤
             yield return new WaitWhile(() => isMove);

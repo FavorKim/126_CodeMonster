@@ -25,37 +25,37 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MoveStart()
     {
-        List<CodeBlockDrag> blocks = BlockContainerManager.Instance.GetContatinerBlocks();
-        for (int i = 0; i < blocks.Count; i++) 
-        {
-            switch (blocks[i].BlockName)
-            {
-                case BlockName.LeftMoveCodeBlock:
-                    MoveLeft();
-                    break;
-                case BlockName.RightMoveCodeBlock:
-                    MoveRight();
-                    break;
-                case BlockName.UpMoveCodeBlock:
-                    MoveUp();
-                    break;
-                case BlockName.DownMoveCodeBlock:
-                    MoveDown();
-                    break;
-                case BlockName.FireAttackCodeBlock:
-                    break;
-                case BlockName.WaterAttackCodeBlock:
-                    break;
-                case BlockName.GrassAttackCodeBlock:
-                    break;
-                case BlockName.LoopCodeBlock:
-                    break;
-                case BlockName.CondionalCodeBlock:
-                    break;
-                default:
-                    break;
-            }
-        }
+        //List<int> blocks = BlockContainerManager.Instance.GetContatinerBlocks();
+        //for (int i = 0; i < blocks.Count; i++) 
+        //{
+        //    switch (blocks[i])
+        //    {
+        //        case BlockName.LeftMoveCodeBlock:
+        //            MoveLeft();
+        //            break;
+        //        case BlockName.RightMoveCodeBlock:
+        //            MoveRight();
+        //            break;
+        //        case BlockName.UpMoveCodeBlock:
+        //            MoveUp();
+        //            break;
+        //        case BlockName.DownMoveCodeBlock:
+        //            MoveDown();
+        //            break;
+        //        case BlockName.FireAttackCodeBlock:
+        //            break;
+        //        case BlockName.WaterAttackCodeBlock:
+        //            break;
+        //        case BlockName.GrassAttackCodeBlock:
+        //            break;
+        //        case BlockName.LoopCodeBlock:
+        //            break;
+        //        case BlockName.CondionalCodeBlock:
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
     }
 
     void SetPlayerInitialPosition()
