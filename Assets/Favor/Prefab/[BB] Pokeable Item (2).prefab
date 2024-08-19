@@ -507,6 +507,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poke: {fileID: 2664236302370583725}
+  OnPoke:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7767230897880647496
 GameObject:
   m_ObjectHideFlags: 0
