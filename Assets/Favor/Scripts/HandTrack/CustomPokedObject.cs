@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CustomPokedObject : MonoBehaviour
 {
@@ -13,9 +14,9 @@ public class CustomPokedObject : MonoBehaviour
         poke = GetComponent<PokeInteractable>();
     }
 
-    public event Action OnPoke;
-    public event Action OnHover;
-    public event Action OnPokeRelease;
+    public UnityEvent OnPoke;
+    public UnityEvent OnHover;
+    public UnityEvent OnPokeRelease;
 
 
     private void OnEnable()

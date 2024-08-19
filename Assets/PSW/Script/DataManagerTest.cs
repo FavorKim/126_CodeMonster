@@ -163,6 +163,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
     }
 
     private Vector2Int ParseVector2Int(string value)
+
     {
         var values = value.Replace("{", "").Replace("}", "").Split(',');
         return new Vector2Int(int.Parse(values[0]), int.Parse(values[1]));

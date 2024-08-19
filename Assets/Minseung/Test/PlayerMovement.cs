@@ -16,12 +16,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        startBtn.OnPoke += MoveStart;
+        //startBtn.OnPoke += MoveStart;
     }
 
     private void OnDisable()
     {
-        startBtn.OnPoke -= MoveStart;
+        //startBtn.OnPoke -= MoveStart;
     }
     private void MoveStart()
     {

@@ -12,14 +12,14 @@ public class DebugBoxManager : Singleton<DebugBoxManager>
 
     private void OnEnable()
     {
-        startBtn.OnPoke += DebugOnPoke;
+        //startBtn.OnPoke += DebugOnPoke;
         //resetBtn.OnPokeRelease += DebugOnPokeRelease;
     }
 
     private void OnDisable()
     {
         //resetBtn.OnPokeRelease -= DebugOnPokeRelease;
-        startBtn.OnPoke -= DebugOnPoke;
+        //startBtn.OnPoke -= DebugOnPoke;
     }
 
     void DebugOnPoke()
