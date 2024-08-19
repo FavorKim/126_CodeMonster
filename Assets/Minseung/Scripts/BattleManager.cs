@@ -14,7 +14,7 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        dataManager = DataManagerTest.Inst;
+        dataManager = DataManagerTest.Instance;
         stageManager = StageManager.Instance;
         player = stageManager.GetPlayer();
     }
@@ -37,14 +37,14 @@ public class BattleManager : MonoBehaviour
                 return;
             }
             string monsterName = monsterObj.name;
-            Monster monster = DataManagerTest.Inst.GetMonsterData(monsterName);
-            MonsterType monsterType = DataManagerTest.Inst.GetMonsterTypeData(monster.TypeIndex);
+            Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
+            MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
 
             // 공격 블록의 타입과 몬스터의 약점 비교
             if (GameRule.CompareType(attackBlockType, monsterType.Weakness))
             {
                 Debug.Log("Attack successful! Monster defeated.");
-                Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewname + "으로 공격함");
+                Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 // 승리 처리: 플레이어의 승리 메서드 호출
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
                 StageManager.Instance.GetPlayer().Win();

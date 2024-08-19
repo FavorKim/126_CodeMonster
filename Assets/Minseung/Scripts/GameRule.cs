@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class GameRule
 {
-    private static DataManagerTest dataManager = DataManagerTest.Inst;
+    private static DataManagerTest dataManager = DataManagerTest.Instance;
 
     public static bool CompareType(int attackBlockType, int monsterTypeIndex)
     {

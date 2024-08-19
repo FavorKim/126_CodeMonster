@@ -30,12 +30,12 @@ public class Player : MonoBehaviour
 
     private void SetPlayerType()
     {
-        int index = DataManagerTest.Inst.LoadedMonsterType.Count;
+        int index = DataManagerTest.Instance.LoadedMonsterType.Count;
 
         for (int i = 0; i < index; i++)
         {
             GameObject typeObj = Instantiate(new GameObject(), this.gameObject.transform);
-            typeObj.gameObject.name = DataManagerTest.Inst.GetMonsterTypeData(i).TypeName;
+            typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i).TypeName;
         }
     }
 
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void SetPrefabsParent(GameObject monster)
     {
-        int monsterTypeIndex = DataManagerTest.Inst.GetMonsterTypeData(DataManagerTest.Inst.GetMonsterData(monster.name).TypeIndex).TypeIndex;
+        int monsterTypeIndex = DataManagerTest.Instance.GetMonsterTypeData(DataManagerTest.Instance.GetMonsterData(monster.name).TypeIndex).TypeIndex;
 
         switch (monsterTypeIndex)
         {

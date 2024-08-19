@@ -7,7 +7,7 @@ public class GameInitializer : MonoBehaviour
     public GameObject[] floorPrefabs;
     public GameObject[] wallPrefabs;
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    //public GameObject enemyPrefab;
 
     public delegate void StageManagerSetHandler(StageManager manager);
     public static event StageManagerSetHandler OnStageManagerSet;

@@ -16,7 +16,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
     public Dictionary<string, TextType> LoadedTextType { get; private set; }
     public Dictionary<string, PlayerData> LoadedPlayerData { get; private set; }
 
-    private readonly string _dataRootPath = "Application.streamingAssetsPath";
+    private readonly string _dataRootPath = Application.streamingAssetsPath;//"Application.StreamingAssetsPath";
 
 
     protected override void Awake()
@@ -31,8 +31,8 @@ public class DataManagerTest : Singleton<DataManagerTest>
     {
         LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
         LoadedCodeBlockList = LoadDataTable(nameof(CodeBlockData), ParseCodeBlockData, cb => cb.BlockName);
-        LoadedMoveBlockList = LoadDataTable(nameof(MoveBlock), ParseMoveBlock, mb => mb.BlockIndex);
-        LoadedAttackBlockList = LoadDataTable(nameof(AttackBlock), ParseAttackBlock, ab => ab.BlockIndex);
+        //LoadedMoveBlockList = LoadDataTable(nameof(MoveBlock), ParseMoveBlock, mb => mb.BlockIndex);
+        //LoadedAttackBlockList = LoadDataTable(nameof(AttackBlock), ParseAttackBlock, ab => ab.BlockIndex);
         LoadedMonsterType = LoadDataTable(nameof(MonsterType), ParseMonsterType, mt => mt.TypeIndex);
         LoadedStageMap = LoadDataTable(nameof(StageMap), ParseStageMap, sm => sm.StageIndex);
         LoadedText = LoadDataTable(nameof(UIText), ParseUIText, ut => ut.TextIndex);
@@ -106,7 +106,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
         {
             TypeIndex = int.Parse(data.Attribute(nameof(MonsterType.TypeIndex)).Value),
             TypeName = data.Attribute(nameof(MonsterType.TypeName)).Value,
-            TypeViewname = data.Attribute(nameof(MonsterType.TypeViewname)).Value,
+            TypeViewName = data.Attribute(nameof(MonsterType.TypeViewName)).Value,
             Weakness = int.Parse(data.Attribute(nameof(MonsterType.Weakness)).Value)
         };
     }
@@ -164,7 +164,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
     private Vector2Int ParseVector2Int(string value)
     {
-        var values = value.Replace("(", "").Replace(")", "").Split(',');
+        var values = value.Replace("{", "").Replace("}", "").Split(',');
         return new Vector2Int(int.Parse(values[0]), int.Parse(values[1]));
     }
 

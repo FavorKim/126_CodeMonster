@@ -388,8 +388,8 @@ MonoBehaviour:
   - {fileID: 5901688003461151482, guid: bf91349db7bfc854d843762c21830d6b, type: 3}
   wallPrefabs:
   - {fileID: 5602656187477458789, guid: 4edc5ccf75daafa47b16fc88211201cb, type: 3}
-  playerPrefab: {fileID: 0}
-  enemyPrefab: {fileID: 0}
+  playerPrefab: {fileID: 7779173909317927437, guid: 53d101314de95344eb707e592e4e628a, type: 3}
+  enemyPrefab: {fileID: 4832793224300057041, guid: c006220e3cfcb5c4683550dce9ae8124, type: 3}
 --- !u!114 &1621106762
 MonoBehaviour:
   m_ObjectHideFlags: 0

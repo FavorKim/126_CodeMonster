@@ -21,7 +21,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ResetBlockContainer();
         }
@@ -89,15 +89,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - sortedBlocks.Count);
     }
 
-    public List<string> GetContatinerBlocks()
-    {
-        var blocks = new List<string>();
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            blocks[i] = transform.GetChild(i).name;
-        }
-        return blocks;
-    }
+    
 
     // 컨테이너에 있던 블럭들 리셋
     public void ResetBlockContainer()
@@ -132,11 +124,25 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 
         for (int i = 0; i < this.transform.childCount; i++)
         {
-            int blockIndex = DataManagerTest.Inst.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
+            int blockIndex = DataManagerTest.Instance.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
             list.Add(blockIndex);
         }
 
         return list;
     }
+    public int CountCodeBlockDragComponents()
+    {
+        int count = 0;
 
+        // 하위 객체들을 순회하면서 CodeBlockDrag 컴포넌트를 가진 객체의 수를 카운트
+        foreach (Transform child in transform)
+        {
+            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+            if (codeBlockDrag != null)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }

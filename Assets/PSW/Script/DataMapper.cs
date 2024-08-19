@@ -47,7 +47,7 @@ public class MonsterType
 {
     public int TypeIndex { get; set; }
     public string TypeName { get; set; }
-    public string TypeViewname { get; set; }
+    public string TypeViewName { get; set; }
     public int Weakness {  get; set; }
 }
 

@@ -15,10 +15,10 @@ public class GameManager : Singleton<GameManager>
     }
     void RegistEvent()
     {
-        startBtn.OnPoke += CodeBlockManager.StartCodeBlocks;
+        //startBtn.OnPoke += CodeBlockManager.StartCodeBlocks;
     }
     void UnRegistEvent()
     {
-        startBtn.OnPoke -= CodeBlockManager.StartCodeBlocks;
+        //startBtn.OnPoke -= CodeBlockManager.StartCodeBlocks;
     }
 }
