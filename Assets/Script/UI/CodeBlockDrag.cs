@@ -184,18 +184,10 @@ public class CodeBlockDrag : MonoBehaviour
         else
         {
             //DebugBoxManager.Instance.Txt_DebugMsg.text += "Reset Box";
-            transform.SetParent(PoolParent.transform, false);
-
-            // SetParent 바뀌어서 피벗 맞춰주기
-            _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-            _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-            _rectTransform.pivot = new Vector2(0.5f, 0.5f);
-
-            _rectTransform.localPosition = Vector3.zero;
-            ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
+            ReturnToPool();
         }
-
     }
+
     private void OnBoxGrabbed()
     {
         // 부모 변경 전에 현재 월드 좌표를 저장
@@ -254,5 +246,18 @@ public class CodeBlockDrag : MonoBehaviour
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = _zCoordinate;
         return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
+    public void ReturnToPool()
+    {
+        transform.SetParent(PoolParent.transform, false);
+
+        // SetParent 바뀌어서 피벗 맞춰주기
+        _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        _rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+        _rectTransform.localPosition = Vector3.zero;
+        ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
     }
 }

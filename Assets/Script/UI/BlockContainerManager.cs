@@ -19,19 +19,26 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ResetBlockContainer();
+        }
+    }
+
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
     {
         if (PlusContainerUI == true)
         {
-            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.BigUISize, UIConstants.RegularUISize);
-            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.BigUISize, UIConstants.RegularUISize);
+            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.LOOP_CON_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
+            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.LOOP_CON_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
         }
         else
         {
-            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
-            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
+            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.ATTACK_MOVE_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
+            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.ATTACK_MOVE_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
         }
-
     }
 
     public void AddBlock(GameObject newBlock)
@@ -78,11 +85,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             sortedBlocks[i].localPosition = newPosition;
             sortedBlocks[i].SetSiblingIndex(i);
             sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45, 0, 0));
-
         }
-
         EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - sortedBlocks.Count);
-
     }
 
     public List<string> GetContatinerBlocks()
@@ -93,5 +97,18 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             blocks[i] = transform.GetChild(i).name;
         }
         return blocks;
+    }
+
+    // 컨테이너에 있던 블럭들 리셋
+    public void ResetBlockContainer()
+    {
+        foreach (Transform child in transform)
+        {
+            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+            if (codeBlockDrag != null)
+            {
+                codeBlockDrag.ReturnToPool();
+            }
+        }
     }
 }

@@ -640,6 +640,7 @@ GameObject:
   - component: {fileID: 2203240834702588673}
   - component: {fileID: 4538918083379557272}
   - component: {fileID: 9173605638012902658}
+  - component: {fileID: 3395648669687177503}
   m_Layer: 5
   m_Name: MoveBlockUI
   m_TagString: StageBlockUI
@@ -664,7 +665,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 220, y: -30}
-  m_SizeDelta: {x: 80, y: 150}
+  m_SizeDelta: {x: 80, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2203240834702588673
 CanvasRenderer:
@@ -730,6 +731,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3395648669687177503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776451766569959550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f01ec0eb8f90f449a435f137910424a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4853178621077658731
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,7 +1005,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockContainerUI: {fileID: 5417538294824181607}
-  StageBlockUI: {fileID: 7895903523279074623}
+  AttackBlockUI: {fileID: 7895903523279074623}
+  MoveBlockUI: {fileID: 4776451766569959550}
+  Loop_ConBlockUI: {fileID: 6991629212338766228}
   BlockContainerLength: 5
   BlockIndexList: 0400000005000000060000000800000007000000
 --- !u!1 &5417538294824181607
@@ -1080,7 +1095,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5417538294824181607}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
@@ -1387,7 +1402,7 @@ GameObject:
   - component: {fileID: 766366261120680695}
   - component: {fileID: 2284084462197824187}
   m_Layer: 5
-  m_Name: StageBlockUI
+  m_Name: AttackBlockUI
   m_TagString: StageBlockUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
