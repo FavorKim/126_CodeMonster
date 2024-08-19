@@ -639,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6194613472387871872, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: BlockContainerLength
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6194613472387871872, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: BlockIndexList.Array.size

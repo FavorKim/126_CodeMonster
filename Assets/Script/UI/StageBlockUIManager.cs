@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class StageBlockManager : Singleton<StageBlockManager>
+public class StageBlockUIManager : Singleton<StageBlockUIManager>
 {
     private RectTransform StageBlockUIRectTransform;
     private BoxCollider StageBlockUBoxCollider;
@@ -15,7 +15,6 @@ public class StageBlockManager : Singleton<StageBlockManager>
 
     public void SetStageBlockUISize(int BlockIndexLength)
     {
-        StageBlockUIRectTransform.sizeDelta = new Vector2(BlockIndexLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
-        //StageBlockUBoxCollider.size = new Vector2(BlockIndexLength * UIConstants.RegularUISize, UIConstants.RegularUISize);
+        StageBlockUIRectTransform.sizeDelta = new Vector2(BlockIndexLength * UIConstants.ATTACK_MOVE_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
     }
 }
