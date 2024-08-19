@@ -265,4 +265,18 @@ public class DataManagerTest : Singleton<DataManagerTest>
         return LoadedPlayerData[dataClassName];
     }
     #endregion
+
+    public string RemoveTextAfterParenthesis(string input)
+    {
+        int index = input.IndexOf('(');
+
+        // 만약 '('가 문자열에 없다면, 원본 문자열을 그대로 반환
+        if (index == -1)
+        {
+            return input;
+        }
+
+        // '(' 전까지의 문자열만 반환
+        return input.Substring(0, index).Trim();
+    }
 }

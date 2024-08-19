@@ -36,7 +36,7 @@ public class BattleManager : MonoBehaviour
                 StageManager.Instance.GetPlayer().Win();
                 return;
             }
-            string monsterName = monsterObj.name;
+            string monsterName = DataManagerTest.Instance.RemoveTextAfterParenthesis(monsterObj.name);
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
 
