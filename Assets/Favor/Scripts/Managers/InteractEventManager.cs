@@ -1,17 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractEventManager : MonoBehaviour
+public class InteractEventManager : Singleton<InteractEventManager>
 {
     [SerializeField] CustomPokedObject startBtn;
     [SerializeField] CustomPokedObject resetBtn;
-    
+    public Action OnClickStartBtn;
 
     private void OnEnable()
     {
+        OnClickStartBtn += startBtn.OnPoke;
         RegistOnResetBtn();
-        RegistOnStartBtn();
     }
 
     private void OnDisable()
@@ -19,21 +20,23 @@ public class InteractEventManager : MonoBehaviour
         UnRegistOnResetBtn();
         UnRegistOnStartBtn();
     }
-    private void RegistOnStartBtn()
+    public void RegistOnStartBtn()
     {
-        
+        //startBtn.OnPoke.AddListener(StageManager.Instance.GetPlayer().StartPlayerAction);
     }
-    private void RegistOnResetBtn()
+    public void RegistOnResetBtn()
     {
-        //resetBtn.OnPoke += BlockContainerManager.Instance.ResetBlockContainer;
+        resetBtn.OnPoke+=BlockContainerManager.Instance.ResetBlockContainer;
     }
 
-    void UnRegistOnResetBtn()
+   void UnRegistOnResetBtn()
     {
-        //resetBtn.OnPoke -= BlockContainerManager.Instance.ResetBlockContainer;
+        resetBtn.OnPoke-=BlockContainerManager.Instance.ResetBlockContainer;
     }
     void UnRegistOnStartBtn()
     {
+        OnClickStartBtn -= startBtn.OnPoke;
+
 
     }
 }

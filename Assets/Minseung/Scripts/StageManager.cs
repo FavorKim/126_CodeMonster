@@ -19,7 +19,7 @@ public class StageManager : Singleton<StageManager>
         GenerateStage(floorPrefabs, wallPrefabs);
         SetPlayer(playerPrefab);
         SetEnemies();
-    }
+}
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
     {

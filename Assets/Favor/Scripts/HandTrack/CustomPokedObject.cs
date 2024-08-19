@@ -14,7 +14,7 @@ public class CustomPokedObject : MonoBehaviour
         poke = GetComponent<PokeInteractable>();
     }
 
-    public UnityEvent OnPoke;
+    public Action OnPoke;
     public UnityEvent OnHover;
     public UnityEvent OnPokeRelease;
 

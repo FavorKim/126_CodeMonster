@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
         position = stageManager.GetStartPosition();
     }
 
+    private void Awake()
+    {
+        InteractEventManager.Instance.OnClickStartBtn += StartPlayerAction;
+    }
     public void Start()
     {
         SetPlayerType();

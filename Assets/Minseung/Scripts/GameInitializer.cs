@@ -22,5 +22,6 @@ public class GameInitializer : MonoBehaviour
 
         // StageManager 설정 이벤트 호출
         OnStageManagerSet?.Invoke(stageManager);
+        InteractEventManager.Instance.RegistOnStartBtn();
     }
 }
