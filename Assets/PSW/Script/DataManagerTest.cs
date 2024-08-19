@@ -14,8 +14,9 @@ public class DataManagerTest : Singleton<DataManagerTest>
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
     public Dictionary<string, TextType> LoadedTextType { get; private set; }
+    public Dictionary<string, PlayerData> LoadedPlayerData { get; private set; }
 
-    private readonly string _dataRootPath = "C:/Users/KGA/Desktop/PizzaDataTable";
+    private readonly string _dataRootPath = "Application.streamingAssetsPath";
 
 
     protected override void Awake()
@@ -36,6 +37,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
         LoadedStageMap = LoadDataTable(nameof(StageMap), ParseStageMap, sm => sm.StageIndex);
         LoadedText = LoadDataTable(nameof(UIText), ParseUIText, ut => ut.TextIndex);
         LoadedTextType = LoadDataTable(nameof(TextType), ParseTextType, tt => tt.TypeName);
+        LoadedPlayerData = LoadDataTable(nameof(PlayerData), ParsePlayerData, p => p.PlayerName);
     }
     
     private Dictionary<TKey, TValue> LoadDataTable<TKey, TValue>(string fileName, Func<XElement, TValue> parseElement, Func<TValue, TKey> getKey)
@@ -148,6 +150,17 @@ public class DataManagerTest : Singleton<DataManagerTest>
             TypeName = data.Attribute(nameof(TextType.TypeName)).Value
         };
     }
+    private PlayerData ParsePlayerData(XElement data)
+    {
+        var tempPlayerData = new PlayerData
+        {
+            PlayerName = data.Attribute(nameof(PlayerData.PlayerName)).Value
+        };
+
+        SetDataList(out tempPlayerData.StartMonsterNameList, data, "StartMonsterNameList");
+        
+        return tempPlayerData;
+    }
 
     private Vector2Int ParseVector2Int(string value)
     {
@@ -246,6 +259,13 @@ public class DataManagerTest : Singleton<DataManagerTest>
             return null;
 
         return LoadedTextType[dataClassName];
+    }
+    public PlayerData GetPlayerData(string dataClassName)
+    {
+        if (LoadedPlayerData.Count == 0 || !LoadedPlayerData.ContainsKey(dataClassName))
+            return null;
+
+        return LoadedPlayerData[dataClassName];
     }
     #endregion
 }

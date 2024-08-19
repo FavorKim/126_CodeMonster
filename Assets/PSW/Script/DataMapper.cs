@@ -63,3 +63,9 @@ public class TextType
     public int TextTypeIndex { get; set; }
     public string TypeName { get; set; }
 }
+
+public class PlayerData
+{
+    public string PlayerName { get; set; }
+    public List<string> StartMonsterNameList = new List<string>();
+}

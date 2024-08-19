@@ -9,14 +9,16 @@ public class StageManager : Singleton<StageManager>
 
     private Player playerInstance;
 
-    public GameObject tilePrefab;
 
-    public void InitializeStage(StageMap stageMap, GameObject[] floorPrefabs, GameObject[] wallPrefabs, GameObject playerPrefab, GameObject enemyPrefab)
+    private Dictionary<int, GameObject> monsterDic = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> stageBlockDic = new Dictionary<int, GameObject>();
+
+    public void InitializeStage(StageMap stageMap, GameObject[] floorPrefabs, GameObject[] wallPrefabs, GameObject playerPrefab)
     {
         this.currentStageMap = stageMap;
         GenerateStage(floorPrefabs, wallPrefabs);
         SetPlayer(playerPrefab);
-        SetEnemies(enemyPrefab);
+        SetEnemies();
     }
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
@@ -35,6 +37,7 @@ public class StageManager : Singleton<StageManager>
                 GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
                 Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity);
+                stageBlockDic.Add(ChangePosToKeyValue(x, y), prefabToInstantiate);
                 index++;
             }
         }
@@ -46,20 +49,20 @@ public class StageManager : Singleton<StageManager>
         if (playerPrefab != null && currentStageMap.PlayerSpawnPos != null)
         {
             Vector3 playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
-            playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity).GetComponent<Player>(); ;
+            playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity).GetComponent<Player>();
         }
     }
 
-    private void SetEnemies(GameObject enemyPrefab)
+    private void SetEnemies()
     {
         // 적 생성 및 위치 설정
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
-            if (enemyPrefab != null)
-            {
-                Vector3 enemyPosition = new Vector3(currentStageMap.MonsterSpawnPosList[i].x, 0, currentStageMap.MonsterSpawnPosList[i].y);
-                GameObject enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
-            }
+            Vector3 enemyPosition = stageBlockDic[ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y)].transform.GetChild(0).gameObject.transform.position;
+            GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(currentStageMap.MonsterNameList[i]);
+            enemy.SetActive(true);
+            enemy.transform.position = enemyPosition;
+            monsterDic.Add(ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y), enemy);
         }
     }
 
@@ -98,10 +101,67 @@ public class StageManager : Singleton<StageManager>
 
     public string GetMonsterNameAtIndex(int index)
     {
-        if(index >= 0 && index < currentStageMap.MonsterNameList.Count)
+        if (index >= 0 && index < currentStageMap.MonsterNameList.Count)
         {
             return currentStageMap.MonsterNameList[index];
         }
+        return null;
+    }
+
+    public int ChangePosToKeyValue(Vector2Int pos)
+    {
+        return currentStageMap.StageSize.x * pos.x + pos.y;
+    }
+    public int ChangePosToKeyValue(int posX, int posY)
+    {
+        return currentStageMap.StageSize.x * posX + posY;
+    }
+
+    public bool CheckMonsterAndPlayerPos(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+        if (monsterDic.ContainsKey(playerPosKey) && monsterDic[playerPosKey].activeSelf == true)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CheckPlayerPosToDeadZone(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+        if (currentStageMap.ArrayInfo[playerPosKey] == 1)//이동 가능
+        {
+            return false;
+
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public Vector3 GetPlayerPosWithMonsterStage(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+
+        return stageBlockDic[playerPosKey].transform.GetChild(1).transform.position;
+    }
+
+    public GameObject GetMonsterWithPlayerPos(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+
+        if (monsterDic.ContainsKey(playerPosKey))
+        {
+            return monsterDic[playerPosKey];
+
+        }
+
         return null;
     }
 }

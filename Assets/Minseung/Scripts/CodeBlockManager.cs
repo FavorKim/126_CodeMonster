@@ -1,32 +1,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CodeBlockManager 
+public class CodeBlockManager : MonoBehaviour
 {
-    //private Dictionary<string, CodeBlockData> codeBlocks = new Dictionary<string, CodeBlockData>();
-    //public static CodeBlockManager Inst { get; private set; }
-    //private static List<int> blockIndexList = new List<int>();
-    //private Player player;
-
-    //private void Start()
+   
+    //public void InitCodeBlockSequence()
     //{
-    //    codeBlocks = DataManagerTest.Inst.LoadedCodeBlockList;
+    //    blockIndexList.Clear();
 
-    //    player = StageManager.Instance.GetPlayer();
+    //    for (int i = 0; i < this.gameObject.transform.childCount; i++)
+    //    {
+    //        int blockIndex = codeBlocks[this.gameObject.transform.GetChild(i).name].BlockIndex;
+    //        blockIndexList.Add(blockIndex);
+    //    }
+
+    //    if (codeBlocks.Count > 0)
+    //    {
+    //        SetCodeBlockSequence();
+    //    }
     //}
 
-    public static void StartCodeBlocks()
-    {
-        ExcuteCodeBlockSequence(BlockContainerManager.Instance.GetContatinerBlocks());
-    }
+    //private void SetCodeBlockSequence()
+    //{
+    //    var player = StageManager.Instance.GetPlayer();
 
-    private static void ExcuteCodeBlockSequence(List<string> sequence)
-    {
-        var player = StageManager.Instance.GetPlayer();
-        // blockIndexList에 있는 각 blockIndex를 사용해 Player의 Execute 메서드를 호출
-        foreach (var blockName in sequence)
-        {
-            //player.Execute(DataManagerTest.Instance.GetCodeBlockData(blockName));
-        }
-    }
+    //    if(player == null )
+    //    {
+    //        return;
+    //    }
+
+
+    //    var blockIndexList = BlockContainerManager.Instance.GetContatinerBlocks();
+
+    //    StartCoroutine(sss,)
+
+    //    player.Execute(blockIndex);
+
+    //}
+
+    //private IEnumerator sss(List<int> indexList)
+    //{
+    //    while( indexList.Count > 0 ) 
+    //    {
+    //        player.Execute(indexList);
+    //    }
+    //}
 }

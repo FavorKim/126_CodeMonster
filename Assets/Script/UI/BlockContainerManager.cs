@@ -120,22 +120,23 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
     }
 
-
-    public int CountCodeBlockDragComponents()
+    public List<int> GetContatinerBlocks()
     {
-        int count = 0;
 
-        // 하위 객체들을 순회하면서 CodeBlockDrag 컴포넌트를 가진 객체의 수를 카운트
-        foreach (Transform child in transform)
+        if (this.transform.childCount <= 0)
         {
-            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
-            if (codeBlockDrag != null)
-            {
-                count++;
-            }
+            return null;
         }
 
-        return count; // 발견된 CodeBlockDrag 컴포넌트의 개수를 반환
+        List<int> list = new List<int>();
+
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            int blockIndex = DataManagerTest.Inst.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
+            list.Add(blockIndex);
+        }
+
+        return list;
     }
 
 }

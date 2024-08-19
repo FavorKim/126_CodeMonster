@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextType>
+  <dataCategory>
+    <data TextTypeIndex="1" TypeName="Error" />
+    <data TextTypeIndex="2" TypeName="SmallHint" />
+    <data TextTypeIndex="3" TypeName="BigHint" />
+  </dataCategory>
+</TextType>
