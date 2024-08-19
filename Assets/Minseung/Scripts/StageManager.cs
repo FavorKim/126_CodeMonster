@@ -36,8 +36,8 @@ public class StageManager : Singleton<StageManager>
                 // 랜덤한 프리팹 선택
                 GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
-                Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity);
-                stageBlockDic.Add(ChangePosToKeyValue(x, y), prefabToInstantiate);
+                GameObject block = Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity);
+                stageBlockDic.Add(ChangePosToKeyValue(x, y), block);
                 index++;
             }
         }
@@ -58,7 +58,8 @@ public class StageManager : Singleton<StageManager>
         // 적 생성 및 위치 설정
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
-            Vector3 enemyPosition = stageBlockDic[ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y)].transform.GetChild(0).gameObject.transform.position;
+            int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
+            Vector3 enemyPosition = stageBlockDic[key].transform.GetChild(0).position;
             GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(currentStageMap.MonsterNameList[i]);
             enemy.SetActive(true);
             enemy.transform.position = enemyPosition;

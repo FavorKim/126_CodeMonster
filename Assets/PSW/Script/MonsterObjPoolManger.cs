@@ -11,10 +11,16 @@ public class MonsterObjPoolManger : MonoBehaviour
     private int _poolCount;
     private Dictionary<string, List<GameObject>> _monsterPrefabsPool = new Dictionary<string, List<GameObject>>();
     private List<GameObject> _monsterPrefabObjList = new List<GameObject>();
-    void Start()
+
+    private void Awake()
     {
+        Instance = this;
         InitPool();
         SetMosterPool();
+    }
+    void Start()
+    {
+        
     }
     private void InitPool()
     {
