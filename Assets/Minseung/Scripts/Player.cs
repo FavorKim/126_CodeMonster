@@ -24,12 +24,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        InteractEventManager.Instance.OnClickStartBtn += StartPlayerAction;
     }
     public void Start()
     {
         SetPlayerType();
         SetPlayerPrefab();
+        InteractEventManager.Instance.RegistOnClickStartBtn(StartPlayerAction);
     }
 
     private void SetPlayerType()
@@ -255,6 +255,7 @@ public class Player : MonoBehaviour
 
     public void StartPlayerAction()
     {
+        Debug.LogWarning("start player action");
         StartCoroutine(PlayerAction());
     }
 }

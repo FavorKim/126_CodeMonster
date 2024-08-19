@@ -7,36 +7,20 @@ public class InteractEventManager : Singleton<InteractEventManager>
 {
     [SerializeField] CustomPokedObject startBtn;
     [SerializeField] CustomPokedObject resetBtn;
-    public Action OnClickStartBtn;
-
-    private void OnEnable()
+  
+    public void RegistOnClickStartBtn(Action action)
     {
-        OnClickStartBtn += startBtn.OnPoke;
-        RegistOnResetBtn();
+        startBtn.OnPoke += action;
     }
 
-    private void OnDisable()
+    public void RegistOnClickResetBtn(Action action)
     {
-        UnRegistOnResetBtn();
-        UnRegistOnStartBtn();
-    }
-    public void RegistOnStartBtn()
-    {
-        //startBtn.OnPoke.AddListener(StageManager.Instance.GetPlayer().StartPlayerAction);
-    }
-    public void RegistOnResetBtn()
-    {
-        resetBtn.OnPoke+=BlockContainerManager.Instance.ResetBlockContainer;
+        resetBtn.OnPoke += action;
     }
 
-   void UnRegistOnResetBtn()
+    private void OnApplicationQuit()
     {
-        resetBtn.OnPoke-=BlockContainerManager.Instance.ResetBlockContainer;
-    }
-    void UnRegistOnStartBtn()
-    {
-        OnClickStartBtn -= startBtn.OnPoke;
-
-
+        startBtn.OnPoke = null;
+        resetBtn.OnPoke = null;
     }
 }

@@ -13,5 +13,10 @@ public class DebugBoxManager : Singleton<DebugBoxManager>
         Txt_DebugMsg.text = msg;
     }
 
+    public void Log()
+    {
+        Txt_DebugMsg.text = "triggered";
+    }
+
     
 }

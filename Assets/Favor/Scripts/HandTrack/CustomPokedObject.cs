@@ -14,6 +14,14 @@ public class CustomPokedObject : MonoBehaviour
         poke = GetComponent<PokeInteractable>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.LogWarning($"{name} : OnPoke");
+        }
+    }
+
     public Action OnPoke;
     public UnityEvent OnHover;
     public UnityEvent OnPokeRelease;
@@ -27,6 +35,11 @@ public class CustomPokedObject : MonoBehaviour
     private void OnDisable()
     {
         poke.WhenStateChanged -= OnPokeStateChanged;
+    }
+
+    void OnPoke_Debug()
+    {
+        Debug.LogWarning("OnPokeDebug");
     }
 
     private void OnPokeStateChanged(InteractableStateChangeArgs args)

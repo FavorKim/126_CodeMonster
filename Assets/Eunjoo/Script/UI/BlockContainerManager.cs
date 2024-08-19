@@ -17,6 +17,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         base.Awake();
         BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
+        InteractEventManager.Instance.RegistOnClickResetBtn(ResetBlockContainer);
     }
 
     private void Update()
