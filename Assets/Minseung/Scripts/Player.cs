@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
             {
                 //게임오버
                 isGameOver = true;
-                Debug.Log("Game Over");
+                DebugBoxManager.Instance.Log("Game Over. Monster Attack.");
             }
         }
         else if(blockIndex <= 7)
@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
         else if(GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
         {
             isGameOver = true;
-            Debug.Log("Game Over");
+            DebugBoxManager.Instance.Log("Game Over. Wrong Path");
             yield break;
         }
 
@@ -249,7 +249,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void StartPlayerAction()
+    public void StartPlayerAction()
     {
         StartCoroutine(PlayerAction());
     }
