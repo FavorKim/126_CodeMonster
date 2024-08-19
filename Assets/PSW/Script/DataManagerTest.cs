@@ -116,10 +116,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
         var tempStageMap = new StageMap
         {
             StageIndex = int.Parse(data.Attribute(nameof(StageMap.StageIndex)).Value),
-            StageSize = new Vector2Int(
-                int.Parse(data.Attribute("StageXSize").Value),
-                int.Parse(data.Attribute("StageYSize").Value)
-            ),
+            StageSize = ParseVector2Int(data.Attribute("StageSize").Value),
             BlockContainerLength = int.Parse(data.Attribute(nameof(StageMap.BlockContainerLength)).Value),
             PlayerSpawnPos = ParseVector2Int(data.Attribute("PlayerSpawnPos").Value)
         };
@@ -164,7 +161,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
     private Vector2Int ParseVector2Int(string value)
     {
-        var values = value.Replace("{", "").Replace("}", "").Split(',');
+        var values = value.Replace("(", "").Replace(")", "").Split('/');
         return new Vector2Int(int.Parse(values[0]), int.Parse(values[1]));
     }
 

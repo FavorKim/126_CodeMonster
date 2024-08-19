@@ -34,16 +34,22 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < index; i++)
         {
-            GameObject typeObj = Instantiate(new GameObject(), this.gameObject.transform);
-            typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i).TypeName;
+            GameObject typeObj = new GameObject();
+            typeObj.transform.SetParent(this.transform);
+            typeObj.transform.localPosition = Vector3.zero;
+            typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i+5).TypeName;
         }
     }
 
     private void SetPlayerPrefab()
     {
-        for (int i = 3; i < monsterPrefabs.Count; i++)
+        for (int i = 0; i < monsterPrefabs.Count; i++)
         {
-            SetPrefabsParent(monsterPrefabs[i]);
+            GameObject monster = Instantiate(monsterPrefabs[i]);
+            monster.name = monsterPrefabs[i].name;
+            monster.SetActive(true);
+            SetPrefabsParent(monster);
+            monster.transform.localPosition = Vector3.zero;
             
         }
 
@@ -68,7 +74,6 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        monster.SetActive(false);
     }
     //private void EnableTypeMonster(int monsterTypeIndex)
     //{
@@ -95,17 +100,27 @@ public class Player : MonoBehaviour
 
     private void EnableTypeMonsterPrefab(int monsterTypeIndex)
     {
+        
         for (int i = 0; i < 3; i++)
         {
             if (i == monsterTypeIndex - 5) 
             {
                 this.transform.GetChild(i).gameObject.SetActive(true);
+                GameObject monster;
+                //monster = this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
+                //if (monster.activeSelf == false)
+                //{
+                //    monster.SetActive(true);
+                //}
             }
             else
             {
                 this.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
+
+       
+
     }
 
     public void Execute(int blockIndex)
