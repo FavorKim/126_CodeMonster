@@ -124,8 +124,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 
         for (int i = 0; i < this.transform.childCount; i++)
         {
-            string codeBlockName = DataManagerTest.Instance.RemoveTextAfterParenthesis(this.transform.GetChild(i).name);
-            int blockIndex = DataManagerTest.Instance.GetCodeBlockData(codeBlockName).BlockIndex;
+            int blockIndex = DataManagerTest.Instance.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
             list.Add(blockIndex);
         }
 
