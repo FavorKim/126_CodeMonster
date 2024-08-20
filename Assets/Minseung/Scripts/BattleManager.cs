@@ -22,7 +22,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         player = stageManager.GetPlayer();
 
-        DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
+        DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeName} Type Attack");
         // 플레이어의 위치와 적의 위치를 비교하여 같은 위치에 있는지 확인
 
         if (stageManager.CheckMonsterAndPlayerPos(playerPosition))
@@ -38,7 +38,7 @@ public class BattleManager : Singleton<BattleManager>
             {
                 Debug.Log("Attack successful! Monster defeated.");
                 Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
-                DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
+                //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
                 // 승리 처리: 플레이어의 승리 메서드 호출
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
                 player.Win();

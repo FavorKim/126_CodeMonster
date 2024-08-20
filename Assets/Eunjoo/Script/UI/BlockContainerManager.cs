@@ -131,6 +131,10 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             MaterialChanger mC = transform.GetChild(i).GetComponent<MaterialChanger>();
             materialChangers.Add(mC);
             list.Add(blockIndex);
+            if(i>=6)
+            {
+                DebugBoxManager.Instance.Log(transform.GetChild(i).name);
+            }
         }
 
         return list;

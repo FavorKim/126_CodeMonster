@@ -2265,7 +2265,7 @@ GameObject:
   - component: {fileID: 806889204968654246}
   m_Layer: 5
   m_Name: DebugBoxManager
-  m_TagString: BlockContainerUI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3912,7 +3912,7 @@ GameObject:
   - component: {fileID: 2330402984505414676}
   m_Layer: 5
   m_Name: Restart Button UI
-  m_TagString: BlockContainerUI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10624,6 +10624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reset Button UI
       objectReference: {fileID: 0}
+    - target: {fileID: 801543041836188015, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1013627725693575394, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 326.6
@@ -10655,6 +10659,10 @@ PrefabInstance:
     - target: {fileID: 1013627725693575394, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -27.699
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152809505543011654, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2572714176727614800, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10726,7 +10734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2702299266464114124, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.656
+      value: -0.638
       objectReference: {fileID: 0}
     - target: {fileID: 2702299266464114124, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10750,7 +10758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2702299266464114124, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.334
+      value: 0.202
       objectReference: {fileID: 0}
     - target: {fileID: 2702299266464114124, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10763,6 +10771,10 @@ PrefabInstance:
     - target: {fileID: 2702299266464114124, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914775743989842952, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4044085676628271173, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalPosition.z
