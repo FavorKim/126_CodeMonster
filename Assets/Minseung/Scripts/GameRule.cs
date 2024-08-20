@@ -3,11 +3,11 @@ using UnityEngine;
 
 public static class GameRule
 {
-    private static DataManagerTest dataManager = DataManagerTest.Instance;
+    //private static DataManagerTest dataManager = DataManagerTest.Instance;
 
     public static bool CompareType(int attackBlockType, int monsterTypeIndex)
     {
-        MonsterType monsterType = dataManager.GetMonsterTypeData(monsterTypeIndex);
+        MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monsterTypeIndex);
 
         return attackBlockType == monsterType.Weakness;
     }
