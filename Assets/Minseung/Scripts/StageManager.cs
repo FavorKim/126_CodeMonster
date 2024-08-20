@@ -8,7 +8,7 @@ public class StageManager : Singleton<StageManager>
     private DataManagerTest dataManagerTest;
 
     private Player playerInstance;
-
+    private Vector3 playerPosition;
 
     private Dictionary<int, GameObject> monsterDic = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> stageBlockDic = new Dictionary<int, GameObject>();
@@ -48,7 +48,7 @@ public class StageManager : Singleton<StageManager>
         // 플레이어 생성 및 위치 설정
         if (playerPrefab != null && currentStageMap.PlayerSpawnPos != null)
         {
-            Vector3 playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
+            playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
             playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity).GetComponent<Player>();
         }
     }
@@ -88,6 +88,11 @@ public class StageManager : Singleton<StageManager>
     public Vector2Int GetStartPosition()
     {
         return currentStageMap.PlayerSpawnPos;
+    }
+
+    public Vector3 GetPlayerRestPos()
+    {
+        return playerPosition;
     }
 
     public List<Vector2Int> GetMonsterSpawnList()
@@ -168,5 +173,16 @@ public class StageManager : Singleton<StageManager>
         }
 
         return null;
+    }
+
+    public void ResetStage()
+    {
+        foreach(var item in monsterDic.Values)
+        {
+            if (item.activeSelf == false)
+            {
+                item.SetActive(true);
+            }
+        }
     }
 }
