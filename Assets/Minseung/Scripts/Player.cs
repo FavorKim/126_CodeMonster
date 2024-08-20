@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
         }
 
         DisableTypeMonsterPrefab();
-        EnableTypeMonsterPrefab(5);
     }
 
     private void SetPrefabsParent(GameObject monster)
@@ -69,13 +68,13 @@ public class Player : MonoBehaviour
         switch (monsterTypeIndex)
         {
             case 5:
-                monster.transform.SetParent(this.transform.GetChild(0));
-                break;
-            case 6:
                 monster.transform.SetParent(this.transform.GetChild(1));
                 break;
-            case 7:
+            case 6:
                 monster.transform.SetParent(this.transform.GetChild(2));
+                break;
+            case 7:
+                monster.transform.SetParent(this.transform.GetChild(3));
                 break;
         }
 
@@ -97,18 +96,18 @@ public class Player : MonoBehaviour
     //}
     private void DisableTypeMonsterPrefab()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 1; i < 4; i++)
         {
             this.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
-    private void EnableTypeMonsterPrefab(int monsterTypeIndex)
+    public void EnableTypeMonsterPrefab(int monsterTypeIndex)
     {
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            if (i == monsterTypeIndex - 5)
+            if (i == monsterTypeIndex - 4)
             {
                 this.transform.GetChild(i).gameObject.SetActive(true);
                 GameObject monster;
@@ -201,6 +200,7 @@ public class Player : MonoBehaviour
 
     public void Win()
     {
+        EnableTypeMonsterPrefab(4);
         isAttack = false;
     }
 
