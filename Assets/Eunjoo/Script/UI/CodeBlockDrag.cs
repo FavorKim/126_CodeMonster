@@ -8,7 +8,7 @@ using UnityEngine.UI; // 드롭다운을 확인하기 위해 필요
 
 public class CodeBlockDrag : MonoBehaviour
 {
-    private bool _isDragging = false;
+    //private bool _isDragging = false;
     private Vector3 _offset;
     private float _zCoordinate;
 
@@ -178,8 +178,8 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxRelease()
     {
-        if (_isDragging == false) return;
-        _isDragging = false;
+        //if (_isDragging == false) return;
+        //_isDragging = false;
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
@@ -206,7 +206,7 @@ public class CodeBlockDrag : MonoBehaviour
 
         _zCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         _offset = GetMouseWorldPos() - (Vector3)_rectTransform.anchoredPosition;
-        _isDragging = true;
+        //_isDragging = true;
 
         if (BlockContainerUI == null)
         {
@@ -254,6 +254,8 @@ public class CodeBlockDrag : MonoBehaviour
 
     public void ReturnToPool()
     {
+        BlockContainerUI = null;
+
         transform.SetParent(PoolParent.transform, false);
 
         // SetParent 바뀌어서 피벗 맞춰주기

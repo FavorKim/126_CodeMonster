@@ -108,6 +108,8 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         foreach (Transform child in children)
         {
             CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+
+
             if (codeBlockDrag != null)
             {
                 codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환

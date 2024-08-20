@@ -96,7 +96,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
                 for (int i = 0; i < poolInfo.initCount; i++)
                 {
-                    poolInfo.poolQueue.Enqueue(CreatNewObject(poolInfo));
+                    CreatNewObject(poolInfo);
                 }
 
                 GameObject objInstance = GetObject(poolInfo.BlockName);
@@ -112,8 +112,9 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         // Instantiate the prefab as a child of the corresponding RectTransform container
         GameObject newObject = Instantiate(poolInfo.prefab, poolContainers[poolInfo.BlockName]);
-        newObject.gameObject.SetActive(false);
-        return newObject;
+        poolInfo.poolQueue.Enqueue(newObject);
+        
+        return poolInfo.poolQueue.Dequeue();
     }
 
     // ObjectType(Enum)으로 해당하는 PoolInfo를 반환해주는 함수
