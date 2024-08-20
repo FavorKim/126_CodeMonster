@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private bool isAttack;
     private bool isMove;
     private bool isGameOver;
+    private bool isDie;
     public void InitPlayer(StageManager stageManager)
     {
         this.stageManager = stageManager;
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour
             if (i == monsterTypeIndex - 4)
             {
                 this.transform.GetChild(i).gameObject.SetActive(true);
-                GameObject monster;
+                //GameObject monster;
                 //monster = this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
                 //if (monster.activeSelf == false)
                 //{
@@ -206,7 +207,9 @@ public class Player : MonoBehaviour
 
     public void Defeat()
     {
-        this.gameObject.SetActive(false);
+        isGameOver = true;
+        isAttack = false;
+        isDie = true;
     }
 
     public Vector2Int GetCurrentPosition()
@@ -261,7 +264,14 @@ public class Player : MonoBehaviour
             //공격중일때 멈춤
             yield return new WaitWhile(() => isAttack);
         }
+
+
         DebugBoxManager.Instance.Log("Game Over. Stop Player Action");
+
+        if(isDie)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void StartPlayerAction()
@@ -271,8 +281,10 @@ public class Player : MonoBehaviour
 
     public void ResetPlayer()
     {
+        this.gameObject.SetActive(true);
         EnableTypeMonsterPrefab(4);
         position=stageManager.GetStartPosition();
         transform.position=stageManager.GetPlayerRestPos();
+        isDie = false;
     }
 }

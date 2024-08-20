@@ -41,12 +41,11 @@ public class BattleManager : MonoBehaviour
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
 
             // 공격 블록의 타입과 몬스터의 약점 비교
-            if (GameRule.CompareType(attackBlockType, monsterType.Weakness))
+            if (GameRule.CompareType(attackBlockType, monsterType.TypeIndex))
             {
                 Debug.Log("Attack successful! Monster defeated.");
                 Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 // 승리 처리: 플레이어의 승리 메서드 호출
-                StartCoroutine(TestTimer());
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
                 StageManager.Instance.GetPlayer().Win();
                 monsterObj.SetActive(false);
@@ -57,7 +56,6 @@ public class BattleManager : MonoBehaviour
                 // 패배 처리: 플레이어의 패배 메서드 호출
 
                 player.EnableTypeMonsterPrefab(4);
-                StartCoroutine(TestTimer());//->적의 애니매이션 실행부분
                 StageManager.Instance.GetPlayer().Defeat();
             }
         }
