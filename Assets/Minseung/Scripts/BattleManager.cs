@@ -15,12 +15,12 @@ public class BattleManager : Singleton<BattleManager>
     {
         dataManager = DataManagerTest.Instance;
         stageManager = StageManager.Instance;
-        player = stageManager.GetPlayer();
+       
     }
 
     public void BattlePhase(Vector2Int playerPosition, int attackBlockType)
     {
-
+        player = stageManager.GetPlayer();
 
         DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
         // 플레이어의 위치와 적의 위치를 비교하여 같은 위치에 있는지 확인
@@ -41,7 +41,7 @@ public class BattleManager : Singleton<BattleManager>
                 DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
                 // 승리 처리: 플레이어의 승리 메서드 호출
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
-                StageManager.Instance.GetPlayer().Win();
+                player.Win();
                 monsterObj.SetActive(false);
             }
             else
@@ -50,7 +50,7 @@ public class BattleManager : Singleton<BattleManager>
                 // 패배 처리: 플레이어의 패배 메서드 호출
 
                 player.EnableTypeMonsterPrefab(4);
-                StageManager.Instance.GetPlayer().Defeat();
+                player.Defeat();
             }
         }
         else
