@@ -19,7 +19,7 @@ public class StageManager : Singleton<StageManager>
         GenerateStage(floorPrefabs, wallPrefabs);
         SetPlayer(playerPrefab);
         SetEnemies();
-}
+    }
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
     {
@@ -111,12 +111,16 @@ public class StageManager : Singleton<StageManager>
 
     public int ChangePosToKeyValue(Vector2Int pos)
     {
-        return currentStageMap.StageSize.x * pos.x + pos.y;
+        return currentStageMap.StageSize.y * pos.y + pos.x;
     }
+
     public int ChangePosToKeyValue(int posX, int posY)
     {
-        return currentStageMap.StageSize.x * posX + posY;
+        return currentStageMap.StageSize.y * posY + posX;
     }
+
+
+
 
     public bool CheckMonsterAndPlayerPos(Vector2Int playerPos)
     {

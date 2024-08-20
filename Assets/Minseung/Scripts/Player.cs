@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private bool isAttack;
     private bool isMove;
     private bool isGameOver;
-    public Player(StageManager stageManager)
+    public void InitPlayer(StageManager stageManager)
     {
         this.stageManager = stageManager;
         position = stageManager.GetStartPosition();
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     }
     public void Start()
     {
+        InitPlayer(StageManager.Instance);
         SetPlayerType();
         SetPlayerPrefab();
         InteractEventManager.Instance.startBtn.OnPoke += StartPlayerAction;
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
             GameObject typeObj = new GameObject();
             typeObj.transform.SetParent(this.transform);
             typeObj.transform.localPosition = Vector3.zero;
-            typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i+5).TypeName;
+            typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i + 5).TypeName;
         }
     }
 
@@ -54,7 +55,7 @@ public class Player : MonoBehaviour
             monster.SetActive(true);
             SetPrefabsParent(monster);
             monster.transform.localPosition = Vector3.zero;
-            
+
         }
 
         DisableTypeMonsterPrefab();
@@ -104,10 +105,10 @@ public class Player : MonoBehaviour
 
     private void EnableTypeMonsterPrefab(int monsterTypeIndex)
     {
-        
+
         for (int i = 0; i < 3; i++)
         {
-            if (i == monsterTypeIndex - 5) 
+            if (i == monsterTypeIndex - 5)
             {
                 this.transform.GetChild(i).gameObject.SetActive(true);
                 GameObject monster;
@@ -123,7 +124,7 @@ public class Player : MonoBehaviour
             }
         }
 
-       
+
 
     }
 
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
                 DebugBoxManager.Instance.Log("Game Over. Monster Attack.");
             }
         }
-        else if(blockIndex <= 7)
+        else if (blockIndex <= 7)
         {
             attackBlockType = GetAttackTypeFromBlock(blockIndex);
             Attack();
@@ -153,21 +154,26 @@ public class Player : MonoBehaviour
     {
         Vector2Int newPosition = position + direction;
         Vector3 movePos = new Vector3(newPosition.x, 0, newPosition.y);
-        
         isMove = true;
 
-        while (MoveFinsh(transform.position,movePos))
+        while (MoveFinsh(transform.position, movePos))
         {
-            transform.position = Vector3.Lerp(transform.position, movePos, 2);
+            transform.position = Vector3.Lerp(transform.position, movePos, 0.05f);
             yield return null;
         }
+
         position = newPosition;
+
+        transform.position = movePos;
+
         if (GameRule.CheckPlayerPosAndMonster(position) == true)//몬스터와 같은 자리여서 위치를 바꾼다
         {
             //위치 변경
             transform.position = stageManager.GetPlayerPosWithMonsterStage(position);
+            DebugBoxManager.Instance.Log("With Monster");
+
         }
-        else if(GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
+        else if (GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
         {
             isGameOver = true;
             DebugBoxManager.Instance.Log("Game Over. Wrong Path");
@@ -178,13 +184,13 @@ public class Player : MonoBehaviour
 
     }
 
-    private bool MoveFinsh(Vector3 playerPos,Vector3 targetPos)
+    private bool MoveFinsh(Vector3 playerPos, Vector3 targetPos)
     {
-        if(Vector3.Distance(targetPos, playerPos) <= 0.1f)
+        if (Vector3.Distance(targetPos, playerPos) <= 0.1f)
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private void Attack()
@@ -236,11 +242,16 @@ public class Player : MonoBehaviour
     {
         int index = 0;
         List<int> indexList = BlockContainerManager.Instance.GetContatinerBlocks();
+        if (indexList == null)
+        {
+            DebugBoxManager.Instance.Log("indexList is Null");
+        }
 
         isAttack = false;
         isMove = false;
         isGameOver = false;
 
+        DebugBoxManager.Instance.Log($"index count : {indexList.Count}, index : {index}");
         while (indexList.Count > index && isGameOver == false)
         {
             //이동중일때 멈춤
@@ -250,13 +261,11 @@ public class Player : MonoBehaviour
             //공격중일때 멈춤
             yield return new WaitWhile(() => isAttack);
         }
-
+        DebugBoxManager.Instance.Log("Game Over. Stop Player Action");
     }
 
     public void StartPlayerAction()
     {
-        Debug.LogWarning("start player action");
-        DebugBoxManager.Instance.Log("start player action");
         StartCoroutine(PlayerAction());
     }
 }
