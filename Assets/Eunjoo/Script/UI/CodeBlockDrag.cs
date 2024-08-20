@@ -19,7 +19,7 @@ public class CodeBlockDrag : MonoBehaviour
     public BlockContainerManager BlockContainerUI;
     public GameObject PoolParent;
 
-    [SerializeField] private CustomGrabObject grab;
+    private CustomGrabObject grab;
 
     private CodeBlockData _data;
     public CodeBlockData Data
@@ -32,10 +32,10 @@ public class CodeBlockDrag : MonoBehaviour
     }
     
 
-    private void Start()
+    private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        if(TryGetComponent(out CustomGrabObject grabobj))
+        if(gameObject.TryGetComponent(out CustomGrabObject grabobj))
         {
             grab = grabobj;
         }
@@ -107,6 +107,8 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning($"OnEnable : {gameObject.name}'s grab is null");
+
             //DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
         }
     }
@@ -118,7 +120,7 @@ public class CodeBlockDrag : MonoBehaviour
             grab.OnGrab -= OnBoxGrabbed;
         }
         else
-            Debug.LogWarning("grab is null");
+            Debug.LogWarning($"OnDisable : {gameObject.name}'s grab is null");
     }
 
     //private void OnMouseDown()
