@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         SetPlayerType();
         SetPlayerPrefab();
         InteractEventManager.Instance.startBtn.OnPoke += StartPlayerAction;
+        InteractEventManager.Instance.RegistOnClickRestartBtn(ResetPlayer);
     }
 
     private void SetPlayerType()
@@ -257,6 +258,9 @@ public class Player : MonoBehaviour
             //이동중일때 멈춤
             yield return new WaitWhile(() => isMove);
             Execute(indexList[index]);
+            BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            if(index >0)
+                BlockContainerManager.Instance.SetBlockMaterial(index-1, MaterialType.USE_CODEBLOCK_MATERIAL);
             index++;
             //공격중일때 멈춤
             yield return new WaitWhile(() => isAttack);

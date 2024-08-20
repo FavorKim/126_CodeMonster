@@ -11,6 +11,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 {
     [SerializeField] private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
+    List<MaterialChanger> materialChangers = new();
 
     protected void Awake()
     {
@@ -18,6 +19,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
         InteractEventManager.Instance.RegistOnClickResetBtn(ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnClickRestartBtn(ResetBlockContainer);
     }
 
     private void Update()
@@ -122,14 +124,21 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
 
         List<int> list = new List<int>();
-
+        materialChangers.Clear();
         for (int i = 0; i < this.transform.childCount; i++)
         {
             int blockIndex = DataManagerTest.Instance.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
+            MaterialChanger mC = transform.GetChild(i).GetComponent<MaterialChanger>();
+            materialChangers.Add(mC);
             list.Add(blockIndex);
         }
 
         return list;
+    }
+
+    public void SetBlockMaterial(int index, MaterialType type)
+    {
+        materialChangers[index].ChangeMaterial(type);
     }
     public int CountCodeBlockDragComponents()
     {

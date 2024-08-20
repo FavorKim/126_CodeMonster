@@ -35,19 +35,20 @@ public class MaterialChanger : MonoBehaviour
         }
     }
 
-    private void ChangeMaterial(int index)
+    public void ChangeMaterial(MaterialType index)
     {
-        if (index >= 0 && index < materials.Length)
+        if (index >= 0 && index < MaterialType.MAX)
         {
-            rend.material = materials[index];  // 인덱스에 해당하는 머티리얼로 변경
+            rend.material = materials[(int)index];  // 인덱스에 해당하는 머티리얼로 변경
         }
     }
 }
 
 
-public static class MaterialType
+public enum MaterialType
 {
-    public const int NORMAL_CODEBLOCK_MATERIAL = 0;
-    public const int OUTLINE_CODEBLOCK_MATERIAL = 1;
-    public const int USE_CODEBLOCK_MATERIAL = 2;
+    NORMAL_CODEBLOCK_MATERIAL = 0,
+    OUTLINE_CODEBLOCK_MATERIAL = 1,
+    USE_CODEBLOCK_MATERIAL = 2,
+    MAX
 }

@@ -1,3 +1,4 @@
+using Oculus.Interaction.Deprecated;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class StageManager : Singleton<StageManager>
         GenerateStage(floorPrefabs, wallPrefabs);
         SetPlayer(playerPrefab);
         SetEnemies();
+        InteractEventManager.Instance.RegistOnClickRestartBtn(ResetStage);
     }
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)

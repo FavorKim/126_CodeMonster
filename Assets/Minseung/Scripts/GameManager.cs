@@ -9,20 +9,11 @@ public class GameManager : Singleton<GameManager>
     {
         RegistEvent();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            RestartGame();
-        }
-    }
+    
     void RegistEvent()
     {
-        InteractEventManager.Instance.RegistOnClickRestartBtn(RestartGame);
+
     }
-    void RestartGame() 
-    {
-        SceneManager.LoadScene("PSW Test Scene");
-    }
+
 
 }
