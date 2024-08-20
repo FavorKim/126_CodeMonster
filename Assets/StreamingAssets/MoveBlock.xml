@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MoveBlock>
+  <dataCategory>
+    <data BlockIndex="1" MoveDirection="1" />
+    <data BlockIndex="1" MoveDirection="2" />
+    <data BlockIndex="1" MoveDirection="3" />
+    <data BlockIndex="1" MoveDirection="4" />
+  </dataCategory>
+</MoveBlock>
