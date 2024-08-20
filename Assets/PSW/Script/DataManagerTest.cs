@@ -21,9 +21,8 @@ public class DataManagerTest : Singleton<DataManagerTest>
     private readonly string _dataRootPath = Application.streamingAssetsPath;//"Application.StreamingAssetsPath";
 
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         filePath = Application.persistentDataPath + "/playerData.json";
         ReadAllDataOnAwake();
     }

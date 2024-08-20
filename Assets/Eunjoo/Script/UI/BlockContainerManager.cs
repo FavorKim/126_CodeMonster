@@ -12,9 +12,9 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     [SerializeField] private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
+        //base.Awake();
         BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
         InteractEventManager.Instance.RegistOnClickResetBtn(ResetBlockContainer);

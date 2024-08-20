@@ -9,9 +9,12 @@ public class GameManager : Singleton<GameManager>
     {
         RegistEvent();
     }
-    private void OnDisable()
+    private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            RestartGame();
+        }
     }
     void RegistEvent()
     {
@@ -19,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     }
     void RestartGame() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("PSW Test Scene");
     }
 
 }

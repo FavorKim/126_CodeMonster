@@ -9,9 +9,8 @@ public class MoveBlockUIManager : Singleton<MoveBlockUIManager>
     private RectTransform MoveBlockUIRectTransform;
     private BoxCollider MoveBlockUBoxCollider;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         MoveBlockUIRectTransform = GetComponent<RectTransform>();
         MoveBlockUBoxCollider = GetComponent<BoxCollider>();
     }

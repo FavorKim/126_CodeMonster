@@ -6,9 +6,8 @@ public class StageBlockUIManager : Singleton<StageBlockUIManager>
     private RectTransform StageBlockUIRectTransform;
     private BoxCollider StageBlockUBoxCollider;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         StageBlockUIRectTransform = GetComponent<RectTransform>();
         StageBlockUBoxCollider = GetComponent<BoxCollider>();
     }

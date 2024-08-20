@@ -52,9 +52,9 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     private Dictionary<BlockName, RectTransform> poolContainers;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         Initialize();
     }
 

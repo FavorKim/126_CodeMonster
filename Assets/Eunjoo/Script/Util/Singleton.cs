@@ -23,16 +23,16 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         if (instance == null)
         {
             instance = this as T;
         }
-        else if (instance != this)
+        else if (instance.gameObject != this.gameObject)
         {
-            Destroy(gameObject);
-            return;
+            DestroyImmediate(instance.transform.root.gameObject);
+            instance = this as T;
         }
 
         // DontSestroyOnLoad가 다른 오브젝트의 하위에 있다면 작동 X, 매니저가 부모이거나, 자식일 때 작동
