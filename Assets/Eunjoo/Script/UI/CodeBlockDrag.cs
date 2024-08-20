@@ -18,12 +18,15 @@ public class CodeBlockDrag : MonoBehaviour
     public BlockType BlockType;
     public BlockContainerManager BlockContainerUI;
     public GameObject PoolParent;
+    private MaterialChanger matChanger;
+    
 
     private CustomGrabObject grab;
 
     private CodeBlockData _data;
     public CodeBlockData Data
     {
+        
         get { return _data; }
         private set
         {
@@ -34,6 +37,7 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void Awake()
     {
+        matChanger = GetComponent<MaterialChanger>();
         _rectTransform = GetComponent<RectTransform>();
         if(gameObject.TryGetComponent(out CustomGrabObject grabobj))
         {
@@ -111,9 +115,12 @@ public class CodeBlockDrag : MonoBehaviour
 
             //DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
         }
+
+        matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
     }
     private void OnDisable()
     {
+        
         if (grab != null)
         {
             grab.OnRelease -= OnBoxRelease;
