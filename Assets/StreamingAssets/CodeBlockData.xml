@@ -5,9 +5,9 @@
     <data BlockIndex="2" BlockName="UIDownMoveBlock" ViewName="" Description="" />
     <data BlockIndex="3" BlockName="UILeftMoveBlock" ViewName="" Description="" />
     <data BlockIndex="4" BlockName="UIRightMoveBlock" ViewName="" Description="" />
-    <data BlockIndex="5" BlockName="UIFireAttackBlock" ViewName="" Description="" />
+    <data BlockIndex="5" BlockName="UIGrassAttackBlock" ViewName="" Description="" />
     <data BlockIndex="6" BlockName="UIWaterAttackBlock" ViewName="" Description="" />
-    <data BlockIndex="7" BlockName="UIGrassAttackBlock" ViewName="" Description="" />
+    <data BlockIndex="7" BlockName="UIFireAttackBlock" ViewName="" Description="" />
     <data BlockIndex="8" BlockName="Condition" ViewName="" Description="" />
   </dataCategory>
 </CodeBlockData>
