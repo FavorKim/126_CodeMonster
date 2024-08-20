@@ -268,4 +268,11 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(PlayerAction());
     }
+
+    public void ResetPlayer()
+    {
+        EnableTypeMonsterPrefab(4);
+        position=stageManager.GetStartPosition();
+        transform.position=stageManager.GetPlayerRestPos();
+    }
 }
