@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -5620798050236748967}
   - component: {fileID: -6075006855654281152}
   - component: {fileID: 1070329002034666299}
+  - component: {fileID: 2049611489248181456}
   m_Layer: 0
   m_Name: UIGrassAttackBlock
   m_TagString: Untagged
@@ -261,6 +262,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2049611489248181456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369126874611500125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050a3969a9ab0984f8511a4d6ec65aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: e3373a39e16e2104fa087181f19a548e, type: 2}
+  - {fileID: 2100000, guid: 7a014f78414e0fe43915b0fe8d6c6352, type: 2}
+  - {fileID: 2100000, guid: efc4f5324278b1441b2f7f94929c6e17, type: 2}
 --- !u!1 &7364824350858062219
 GameObject:
   m_ObjectHideFlags: 0
