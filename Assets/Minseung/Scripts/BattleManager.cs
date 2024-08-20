@@ -46,6 +46,7 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Attack successful! Monster defeated.");
                 Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 // 승리 처리: 플레이어의 승리 메서드 호출
+                StartCoroutine(TestTimer());
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
                 StageManager.Instance.GetPlayer().Win();
                 monsterObj.SetActive(false);
@@ -54,6 +55,9 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log("Attack failed! Player defeated.");
                 // 패배 처리: 플레이어의 패배 메서드 호출
+
+                player.EnableTypeMonsterPrefab(4);
+                StartCoroutine(TestTimer());//->적의 애니매이션 실행부분
                 StageManager.Instance.GetPlayer().Defeat();
             }
         }
@@ -61,5 +65,16 @@ public class BattleManager : MonoBehaviour
 
        
         
+    }
+
+    private IEnumerator TestTimer()
+    {
+        float time = 0;
+        float checkTime = 2;
+        while (time <= checkTime) 
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 }
