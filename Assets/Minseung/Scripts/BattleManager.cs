@@ -28,14 +28,7 @@ public class BattleManager : MonoBehaviour
         if (stageManager.CheckMonsterAndPlayerPos(playerPosition))
         {
             GameObject monsterObj= stageManager.GetMonsterWithPlayerPos(playerPosition);
-            if(monsterObj == null )
-            {
-                // 적의 위치와 일치하지 않는 경우, 공격이 빗나간 것으로 간주하여 패배 처리
-                //-> 빗나가면 아무일도 없으니 승리 처리로 바꿈
-                Debug.Log("Attack missed!");
-                StageManager.Instance.GetPlayer().Win();
-                return;
-            }
+            
             string monsterName = monsterObj.name;
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
@@ -59,10 +52,17 @@ public class BattleManager : MonoBehaviour
                 StageManager.Instance.GetPlayer().Defeat();
             }
         }
+        else
+        {
+            // 적의 위치와 일치하지 않는 경우, 공격이 빗나간 것으로 간주하여 패배 처리
+            //-> 빗나가면 아무일도 없으니 승리 처리로 바꿈
+            Debug.Log("Attack missed!");
+            StageManager.Instance.GetPlayer().Win();
+        }
 
 
-       
-        
+
+
     }
 
     private IEnumerator TestTimer()
