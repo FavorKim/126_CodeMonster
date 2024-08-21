@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 1642130834915569896}
   - component: {fileID: 813470218012063918}
   - component: {fileID: 1355750786194937615}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Arrow Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1226cfc9359b6904b81badc6516c7e0f, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
