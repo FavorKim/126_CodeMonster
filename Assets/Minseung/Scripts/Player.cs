@@ -281,6 +281,8 @@ public class Player : MonoBehaviour
         isAttack = false;
         isMove = false;
         isGameOver = false;
+
+        DebugBoxManager.Instance.ClearText();
     }
 
     private void Die()

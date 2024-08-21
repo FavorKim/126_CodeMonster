@@ -65,71 +65,16 @@ public class CodeBlockDrag : MonoBehaviour
             Debug.LogWarning($"OnDisable : {gameObject.name}'s grab is null");
     }
 
-    //private void OnMouseDown()
-    //{
-    //    // 부모 변경 전에 현재 월드 좌표를 저장
-    //    Vector3 worldPositionBeforeChange = _rectTransform.position;
-
-    //    // 부모를 UIManager로 변경
-    //    Transform uiManagerTransform = GameObject.Find("UIManager").transform;
-    //    transform.SetParent(uiManagerTransform, false); // 부모 변경, 월드 좌표는 일단 무시
-
-    //    // 부모 변경 후에도 같은 월드 좌표를 유지하도록 다시 설정
-    //    _rectTransform.position = worldPositionBeforeChange;
-
-    //    _zCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-    //    _offset = GetMouseWorldPos() - (Vector3)_rectTransform.anchoredPosition;
-    //    _isDragging = true;
-
-    //    if (BlockContainerUI == null)
-    //    {
-    //        GameObject objInstance = ObjectPoolManager.GetObject(BlockName);
-    //    }
-    //}
-
-    //private void OnMouseDrag()
-    //{
-    //    if (_isDragging)
-    //    {
-    //        Vector3 newPosition = GetMouseWorldPos() - _offset;
-    //        _rectTransform.anchoredPosition = new Vector2(newPosition.x, newPosition.y);
-    //    }
-    //}
-
-    //private void OnMouseUp()
-    //{
-    //    _isDragging = false;
-
-    //    if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
-    //    {
-    //        BlockContainerManager.Instance.AddBlock(gameObject);
-    //    }
-    //    else
-    //    {
-    //        transform.SetParent(PoolParent.transform, false);
-
-    //        // SetParent 바뀌어서 피벗 맞춰주기
-    //        _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-    //        _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-    //        _rectTransform.pivot = new Vector2(0.5f, 0.5f);
-
-    //        _rectTransform.localPosition = Vector3.zero;
-    //        ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
-    //    }
-    //}
+    
 
     private void OnBoxRelease()
     {
-        //if (_isDragging == false) return;
-        //_isDragging = false;
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
-            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Add Box";
         }
         else
         {
-            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Reset Box";
             ReturnToPool();
         }
     }
@@ -139,26 +84,22 @@ public class CodeBlockDrag : MonoBehaviour
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
 
+        /*
         // 부모를 UIManager로 변경
         Transform uiManagerTransform = GameObject.Find("UIManager").transform;
         transform.SetParent(uiManagerTransform, false); // 부모 변경, 월드 좌표는 일단 무시
+        */
 
         // 부모 변경 후에도 같은 월드 좌표를 유지하도록 다시 설정
         _rectTransform.position = worldPositionBeforeChange;
 
-        _zCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        _offset = GetMouseWorldPos() - (Vector3)_rectTransform.anchoredPosition;
-        //_isDragging = true;
-
+        
         if (BlockContainerUI == null)
         {
             GameObject objInstance = ObjectPoolManager.Instance.GetObject(BlockName);
             objInstance.transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0));
 
-            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Copied";
         }
-        //else
-            //DebugBoxManager.Instance.Txt_DebugMsg.text += "NotCopied";
     }
 
     private void OnTriggerEnter(Collider other)

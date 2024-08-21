@@ -10,7 +10,8 @@ public class DebugBoxManager : Singleton<DebugBoxManager>
 
     public void Log(string msg)
     {
-        Txt_DebugMsg.text += msg;
+        Txt_DebugMsg.text += msg + '\n';
+            
     }
 
     public void Log()
@@ -18,5 +19,9 @@ public class DebugBoxManager : Singleton<DebugBoxManager>
         Txt_DebugMsg.text += "triggered";
     }
 
+    public void ClearText()
+    {
+        Txt_DebugMsg.text = string.Empty;
+    }
     
 }
