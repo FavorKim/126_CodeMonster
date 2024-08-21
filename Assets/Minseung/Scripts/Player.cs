@@ -61,11 +61,12 @@ public class Player : MonoBehaviour
         }
 
         DisableTypeMonsterPrefab();
+        EnableTypeMonsterPrefab(4);
     }
 
     private void SetPrefabsParent(GameObject monster)
     {
-        int monsterTypeIndex = DataManagerTest.Instance.GetMonsterTypeData(DataManagerTest.Instance.GetMonsterData(monster.name).TypeIndex).TypeIndex;
+        int monsterTypeIndex = DataManagerTest.Instance.GetMonsterData(monster.name).TypeIndex;
 
         switch (monsterTypeIndex)
         {
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
     //}
     private void DisableTypeMonsterPrefab()
     {
-        for (int i = 1; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             this.transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -106,24 +107,9 @@ public class Player : MonoBehaviour
 
     public void EnableTypeMonsterPrefab(int monsterTypeIndex)
     {
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (i == monsterTypeIndex - 4)
-            {
-                this.transform.GetChild(i).gameObject.SetActive(true);
-                //GameObject monster;
-                //monster = this.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject;
-                //if (monster.activeSelf == false)
-                //{
-                //    monster.SetActive(true);
-                //}
-            }
-            else
-            {
-                this.transform.GetChild(i).gameObject.SetActive(false);
-            }
-        }
+        DisableTypeMonsterPrefab();
+        this.transform.GetChild(monsterTypeIndex - 4).gameObject.SetActive(true);
+        
 
 
 
@@ -208,9 +194,11 @@ public class Player : MonoBehaviour
 
     public void Defeat()
     {
-        isGameOver = true;
-        isAttack = false;
-        isDie = true;
+        EnableTypeMonsterPrefab(4);
+        Invoke(nameof(Die), 2);
+        //isGameOver = true;
+        //isAttack = false;
+        //isDie = true;
     }
 
     public Vector2Int GetCurrentPosition()
@@ -258,24 +246,26 @@ public class Player : MonoBehaviour
         DebugBoxManager.Instance.Log($"index count : {indexList.Count}, index : {index}");
         while (indexList.Count > index && isGameOver == false)
         {
+            
             //이동중일때 멈춤
             yield return new WaitWhile(() => isMove);
             Execute(indexList[index]);
             BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
             if(index >0)
                 BlockContainerManager.Instance.SetBlockMaterial(index-1, MaterialType.USE_CODEBLOCK_MATERIAL);
-            index++;
             //공격중일때 멈춤
+            index++;
             yield return new WaitWhile(() => isAttack);
+            //yield return new WaitForSeconds(1);
         }
 
 
         DebugBoxManager.Instance.Log("Game Over. Stop Player Action");
 
-        if(isDie)
-        {
-            this.gameObject.SetActive(false);
-        }
+        //if(isDie)
+        //{
+        //    this.gameObject.SetActive(false);
+        //}
     }
 
     public void StartPlayerAction()
@@ -290,5 +280,10 @@ public class Player : MonoBehaviour
         position=stageManager.GetStartPosition();
         transform.position=stageManager.GetPlayerRestPos();
         isDie = false;
+    }
+
+    private void Die()
+    {
+        this.gameObject.SetActive(false);
     }
 }
