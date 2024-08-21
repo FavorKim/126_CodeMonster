@@ -24,7 +24,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         player = stageManager.GetPlayer();
 
-        DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeName} Type Attack");
+        DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} 타입 공격");
         // 플레이어의 위치와 적의 위치를 비교하여 같은 위치에 있는지 확인
         
         if (stageManager.CheckMonsterAndPlayerPos(playerPosition))

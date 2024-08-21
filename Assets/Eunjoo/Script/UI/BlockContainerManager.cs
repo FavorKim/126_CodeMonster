@@ -135,7 +135,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             list.Add(blockIndex);
             if(i>=6)
             {
-                DebugBoxManager.Instance.Log(transform.GetChild(i).name);
+                //DebugBoxManager.Instance.Log(transform.GetChild(i).name);
             }
         }
 

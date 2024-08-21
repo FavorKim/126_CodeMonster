@@ -96,10 +96,12 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
                 for (int i = 0; i < poolInfo.initCount; i++)
                 {
-                    CreatNewObject(poolInfo);
+                    var obj = CreatNewObject(poolInfo);
+                    ReturnObject(obj, poolInfo.BlockName);
+
                 }
 
-                GameObject objInstance = GetObject(poolInfo.BlockName);
+                GetObject(poolInfo.BlockName);
             }
         }
     }
@@ -112,9 +114,8 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         // Instantiate the prefab as a child of the corresponding RectTransform container
         GameObject newObject = Instantiate(poolInfo.prefab, poolContainers[poolInfo.BlockName]);
-        poolInfo.poolQueue.Enqueue(newObject);
         
-        return poolInfo.poolQueue.Dequeue();
+        return newObject;
     }
 
     // ObjectType(Enum)으로 해당하는 PoolInfo를 반환해주는 함수
@@ -135,15 +136,15 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         PoolInfo poolInfo = Instance.GetPoolByType(type);
         GameObject objInstance = null;
-        if (poolInfo.poolQueue.Count > 0)
-        {
-            objInstance = poolInfo.poolQueue.Dequeue();
-        }
-        else
+        if (poolInfo.poolQueue.Count == 0)
         {
             objInstance = Instance.CreatNewObject(poolInfo);
+            ReturnObject(objInstance, poolInfo.BlockName);
         }
+        objInstance = poolInfo.poolQueue.Dequeue();
+
         objInstance.SetActive(true);
+
         return objInstance;
     }
 

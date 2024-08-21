@@ -285,6 +285,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2817419980241615087, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817419980241615087, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: be70a0dad18610c4aa11333b290b3286, type: 2}
+    - target: {fileID: 2817419980241615087, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5281753751613065335, guid: be70a0dad18610c4aa11333b290b3286, type: 2}
+    - target: {fileID: 2817419980241615087, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8226794652185647890, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 835

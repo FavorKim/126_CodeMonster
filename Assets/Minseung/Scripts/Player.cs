@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
             {
                 //게임오버
                 isGameOver = true;
-                DebugBoxManager.Instance.Log("Game Over. Monster Attack.");
+                DebugBoxManager.Instance.Log("몬스터가 있는데 이동함. 게임오버");
             }
         }
         else if (blockIndex <= 7)
@@ -157,17 +157,18 @@ public class Player : MonoBehaviour
         {
             //위치 변경
             transform.position = stageManager.GetPlayerPosWithMonsterStage(position);
-            DebugBoxManager.Instance.Log("With Monster");
+            DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
 
         }
         else if (GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
         {
             isGameOver = true;
-            DebugBoxManager.Instance.Log("Game Over. Wrong Path");
+            DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
+            isMove = false;
             yield break;
         }
-
         isMove = false;
+
 
     }
 
@@ -236,14 +237,10 @@ public class Player : MonoBehaviour
         List<int> indexList = BlockContainerManager.Instance.GetContatinerBlocks();
         if (indexList == null)
         {
-            DebugBoxManager.Instance.Log("indexList is Null");
+            //DebugBoxManager.Instance.Log("indexList is Null");
         }
 
-        isAttack = false;
-        isMove = false;
-        isGameOver = false;
-
-        DebugBoxManager.Instance.Log($"index count : {indexList.Count}, index : {index}");
+        //DebugBoxManager.Instance.Log($"index count : {indexList.Count}, index : {index}");
         while (indexList.Count > index && isGameOver == false)
         {
             
@@ -260,7 +257,7 @@ public class Player : MonoBehaviour
         }
 
 
-        DebugBoxManager.Instance.Log("Game Over. Stop Player Action");
+        DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
 
         //if(isDie)
         //{
@@ -275,11 +272,15 @@ public class Player : MonoBehaviour
 
     public void ResetPlayer()
     {
+        this.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
         EnableTypeMonsterPrefab(4);
         position=stageManager.GetStartPosition();
         transform.position=stageManager.GetPlayerRestPos();
         isDie = false;
+        isAttack = false;
+        isMove = false;
+        isGameOver = false;
     }
 
     private void Die()
