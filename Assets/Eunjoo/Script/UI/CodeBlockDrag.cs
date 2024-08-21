@@ -18,89 +18,22 @@ public class CodeBlockDrag : MonoBehaviour
     public BlockType BlockType;
     public BlockContainerManager BlockContainerUI;
     public GameObject PoolParent;
-    private MaterialChanger matChanger;
-    
-
+    [SerializeField]private MaterialChanger matChanger;
     private CustomGrabObject grab;
 
-    private CodeBlockData _data;
-    public CodeBlockData Data
-    {
-        
-        get { return _data; }
-        private set
-        {
-            _data = value;
-        }
-    }
     
 
     private void Awake()
     {
-        matChanger = GetComponent<MaterialChanger>();
         _rectTransform = GetComponent<RectTransform>();
         if(gameObject.TryGetComponent(out CustomGrabObject grabobj))
         {
             grab = grabobj;
         }
-        /*
-        if (TryGetComponent(out CustomGrabObject grabb))
-        {
-            grab = grabb;
-            //grab.OnGrab += OnBoxGrabbed;
-            //grab.OnRelease += OnBoxRelease;
-            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist\n";
-        }
-        else
-        {
-            DebugBoxManager.Instance.Txt_DebugMsg.text += "grab Didn't Init\n";
-        }
-        */
         PoolParent = transform.parent.gameObject;
-        //Data = SetData(BlockName);
     }
 
-    /* 데이터 드리븐 SetData
-    private CodeBlockData SetData (BlockName bName)
-    {
-        CodeBlockData data = null;
-
-        switch (bName)
-        {
-            case BlockName.LeftMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Left");
-                break;
-            case BlockName.RightMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Right");
-                break;
-            case BlockName.UpMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Up");
-                break;
-            case BlockName.DownMoveCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Move_Down");
-                break;
-            case BlockName.FireAttackCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Attack_Fire");
-                break;
-            case BlockName.WaterAttackCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Attack_Water");
-                break;
-            case BlockName.GrassAttackCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Attac_Grass");
-                break;
-            case BlockName.LoopCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("");
-                break;
-            case BlockName.CondionalCodeBlock:
-                DataManagerTest.Inst.GetCodeBlockData("Block_Condition_Attribute");
-                break;
-            default:
-                break;
-        }
-        
-        return data;
-    }
-    */
+    
     private void OnEnable()
     {
         if (grab != null)
@@ -115,6 +48,8 @@ public class CodeBlockDrag : MonoBehaviour
 
             //DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
         }
+        if (matChanger == null)
+            matChanger = GetComponent<MaterialChanger>();
 
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
     }
