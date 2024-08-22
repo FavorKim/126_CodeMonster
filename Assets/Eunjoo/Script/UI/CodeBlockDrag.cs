@@ -71,6 +71,7 @@ public class CodeBlockDrag : MonoBehaviour
     {
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
+            matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
             BlockContainerManager.Instance.AddBlock(gameObject);
         }
         else
@@ -132,6 +133,8 @@ public class CodeBlockDrag : MonoBehaviour
         _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+        matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
 
         _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
