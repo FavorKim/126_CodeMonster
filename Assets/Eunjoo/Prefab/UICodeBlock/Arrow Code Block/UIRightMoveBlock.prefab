@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3227397223533401734}
   - component: {fileID: 826565367943086580}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,6 @@ GameObject:
   - component: {fileID: -4889243595519333434}
   - component: {fileID: -5620798050236748967}
   - component: {fileID: -6075006855654281152}
-  - component: {fileID: 7913427213424059749}
   - component: {fileID: -1716711589203524974}
   m_Layer: 0
   m_Name: UIRightMoveBlock
@@ -299,18 +298,6 @@ MonoBehaviour:
   blockId: 5c5184f2-c2f5-4063-b14b-3b1264fb3c1a
   instanceId: 761533c9-a77d-4d1d-836d-8357e60ed80d
   version: 1
---- !u!114 &7913427213424059749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369126874611500125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1716711589203524974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +325,6 @@ GameObject:
   - component: {fileID: 5399821918269604391}
   - component: {fileID: 1642130834915569896}
   - component: {fileID: 813470218012063918}
-  - component: {fileID: 8116023435703213374}
   m_Layer: 0
   m_Name: Arrow Image
   m_TagString: Untagged
@@ -403,15 +389,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8116023435703213374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7364824350858062219}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
