@@ -107,33 +107,22 @@ public class CodeBlockDrag : MonoBehaviour
         if (other.tag == "BlockContainerUI")
         {
             BlockContainerUI = other.GetComponent<BlockContainerManager>();
+            matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
         }
     }
 
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("BlockContainerUI"))
-        {
-            BlockContainerUI = other.GetComponent<BlockContainerManager>();
-        }
-    }
-    */
+   
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "BlockContainerUI")
         {
             BlockContainerUI = null;
+            matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         }
     }
 
-    private Vector3 GetMouseWorldPos()
-    {
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = _zCoordinate;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
-    }
+   
 
     public void ReturnToPool()
     {
@@ -145,6 +134,8 @@ public class CodeBlockDrag : MonoBehaviour
         _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+        matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
 
         _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
