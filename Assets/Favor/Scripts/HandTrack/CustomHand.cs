@@ -12,8 +12,8 @@ public class CustomHand : MonoBehaviour
 
     private void OnEnable()
     {
-        
-        if(grab == null)
+
+        if (grab == null)
         {
             grab = GetComponentInChildren<CustomGrabInteractor>();
             poke = GetComponentInChildren<PokeInteractor>();
@@ -23,29 +23,35 @@ public class CustomHand : MonoBehaviour
             grab.CustomOnGrab += OnGrab_DisablePoke;
             grab.CustomOnRelease += OnRelease_EnablePoke;
         }
+
     }
 
     private void OnDisable()
     {
-        
-        if(grab != null)
+        if (grab != null)
         {
-            grab.CustomOnRelease -= OnGrab_DisablePoke;
+            grab.CustomOnRelease -= OnRelease_EnablePoke;
             grab.CustomOnGrab -= OnGrab_DisablePoke;
         }
+
     }
 
 
     private void OnGrab_DisablePoke()
     {
-        poke.enabled = false;
-        DebugBoxManager.Instance.Log("포크 비활성화");
+        if (poke.enabled == true)
+        {
+            poke.enabled = false;
+            DebugBoxManager.Instance.Log("포크 비활성화");
+        }
     }
 
     private void OnRelease_EnablePoke()
     {
-        grab.enabled = true;
-        DebugBoxManager.Instance.Log("포크 활성화");
+        if (poke.enabled == false)
+        {
+            poke.enabled = true;
+            DebugBoxManager.Instance.Log("포크 활성화");
+        }
     }
-    event PropertyChangedEventHandler OnPropertyChanged;
 }
