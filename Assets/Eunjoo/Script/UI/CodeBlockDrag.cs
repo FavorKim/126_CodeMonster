@@ -84,11 +84,6 @@ public class CodeBlockDrag : MonoBehaviour
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
 
-        /*
-        // 부모를 UIManager로 변경
-        Transform uiManagerTransform = GameObject.Find("UIManager").transform;
-        transform.SetParent(uiManagerTransform, false); // 부모 변경, 월드 좌표는 일단 무시
-        */
 
         // 부모 변경 후에도 같은 월드 좌표를 유지하도록 다시 설정
         _rectTransform.position = worldPositionBeforeChange;
@@ -107,24 +102,16 @@ public class CodeBlockDrag : MonoBehaviour
         if (other.tag == "BlockContainerUI")
         {
             BlockContainerUI = other.GetComponent<BlockContainerManager>();
+            matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
         }
     }
-
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("BlockContainerUI"))
-        {
-            BlockContainerUI = other.GetComponent<BlockContainerManager>();
-        }
-    }
-    */
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "BlockContainerUI")
         {
             BlockContainerUI = null;
+            matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         }
     }
 
