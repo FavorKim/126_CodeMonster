@@ -12,8 +12,9 @@ Shader "Custom/Outline"
 
     SubShader
     {
-        Tags { "Queue" = "Transparent" }
-
+        Tags { "Queue" = "Transparent" } // 여기에서 큐를 Transparent로 변경
+        Blend SrcAlpha OneMinusSrcAlpha // 알파 블렌딩 설정
+        ZWrite Off // 깊이 쓰기 비활성화
         // 외곽선 그리기
         Pass
         {
@@ -117,6 +118,7 @@ Shader "Custom/Outline"
                 fixed4 texColor = tex2D(_MainTex, i.uv) * _Color;
 
                 fixed4 finalColor = texColor * (diff + spec * _SpecularIntensity);
+                finalColor.a *= _Color.a; // 알파 값 유지
 
                 return finalColor;
             }
