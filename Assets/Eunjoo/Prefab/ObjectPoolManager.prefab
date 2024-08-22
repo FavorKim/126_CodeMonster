@@ -68,17 +68,17 @@ MonoBehaviour:
   - BlockName: 4
     BlockType: 0
     initCount: 10
-    prefab: {fileID: 3369126874611500125, guid: 2a421380ea2205b49bb23b8631051609, type: 3}
+    prefab: {fileID: 3926117051703733921, guid: f0d97f39239b570429d68e54c78ffc34, type: 3}
     container: {fileID: 0}
   - BlockName: 5
     BlockType: 0
     initCount: 10
-    prefab: {fileID: 3369126874611500125, guid: 68556d297bc20e941bebe0911b34e510, type: 3}
+    prefab: {fileID: 4460319202916282221, guid: b4c78d8d7c5108d4b8581668bb4808c2, type: 3}
     container: {fileID: 0}
   - BlockName: 6
     BlockType: 0
     initCount: 10
-    prefab: {fileID: 3369126874611500125, guid: 78c621f5245c95049885fdc02de6e066, type: 3}
+    prefab: {fileID: 7007317550785924023, guid: e1d1f933c18ed3b49b94074197d029ed, type: 3}
     container: {fileID: 0}
   - BlockName: 7
     BlockType: 0
