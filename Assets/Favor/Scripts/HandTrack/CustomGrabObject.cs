@@ -8,6 +8,7 @@ using UnityEngine;
 public class CustomGrabObject : MonoBehaviour
 {
     [SerializeField] HandGrabInteractable grab;
+    bool isGrabbing;
     void Start()
     {
         grab = GetComponent<HandGrabInteractable>();
@@ -20,18 +21,7 @@ public class CustomGrabObject : MonoBehaviour
     {
         grab.WhenStateChanged += OnGrabStateChanged;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E)) 
-        {
-            OnGrab.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            OnRelease.Invoke();
-        }
-    }
+  
 
     private void OnDisable()
     {
@@ -51,15 +41,5 @@ public class CustomGrabObject : MonoBehaviour
         {
             OnRelease.Invoke();
         }
-    }
-
-    private void OnGrab_ChangeSize()
-    {
-        transform.localScale = transform.localScale * 1.5f;
-    }
-
-    private void OnRelease_ChangeSize()
-    {
-        transform.localScale = transform.localScale / 1.5f;
     }
 }
