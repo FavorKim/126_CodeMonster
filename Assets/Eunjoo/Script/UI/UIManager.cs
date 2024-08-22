@@ -33,8 +33,9 @@ public class UIManager : Singleton<UIManager>
     private BlockContainerManager BlockContainerManager;
     private StageBlockUIManager StageBlockManager;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         BlockContainerManager = BlockContainerUI.GetComponent<BlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
 

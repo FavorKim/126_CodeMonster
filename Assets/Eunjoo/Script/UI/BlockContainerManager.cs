@@ -22,14 +22,6 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         InteractEventManager.Instance.RegistOnClickRestartBtn(ResetBlockContainer);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ResetBlockContainer();
-        }
-    }
-
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
     {
         if (PlusContainerUI == true)

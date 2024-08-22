@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private bool isMove;
     private bool isGameOver;
     private bool isDie;
+    private bool isPlaying;
     public void InitPlayer(StageManager stageManager)
     {
         this.stageManager = stageManager;
@@ -132,8 +133,16 @@ public class Player : MonoBehaviour
         }
         else if (blockIndex <= 7)
         {
-            attackBlockType = GetAttackTypeFromBlock(blockIndex);
-            Attack();
+            if (GameRule.CheckPlayerPosAndMonster(position) == true)
+            {
+                attackBlockType = GetAttackTypeFromBlock(blockIndex);
+                Attack();
+            }
+            else
+            {
+                isGameOver = true;
+                DebugBoxManager.Instance.Log("몬스터가 없는데 공격함. 게임오버");
+            }
         }
     }
 
@@ -233,6 +242,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator PlayerAction()
     {
+        isPlaying = true;
         int index = 0;
         List<int> indexList = BlockContainerManager.Instance.GetContatinerBlocks();
         if (indexList == null)
@@ -243,7 +253,6 @@ public class Player : MonoBehaviour
         //DebugBoxManager.Instance.Log($"index count : {indexList.Count}, index : {index}");
         while (indexList.Count > index && isGameOver == false)
         {
-            
             //이동중일때 멈춤
             yield return new WaitWhile(() => isMove);
             Execute(indexList[index]);
@@ -258,7 +267,7 @@ public class Player : MonoBehaviour
 
 
         DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
-
+        isPlaying = false;
         //if(isDie)
         //{
         //    this.gameObject.SetActive(false);
@@ -267,7 +276,8 @@ public class Player : MonoBehaviour
 
     public void StartPlayerAction()
     {
-        StartCoroutine(PlayerAction());
+        if (!isPlaying)
+            StartCoroutine(PlayerAction());
     }
 
     public void ResetPlayer()
