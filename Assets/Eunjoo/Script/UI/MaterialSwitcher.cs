@@ -9,15 +9,17 @@ public class MaterialChanger : MonoBehaviour
     public Material[] materials;  // 3개의 머티리얼 배열로 설정
 
     private Renderer rend;  // 오브젝트의 렌더러
-    private Outlinable outlineable;
-    private void Start()
-    {
-        outlineable = gameObject.GetComponentInParent<Outlinable>();
-        outlineable.AddAllChildRenderersToRenderingList();
-    }
+    [SerializeField]private Outlinable outlineable;
+   
 
     public void ChangeMaterial(MaterialType index)
     {
+        if (outlineable == null)
+        {
+            outlineable = gameObject.GetComponentInParent<Outlinable>();
+            outlineable.AddAllChildRenderersToRenderingList();
+        }
+
         if (index >= 0 && index < MaterialType.MAX)
         {
             if (rend == null)

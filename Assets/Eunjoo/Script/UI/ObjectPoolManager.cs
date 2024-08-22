@@ -70,7 +70,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         foreach (PoolInfo poolInfo in poolInfoList)
         {
             // Prefab의 BlockName과 BlockType을 가져오기 위해 임시 객체를 생성하지 않고 접근합니다.
-            CodeBlockDrag blockDrag = poolInfo.prefab.GetComponent<CodeBlockDrag>();
+            CodeBlockDrag blockDrag = poolInfo.prefab.GetComponentInChildren<CodeBlockDrag>();
 
             if (blockDrag == null)
             {
