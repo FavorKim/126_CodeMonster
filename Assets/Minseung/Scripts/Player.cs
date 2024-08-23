@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private bool isMove;
     private bool isGameOver;
     private bool isDie;
-    private bool isPlaying;
+    private bool isPlaying = false;
     public void InitPlayer(StageManager stageManager)
     {
         this.stageManager = stageManager;
@@ -283,6 +283,7 @@ public class Player : MonoBehaviour
         isAttack = false;
         isMove = false;
         isGameOver = false;
+        isPlaying = false;
 
         DebugBoxManager.Instance.ClearText();
     }
