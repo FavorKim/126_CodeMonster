@@ -39,7 +39,13 @@ public class UIManager : Singleton<UIManager>
         BlockContainerManager = BlockContainerUI.GetComponent<BlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
 
+        SetUIManager();
+    }
+
+    private void SetUIManager()
+    {
         BlockIndexLength = BlockIndexList.Length;
+        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
 
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화 
         BlockIndexListCheck();
