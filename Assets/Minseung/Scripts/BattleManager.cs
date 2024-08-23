@@ -59,7 +59,8 @@ public class BattleManager : Singleton<BattleManager>
         {
             // 적의 위치와 일치하지 않는 경우, 공격이 빗나간 것으로 간주하여 패배 처리
             //-> 빗나가면 아무일도 없으니 승리 처리로 바꿈
-            UnityEngine.Debug.Log("Attack missed!");
+            DebugBoxManager.Instance.Log("공격 빗나감 (같은 자리에 없음)");
+            targetMonster = null;
             Invoke(nameof(PlayerWin), 2);
         }
 

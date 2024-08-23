@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     {
         DisableTypeMonsterPrefab();
         this.transform.GetChild(monsterTypeIndex - 4).gameObject.SetActive(true);
-        
+
 
 
 
@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
         {
             if (GameRule.CheckPlayerPosAndMonster(position) == false)//몬스터와 같은 자리인데 움직이려 하는가
             {
+                isMove = true;
                 StartCoroutine(Move(GetDirectionFromBlock(blockIndex)));
             }
             else
@@ -133,16 +134,8 @@ public class Player : MonoBehaviour
         }
         else if (blockIndex <= 7)
         {
-            if (GameRule.CheckPlayerPosAndMonster(position) == true)
-            {
-                attackBlockType = GetAttackTypeFromBlock(blockIndex);
-                Attack();
-            }
-            else
-            {
-                isGameOver = true;
-                DebugBoxManager.Instance.Log("몬스터가 없는데 공격함. 게임오버");
-            }
+            attackBlockType = GetAttackTypeFromBlock(blockIndex);
+            Attack();
         }
     }
 
@@ -150,7 +143,7 @@ public class Player : MonoBehaviour
     {
         Vector2Int newPosition = position + direction;
         Vector3 movePos = new Vector3(newPosition.x, 0, newPosition.y);
-        isMove = true;
+
 
         while (MoveFinsh(transform.position, movePos))
         {
@@ -173,8 +166,7 @@ public class Player : MonoBehaviour
         {
             isGameOver = true;
             DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
-            isMove = false;
-            yield break;
+
         }
         isMove = false;
 
@@ -250,21 +242,21 @@ public class Player : MonoBehaviour
             //DebugBoxManager.Instance.Log("indexList is Null");
         }
 
-        //DebugBoxManager.Instance.Log($"index count : {indexList.Count}, index : {index}");
         while (indexList.Count > index && isGameOver == false)
         {
+
             //이동중일때 멈춤
-            yield return new WaitWhile(() => isMove);
+
             Execute(indexList[index]);
             BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
-            if(index >0)
-                BlockContainerManager.Instance.SetBlockMaterial(index-1, MaterialType.USE_CODEBLOCK_MATERIAL);
+            if (index > 0)
+                BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
             //공격중일때 멈춤
             index++;
             yield return new WaitWhile(() => isAttack);
+            yield return new WaitWhile(() => isMove);
             //yield return new WaitForSeconds(1);
         }
-
 
         DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
         isPlaying = false;
@@ -285,8 +277,8 @@ public class Player : MonoBehaviour
         this.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
         EnableTypeMonsterPrefab(4);
-        position=stageManager.GetStartPosition();
-        transform.position=stageManager.GetPlayerRestPos();
+        position = stageManager.GetStartPosition();
+        transform.position = stageManager.GetPlayerRestPos();
         isDie = false;
         isAttack = false;
         isMove = false;
