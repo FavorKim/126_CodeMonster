@@ -106,7 +106,10 @@ public class StageManager : Singleton<StageManager>
     {
         return playerInstance;
     }
-
+    public int GetBlockCountIndex()
+    {
+        return currentStageMap.BlockContainerLength;
+    }
     public string GetMonsterNameAtIndex(int index)
     {
         if (index >= 0 && index < currentStageMap.MonsterNameList.Count)
