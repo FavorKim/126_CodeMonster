@@ -54,21 +54,13 @@ public class BlockCountBox : MonoBehaviour
 
     IEnumerator BlockCountError()
     {
-        // X text 메세지가 연달아 실행 됐을시 null 상태가 되면 에러가 뜨기 때문에 널 체크
-        
-        if (BlockCountTextbox != null)
-            BlockCountTextbox.SetActive(false);
-
-        if (BlockXTextbox != null)
-            BlockXTextbox.SetActive(true);
+        BlockCountTextbox.SetActive(false);
+        BlockXTextbox.SetActive(true);
 
         yield return new WaitForSeconds(1f);
 
-        if (BlockCountTextbox != null)
-            BlockCountTextbox.SetActive(true);
-
-        if (BlockXTextbox != null)
-            BlockXTextbox.SetActive(false);
+        BlockCountTextbox.SetActive(true);
+        BlockXTextbox.SetActive(false);
 
         blockCountErrorCoroutine = null;
     }

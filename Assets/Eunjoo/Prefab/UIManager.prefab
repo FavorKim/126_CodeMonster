@@ -356,7 +356,6 @@ GameObject:
   - component: {fileID: 9094176840889294403}
   - component: {fileID: 4064310826559156559}
   - component: {fileID: 1673976676684157961}
-  - component: {fileID: 1927686035676303714}
   m_Layer: 5
   m_Name: Block X Text Box
   m_TagString: Untagged
@@ -480,20 +479,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1927686035676303714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2686414888838445122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65660bcb4e5789d45bea81d4a552bae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlockCountTextbox: {fileID: 0}
-  BlockXTextbox: {fileID: 0}
 --- !u!1 &3914775743989842952
 GameObject:
   m_ObjectHideFlags: 0
