@@ -19,7 +19,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject BlockContainerUI;
     public GameObject AttackBlockUI;
     public GameObject MoveBlockUI;
-    public GameObject Loop_ConBlockUI;
+    public GameObject LoopBlockUI;
+    public GameObject ConditionalBlockUI;
 
 
     [Header("BlockContainer UI")]
@@ -128,6 +129,8 @@ public class UIManager : Singleton<UIManager>
         // 인덱스 리스트에 따라 UI 활성화/비활성화 처리
         MoveBlockUI.SetActive(hasMoveBlock);
         AttackBlockUI.SetActive(hasAttackBlock);
-        Loop_ConBlockUI.SetActive(hasLoopConBlock);
+
+        // Loop랑 Conditional Block UI는 인덱스 리스트에 따라 판별 X 
+        //Loop_ConBlockUI.SetActive(hasLoopConBlock);
     }
 }
