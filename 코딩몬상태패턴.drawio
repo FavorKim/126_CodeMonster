@@ -28,10 +28,10 @@
           <mxGeometry x="160" y="260" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-3" value="죽음(n)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="354" y="390" width="120" height="80" as="geometry" />
+          <mxGeometry x="370" y="390" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-4" value="죽음(n+1)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="490" y="260" width="120" height="80" as="geometry" />
+          <mxGeometry x="506" y="260" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2h5KcTOnwmNEDswmsp0-5" target="Q2h5KcTOnwmNEDswmsp0-2">
           <mxGeometry relative="1" as="geometry" />
@@ -46,7 +46,7 @@
           <mxGeometry x="230" y="390" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-7" value="힌트강조&lt;div&gt;(파트너 캐릭터가&lt;/div&gt;&lt;div&gt;추가적인 행동을&lt;/div&gt;&lt;div&gt;해야하는 경우)&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="10" width="120" height="80" as="geometry" />
+          <mxGeometry x="506" y="120" width="120" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
