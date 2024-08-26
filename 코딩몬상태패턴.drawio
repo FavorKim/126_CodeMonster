@@ -7,11 +7,16 @@
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2h5KcTOnwmNEDswmsp0-1" target="Q2h5KcTOnwmNEDswmsp0-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="Q2h5KcTOnwmNEDswmsp0-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2h5KcTOnwmNEDswmsp0-1" target="Q2h5KcTOnwmNEDswmsp0-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="220" />
+              <mxPoint x="220" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-1" value="아이들" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="120" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="Q2h5KcTOnwmNEDswmsp0-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2h5KcTOnwmNEDswmsp0-2" target="Q2h5KcTOnwmNEDswmsp0-1">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2h5KcTOnwmNEDswmsp0-2" target="Q2h5KcTOnwmNEDswmsp0-4">
           <mxGeometry relative="1" as="geometry" />
@@ -23,7 +28,7 @@
           <mxGeometry x="160" y="260" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-3" value="죽음(n)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="370" y="390" width="120" height="80" as="geometry" />
+          <mxGeometry x="354" y="390" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-4" value="죽음(n+1)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="490" y="260" width="120" height="80" as="geometry" />
@@ -32,13 +37,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-5" value="이동" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="110" y="390" width="80" height="80" as="geometry" />
+          <mxGeometry x="130" y="390" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2h5KcTOnwmNEDswmsp0-6" target="Q2h5KcTOnwmNEDswmsp0-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-6" value="공격" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="250" y="390" width="80" height="80" as="geometry" />
+          <mxGeometry x="230" y="390" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="Q2h5KcTOnwmNEDswmsp0-7" value="힌트강조&lt;div&gt;(파트너 캐릭터가&lt;/div&gt;&lt;div&gt;추가적인 행동을&lt;/div&gt;&lt;div&gt;해야하는 경우)&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="10" width="120" height="80" as="geometry" />
