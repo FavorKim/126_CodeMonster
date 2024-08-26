@@ -340,10 +340,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 19.7
       objectReference: {fileID: 0}
-    - target: {fileID: 3451118283099488851, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5050122589545140638, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _handGrabInteractor
       value: 
@@ -376,10 +372,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 653884956426438108, guid: 64f884351318b694f942625580e64a8b, type: 3}
-    - target: {fileID: 7066540121226815581, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8126084796365902297, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _handGrabState
       value: 

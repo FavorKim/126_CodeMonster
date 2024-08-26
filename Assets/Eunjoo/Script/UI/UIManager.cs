@@ -1,6 +1,7 @@
 using EnumTypes;
 using EventLibrary;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public static class UIConstants
 {
@@ -40,7 +41,6 @@ public class UIManager : Singleton<UIManager>
 
         SetUIManager();
     }
-
 
     private void SetUIManager()
     {
