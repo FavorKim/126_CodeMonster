@@ -501,6 +501,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 175869860}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: HintCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: Loop_ConBlockUI
       value: 
       objectReference: {fileID: 0}
@@ -580,7 +584,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5671465153983839671, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4691640655874080385, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
     - {fileID: 8352322160222331009, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
