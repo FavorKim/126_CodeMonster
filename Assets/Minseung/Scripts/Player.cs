@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         InitPlayer(StageManager.Instance);
         SetPlayerType();
         SetPlayerPrefab();
-        InteractEventManager.Instance.startBtn.OnPoke += StartPlayerAction;
+        InteractEventManager.Instance.RegistOnClickStartBtn(StartPlayerAction);
         InteractEventManager.Instance.RegistOnClickRestartBtn(ResetPlayer);
     }
 
