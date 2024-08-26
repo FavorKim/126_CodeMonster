@@ -42,7 +42,6 @@ public class CustomHand : MonoBehaviour
         if (poke.enabled == true)
         {
             poke.enabled = false;
-            DebugBoxManager.Instance.Log("포크 비활성화");
         }
     }
 
@@ -51,7 +50,6 @@ public class CustomHand : MonoBehaviour
         if (poke.enabled == false)
         {
             poke.enabled = true;
-            DebugBoxManager.Instance.Log("포크 활성화");
         }
     }
 }
