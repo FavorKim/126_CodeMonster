@@ -15,8 +15,7 @@ enum PlayerStateName
 public class StateMachin<T> where T : class
 {
     public BaseState<T> CurrentState { get; set; }  // 현재 상태
-    private Dictionary<Enum, BaseState<T>> states =
-    new Dictionary<Enum, BaseState<T>>();
+    private Dictionary<Enum, BaseState<T>> states = new Dictionary<Enum, BaseState<T>>();
 
 
     public StateMachin(Enum stateName, BaseState<T> state)

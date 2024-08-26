@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -105,21 +102,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    //private void EnableTypeMonster(int monsterTypeIndex)
-    //{
-    //    switch (monsterTypeIndex)
-    //    {
-    //        case 5:
-    //            EnableTypeMonsterPrefab(monsterTypeIndex);
-    //            break;
-    //        case 6:
-    //            transform.GetChild(1).gameObject.SetActive(true);
-    //            break;
-    //        case 7:
-    //            transform.GetChild(2).gameObject.SetActive(true);
-    //            break;
-    //    }
-    //}
+    
     private void DisableTypeMonsterPrefab()
     {
         for (int i = 0; i < 4; i++)
@@ -132,13 +115,7 @@ public class Player : MonoBehaviour
     {
         DisableTypeMonsterPrefab();
         this.transform.GetChild(monsterTypeIndex - 4).gameObject.SetActive(true);
-
-
-
-
     }
-
-   
 
     
     public void Win()
@@ -152,10 +129,6 @@ public class Player : MonoBehaviour
     {
         EnableTypeMonsterPrefab(4);
         stateMachin.ChangeState(PlayerStateName.DIEHIT);
-        
-        //isGameOver = true;
-        //isAttack = false;
-        //isDie = true;
     }
 
     public Vector2Int GetCurrentPosition()
@@ -163,16 +136,10 @@ public class Player : MonoBehaviour
         return position;
     }
 
-    
-    
-
-    
-
     public void StartPlayerAction()
     {
         if (!isPlaying)
             stateMachin.ChangeState(PlayerStateName.ACTION);
-            //StartCoroutine(PlayerAction());
     }
 
     public void ResetPlayer()

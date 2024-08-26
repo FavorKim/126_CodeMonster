@@ -55,6 +55,7 @@ public class PlayerAction : BaseState<Player>
     private bool isAttack = false;
     public PlayerAction(Player controller) : base(controller)
     {
+
     }
 
     public override void OnEnterState()
@@ -79,52 +80,34 @@ public class PlayerAction : BaseState<Player>
     }
     private void BlockAction()
     {
-        //isPlaying = true;
-        if (indexList == null)
+        if (indexList == null || index >= indexList.Count)
         {
-            //DebugBoxManager.Instance.Log("indexList is Null");
+            DebugBoxManager.Instance.Log("플레이어 행동종료.");
+            Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
+            return;
         }
 
-        while (indexList.Count > index && Controller.isGameOver == false)
-        {
-            if (isAttack == true) 
-            {
-                continue;
-            }
-            //이동중일때 멈춤
-            BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
-            if (index > 0)
-                BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+        if (isAttack) return;
 
-            Execute(indexList[index]);
-            
-            //공격중일때 멈춤
-            //yield return new WaitForSeconds(1);
+        BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+        if(index > 0)
+        {
+            BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
         }
 
-        DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
-        Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
-        //isPlaying = false;
-        //if(isDie)
-        //{
-        //    this.gameObject.SetActive(false);
-        //}
+        Execute(indexList[index]);
     }
     public void Execute(int blockIndex)
     {
-      
-
         if (blockIndex <= 4)
         {
-            if (GameRule.CheckPlayerPosAndMonster(position) == false)//몬스터와 같은 자리인데 움직이려 하는가
+            if (!GameRule.CheckPlayerPosAndMonster(position))//몬스터와 같은 자리인데 움직이려 하는가
             {
                 Move(GetDirectionFromBlock(blockIndex));
             }
             else
             {
-                //게임오버
                 DebugBoxManager.Instance.Log("몬스터가 있는데 이동함. 게임오버");
-                
                 Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
             }
         }
@@ -132,6 +115,14 @@ public class PlayerAction : BaseState<Player>
         {
             attackBlockType = GetAttackTypeFromBlock(blockIndex);
             Attack();
+        }
+        else if (blockIndex >= 8)
+        {
+            LoopBlock loopBlock = DataManagerTest.Instance.GetLoopBlockData(blockIndex);
+            if (loopBlock != null)
+            {
+                Controller.StartCoroutine(ExecuteLoopBlock(loopBlock));
+            }
         }
     }
     private Vector2Int GetDirectionFromBlock(int blockIndex)
@@ -156,15 +147,12 @@ public class PlayerAction : BaseState<Player>
 
         if(MoveFinsh(Controller.gameObject.transform.position, movePos))
         {
-            index++;
-
+            index++;             
             position = newPosition;
-
             Controller.gameObject.transform.position = movePos;
 
-            if (GameRule.CheckPlayerPosAndMonster(position) == true)//몬스터와 같은 자리여서 위치를 바꾼다
+            if (GameRule.CheckPlayerPosAndMonster(position))//몬스터와 같은 자리여서 위치를 바꾼다
             {
-                //위치 변경
                 Controller.gameObject.transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
                 DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
 
@@ -175,28 +163,32 @@ public class PlayerAction : BaseState<Player>
                 Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
             }
         }
-
-       
-
-
     }
 
     private bool MoveFinsh(Vector3 playerPos, Vector3 targetPos)
     {
-        if (Vector3.Distance(targetPos, playerPos) <= 0.1f)
-        {
-            return false;
-        }
-        return true;
+        return Vector3.Distance(targetPos, playerPos) > 0.1f;
     }
-
-
-
 
     private void Attack()
     {
         Controller.EnableTypeMonsterPrefab(attackBlockType);
         BattleManager.Instance.BattlePhase(position, attackBlockType);
+        isAttack = true;
+    }
+
+    private IEnumerator ExecuteLoopBlock(LoopBlock loopBlock)
+    {
+        for(int i = 0; i < loopBlock.LoopCount; i++)
+        {
+            foreach(int subBlockIndex in loopBlock.SubBlockIndices)
+            {
+                Execute(subBlockIndex);
+                yield return new WaitWhile(() => isAttack || Controller.isGameOver);
+            }
+        }
+        index++;
+        BlockAction();
     }
 
     public int GetAttackBlockType()
@@ -214,6 +206,7 @@ public class PlayerAction : BaseState<Player>
     {
         index++;
         isAttack = false;
+        BlockAction();
     }
 
 }

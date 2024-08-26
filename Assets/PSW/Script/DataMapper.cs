@@ -31,7 +31,14 @@ public class AttackBlock
     public int AttackType { get; set; }
 }
 
-public class StageMap
+public class LoopBlock
+{
+    public int BlockIndex { get; set; } // 반복 블록의 인덱스
+    public int LoopCount { get; set; } // 반복 횟수
+    public List<int> SubBlockIndices { get; set; }  // 반복 블록 안에 포함된 블록들의 인덱스 목록
+}
+
+    public class StageMap
 {
     public int StageIndex { get; set; }
     public Vector2Int StageSize { get; set; }
