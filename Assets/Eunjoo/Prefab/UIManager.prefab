@@ -377,7 +377,7 @@ MonoBehaviour:
   BlockType: 0
   BlockContainerUI: {fileID: 0}
   PoolParent: {fileID: 0}
-  grab: {fileID: 0}
+  matChanger: {fileID: 0}
 --- !u!1 &3914775743989842952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,6 +1551,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[0].container
+      value: 
+      objectReference: {fileID: 4776451766569959550}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[1].container
+      value: 
+      objectReference: {fileID: 4776451766569959550}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[3].container
+      value: 
+      objectReference: {fileID: 4776451766569959550}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[4].container
+      value: 
+      objectReference: {fileID: 7895903523279074623}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[5].container
+      value: 
+      objectReference: {fileID: 7895903523279074623}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[6].container
+      value: 
+      objectReference: {fileID: 7895903523279074623}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[7].container
+      value: 
+      objectReference: {fileID: 6991629212338766228}
+    - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
+      propertyPath: poolInfoList.Array.data[8].container
+      value: 
+      objectReference: {fileID: 6991629212338766228}
     - target: {fileID: 6950330999182370816, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager

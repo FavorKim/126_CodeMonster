@@ -74,6 +74,10 @@ public class CodeBlockDrag : MonoBehaviour
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
         }
+        else if (BlockContainerUI == null)
+        {
+            ReturnToPool();
+        }
         else
         {
             ReturnToPool();
@@ -98,6 +102,10 @@ public class CodeBlockDrag : MonoBehaviour
         if (BlockContainerUI == null)
         {
             GameObject objInstance = ObjectPoolManager.Instance.GetObject(BlockName);
+        }
+        else
+        {
+            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - BlockContainerManager.Instance.CountCodeBlockDragComponents());
         }
     }
 
