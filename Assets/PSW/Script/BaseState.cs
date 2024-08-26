@@ -133,6 +133,16 @@ public class PlayerAction : BaseState<Player>
             attackBlockType = GetAttackTypeFromBlock(blockIndex);
             Attack();
         }
+        else if (blockIndex == 8)
+        {
+            // 조건문
+
+        }
+        else
+        {
+            // 반복문
+            // 로직이
+        }
     }
     private Vector2Int GetDirectionFromBlock(int blockIndex)
     {

@@ -31,6 +31,7 @@ public class AttackBlock
     public int AttackType { get; set; }
 }
 
+
 public class StageMap
 {
     public int StageIndex { get; set; }

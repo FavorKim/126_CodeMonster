@@ -21,6 +21,71 @@ public class CodeBlockDrag : MonoBehaviour
     [SerializeField]private MaterialChanger matChanger;
     private CustomGrabObject grab;
 
+    CodeBlockData data; // 초기화가 됨.
+
+
+    /*
+    인풋 불 물 풀
+    3
+
+    조건블록은
+    
+    실행부 (Action)
+    조건판단부 (Func<bool>)
+    data의 인덱스가 조건이다
+    bool
+
+
+    9개
+    
+    
+    1번은 블록컨테이너에서 조건블록이 들어왔냐?
+
+    
+    ? 우리가 채점하느냐? 답지를 주느냐. <<< 조건블럭이 들어가는스테이지는 답지가 있어야하지 않나?
+    지금은? 연출상 굉장히 도움이됐는데
+    조건은? 채점은 답지가 해주고
+    연출은 어떻게든 알아서
+    조건블럭은 답지를 봐서 제대로된 위치에 제대로 된 조건블럭인지 먼저 검사하기?
+    
+
+    if 조건인지(인덱스 비교)
+
+    1스테이지 조건블럭 -> ?번째 위치에 ~~조건일 때 ~~행동을 하는 조건블럭이 와야함.
+
+
+    조건상태 조건행동
+    Change액션 (리스트를 쭉 받아왔음) - 기존
+
+    리스트를 하나씩 빼와서
+    
+    그 빼온 인덱스 (i)
+    
+    switch(i)
+    case 이동:
+    Change이동
+
+    case 공격:
+    Change공격
+
+    case 조건:
+    Change조건
+
+    조건state
+    
+    최종적으로는
+    행동을수행.
+    이 후로는
+    이전과 같음.
+
+
+    ?
+
+    ?
+
+    */
+
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -29,6 +94,18 @@ public class CodeBlockDrag : MonoBehaviour
             grab = grabobj;
         }
         PoolParent = transform.parent.gameObject;
+        // data = Setdata();
+        // if (data.index == condition) addcomponent(ConditionBlock); (init)
+
+        // var cond = getcomponent(conditionblock); (Get)
+
+        // if(cond.condition) cond.Action(); (Condition Action)
+
+        // 총합 인덱스 숫자 == 정답
+        // 자식 인덱스가 == 불
+        // 
+
+
     }
 
     

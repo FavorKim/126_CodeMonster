@@ -28,6 +28,9 @@ public class InteractEventManager : Singleton<InteractEventManager>
         pauseBtn.OnPoke += action;
     }
 
+    
+
+
     private void OnApplicationQuit()
     {
         startBtn.OnPoke = null;
