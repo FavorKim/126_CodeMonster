@@ -8,6 +8,7 @@ public class InteractEventManager : Singleton<InteractEventManager>
     [SerializeField] public CustomPokedObject startBtn;
     [SerializeField] CustomPokedObject resetBtn;
     [SerializeField] CustomPokedObject restartBtn;
+    [SerializeField] CustomPokedObject pauseBtn;
   
     public void RegistOnClickStartBtn(Action action)
     {
@@ -22,11 +23,16 @@ public class InteractEventManager : Singleton<InteractEventManager>
     {
         restartBtn.OnPoke += action;
     }
+    public void RegistOnClickPauseBtn(Action action)
+    {
+        pauseBtn.OnPoke += action;
+    }
 
     private void OnApplicationQuit()
     {
         startBtn.OnPoke = null;
         resetBtn.OnPoke = null;
         restartBtn.OnPoke = null;
+        pauseBtn.OnPoke = null;
     }
 }

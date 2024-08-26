@@ -20,6 +20,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
         InteractEventManager.Instance.RegistOnClickResetBtn(ResetBlockContainer);
         InteractEventManager.Instance.RegistOnClickRestartBtn(ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnClickPauseBtn(ResetContainerBlockMaterial);
     }
 
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
@@ -106,6 +107,15 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
             {
                 codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
             }
+        }
+    }
+
+    void ResetContainerBlockMaterial()
+    {
+        GetContatinerBlocks();
+        foreach(MaterialChanger mat in materialChangers)
+        {
+            mat.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         }
     }
 

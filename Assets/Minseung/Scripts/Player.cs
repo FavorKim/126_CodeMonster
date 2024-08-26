@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         SetPlayerPrefab();
         InteractEventManager.Instance.RegistOnClickStartBtn(StartPlayerAction);
         InteractEventManager.Instance.RegistOnClickRestartBtn(ResetPlayer);
+        InteractEventManager.Instance.RegistOnClickPauseBtn(ResetPlayer);
     }
 
     private void Update()
