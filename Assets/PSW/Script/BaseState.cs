@@ -52,6 +52,7 @@ public class PlayerAction : BaseState<Player>
     private int attackBlockType;
     private int index;
     List<int> indexList;
+    private bool isAttack = false;
     public PlayerAction(Player controller) : base(controller)
     {
     }
@@ -62,7 +63,8 @@ public class PlayerAction : BaseState<Player>
         Controller.isPlaying = true;
         index = 0;
         indexList = BlockContainerManager.Instance.GetContatinerBlocks();
-        Controller.IndexPlusEvent += PlusIndex;
+        Controller.WinEvent += PlayerWinEvent;
+        isAttack = false;
     }
 
     public override void OnUpdateState()
@@ -73,12 +75,11 @@ public class PlayerAction : BaseState<Player>
     public override void OnExitState()
     {
         Controller.isPlaying = false;
-        Controller.IndexPlusEvent -= PlusIndex;
+        Controller.WinEvent -= PlayerWinEvent;
     }
     private void BlockAction()
     {
         //isPlaying = true;
-        int checkIndex = 0;
         if (indexList == null)
         {
             //DebugBoxManager.Instance.Log("indexList is Null");
@@ -86,7 +87,7 @@ public class PlayerAction : BaseState<Player>
 
         while (indexList.Count > index && Controller.isGameOver == false)
         {
-            if(checkIndex != 0 && checkIndex == index)
+            if (isAttack == true) 
             {
                 continue;
             }
@@ -111,6 +112,8 @@ public class PlayerAction : BaseState<Player>
     }
     public void Execute(int blockIndex)
     {
+      
+
         if (blockIndex <= 4)
         {
             if (GameRule.CheckPlayerPosAndMonster(position) == false)//몬스터와 같은 자리인데 움직이려 하는가
@@ -207,9 +210,10 @@ public class PlayerAction : BaseState<Player>
         return blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
     }
 
-    public void PlusIndex()
+    public void PlayerWinEvent()
     {
         index++;
+        isAttack = false;
     }
 
 }

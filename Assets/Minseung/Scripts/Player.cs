@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Action IndexPlusEvent;
+    public Action WinEvent;
     [SerializeField]
     private List<GameObject> monsterPrefabs;
 
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
     public void Win()
     {
         EnableTypeMonsterPrefab(4);
-        IndexPlusEvent?.Invoke();
+        WinEvent?.Invoke();
         isAttack = false;
     }
 
