@@ -1,9 +1,21 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="페이지-1" id="75NmEydpJ82A0lqI4Ll7">
-    <mxGraphModel>
+    <mxGraphModel dx="904" dy="745" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="5emMolXI-B5V6bFtiUxk-5" value="조건 1 : 플레이어가 부시와 같은 위치에 있으면 (return bool)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5emMolXI-B5V6bFtiUxk-6" value="조건 1 : 플레이어가 부시와 같은 위치에 있으면 (return bool)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5emMolXI-B5V6bFtiUxk-7" value="조건 1 : 플레이어가 부시와 같은 위치에 있으면 (return bool)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="70" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5emMolXI-B5V6bFtiUxk-14" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;조건 상태&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;void 조건실행(Func&amp;lt;bool&amp;gt; con, Action act)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;{&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;if(con)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;act.invoke();&lt;/div&gt;&lt;div style=&quot;&quot;&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;" vertex="1" parent="1">
+          <mxGeometry x="200" y="190" width="350" height="350" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
