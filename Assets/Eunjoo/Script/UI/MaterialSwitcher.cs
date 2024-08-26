@@ -1,16 +1,11 @@
 using UnityEngine;
 
 
-
-
 public class MaterialChanger : MonoBehaviour
 {
     public Material[] materials;  // 3개의 머티리얼 배열로 설정
 
     private Renderer rend;  // 오브젝트의 렌더러
-
-    
-    
 
 
     public void ChangeMaterial(MaterialType index)
@@ -23,7 +18,6 @@ public class MaterialChanger : MonoBehaviour
         }
     }
 }
-
 
 public enum MaterialType
 {

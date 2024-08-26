@@ -12,7 +12,6 @@ public static class UIConstants
     public const int LOOP_CON_BLOCK_SIZE = 120;
 }
 
-
 public class UIManager : Singleton<UIManager>
 {
     [Header("UI List")]
@@ -41,6 +40,7 @@ public class UIManager : Singleton<UIManager>
 
         SetUIManager();
     }
+
 
     private void SetUIManager()
     {

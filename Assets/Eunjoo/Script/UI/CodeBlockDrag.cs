@@ -21,8 +21,6 @@ public class CodeBlockDrag : MonoBehaviour
     [SerializeField]private MaterialChanger matChanger;
     private CustomGrabObject grab;
 
-    
-
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -65,21 +63,24 @@ public class CodeBlockDrag : MonoBehaviour
             Debug.LogWarning($"OnDisable : {gameObject.name}'s grab is null");
     }
 
-    
-
+   
     private void OnBoxRelease()
     {
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+        // Container 내에 있고 코드 블럭을 넣을 수 있을때
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
         }
+        // Container 외에 있을때 
         else if (BlockContainerUI == null)
         {
             ReturnToPool();
         }
+        // Container 내에 있지만 코드 블럭을 넣을 수 없을때 
         else
         {
+            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCountError);
             ReturnToPool();
         }
     }
