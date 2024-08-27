@@ -1,5 +1,6 @@
 using EnumTypes;
 using EventLibrary;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -21,6 +22,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject MoveBlockUI;
     public GameObject LoopBlockUI;
     public GameObject ConditionalBlockUI;
+    public GameObject HintBox;
 
 
     [Header("BlockContainer UI")]
@@ -30,6 +32,10 @@ public class UIManager : Singleton<UIManager>
     [Header("StageBlockList UI")]
     public int[] BlockIndexList;
     private int BlockIndexLength;
+
+    [Header("HintBox UI")]
+    [SerializeField]public int HintCount;
+
 
     private BlockContainerManager BlockContainerManager;
     private StageBlockUIManager StageBlockManager;
@@ -41,6 +47,7 @@ public class UIManager : Singleton<UIManager>
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
 
         SetUIManager();
+        StartCoroutine(SetHintTimer());
     }
 
     private void SetUIManager()
@@ -57,6 +64,15 @@ public class UIManager : Singleton<UIManager>
         BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
 
         EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
+    }
+
+    IEnumerator SetHintTimer()
+    {
+        HintBox.SetActive(false);
+
+        yield return new WaitForSeconds(HintCount);
+
+        HintBox.SetActive(true);
     }
 
     private void BlockUISizeSet()
