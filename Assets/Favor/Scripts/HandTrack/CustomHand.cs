@@ -52,4 +52,26 @@ public class CustomHand : MonoBehaviour
             poke.enabled = true;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        DebugBoxManager.Instance.Log($"{other.name} : Trigger Enter");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        DebugBoxManager.Instance.Log($"{other.name} : Trigger Exit");
+    }
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        DebugBoxManager.Instance.Log($"{collision.transform.name} : Collision Enter");
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        DebugBoxManager.Instance.Log($"{collision.transform.name} : Collision Exit");
+    }
+    */
 }
