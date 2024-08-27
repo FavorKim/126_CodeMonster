@@ -22,7 +22,9 @@ public class UIManager : Singleton<UIManager>
     public GameObject MoveBlockUI;
     public GameObject LoopBlockUI;
     public GameObject ConditionalBlockUI;
-    public GameObject HintBox;
+    public GameObject HintBoxUI;
+    public GameObject VictoryUI;
+    public GameObject GetMonsterUI;
 
 
     [Header("BlockContainer UI")]
@@ -68,11 +70,11 @@ public class UIManager : Singleton<UIManager>
 
     IEnumerator SetHintTimer()
     {
-        HintBox.SetActive(false);
+        HintBoxUI.SetActive(false);
 
         yield return new WaitForSeconds(HintCount);
 
-        HintBox.SetActive(true);
+        HintBoxUI.SetActive(true);
     }
 
     private void BlockUISizeSet()
@@ -119,7 +121,6 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
     private void BlockIndexListCheck()
     {
         bool hasMoveBlock = false;
@@ -148,5 +149,25 @@ public class UIManager : Singleton<UIManager>
 
         // Loop랑 Conditional Block UI는 인덱스 리스트에 따라 판별 X 
         //Loop_ConBlockUI.SetActive(hasLoopConBlock);
+    }
+
+    public void VictoryUIEnable()
+    {
+        VictoryUI.SetActive(true);
+    }
+
+    public void VictoryUIDisable()
+    {
+        VictoryUI.SetActive(false);
+    }
+
+    public void GetMonsterUIEnable()
+    {
+        GetMonsterUI.SetActive(true);
+    }
+
+    public void GetMonsterUIDisable()
+    {
+        GetMonsterUI.SetActive(false);
     }
 }
