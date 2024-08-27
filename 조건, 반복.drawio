@@ -1,9 +1,75 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="페이지-1" id="23MW2lw8epL9sOUy5IFj">
-    <mxGraphModel>
+    <mxGraphModel dx="904" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="HzeTCu4wp6GELutpdJu7-2" value="조건" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="130" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-3" value="조건식" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-2">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-4" value="참일 때 블록" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-2">
+          <mxGeometry y="60" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-5" value="거짓일 때 블록" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-2">
+          <mxGeometry y="90" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-6" value="반복" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="130" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-7" value="조건식(혹은 반복 횟수)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-6">
+          <mxGeometry y="30" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-8" value="반복할 블록들 리스트" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-6">
+          <mxGeometry y="60" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-10" value="조건블록 데이터" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="320" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-11" value="8번 인덱스" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-10">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-14" value="반복블록 데이터" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="450" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-15" value="9번 인덱스" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="HzeTCu4wp6GELutpdJu7-14">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HzeTCu4wp6GELutpdJu7-23" target="HzeTCu4wp6GELutpdJu7-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-23" value="Excute" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HzeTCu4wp6GELutpdJu7-24" target="HzeTCu4wp6GELutpdJu7-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-24" value="8번인덱스&lt;div&gt;혹은&lt;/div&gt;&lt;div&gt;9번인덱스인가?&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="440" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="HzeTCu4wp6GELutpdJu7-26" target="HzeTCu4wp6GELutpdJu7-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-26" value="조건식 검사" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="585" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.558;entryY=-0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HzeTCu4wp6GELutpdJu7-24" target="HzeTCu4wp6GELutpdJu7-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HzeTCu4wp6GELutpdJu7-28" target="HzeTCu4wp6GELutpdJu7-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-28" value="반복블록 컴포넌트&lt;div&gt;생성 (반복 블록 컴포넌트를 갖고있는 프리팹을 생성해도 됨)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="584.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-31" value="True일때의 코드블록&lt;div&gt;혹은&lt;/div&gt;&lt;div&gt;False일때의 코드블록&lt;/div&gt;&lt;div&gt;반환&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="710" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HzeTCu4wp6GELutpdJu7-33" value="반복블록 안의&lt;div&gt;리스트에 있는 코드블록을 반복횟수만큼 불러오기&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="710" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
