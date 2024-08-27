@@ -55,12 +55,18 @@ public class CustomHand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        DebugBoxManager.Instance.Log($"{other.name} : Trigger Enter");
+        if(other.TryGetComponent(out Renderer rend))
+        {
+            rend.material.color = Color.red;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        DebugBoxManager.Instance.Log($"{other.name} : Trigger Exit");
+        if (other.TryGetComponent(out Renderer rend))
+        {
+            rend.material.color = Color.white;
+        }
     }
 
     /*

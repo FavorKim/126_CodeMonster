@@ -11,7 +11,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
 {
     [SerializeField] private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
-    List<MaterialChanger> materialChangers = new();
+    List<MaterialChanger> materialChangers = new List<MaterialChanger>();
 
     protected void Awake()
     {
@@ -163,5 +163,13 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
         return count;
     }   
+
+    public void SetXIcon(int index, bool onOff)
+    {
+        if (onOff)
+            materialChangers[index].EnableXIcon();
+        else
+            materialChangers[index].DisableXIcon();
+    }
 }
 

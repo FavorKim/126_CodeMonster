@@ -87,16 +87,19 @@ public class PlayerAction : BaseState<Player>
 
         while (indexList.Count > index && Controller.isGameOver == false)
         {
-            if (isAttack == true) 
+            if (isAttack == true)
             {
                 continue;
             }
+
             //이동중일때 멈춤
             BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
             if (index > 0)
                 BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
 
             Execute(indexList[index]);
+            
+
             
             //공격중일때 멈춤
             //yield return new WaitForSeconds(1);
@@ -124,14 +127,14 @@ public class PlayerAction : BaseState<Player>
             {
                 //게임오버
                 DebugBoxManager.Instance.Log("몬스터가 있는데 이동함. 게임오버");
-                
+                BlockContainerManager.Instance.SetXIcon(index, true);
                 Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
             }
         }
         else if (blockIndex <= 7)
         {
             attackBlockType = GetAttackTypeFromBlock(blockIndex);
-            Attack();
+            Attack(index);
         }
         else if (blockIndex == 8)
         {
@@ -182,6 +185,7 @@ public class PlayerAction : BaseState<Player>
             else if (GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
             {
                 DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
+                BlockContainerManager.Instance.SetXIcon(index, true);
                 Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
             }
         }
@@ -203,10 +207,10 @@ public class PlayerAction : BaseState<Player>
 
 
 
-    private void Attack()
+    private void Attack(int curIndex)
     {
         Controller.EnableTypeMonsterPrefab(attackBlockType);
-        BattleManager.Instance.BattlePhase(position, attackBlockType);
+        BattleManager.Instance.BattlePhase(position, attackBlockType, curIndex);
     }
 
     public int GetAttackBlockType()
