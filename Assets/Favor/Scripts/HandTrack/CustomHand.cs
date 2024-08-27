@@ -57,7 +57,7 @@ public class CustomHand : MonoBehaviour
     {
         if(other.TryGetComponent(out Renderer rend))
         {
-            rend.material.color = Color.red;
+
         }
     }
 
@@ -65,19 +65,8 @@ public class CustomHand : MonoBehaviour
     {
         if (other.TryGetComponent(out Renderer rend))
         {
-            rend.material.color = Color.white;
+            
         }
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        DebugBoxManager.Instance.Log($"{collision.transform.name} : Collision Enter");
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        DebugBoxManager.Instance.Log($"{collision.transform.name} : Collision Exit");
-    }
-    */
 }

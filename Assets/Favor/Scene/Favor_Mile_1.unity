@@ -297,6 +297,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 216.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.75999564
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.21017317
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6096003
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08137228
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -183.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -52
+      objectReference: {fileID: 0}
+    - target: {fileID: 191078375152713209, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 22.923
+      objectReference: {fileID: 0}
     - target: {fileID: 214740740129112087, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _pokeInteractable
       value: 
@@ -317,6 +349,30 @@ PrefabInstance:
       propertyPath: _interactableView
       value: 
       objectReference: {fileID: 1517333905}
+    - target: {fileID: 1843870729896546579, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _hoverColorState.Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843870729896546579, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _hoverColorState.Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843870729896546579, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _hoverColorState.Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843870729896546579, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _selectColorState.Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843870729896546579, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _selectColorState.Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843870729896546579, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _selectColorState.Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4423816702805679268, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.06
@@ -325,6 +381,62 @@ PrefabInstance:
       propertyPath: _interactableView
       value: 
       objectReference: {fileID: 225580139}
+    - target: {fileID: 5649035664877973758, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _hoverColorState.Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649035664877973758, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _hoverColorState.Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649035664877973758, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _hoverColorState.Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649035664877973758, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _selectColorState.Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649035664877973758, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _selectColorState.Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649035664877973758, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: _selectColorState.Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.75999564
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.21017317
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6096003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08137228
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -205.30003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -82.90003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 22.923
+      objectReference: {fileID: 0}
     - target: {fileID: 8586053424579194841, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _pokeInteractable
       value: 
