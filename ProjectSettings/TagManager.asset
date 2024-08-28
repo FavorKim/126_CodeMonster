@@ -8,6 +8,8 @@ TagManager:
   - InventoryManager
   - BlockContainerUI
   - StageBlockUI
+  - MakeLoopBlockUI
+  - MakeConditionBlockUI
   layers:
   - Default
   - TransparentFX

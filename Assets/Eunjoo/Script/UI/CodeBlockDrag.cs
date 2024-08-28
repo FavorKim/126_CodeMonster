@@ -17,6 +17,8 @@ public class CodeBlockDrag : MonoBehaviour
     public BlockName BlockName;
     public BlockType BlockType;
     public BlockContainerManager BlockContainerUI;
+    public MakeLoopBlockContainerManager MakeLoopBlockUI;
+    public MakeConditionBlockUIManager MakeConditionBlockUI;
     public GameObject PoolParent;
     [SerializeField]private MaterialChanger matChanger;
     private CustomGrabObject grab;
@@ -67,22 +69,31 @@ public class CodeBlockDrag : MonoBehaviour
     private void OnBoxRelease()
     {
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
-        // Container 내에 있고 코드 블럭을 넣을 수 있을때
+        // Container 내에 있고 자식 수가 BlockContainer Length 보다 적을 때 
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
             BlockContainerManager.Instance.AddBlock(gameObject);
+        }
+        // Container 내에 있고 자식 수가 BlockContainer Length 보다 많을 때
+        else if (BlockContainerUI != null && BlockContainerUI.transform.childCount >= UIManager.Instance.BlockContainerLength)
+        {
+            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCountError);
+            ReturnToPool();
+        }
+        else if (MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount < UIManager.Instance.MakeLoopBlockContainerLength)
+        {
+            MakeLoopBlockContainerManager.Instance.AddBlock(gameObject);
+        }
+        else if (MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount >= UIManager.Instance.MakeLoopBlockContainerLength)
+        {
+            ReturnToPool();
         }
         // Container 외에 있을때 
         else if (BlockContainerUI == null)
         {
             ReturnToPool();
         }
-        // Container 내에 있지만 코드 블럭을 넣을 수 없을때 
-        else
-        {
-            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCountError);
-            ReturnToPool();
-        }
+        
     }
 
     private void OnBoxGrabbed()
@@ -112,22 +123,55 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "BlockContainerUI")
+        switch(other.tag)
         {
-            BlockContainerUI = other.GetComponent<BlockContainerManager>();
-            matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            case "BlockContainerUI":
+                BlockContainerUI = other.GetComponent<BlockContainerManager>();
+                matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+                break;
+            case "MakeLoopBlockUI":
+                MakeLoopBlockUI = other.GetComponent<MakeLoopBlockContainerManager>();
+                matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+                break;
+            case "MakeConditionBlockUI":
+                MakeConditionBlockUI = other.GetComponent<MakeConditionBlockUIManager>();
+                matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+                break;
         }
+        //if (other.tag == "BlockContainerUI")
+        //{
+        //    BlockContainerUI = other.GetComponent<BlockContainerManager>();
+        //    matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+        //}
+
     }
 
    
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "BlockContainerUI")
+
+        switch (other.tag)
         {
-            BlockContainerUI = null;
-            matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+            case "BlockContainerUI":
+                BlockContainerUI = null;
+                matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+                break;
+            case "MakeLoopBlockUI":
+                MakeLoopBlockUI = null;
+                matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+                break;
+            case "MakeConditionBlockUI":
+                MakeConditionBlockUI = null;
+                matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+                break;
         }
+
+        //if (other.tag == "BlockContainerUI")
+        //{
+        //    BlockContainerUI = null;
+        //    matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+        //}
     }
 
    

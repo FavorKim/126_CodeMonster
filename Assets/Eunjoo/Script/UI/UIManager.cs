@@ -38,6 +38,10 @@ public class UIManager : Singleton<UIManager>
     [Header("HintBox UI")]
     [SerializeField]public int HintCount;
 
+    [Header("MakeLoopBlock UI")]
+    public int MakeLoopBlockContainerLength;
+
+
 
     private BlockContainerManager BlockContainerManager;
     private StageBlockUIManager StageBlockManager;
