@@ -10607,18 +10607,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 9016973466719204292}
     m_Modifications:
     - target: {fileID: 476789454436972782, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2883263
-      objectReference: {fileID: 0}
-    - target: {fileID: 476789454436972782, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7513
-      objectReference: {fileID: 0}
-    - target: {fileID: 476789454436972782, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.7513
-      objectReference: {fileID: 0}
-    - target: {fileID: 476789454436972782, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 310.6
       objectReference: {fileID: 0}
@@ -10931,10 +10919,6 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6194613472387871872, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
-      propertyPath: BlockIndexList.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194613472387871872, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: BlockIndexList.Array.data[0]
       value: 0
       objectReference: {fileID: 0}
@@ -10960,10 +10944,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6194613472387871872, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
       propertyPath: BlockIndexList.Array.data[6]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194613472387871872, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}
-      propertyPath: BlockIndexList.Array.data[7]
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6384276101176543447, guid: f7a59b7f4eb865949b818e8b3f98ce0e, type: 3}

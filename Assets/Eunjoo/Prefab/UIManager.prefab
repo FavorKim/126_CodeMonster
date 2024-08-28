@@ -1465,7 +1465,7 @@ MonoBehaviour:
   VictoryUI: {fileID: 3443666532820835426}
   GetMonsterUI: {fileID: 5641007280984063011}
   BlockContainerLength: 5
-  BlockIndexList: 0400000005000000060000000800000007000000
+  BlockIndexList: 040000000500000006000000080000000700000007000000070000000700000008000000
   HintCount: 5
   MakeLoopBlockContainerLength: 0
 --- !u!1 &5417538294824181607
@@ -1858,7 +1858,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -140}
-  m_SizeDelta: {x: 180, y: 50}
+  m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7110075727238292819
 CanvasRenderer:
@@ -2235,7 +2235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3163162328137195809, guid: 5adbde5e002aa4f45bee22e7541b2f4a, type: 3}
       propertyPath: m_Name
-      value: Loop Block UI
+      value: Make Loop Block UI
       objectReference: {fileID: 0}
     - target: {fileID: 7159563178920431741, guid: 5adbde5e002aa4f45bee22e7541b2f4a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2274,6 +2274,11 @@ GameObject:
 --- !u!224 &2503323187730285292 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2231538609674696406, guid: 5adbde5e002aa4f45bee22e7541b2f4a, type: 3}
+  m_PrefabInstance: {fileID: 4343039764469068858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4966582639792070677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8694563289822041135, guid: 5adbde5e002aa4f45bee22e7541b2f4a, type: 3}
   m_PrefabInstance: {fileID: 4343039764469068858}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4466174987562417776
@@ -2378,6 +2383,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8894511715761293304, guid: 4c44146d936974241a81990f473e1dd8, type: 3}
   m_PrefabInstance: {fileID: 4466174987562417776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6137049712581167713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7552576499794326545, guid: 4c44146d936974241a81990f473e1dd8, type: 3}
+  m_PrefabInstance: {fileID: 4466174987562417776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8325298432954445439 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5652699975930990607, guid: 4c44146d936974241a81990f473e1dd8, type: 3}
@@ -2462,11 +2472,11 @@ PrefabInstance:
     - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
       propertyPath: poolInfoList.Array.data[7].container
       value: 
-      objectReference: {fileID: 1702462669200610587}
+      objectReference: {fileID: 4966582639792070677}
     - target: {fileID: 5717526516195060561, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
       propertyPath: poolInfoList.Array.data[8].container
       value: 
-      objectReference: {fileID: 8325298432954445439}
+      objectReference: {fileID: 6137049712581167713}
     - target: {fileID: 6950330999182370816, guid: 69088c07f263c4a44a584784bb6078fe, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager

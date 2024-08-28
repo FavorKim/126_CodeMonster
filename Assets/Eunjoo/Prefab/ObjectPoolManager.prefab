@@ -83,10 +83,10 @@ MonoBehaviour:
   - BlockName: 7
     BlockType: 0
     initCount: 10
-    prefab: {fileID: 3369126874611500125, guid: 15f30a9ebcbb2974ca1119cb1e574c0a, type: 3}
+    prefab: {fileID: 3369126874611500125, guid: 331b37bf9c6e59041ba1b517e4dfe4f7, type: 3}
     container: {fileID: 0}
   - BlockName: 8
     BlockType: 0
     initCount: 10
-    prefab: {fileID: 3369126874611500125, guid: 87aa6694fc712214daa338bc9f735146, type: 3}
+    prefab: {fileID: 3369126874611500125, guid: 8cf709d62751728429751e74e7387425, type: 3}
     container: {fileID: 0}
