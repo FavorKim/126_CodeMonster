@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,13 @@ public class LoopBlock
     public int BlockIndex { get; set; } // 반복 블록의 인덱스
     public int LoopCount { get; set; } // 반복 횟수
     public List<int> SubBlockIndices { get; set; }  // 반복 블록 안에 포함된 블록들의 인덱스 목록
+}
+
+public class ConditionalBlock
+{
+    public int BlockIndex { get; set; } // 조건 블록의 인덱스
+    public Func<bool> Condition { get; set; } // 조건부를 평가하는 함수
+    public int ActionBlockIndex { get; set; } // 조건이 참일 때 실행할 블록(여기에 공격블록과 이동블록의 인덱스를 넣는다.)
 }
 
     public class StageMap
