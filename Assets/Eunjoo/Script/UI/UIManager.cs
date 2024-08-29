@@ -33,7 +33,9 @@ public class UIManager : Singleton<UIManager>
     public GameObject AttackBlockUI;
     public GameObject MoveBlockUI;
     public GameObject MakeLoopBlockUI;
+    public GameObject MakeLoopBlockBoxUI;
     public GameObject MakeConditionalBlockUI;
+    public GameObject MakeConditionalBlockBoxUI;
     public GameObject HintBoxUI;
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
@@ -190,6 +192,26 @@ public class UIManager : Singleton<UIManager>
     {
         GetMonsterUI.SetActive(false);
     }
+
+    public void MakeLoopBlockBoxEnable()
+    {
+        MakeLoopBlockBoxUI.SetActive(true);
+    }
+    public void MakeLoopBlockBoxDisable()
+    {
+        MakeLoopBlockBoxUI.SetActive(false);
+    }
+
+    public void MakeConditionalBlockBoxEnable()
+    {
+        MakeConditionalBlockBoxUI.SetActive(true);
+    }
+    public void MakeConditionalBlockBoxDisable()
+    {
+        MakeConditionalBlockBoxUI.SetActive(false);
+    }
+
+
 
     public void PrintUIText(TextTypeName type, int stageIndex = 0, int UITextindex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
     {

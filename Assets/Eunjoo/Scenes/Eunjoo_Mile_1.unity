@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 19.7
       objectReference: {fileID: 0}
+    - target: {fileID: 4256519786583288525, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5050122589545140638, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _handGrabInteractor
       value: 
@@ -359,6 +363,10 @@ PrefabInstance:
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: Loop_ConBlockUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: MakeLoopBlockContainerLength
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x
