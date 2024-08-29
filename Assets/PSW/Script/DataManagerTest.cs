@@ -14,6 +14,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
     public Dictionary<int, MoveBlock> LoadedMoveBlockList { get; private set; }
     public Dictionary<int, AttackBlock> LoadedAttackBlockList { get; private set; }
     public Dictionary<int, LoopBlock> LoadedLoopBlockList { get; private set; }
+    public Dictionary<int, ConditionalBlock> LoadedConditionalBlockList { get; private set; }
     public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
@@ -183,10 +184,26 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
     public void AddLoopBlockData(LoopBlock loopBlock)
     {
-        if(!LoadedLoopBlockList.ContainsKey(loopBlock.BlockIndex))
+        if (!LoadedLoopBlockList.ContainsKey(loopBlock.BlockIndex))
         {
             LoadedLoopBlockList.Add(loopBlock.BlockIndex, loopBlock);
         }
+    }
+
+    private ConditionalBlock ParseConditionalBlock(XElement data)
+    {
+        return new ConditionalBlock(
+            int.Parse(data.Attribute(nameof(ConditionalBlock.BlockIndex)).Value),
+            () => EvaluateCondition(data.Attribute("Condition").Value),
+            int.Parse(data.Attribute(nameof(ConditionalBlock.TrueBlockIndex)).Value),
+            int.Parse(data.Attribute(nameof(ConditionalBlock.FalseBlockIndex)).Value)
+        );
+    }
+
+    private bool EvaluateCondition(string condition)
+    {
+
+        return true;
     }
 
     private MonsterType ParseMonsterType(XElement data)
@@ -324,6 +341,15 @@ public class DataManagerTest : Singleton<DataManagerTest>
         if (LoadedLoopBlockList.ContainsKey(blockIndex))
         {
             return LoadedLoopBlockList[blockIndex];
+        }
+        return null;
+    }
+
+    public ConditionalBlock GetConditionalBlockData(int blockIndex)
+    {
+        if (LoadedConditionalBlockList.ContainsKey(blockIndex))
+        {
+            return LoadedConditionalBlockList[blockIndex];
         }
         return null;
     }

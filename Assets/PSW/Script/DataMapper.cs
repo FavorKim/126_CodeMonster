@@ -42,8 +42,17 @@ public class LoopBlock
 public class ConditionalBlock
 {
     public int BlockIndex { get; set; } // 조건 블록의 인덱스
-    public Func<bool> Condition { get; set; } // 조건부를 평가하는 함수
-    public int ActionBlockIndex { get; set; } // 조건이 참일 때 실행할 블록(여기에 공격블록과 이동블록의 인덱스를 넣는다.)
+    public Func<bool> Condition { get; set; } // 조건을 평가하는 함수
+    public int TrueBlockIndex { get; set; } // 조건이 참일 때 실행할 블록의 인덱스
+    public int FalseBlockIndex { get; set; } // 조건이 거짓일 때 실행할 블록의 인덱스
+
+    public ConditionalBlock(int blockIndex, Func<bool> condition, int trueBlockIndex, int falseBlockIndex)
+    {
+        BlockIndex = blockIndex;
+        Condition = condition;
+        TrueBlockIndex = trueBlockIndex;
+        FalseBlockIndex = falseBlockIndex;
+    }
 }
 
     public class StageMap

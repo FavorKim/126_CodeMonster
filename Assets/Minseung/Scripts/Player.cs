@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     private List<int> blockIndexList;
 
-    private bool isAttack = false;
+    public bool isAttack = false;
     public bool isGameOver = false;
 
     public Vector2Int playerPosition { get { return position; } }
@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         stateMachine.AddState(PlayerStateName.MOVE, new MoveState(this));
         stateMachine.AddState(PlayerStateName.ATTACK, new AttackState(this));
         stateMachine.AddState(PlayerStateName.LOOP, new LoopState(this));
+        stateMachine.AddState(PlayerStateName.CONDITION, new ConditionState(this));
         stateMachine.AddState(PlayerStateName.DIEMOVE, new DIEMOVE(this));
         stateMachine.AddState(PlayerStateName.DIEHIT, new DIEHIT(this));
         stateMachine.AddState(PlayerStateName.HINTACCENT, new HINTACCENT(this));
@@ -121,29 +122,8 @@ public class Player : MonoBehaviour
         stateMachine.ChangeState(PlayerStateName.CHECK);
     }
 
-    public void ExecuteLoopBlock(LoopBlock loopBlock)
+    public void Execute(int subBlockIndex)
     {
-        StartCoroutine(ExecuteLoop(loopBlock)); 
-    }
-
-    private IEnumerator ExecuteLoop(LoopBlock loopBlock)
-    {
-        for(int i = 0; i < loopBlock.LoopCount; i++)
-        {
-            foreach(int subBlockIndex in loopBlock.SubBlockIndices)
-            {
-                Execute(subBlockIndex);
-                yield return new WaitWhile(() => isAttack || isGameOver);
-            }
-            CurrentIndex++;
-            stateMachine.ChangeState(PlayerStateName.CHECK);
-
-        }
-    }
-
-    private void Execute(int subBlockIndex)
-    {
-        
         if (subBlockIndex <= 4)
         {
             stateMachine.ChangeState(PlayerStateName.MOVE);
@@ -155,6 +135,10 @@ public class Player : MonoBehaviour
         else if (subBlockIndex >= 8)
         {
             stateMachine.ChangeState(PlayerStateName.LOOP);
+        }
+        else if(subBlockIndex == 9)
+        {
+            stateMachine.ChangeState(PlayerStateName.CONDITION);
         }
     }
     //private void SetPlayerType()

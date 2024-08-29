@@ -10,6 +10,7 @@ enum PlayerStateName
     MOVE,
     ATTACK,
     LOOP,
+    CONDITION,
     DIEMOVE,
     DIEHIT,
     HINTACCENT
