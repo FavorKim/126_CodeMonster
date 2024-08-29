@@ -10239,7 +10239,7 @@ GameObject:
   - component: {fileID: 3138743141240490028}
   - component: {fileID: 3163905145099507512}
   m_Layer: 5
-  m_Name: Condition Block UI
+  m_Name: Make Condition Block UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12289,12 +12289,12 @@ GameObject:
   - component: {fileID: 1445437696709951968}
   - component: {fileID: 3797352035561915085}
   m_Layer: 5
-  m_Name: Loop Block
+  m_Name: Loop Block Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3285533413954447228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12930,16 +12930,18 @@ MonoBehaviour:
   BlockContainerUI: {fileID: 7725284730488742002}
   AttackBlockUI: {fileID: 5586906118260001322}
   MoveBlockUI: {fileID: 7084745484113641323}
-  MakeLoopBlockUI: {fileID: 0}
-  MakeConditionalBlockUI: {fileID: 0}
-  HintBoxUI: {fileID: 0}
+  MakeLoopBlockUI: {fileID: 4015824585592482318}
+  MakeLoopBlockBoxUI: {fileID: 7275450233720954624}
+  MakeConditionalBlockUI: {fileID: 6021920975477035370}
+  MakeConditionalBlockBoxUI: {fileID: 8444356893316855156}
+  HintBoxUI: {fileID: 1402294321603684779}
   VictoryUI: {fileID: 1139713755869487991}
   GetMonsterUI: {fileID: 7949888893684777782}
   BlockCountObject: {fileID: 3451118283099488851}
   BlockContainerLength: 7
   BlockIndexList: 000000000100000002000000030000000400000005000000060000000700000008000000
   HintCount: 5
-  MakeLoopBlockContainerLength: 0
+  MakeLoopBlockContainerLength: 6
   BlockContainerManager: {fileID: 0}
   MakeLoopBlockContainerManager: {fileID: 0}
 --- !u!1 &7481084971470895398
@@ -14076,12 +14078,12 @@ GameObject:
   - component: {fileID: 3202592567539872973}
   - component: {fileID: 1785309950641493821}
   m_Layer: 5
-  m_Name: Condition Block
+  m_Name: Condition Block Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862033110358936719
 RectTransform:
   m_ObjectHideFlags: 0
