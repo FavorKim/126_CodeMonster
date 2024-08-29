@@ -3,6 +3,7 @@ using EventLibrary;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -220,11 +221,10 @@ public class UIManager : Singleton<UIManager>
     
     private IEnumerator PrintText(List<string> list)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
     {
-        int index = 0;
-        while (list.Count < index)
+
+        foreach (var element in list)
         {
-            //textObject.text+=list[i]+"\n";
-            index++;
+            //textObject.text+=element+"\n";
             yield return new WaitForSeconds(2);
         }
     }
