@@ -8,7 +8,7 @@ public class BlockContainerManager : MonoBehaviour
 {
     [SerializeField] private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
-    List<MaterialChanger> materialChangers = new List<MaterialChanger>();
+    protected List<MaterialChanger> materialChangers = new List<MaterialChanger>();
 
     protected void Awake()
     {

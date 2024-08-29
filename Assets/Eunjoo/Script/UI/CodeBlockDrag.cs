@@ -23,7 +23,9 @@ public class CodeBlockDrag : MonoBehaviour
     [SerializeField]private MaterialChanger matChanger;
     private CustomGrabObject grab;
 
-    CodeBlockData data; // 초기화가 됨.
+    bool isConditionTrue;
+    bool isConditionFalse;
+
 
 
     /*
@@ -165,6 +167,22 @@ public class CodeBlockDrag : MonoBehaviour
         {
             ReturnToPool();
         }
+        else if (MakeConditionBlockUI !=null && isConditionTrue)
+        {
+            MakeConditionBlockUI.SetTrueBlock(this);
+        }
+        else if (MakeConditionBlockUI != null && !isConditionTrue)
+        {
+            ReturnToPool();
+        }
+        else if (MakeConditionBlockUI != null && isConditionFalse)
+        {
+            MakeConditionBlockUI.SetFalseBlock(this);
+        }
+        else if(MakeConditionBlockUI != null && !isConditionFalse)
+        {
+            ReturnToPool();
+        }
         // Container 외에 있을때 
         else if (BlockContainerUI == null)
         {
@@ -210,8 +228,12 @@ public class CodeBlockDrag : MonoBehaviour
                 MakeLoopBlockUI = other.GetComponent<MakeLoopBlockContainerManager>();
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
-            case "MakeConditionBlockUI":
-                MakeConditionBlockUI = other.GetComponent<MakeConditionBlockUIManager>();
+            case "MakeConditionTrue":
+                isConditionTrue = true;
+                matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+                break;
+            case "MakeConditionFalse":
+                isConditionFalse = true;
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -238,8 +260,12 @@ public class CodeBlockDrag : MonoBehaviour
                 MakeLoopBlockUI = null;
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
-            case "MakeConditionBlockUI":
-                MakeConditionBlockUI = null;
+            case "MakeConditionTrue":
+                isConditionTrue = false;
+                matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+                break;
+            case "MakeConditionFalse":
+                isConditionFalse = false;
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
         }

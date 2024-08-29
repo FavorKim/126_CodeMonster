@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MakeConditionBlockUIManager : MonoBehaviour
+public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Transform trueBlockPos;
+    [SerializeField] Transform falseBlockPos;
+    public CodeBlockDrag trueBlock
     {
-        
+        get; private set;
     }
 
-    // Update is called once per frame
-    void Update()
+    public CodeBlockDrag falseBlock
     {
-        
+        get;
+        private set;
+    }
+
+    public void SetTrueBlock(CodeBlockDrag block)
+    {
+        this.trueBlock = block;
+        trueBlock.transform.parent = trueBlockPos;
+        trueBlock.transform.localPosition = Vector3.zero;
+    }
+    public void SetFalseBlock(CodeBlockDrag block)
+    {
+        this.falseBlock = block;
+        falseBlock.transform.parent = falseBlockPos;
+        falseBlock.transform.localPosition = Vector3.zero;
     }
 }
