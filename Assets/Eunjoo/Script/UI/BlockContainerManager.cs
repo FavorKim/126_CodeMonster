@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-public class BlockContainerManager : Singleton<BlockContainerManager>
+public class BlockContainerManager : MonoBehaviour
 {
     [SerializeField] private RectTransform BlockContainerUIRectTransform;
     private BoxCollider BlockContainerBoxCollider;
@@ -20,6 +20,11 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
         InteractEventManager.Instance.RegistOnClickResetBtn(ResetBlockContainer);
         InteractEventManager.Instance.RegistOnClickRestartBtn(ResetBlockContainer);
+    }
+
+    public void OnDisable()
+    {
+        
     }
 
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
@@ -36,7 +41,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
     }
 
-    public void AddBlock(GameObject newBlock)
+    public virtual void AddBlock(GameObject newBlock)
     {
         // 기존 블록들 existingBlocks에 저장
         List<Transform> existingBlocks = new List<Transform>();
@@ -87,7 +92,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
     
 
     // 컨테이너에 있던 블럭들 리셋
-    public void ResetBlockContainer()
+    public virtual void ResetBlockContainer()
     {
         // 현재 컨테이너 하위에 있는 모든 자식 객체를 리스트에 저장
         List<Transform> children = new List<Transform>();
@@ -109,7 +114,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         }
     }
 
-    public List<int> GetContatinerBlocks()
+    public virtual List<int> GetContatinerBlocks()
     {
 
         if (this.transform.childCount <= 0)
@@ -134,11 +139,12 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         return list;
     }
 
-    public void SetBlockMaterial(int index, MaterialType type)
+    public virtual void SetBlockMaterial(int index, MaterialType type)
     {
         materialChangers[index].ChangeMaterial(type);
     }
-    public int CountCodeBlockDragComponents()
+
+    public virtual int CountCodeBlockDragComponents()
     {
         int count = 0;
 

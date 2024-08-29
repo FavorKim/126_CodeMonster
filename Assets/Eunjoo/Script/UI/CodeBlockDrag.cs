@@ -72,7 +72,7 @@ public class CodeBlockDrag : MonoBehaviour
         // Container 내에 있고 자식 수가 BlockContainer Length 보다 적을 때 
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
         {
-            BlockContainerManager.Instance.AddBlock(gameObject);
+            BlockContainerUI.AddBlock(gameObject);
         }
         // Container 내에 있고 자식 수가 BlockContainer Length 보다 많을 때
         else if (BlockContainerUI != null && BlockContainerUI.transform.childCount >= UIManager.Instance.BlockContainerLength)
@@ -82,7 +82,7 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else if (MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount < UIManager.Instance.MakeLoopBlockContainerLength)
         {
-            MakeLoopBlockContainerManager.Instance.AddBlock(gameObject);
+            MakeLoopBlockUI.AddBlock(gameObject);
         }
         else if (MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount >= UIManager.Instance.MakeLoopBlockContainerLength)
         {
@@ -117,7 +117,7 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
-            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - BlockContainerManager.Instance.CountCodeBlockDragComponents());
+            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
         }
     }
 
@@ -191,6 +191,6 @@ public class CodeBlockDrag : MonoBehaviour
 
         _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
-        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - BlockContainerManager.Instance.CountCodeBlockDragComponents());
+        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
     }
 }

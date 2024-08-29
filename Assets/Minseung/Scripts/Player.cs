@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
     {
         isPlaying = true;
         int index = 0;
-        List<int> indexList = BlockContainerManager.Instance.GetContatinerBlocks();
+        List<int> indexList =  UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
         if (indexList == null)
         {
             //DebugBoxManager.Instance.Log("indexList is Null");
@@ -248,9 +248,9 @@ public class Player : MonoBehaviour
             //이동중일때 멈춤
 
             Execute(indexList[index]);
-            BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            UIManager.Instance.BlockContainerManager.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
             if (index > 0)
-                BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+                UIManager.Instance.BlockContainerManager.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
             //공격중일때 멈춤
             index++;
             yield return new WaitWhile(() => isAttack);
