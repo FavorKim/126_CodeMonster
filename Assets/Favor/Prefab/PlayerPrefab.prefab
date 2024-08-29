@@ -12943,6 +12943,7 @@ MonoBehaviour:
   BlockIndexList: 000000000100000002000000030000000400000005000000060000000700000008000000
   HintCount: 5
   MakeLoopBlockContainerLength: 6
+  LoopBlockList: 
   BlockContainerManager: {fileID: 0}
   MakeLoopBlockContainerManager: {fileID: 0}
 --- !u!1 &7481084971470895398

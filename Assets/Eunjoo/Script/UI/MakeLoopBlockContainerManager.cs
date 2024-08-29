@@ -6,8 +6,14 @@ using UnityEngine;
 
 public class MakeLoopBlockContainerManager : BlockContainerManager
 {
-    List<MaterialChanger> loopMaterialChangers = new List<MaterialChanger>();
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            GetMakeLoopBlocksName();
+        }
+    }
     public override void AddBlock(GameObject newBlock)
     {
         base.AddBlock(newBlock);
@@ -20,20 +26,36 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
     public override List<int> GetContatinerBlocks()
     {
-        List<int> baseList = base.GetContatinerBlocks();
-
-        return baseList;
+        return base.GetContatinerBlocks();
     }
 
     public override void SetBlockMaterial(int index, MaterialType type)
     {
-        loopMaterialChangers[index].ChangeMaterial(type);
+        base.SetBlockMaterial(index, type);
     }
 
     public override int CountCodeBlockDragComponents()
     {
-        int count = base.CountCodeBlockDragComponents();
+        return base.CountCodeBlockDragComponents();
+    }
 
-        return count;
+    public void GetMakeLoopBlocksName()
+    {
+        if (this.transform.childCount <= 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            BlockName codeBlockDrag = transform.GetChild(i).GetComponent<CodeBlockDrag>().BlockName;
+            UIManager.Instance.LoopBlockList.Add(codeBlockDrag);
+        }
+    }
+
+    public void LoseMakeLoopBlocksName()
+    {
+        ResetBlockContainer();
+        UIManager.Instance.LoopBlockList = null;
     }
 }

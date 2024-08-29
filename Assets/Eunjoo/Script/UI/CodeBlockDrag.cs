@@ -196,6 +196,19 @@ public class CodeBlockDrag : MonoBehaviour
         {
             EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
         }
+
+
+        if(BlockType == BlockType.LoopCodeBlock /*|| BlockType == BlockType.ConditionalCodeBlock*/)
+        {
+            List<BlockName> loopBlockNames = UIManager.Instance.LoopBlockList;
+            foreach (BlockName blockName in loopBlockNames)
+            {
+                GameObject loopBlock = ObjectPoolManager.Instance.GetObject(blockName);
+                SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponentInChildren<SetLoopBlockUI>();
+
+                SetLoopBlockUI.AddBlock(loopBlock);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

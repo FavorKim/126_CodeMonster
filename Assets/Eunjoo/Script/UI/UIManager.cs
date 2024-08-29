@@ -56,6 +56,8 @@ public class UIManager : Singleton<UIManager>
 
     [Header("MakeLoopBlock UI")]
     public int MakeLoopBlockContainerLength;
+        
+    public List<BlockName> LoopBlockList = new List<BlockName>();
 
     public BlockContainerManager BlockContainerManager;
     public MakeLoopBlockContainerManager MakeLoopBlockContainerManager;

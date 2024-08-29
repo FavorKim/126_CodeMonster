@@ -20,11 +20,6 @@ public class BlockContainerManager : MonoBehaviour
         InteractEventManager.Instance.RegistOnClickPauseBtn(ResetContainerBlockMaterial);
     }
 
-    public void OnDisable()
-    {
-        
-    }
-
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
     {
         if (PlusContainerUI == true)
