@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
 
     private bool isAttack = false;
     public bool isGameOver = false;
-    bool isMove;
-    bool isPlaying;
+    //bool isMove;
+    //bool isPlaying;
 
     public Vector2Int playerPosition { get { return position; } }
     public StateMachine<Player> playerStateMachine { get { return stateMachine; } }
@@ -90,11 +90,12 @@ public class Player : MonoBehaviour
             if (GameRule.CheckPlayerPosAndMonster(position))
             {
                 transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
-                DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
+                //DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
+                UIManager.Instance.PrintUIText(TextTypeName.SMALLHINT);
             }
             else if (GameRule.CheckPlayerPosInDeadzone(position))
             {
-                DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
+                //DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
                 stateMachine.ChangeState(PlayerStateName.DIEMOVE);
                 return;
             }
@@ -259,6 +260,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     private IEnumerator PlayerAction()
     {
         isPlaying = true;
@@ -292,7 +294,7 @@ public class Player : MonoBehaviour
         //    this.gameObject.SetActive(false);
         //}
     }
-
+    */
 
     public void ResetPlayer()
     {

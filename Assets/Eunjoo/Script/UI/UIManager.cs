@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -37,6 +38,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
     public GameObject BlockCountObject;
+    [SerializeField] TMP_Text TextBox;
 
 
     [Header("BlockContainer UI")]
@@ -48,7 +50,7 @@ public class UIManager : Singleton<UIManager>
     private int BlockIndexLength;
 
     [Header("HintBox UI")]
-    [SerializeField]public int HintCount;
+    [SerializeField] public int HintCount;
 
     [Header("MakeLoopBlock UI")]
     public int MakeLoopBlockContainerLength;
@@ -197,10 +199,10 @@ public class UIManager : Singleton<UIManager>
             case TextTypeName.STAGEINFO:
                 //text= DataManagerTest.Instance.GetStageMapData(stageIndex).stageInfo;
                 break;
-                case TextTypeName.SMALLHINT:
+            case TextTypeName.SMALLHINT:
                 text = DataManagerTest.Instance.GetTextData(UITextindex).Description;
                 break;
-                case TextTypeName.BIGHINT:
+            case TextTypeName.BIGHINT:
                 //text = DataManagerTest.Instance.GetStageMapData(stageIndex).bighint;
                 break;
         }
@@ -221,14 +223,19 @@ public class UIManager : Singleton<UIManager>
         StartCoroutine(PrintText(list));
 
     }
-    
+
     private IEnumerator PrintText(List<string> list)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
     {
-
+        TextBox.transform.parent.gameObject.SetActive(true);
+        TextBox.text = string.Empty;
         foreach (var element in list)
         {
-            //textObject.text+=element+"\n";
+            TextBox.text += element + "\n";
             yield return new WaitForSeconds(2);
         }
+
+        yield return new WaitForSeconds(5);
+
+        TextBox.transform.parent.gameObject.SetActive(false);
     }
 }
