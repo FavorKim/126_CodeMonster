@@ -344,7 +344,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
         return LoadedMonsterType[dataIndex];
     }
 
-    public UIText GetTextMapData(int dataIndex)
+    public UIText GetTextData(int dataIndex)
     {
         if (LoadedText.Count == 0 || !LoadedText.ContainsKey(dataIndex))
             return null;

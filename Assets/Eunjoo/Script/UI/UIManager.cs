@@ -1,8 +1,19 @@
 using EnumTypes;
 using EventLibrary;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
+public enum TextTypeName
+{
+    STAGEINFO,
+    BIGHINT,
+    SMALLHINT
+}
+
 
 public static class UIConstants
 {
@@ -173,5 +184,48 @@ public class UIManager : Singleton<UIManager>
     public void GetMonsterUIDisable()
     {
         GetMonsterUI.SetActive(false);
+    }
+
+    public void PrintUIText(TextTypeName type, int stageIndex = 0, int UITextindex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
+    {
+        string text = string.Empty;
+        switch (type)
+        {
+            case TextTypeName.STAGEINFO:
+                //text= DataManagerTest.Instance.GetStageMapData(stageIndex).stageInfo;
+                break;
+                case TextTypeName.SMALLHINT:
+                text = DataManagerTest.Instance.GetTextData(UITextindex).Description;
+                break;
+                case TextTypeName.BIGHINT:
+                //text = DataManagerTest.Instance.GetStageMapData(stageIndex).bighint;
+                break;
+        }
+        SetText(text);
+    }
+
+    private void SetText(string text)
+    {
+        var elements = text.Split('/');
+
+        var list = new List<string>();
+
+        foreach (var element in elements)
+        {
+            list.Add(element);
+        }
+
+        StartCoroutine(PrintText(list));
+
+    }
+    
+    private IEnumerator PrintText(List<string> list)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
+    {
+
+        foreach (var element in list)
+        {
+            //textObject.text+=element+"\n";
+            yield return new WaitForSeconds(2);
+        }
     }
 }
