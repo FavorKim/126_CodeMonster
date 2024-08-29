@@ -192,17 +192,15 @@ public class UIManager : Singleton<UIManager>
         {
             case TextTypeName.STAGEINFO:
                 //text= DataManagerTest.Instance.GetStageMapData(stageIndex).stageInfo;
-                SetText(text);
                 break;
                 case TextTypeName.SMALLHINT:
                 text = DataManagerTest.Instance.GetTextData(UITextindex).Description;
-                SetText(text);
                 break;
                 case TextTypeName.BIGHINT:
                 //text = DataManagerTest.Instance.GetStageMapData(stageIndex).bighint;
-                SetText(text);
                 break;
         }
+        SetText(text);
     }
 
     private void SetText(string text)
