@@ -51,7 +51,7 @@ public class BattleManager : Singleton<BattleManager>
             {
                 UnityEngine.Debug.Log("Attack failed! Player defeated.");
                 // 패배 처리: 플레이어의 패배 메서드 호출
-                BlockContainerManager.Instance.SetXIcon(player.GetCurrentBlockIndex(), true);
+                UIManager.Instance.BlockContainerManager.SetXIcon(player.GetCurrentBlockIndex(), true);
 
                 //player.EnableTypeMonsterPrefab(4);
                 Invoke(nameof(PlayerDefeat), 2);
@@ -62,7 +62,7 @@ public class BattleManager : Singleton<BattleManager>
             // 적의 위치와 일치하지 않는 경우, 공격이 빗나간 것으로 간주하여 패배 처리
             //-> 빗나가면 아무일도 없으니 승리 처리로 바꿈
             DebugBoxManager.Instance.Log("공격 빗나감 (같은 자리에 없음)");
-            BlockContainerManager.Instance.SetXIcon(player.GetCurrentBlockIndex(), true);
+            UIManager.Instance.BlockContainerManager.SetXIcon(player.GetCurrentBlockIndex(), true);
             targetMonster = null;
             Invoke(nameof(PlayerWin), 2);
         }

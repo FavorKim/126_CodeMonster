@@ -37,6 +37,8 @@ public class BlockContainerManager : MonoBehaviour
             BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
             BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
         }
+        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
+
     }
 
     public virtual void AddBlock(GameObject newBlock)
@@ -166,5 +168,12 @@ public class BlockContainerManager : MonoBehaviour
             materialChangers[index].DisableXIcon();
     }
 
+    private void ResetContainerBlockMaterial()
+    {
+        foreach(MaterialChanger mat in materialChangers)
+        {
+            mat.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+        }
+    }
 }
 

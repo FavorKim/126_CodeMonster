@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MakeLoopBlockContainerManager : BlockContainerManager
 {
-    List<MaterialChanger> materialChangers = new();
+    List<MaterialChanger> loopMaterialChangers = new List<MaterialChanger>();
 
     public override void AddBlock(GameObject newBlock)
     {
@@ -27,7 +27,7 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
     public override void SetBlockMaterial(int index, MaterialType type)
     {
-        materialChangers[index].ChangeMaterial(type);
+        loopMaterialChangers[index].ChangeMaterial(type);
     }
 
     public override int CountCodeBlockDragComponents()

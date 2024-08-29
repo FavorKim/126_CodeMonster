@@ -116,7 +116,7 @@ namespace FavorSample
         public override void OnEnterState()
         {
             // 코드블럭 세팅
-            List<int> newBlocks = BlockContainerManager.Instance.GetContatinerBlocks();
+            List<int> newBlocks = UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
             // 블록리스트가 달라지면 (새로 코드를 짜서 실행하면) 리스트 카운트 초기화
             if (blocks != newBlocks)
                 listCount = 0;

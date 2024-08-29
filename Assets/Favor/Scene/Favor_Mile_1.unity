@@ -273,6 +273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d62a05586d2164b8f76756040e5f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &839232076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4015824585592482318, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1370811494
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +386,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1725653618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6021920975477035370, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2057160829
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,10 +468,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 6330316872665450915, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: hintBtn
+      value: 
+      objectReference: {fileID: 2816616365707777683}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: HintBoxUI
       value: 
       objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: MakeLoopBlockUI
+      value: 
+      objectReference: {fileID: 839232076}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: BlockContainerLength
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: MakeConditionalBlockUI
+      value: 
+      objectReference: {fileID: 1725653618}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.58
@@ -512,6 +538,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1402294321603684779, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
   m_PrefabInstance: {fileID: 2816616365707777681}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2816616365707777683 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7083409857746812109, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816616365707777682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76636bfa3ff89ef4d81ea6adfdf800b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

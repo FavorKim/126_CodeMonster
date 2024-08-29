@@ -36,6 +36,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject HintBoxUI;
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
+    public GameObject BlockCountObject;
 
 
     [Header("BlockContainer UI")]
@@ -55,6 +56,7 @@ public class UIManager : Singleton<UIManager>
     public BlockContainerManager BlockContainerManager;
     public MakeLoopBlockContainerManager MakeLoopBlockContainerManager;
     private StageBlockUIManager StageBlockManager;
+    private BlockCountBox BlockCountBox;
 
     protected override void Start()
     {
@@ -62,6 +64,8 @@ public class UIManager : Singleton<UIManager>
         BlockContainerManager = BlockContainerUI.GetComponent<BlockContainerManager>();
         MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
+        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
+        BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
 
         SetUIManager();
         StartCoroutine(SetHintTimer());
@@ -70,7 +74,6 @@ public class UIManager : Singleton<UIManager>
     private void SetUIManager()
     {
         BlockIndexLength = BlockIndexList.Length;
-        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
 
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화 
         BlockIndexListCheck();
@@ -79,8 +82,8 @@ public class UIManager : Singleton<UIManager>
         //BlockUISizeSet();
 
         BlockContainerManager.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
-
-        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
+        //BlockCountBox.SetBlockCountText(BlockContainerLength);
+        //EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
     }
 
     IEnumerator SetHintTimer()

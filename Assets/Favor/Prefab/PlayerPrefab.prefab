@@ -10935,6 +10935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529264d5927baf84ea19a5973466ce43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockContainerUIRectTransform: {fileID: 0}
 --- !u!1 &6400319845911175202
 GameObject:
   m_ObjectHideFlags: 0
@@ -11186,6 +11187,7 @@ MonoBehaviour:
   resetBtn: {fileID: 7726109780785289327}
   restartBtn: {fileID: 5312476450551385155}
   pauseBtn: {fileID: 5912727902211310748}
+  hintBtn: {fileID: 0}
 --- !u!1 &6570616487628952971
 GameObject:
   m_ObjectHideFlags: 0
@@ -12928,15 +12930,18 @@ MonoBehaviour:
   BlockContainerUI: {fileID: 7725284730488742002}
   AttackBlockUI: {fileID: 5586906118260001322}
   MoveBlockUI: {fileID: 7084745484113641323}
-  LoopBlockUI: {fileID: 4015824585592482318}
-  ConditionalBlockUI: {fileID: 6021920975477035370}
+  MakeLoopBlockUI: {fileID: 0}
+  MakeConditionalBlockUI: {fileID: 0}
   HintBoxUI: {fileID: 0}
   VictoryUI: {fileID: 1139713755869487991}
   GetMonsterUI: {fileID: 7949888893684777782}
+  BlockCountObject: {fileID: 3451118283099488851}
   BlockContainerLength: 7
   BlockIndexList: 000000000100000002000000030000000400000005000000060000000700000008000000
   HintCount: 5
   MakeLoopBlockContainerLength: 0
+  BlockContainerManager: {fileID: 0}
+  MakeLoopBlockContainerManager: {fileID: 0}
 --- !u!1 &7481084971470895398
 GameObject:
   m_ObjectHideFlags: 0

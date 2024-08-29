@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private bool isAttack = false;
     public bool isGameOver = false;
+    bool isMove;
+    bool isPlaying;
 
     public Vector2Int playerPosition { get { return position; } }
     public StateMachine<Player> playerStateMachine { get { return stateMachine; } }
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour
 
     public void StartPlayerAction()
     {
-        blockIndexList = BlockContainerManager.Instance.GetContatinerBlocks();
+        blockIndexList = UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
         CurrentIndex = 0;
         stateMachine.ChangeState(PlayerStateName.CHECK);
     }
@@ -291,11 +293,6 @@ public class Player : MonoBehaviour
         //}
     }
 
-    public void StartPlayerAction()
-    {
-        if (!isPlaying)
-            StartCoroutine(PlayerAction());
-    }
 
     public void ResetPlayer()
     {
