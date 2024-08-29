@@ -10,7 +10,7 @@ public class BlockContainerManager : MonoBehaviour
     private BoxCollider BlockContainerBoxCollider;
     protected List<MaterialChanger> materialChangers = new List<MaterialChanger>();
 
-    protected void Awake()
+    private void Awake()
     {
         //base.Awake();
         BlockContainerUIRectTransform = GetComponent<RectTransform>();

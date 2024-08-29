@@ -46,12 +46,9 @@ public class InteractEventManager : Singleton<InteractEventManager>
 
     private void OnApplicationQuit()
     {
-        startBtn.OnPoke = null;
-        resetBtn.OnPoke = null;
-        restartBtn.OnPoke = null;
-        pauseBtn.OnPoke = null;
-        hintBtn.OnPoke = null;
-        loopMakeBtn.OnPoke = null;
-        conditionMakeBtn.OnPoke = null;
+        foreach (var btn in btnDict.Values)
+        {
+            btn.OnPoke = null;
+        }
     }
 }

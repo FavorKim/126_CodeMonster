@@ -7,13 +7,13 @@ using UnityEngine;
 public class MakeLoopBlockContainerManager : BlockContainerManager
 {
 
-    private void Update()
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GetMakeLoopBlocksName();
-        }
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, UIManager.Instance.MakeLoopBlockBoxEnable);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, GetMakeLoopBlocksName);
     }
+
+
     public override void AddBlock(GameObject newBlock)
     {
         base.AddBlock(newBlock);
