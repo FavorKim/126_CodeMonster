@@ -238,6 +238,64 @@ public class Player : MonoBehaviour
     }
 
 
+    private int GetAttackTypeFromBlock(int blockIndex)
+    {
+        // AttackBlock의 타입에 따른 처리 (5: Grass, 6: Water, 7: Fire)
+        return blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
+    }
+
+    private Vector2Int GetDirectionFromBlock(int blockIndex)
+    {
+        // MoveBlock의 방향에 따라 반환되는 Vector2Int 설정
+        switch (blockIndex)
+        {
+            case 1: return Vector2Int.up;
+            case 2: return Vector2Int.down;
+            case 3: return Vector2Int.left;
+            case 4: return Vector2Int.right;
+            default: return Vector2Int.zero;
+        }
+    }
+
+    private IEnumerator PlayerAction()
+    {
+        isPlaying = true;
+        int index = 0;
+        List<int> indexList =  UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
+        if (indexList == null)
+        {
+            //DebugBoxManager.Instance.Log("indexList is Null");
+        }
+
+        while (indexList.Count > index && isGameOver == false)
+        {
+
+            //이동중일때 멈춤
+
+            Execute(indexList[index]);
+            UIManager.Instance.BlockContainerManager.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            if (index > 0)
+                UIManager.Instance.BlockContainerManager.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+            //공격중일때 멈춤
+            index++;
+            yield return new WaitWhile(() => isAttack);
+            yield return new WaitWhile(() => isMove);
+            //yield return new WaitForSeconds(1);
+        }
+
+        DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
+        isPlaying = false;
+        //if(isDie)
+        //{
+        //    this.gameObject.SetActive(false);
+        //}
+    }
+
+    public void StartPlayerAction()
+    {
+        if (!isPlaying)
+            StartCoroutine(PlayerAction());
+    }
 
     public void ResetPlayer()
     {

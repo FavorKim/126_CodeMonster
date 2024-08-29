@@ -31,8 +31,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject BlockContainerUI;
     public GameObject AttackBlockUI;
     public GameObject MoveBlockUI;
-    public GameObject LoopBlockUI;
-    public GameObject ConditionalBlockUI;
+    public GameObject MakeLoopBlockUI;
+    public GameObject MakeConditionalBlockUI;
     public GameObject HintBoxUI;
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
@@ -52,15 +52,15 @@ public class UIManager : Singleton<UIManager>
     [Header("MakeLoopBlock UI")]
     public int MakeLoopBlockContainerLength;
 
-
-
-    private BlockContainerManager BlockContainerManager;
+    public BlockContainerManager BlockContainerManager;
+    public MakeLoopBlockContainerManager MakeLoopBlockContainerManager;
     private StageBlockUIManager StageBlockManager;
 
     protected override void Start()
     {
         base.Start();
         BlockContainerManager = BlockContainerUI.GetComponent<BlockContainerManager>();
+        MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
 
         SetUIManager();
@@ -78,7 +78,7 @@ public class UIManager : Singleton<UIManager>
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI Size 설정 
         //BlockUISizeSet();
 
-        BlockContainerManager.Instance.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
+        BlockContainerManager.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
 
         EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
     }
