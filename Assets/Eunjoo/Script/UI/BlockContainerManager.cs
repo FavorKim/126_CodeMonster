@@ -113,6 +113,7 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         foreach(MaterialChanger mat in materialChangers)
         {
             mat.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+            mat.DisableXIcon();
         }
     }
 
@@ -168,5 +169,6 @@ public class BlockContainerManager : Singleton<BlockContainerManager>
         else
             materialChangers[index].DisableXIcon();
     }
+
 }
 

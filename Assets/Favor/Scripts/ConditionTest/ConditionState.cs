@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FavorSample
+namespace FavorsSample
 {
     // 상태 enum
     public enum SampleStates
