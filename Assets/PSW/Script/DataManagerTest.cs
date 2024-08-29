@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,6 +13,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
     public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }
     public Dictionary<int, MoveBlock> LoadedMoveBlockList { get; private set; }
     public Dictionary<int, AttackBlock> LoadedAttackBlockList { get; private set; }
+    public Dictionary<int, LoopBlock> LoadedLoopBlockList { get; private set; }
     public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
@@ -164,6 +166,29 @@ public class DataManagerTest : Singleton<DataManagerTest>
         };
     }
 
+    private LoopBlock ParseLoopBlock(XElement data)
+    {
+        var subBlockIndices = data.Attribute("SubBlockIndices").Value
+            .Split(',')
+            .Select(int.Parse)
+            .ToList();
+
+        return new LoopBlock
+        {
+            BlockIndex = int.Parse(data.Attribute(nameof(LoopBlock.BlockIndex)).Value),
+            LoopCount = int.Parse(data.Attribute(nameof(LoopBlock.LoopCount)).Value),
+            SubBlockIndices = subBlockIndices
+        };
+    }
+
+    public void AddLoopBlockData(LoopBlock loopBlock)
+    {
+        if(!LoadedLoopBlockList.ContainsKey(loopBlock.BlockIndex))
+        {
+            LoadedLoopBlockList.Add(loopBlock.BlockIndex, loopBlock);
+        }
+    }
+
     private MonsterType ParseMonsterType(XElement data)
     {
         return new MonsterType
@@ -292,6 +317,15 @@ public class DataManagerTest : Singleton<DataManagerTest>
             return null;
 
         return LoadedAttackBlockList[blockIndex];
+    }
+
+    public LoopBlock GetLoopBlockData(int blockIndex)
+    {
+        if (LoadedLoopBlockList.ContainsKey(blockIndex))
+        {
+            return LoadedLoopBlockList[blockIndex];
+        }
+        return null;
     }
 
     public StageMap GetStageMapData(int dataIndex)

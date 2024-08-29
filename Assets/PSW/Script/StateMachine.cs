@@ -6,20 +6,22 @@ using UnityEngine;
 enum PlayerStateName
 {
     IDLE,
-    ACTION,
+    CHECK,
+    MOVE,
+    ATTACK,
+    LOOP,
     DIEMOVE,
     DIEHIT,
     HINTACCENT
 }
 
-public class StateMachin<T> where T : class
+public class StateMachine<T> where T : class
 {
     public BaseState<T> CurrentState { get; set; }  // 현재 상태
-    private Dictionary<Enum, BaseState<T>> states =
-    new Dictionary<Enum, BaseState<T>>();
+    private Dictionary<Enum, BaseState<T>> states = new Dictionary<Enum, BaseState<T>>();
 
 
-    public StateMachin(Enum stateName, BaseState<T> state)
+    public StateMachine(Enum stateName, BaseState<T> state)
     {
         AddState(stateName, state);
         CurrentState = GetState(stateName);

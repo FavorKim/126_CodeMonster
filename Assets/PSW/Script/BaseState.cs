@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public abstract class BaseState<T>  where T : class
 {
@@ -29,6 +25,7 @@ public class Idle : BaseState<Player>
 {
     public Idle(Player controller) : base(controller)
     {
+
     }
 
     public override void OnEnterState()
@@ -46,110 +43,223 @@ public class Idle : BaseState<Player>
 
     }
 }
-public class PlayerAction : BaseState<Player>
+
+// MoveState, AttackState, ConditionState, LoopState
+
+//public class PlayerAction : BaseState<Player>
+//{
+//    Vector2Int position;
+//    private int attackBlockType;
+//    private int index;
+//    List<int> indexList;
+//    private bool isAttack = false;
+//    public PlayerAction(Player controller) : base(controller)
+//    {
+
+//    }
+
+//    public override void OnEnterState()
+//    {
+//        position = Controller.playerPosition;
+//        Controller.isPlaying = true;
+//        index = 0;
+//        indexList = BlockContainerManager.Instance.GetContatinerBlocks();
+//        Controller.WinEvent += PlayerWinEvent;
+//        isAttack = false;
+//    }
+
+//    public override void OnUpdateState()
+//    {
+//        BlockAction();
+//    }
+
+//    public override void OnExitState()
+//    {
+//        Controller.isPlaying = false;
+//        Controller.WinEvent -= PlayerWinEvent;
+//    }
+//    private void BlockAction()
+//    {
+//        if (indexList == null || index >= indexList.Count)
+//        {
+//            DebugBoxManager.Instance.Log("플레이어 행동종료.");
+//            Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
+//            return;
+//        }
+
+//        if (isAttack) return;
+
+//        BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+//        if(index > 0)
+//        {
+//            BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+//        }
+
+//        Execute(indexList[index]);
+//    }
+//    public void Execute(int blockIndex)
+//    {
+//        if (blockIndex <= 4)
+//        {
+//            if (!GameRule.CheckPlayerPosAndMonster(position))//몬스터와 같은 자리인데 움직이려 하는가
+//            {
+//                Move(GetDirectionFromBlock(blockIndex));
+//            }
+//            else
+//            {
+//                DebugBoxManager.Instance.Log("몬스터가 있는데 이동함. 게임오버");
+//                Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
+//            }
+//        }
+//        else if (blockIndex <= 7)
+//        {
+//            attackBlockType = GetAttackTypeFromBlock(blockIndex);
+//            Attack();
+//        }
+//        else if (blockIndex >= 8)
+//        {
+//            LoopBlock loopBlock = DataManagerTest.Instance.GetLoopBlockData(blockIndex);
+//            if (loopBlock != null)
+//            {
+//                Controller.StartCoroutine(ExecuteLoopBlock(loopBlock));
+//            }
+//        }
+//    }
+//    private Vector2Int GetDirectionFromBlock(int blockIndex)
+//    {
+//        // MoveBlock의 방향에 따라 반환되는 Vector2Int 설정
+//        switch (blockIndex)
+//        {
+//            case 1: return Vector2Int.up;
+//            case 2: return Vector2Int.down;
+//            case 3: return Vector2Int.left;
+//            case 4: return Vector2Int.right;
+//            default: return Vector2Int.zero;
+//        }
+//    }
+//    private void Move(Vector2Int direction)
+//    {
+//        Vector2Int newPosition = position + direction;
+//        Vector3 movePos = new Vector3(newPosition.x, 0, newPosition.y);
+
+
+//        Controller.gameObject.transform.position = Vector3.Lerp(Controller.gameObject.transform.position, movePos, 0.05f);
+
+//        if(MoveFinsh(Controller.gameObject.transform.position, movePos))
+//        {
+//            index++;             
+//            position = newPosition;
+//            Controller.gameObject.transform.position = movePos;
+
+//            if (GameRule.CheckPlayerPosAndMonster(position))//몬스터와 같은 자리여서 위치를 바꾼다
+//            {
+//                Controller.gameObject.transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
+//                DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
+
+//            }
+//            else if (GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
+//            {
+//                DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
+//                Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
+//            }
+//        }
+//    }
+
+//    private bool MoveFinsh(Vector3 playerPos, Vector3 targetPos)
+//    {
+//        return Vector3.Distance(targetPos, playerPos) > 0.1f;
+//    }
+
+//    private void Attack()
+//    {
+//        Controller.EnableTypeMonsterPrefab(attackBlockType);
+//        BattleManager.Instance.BattlePhase(position, attackBlockType);
+//        isAttack = true;
+//    }
+
+//    private IEnumerator ExecuteLoopBlock(LoopBlock loopBlock)
+//    {
+//        for(int i = 0; i < loopBlock.LoopCount; i++)
+//        {
+//            foreach(int subBlockIndex in loopBlock.SubBlockIndices)
+//            {
+//                Execute(subBlockIndex);
+//                yield return new WaitWhile(() => isAttack || Controller.isGameOver);
+//            }
+//        }
+//        index++;
+//        BlockAction();
+//    }
+
+//    public int GetAttackBlockType()
+//    {
+//        return attackBlockType;
+//    }
+
+//    private int GetAttackTypeFromBlock(int blockIndex)
+//    {
+//        // AttackBlock의 타입에 따른 처리 (5: Grass, 6: Water, 7: Fire)
+//        return blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
+//    }
+
+//    public void PlayerWinEvent()
+//    {
+//        index++;
+//        isAttack = false;
+//        BlockAction();
+//    }
+
+//}
+
+public class CheckState : BaseState<Player>
 {
-    Vector2Int position;
-    private int attackBlockType;
-    private int index;
-    List<int> indexList;
-    private bool isAttack = false;
-    public PlayerAction(Player controller) : base(controller)
-    {
-    }
+    public CheckState(Player controller) : base(controller) { }
 
     public override void OnEnterState()
     {
-        position = Controller.playerPosition;
-        Controller.isPlaying = true;
-        index = 0;
-        indexList = BlockContainerManager.Instance.GetContatinerBlocks();
-        Controller.WinEvent += PlayerWinEvent;
-        isAttack = false;
-    }
+        int blockIndex = Controller.GetCurrentBlockIndex();
 
-    public override void OnUpdateState()
-    {
-        BlockAction();
-    }
-
-    public override void OnExitState()
-    {
-        Controller.isPlaying = false;
-        Controller.WinEvent -= PlayerWinEvent;
-    }
-    private void BlockAction()
-    {
-        //isPlaying = true;
-        if (indexList == null)
+        if (blockIndex == -1)
         {
-            //DebugBoxManager.Instance.Log("indexList is Null");
+            DebugBoxManager.Instance.Log("플레이어 행동 종료.");
+            Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
+            return;
         }
-
-        while (indexList.Count > index && Controller.isGameOver == false)
-        {
-            if (isAttack == true)
-            {
-                continue;
-            }
-
-            //이동중일때 멈춤
-            BlockContainerManager.Instance.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
-            if (index > 0)
-                BlockContainerManager.Instance.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
-
-            Execute(indexList[index]);
-            
-
-            
-            //공격중일때 멈춤
-            //yield return new WaitForSeconds(1);
-        }
-
-        DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
-        Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
-        //isPlaying = false;
-        //if(isDie)
-        //{
-        //    this.gameObject.SetActive(false);
-        //}
-    }
-    public void Execute(int blockIndex)
-    {
-      
 
         if (blockIndex <= 4)
         {
-            if (GameRule.CheckPlayerPosAndMonster(position) == false)//몬스터와 같은 자리인데 움직이려 하는가
-            {
-                Move(GetDirectionFromBlock(blockIndex));
-            }
-            else
-            {
-                //게임오버
-                DebugBoxManager.Instance.Log("몬스터가 있는데 이동함. 게임오버");
-                BlockContainerManager.Instance.SetXIcon(index, true);
-                Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
-            }
+            Controller.playerStateMachine.ChangeState(PlayerStateName.MOVE);
         }
         else if (blockIndex <= 7)
         {
-            attackBlockType = GetAttackTypeFromBlock(blockIndex);
-            Attack(index);
+            Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
         }
-        else if (blockIndex == 8)
+        else if (blockIndex >= 8)
         {
-            // 조건문
-
-        }
-        else
-        {
-            // 반복문
-            // 로직이
+            Controller.playerStateMachine.ChangeState(PlayerStateName.LOOP);
         }
     }
+
+    public override void OnUpdateState() { }
+
+    public override void OnExitState() { }
+}
+
+
+
+public class MoveState : BaseState<Player>
+{
+    public MoveState(Player controller) : base(controller) { }
+
+    public override void OnEnterState()
+    {
+        int blockIndex = Controller.GetCurrentBlockIndex();
+        Vector2Int direction = GetDirectionFromBlock(blockIndex);
+        Controller.Move(direction);
+    }
+
     private Vector2Int GetDirectionFromBlock(int blockIndex)
     {
-        // MoveBlock의 방향에 따라 반환되는 Vector2Int 설정
         switch (blockIndex)
         {
             case 1: return Vector2Int.up;
@@ -159,78 +269,52 @@ public class PlayerAction : BaseState<Player>
             default: return Vector2Int.zero;
         }
     }
-    private void Move(Vector2Int direction)
-    {
-        Vector2Int newPosition = position + direction;
-        Vector3 movePos = new Vector3(newPosition.x, 0, newPosition.y);
 
+    public override void OnUpdateState() { }
 
-        Controller.gameObject.transform.position = Vector3.Lerp(Controller.gameObject.transform.position, movePos, 0.05f);
-
-        if(MoveFinsh(Controller.gameObject.transform.position, movePos))
-        {
-            index++;
-
-            position = newPosition;
-
-            Controller.gameObject.transform.position = movePos;
-
-            if (GameRule.CheckPlayerPosAndMonster(position) == true)//몬스터와 같은 자리여서 위치를 바꾼다
-            {
-                //위치 변경
-                Controller.gameObject.transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
-                DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
-
-            }
-            else if (GameRule.CheckPlayerPosInDeadzone(position))//내 위치가 이동 불가 지역이라 죽는다
-            {
-                DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
-                BlockContainerManager.Instance.SetXIcon(index, true);
-                Controller.playerStateMachine.ChangeState(PlayerStateName.DIEMOVE);
-            }
-        }
-
-       
-
-
-    }
-
-    private bool MoveFinsh(Vector3 playerPos, Vector3 targetPos)
-    {
-        if (Vector3.Distance(targetPos, playerPos) <= 0.1f)
-        {
-            return false;
-        }
-        return true;
-    }
-
-
-
-
-    private void Attack(int curIndex)
-    {
-        Controller.EnableTypeMonsterPrefab(attackBlockType);
-        BattleManager.Instance.BattlePhase(position, attackBlockType, curIndex);
-    }
-
-    public int GetAttackBlockType()
-    {
-        return attackBlockType;
-    }
-
-    private int GetAttackTypeFromBlock(int blockIndex)
-    {
-        // AttackBlock의 타입에 따른 처리 (5: Grass, 6: Water, 7: Fire)
-        return blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
-    }
-
-    public void PlayerWinEvent()
-    {
-        index++;
-        isAttack = false;
-    }
-
+    public override void OnExitState() { }
 }
+
+
+
+public class AttackState : BaseState<Player>
+{
+    public AttackState(Player controller) : base(controller) { }
+
+    public override void OnEnterState()
+    {
+        int blockIndex = Controller.GetCurrentBlockIndex();
+        Controller.Attack(blockIndex);
+    }
+
+    public override void OnUpdateState() { }
+
+    public override void OnExitState() { }
+}
+
+
+
+public class LoopState : BaseState<Player>
+{
+    public LoopState(Player controller) : base(controller) { }
+
+    public override void OnEnterState()
+    {
+        int blockIndex = Controller.GetCurrentBlockIndex();
+        LoopBlock loopBlock = DataManagerTest.Instance.GetLoopBlockData(blockIndex);
+        if (loopBlock != null)
+        {
+            Controller.ExecuteLoopBlock(loopBlock);
+        }
+    }
+
+    public override void OnUpdateState() { }
+
+    public override void OnExitState() { }
+}
+
+
+
 public class DIEMOVE : BaseState<Player>
 {
     public DIEMOVE(Player controller) : base(controller)
