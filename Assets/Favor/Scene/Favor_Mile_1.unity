@@ -683,6 +683,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 3940578980144864507, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Name
+      value: ConditionMakeBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064545996477438213, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Name
+      value: LoopMakeBtn
+      objectReference: {fileID: 0}
     - target: {fileID: 6330316872665450915, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: hintBtn
       value: 

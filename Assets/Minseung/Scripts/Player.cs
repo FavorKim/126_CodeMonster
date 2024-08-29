@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     {
         this.stageManager = stageManager;
         position = stageManager.GetStartPosition();
-        
+
     }
 
     private void Awake()
@@ -42,9 +42,9 @@ public class Player : MonoBehaviour
     {
         //SetPlayerType();
         //SetPlayerPrefab();
-        InteractEventManager.Instance.RegistOnClickStartBtn(StartPlayerAction);
-        InteractEventManager.Instance.RegistOnClickRestartBtn(ResetPlayer);
-        InteractEventManager.Instance.RegistOnClickPauseBtn(ResetPlayer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.START, StartPlayerAction);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetPlayer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetPlayer);
     }
 
     private void Update()
@@ -126,14 +126,14 @@ public class Player : MonoBehaviour
 
     public void ExecuteLoopBlock(LoopBlock loopBlock)
     {
-        StartCoroutine(ExecuteLoop(loopBlock)); 
+        StartCoroutine(ExecuteLoop(loopBlock));
     }
 
     private IEnumerator ExecuteLoop(LoopBlock loopBlock)
     {
-        for(int i = 0; i < loopBlock.LoopCount; i++)
+        for (int i = 0; i < loopBlock.LoopCount; i++)
         {
-            foreach(int subBlockIndex in loopBlock.SubBlockIndices)
+            foreach (int subBlockIndex in loopBlock.SubBlockIndices)
             {
                 Execute(subBlockIndex);
                 yield return new WaitWhile(() => isAttack || isGameOver);
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
 
     private void Execute(int subBlockIndex)
     {
-        
+
         if (subBlockIndex <= 4)
         {
             stateMachine.ChangeState(PlayerStateName.MOVE);

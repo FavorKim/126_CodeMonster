@@ -3,36 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum PokeButton
+{
+    START,
+    RESET,
+    RESTART,
+    PAUSE,
+    HINT,
+    LOOPMAKE,
+    CONDITIONMAKE,
+}
 public class InteractEventManager : Singleton<InteractEventManager>
 {
-    [SerializeField] public CustomPokedObject startBtn;
+    [SerializeField] CustomPokedObject startBtn;
     [SerializeField] CustomPokedObject resetBtn;
     [SerializeField] CustomPokedObject restartBtn;
     [SerializeField] CustomPokedObject pauseBtn;
     [SerializeField] CustomPokedObject hintBtn;
-  
+    [SerializeField] CustomPokedObject loopMakeBtn;
+    [SerializeField] CustomPokedObject conditionMakeBtn;
 
-   
-    public void RegistOnClickStartBtn(Action action)
+    private Dictionary<PokeButton, CustomPokedObject> btnDict = new Dictionary<PokeButton, CustomPokedObject>();
+
+    private void Awake()
     {
-        startBtn.OnPoke += action;
+        btnDict.Add(PokeButton.START, startBtn);
+        btnDict.Add(PokeButton.RESET, resetBtn);
+        btnDict.Add(PokeButton.RESTART, restartBtn);
+        btnDict.Add(PokeButton.PAUSE, pauseBtn);
+        btnDict.Add(PokeButton.HINT, hintBtn);
+        btnDict.Add(PokeButton.LOOPMAKE, loopMakeBtn);
+        btnDict.Add(PokeButton.CONDITIONMAKE, conditionMakeBtn);
     }
 
-    public void RegistOnClickResetBtn(Action action)
+    public void RegistOnPokeBtn(PokeButton btn, Action action)
     {
-        resetBtn.OnPoke += action;
-    }
-    public void RegistOnClickRestartBtn(Action action)
-    {
-        restartBtn.OnPoke += action;
-    }
-    public void RegistOnClickPauseBtn(Action action)
-    {
-        pauseBtn.OnPoke += action;
-    }
-    public void RegistOnClickHintBtn(Action action)
-    {
-        hintBtn.OnPoke += action;
+        btnDict[btn].OnPoke += action;
     }
 
 
@@ -44,5 +51,7 @@ public class InteractEventManager : Singleton<InteractEventManager>
         restartBtn.OnPoke = null;
         pauseBtn.OnPoke = null;
         hintBtn.OnPoke = null;
+        loopMakeBtn.OnPoke = null;
+        conditionMakeBtn.OnPoke = null;
     }
 }

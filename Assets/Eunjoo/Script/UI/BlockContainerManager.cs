@@ -15,9 +15,9 @@ public class BlockContainerManager : MonoBehaviour
         //base.Awake();
         BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
-        InteractEventManager.Instance.RegistOnClickResetBtn(ResetBlockContainer);
-        InteractEventManager.Instance.RegistOnClickRestartBtn(ResetBlockContainer);
-        InteractEventManager.Instance.RegistOnClickPauseBtn(ResetContainerBlockMaterial);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET,ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART,ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE,ResetContainerBlockMaterial);
     }
 
     public void OnDisable()

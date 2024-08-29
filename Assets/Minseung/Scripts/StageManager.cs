@@ -20,7 +20,7 @@ public class StageManager : Singleton<StageManager>
         GenerateStage(floorPrefabs, wallPrefabs);
         SetPlayer(playerPrefab);
         SetEnemies();
-        InteractEventManager.Instance.RegistOnClickRestartBtn(ResetStage);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART,ResetStage);
     }
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
