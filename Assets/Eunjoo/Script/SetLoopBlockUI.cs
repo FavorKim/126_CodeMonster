@@ -17,6 +17,11 @@ public class SetLoopBlockUI : MonoBehaviour
         }
     }
 
+    public int CountLoopBlockListBox()
+    {
+        return LoopBlockListBox.transform.childCount;
+    }
+
     public void ResetBlock()
     {
         // 현재 컨테이너 하위에 있는 모든 자식 객체를 리스트에 저장
