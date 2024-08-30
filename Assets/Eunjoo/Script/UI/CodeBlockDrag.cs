@@ -198,13 +198,11 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("?");
         OnBoxGrabbed();
     }
 
     private void OnBoxGrabbed()
     {
-        Debug.Log("!");
 
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
@@ -236,7 +234,7 @@ public class CodeBlockDrag : MonoBehaviour
             {
                 GameObject loopBlock = ObjectPoolManager.Instance.GetObject(blockName);
                 SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponentInChildren<SetLoopBlockUI>();
-
+                SetLoopBlockUI.EnableLoopBlockImage();
                 SetLoopBlockUI.AddBlock(loopBlock);
             }
         }
@@ -314,6 +312,7 @@ public class CodeBlockDrag : MonoBehaviour
         BlockContainerUI = null;
 
         transform.SetParent(PoolParent.transform, false);
+        transform.localScale = new Vector3(30f, 30f, 30f);
 
         // SetParent 바뀌어서 피벗 맞춰주기
         _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
