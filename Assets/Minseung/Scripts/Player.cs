@@ -57,8 +57,6 @@ public class Player : MonoBehaviour
         stateMachine.AddState(PlayerStateName.CHECK, new CheckState(this));
         stateMachine.AddState(PlayerStateName.MOVE, new MoveState(this));
         stateMachine.AddState(PlayerStateName.ATTACK, new AttackState(this));
-        stateMachine.AddState(PlayerStateName.LOOP, new LoopState(this));
-        stateMachine.AddState(PlayerStateName.CONDITION, new ConditionState(this));
         stateMachine.AddState(PlayerStateName.DIEMOVE, new DIEMOVE(this));
         stateMachine.AddState(PlayerStateName.DIEHIT, new DIEHIT(this));
         stateMachine.AddState(PlayerStateName.HINTACCENT, new HINTACCENT(this));
@@ -135,62 +133,8 @@ public class Player : MonoBehaviour
         {
             stateMachine.ChangeState(PlayerStateName.ATTACK);
         }
-        else if (subBlockIndex >= 8)
-        {
-            stateMachine.ChangeState(PlayerStateName.LOOP);
-        }
-        else if(subBlockIndex == 9)
-        {
-            stateMachine.ChangeState(PlayerStateName.CONDITION);
-        }
+
     }
-    //private void SetPlayerType()
-    //{
-    //    int index = DataManagerTest.Instance.LoadedMonsterType.Count;
-
-    //    for (int i = 0; i < index; i++)
-    //    {
-    //        GameObject typeObj = new GameObject();
-    //        typeObj.transform.SetParent(this.transform);
-    //        typeObj.transform.localPosition = Vector3.zero;
-    //        typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i + 5).TypeName;
-    //    }
-    //}
-
-    //private void SetPlayerPrefab()
-    //{
-    //    for (int i = 0; i < monsterPrefabs.Count; i++)
-    //    {
-    //        GameObject monster = Instantiate(monsterPrefabs[i]);
-    //        monster.name = monsterPrefabs[i].name;
-    //        monster.SetActive(true);
-    //        SetPrefabsParent(monster);
-    //        monster.transform.localPosition = Vector3.zero;
-
-    //    }
-
-    //    DisableTypeMonsterPrefab();
-    //    EnableTypeMonsterPrefab(4);
-    //}
-
-    //private void SetPrefabsParent(GameObject monster)
-    //{
-    //    int monsterTypeIndex = DataManagerTest.Instance.GetMonsterData(monster.name).TypeIndex;
-
-    //    switch (monsterTypeIndex)
-    //    {
-    //        case 5:
-    //            monster.transform.SetParent(this.transform.GetChild(1));
-    //            break;
-    //        case 6:
-    //            monster.transform.SetParent(this.transform.GetChild(2));
-    //            break;
-    //        case 7:
-    //            monster.transform.SetParent(this.transform.GetChild(3));
-    //            break;
-    //    }
-
-    //}
 
     private void DisableTypeMonsterPrefab()
     {
@@ -243,42 +187,6 @@ public class Player : MonoBehaviour
             default: return Vector2Int.zero;
         }
     }
-
-    /*
-    private IEnumerator PlayerAction()
-    {
-        isPlaying = true;
-        int index = 0;
-        List<int> indexList =  UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
-        if (indexList == null)
-        {
-            //DebugBoxManager.Instance.Log("indexList is Null");
-        }
-
-        while (indexList.Count > index && isGameOver == false)
-        {
-
-            //이동중일때 멈춤
-
-            Execute(indexList[index]);
-            UIManager.Instance.BlockContainerManager.SetBlockMaterial(index, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
-            if (index > 0)
-                UIManager.Instance.BlockContainerManager.SetBlockMaterial(index - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
-            //공격중일때 멈춤
-            index++;
-            yield return new WaitWhile(() => isAttack);
-            yield return new WaitWhile(() => isMove);
-            //yield return new WaitForSeconds(1);
-        }
-
-        DebugBoxManager.Instance.Log("플레이어 행동 종료. 게임 오버");
-        isPlaying = false;
-        //if(isDie)
-        //{
-        //    this.gameObject.SetActive(false);
-        //}
-    }
-    */
 
     public void ResetPlayer()
     {

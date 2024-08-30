@@ -13,8 +13,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
     public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }
     public Dictionary<int, MoveBlock> LoadedMoveBlockList { get; private set; }
     public Dictionary<int, AttackBlock> LoadedAttackBlockList { get; private set; }
-    public Dictionary<int, LoopBlock> LoadedLoopBlockList { get; private set; }
-    public Dictionary<int, ConditionalBlock> LoadedConditionalBlockList { get; private set; }
     public Dictionary<int, MonsterType> LoadedMonsterType { get; private set; }
     public Dictionary<int, StageMap> LoadedStageMap { get; private set; }
     public Dictionary<int, UIText> LoadedText { get; private set; }
@@ -35,8 +33,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
     {
         LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
         LoadedCodeBlockList = LoadDataTable(nameof(CodeBlockData), ParseCodeBlockData, cb => cb.BlockName);
-        //LoadedMoveBlockList = LoadDataTable(nameof(MoveBlock), ParseMoveBlock, mb => mb.BlockIndex);
-        //LoadedAttackBlockList = LoadDataTable(nameof(AttackBlock), ParseAttackBlock, ab => ab.BlockIndex);
         LoadedMonsterType = LoadDataTable(nameof(MonsterType), ParseMonsterType, mt => mt.TypeIndex);
         LoadedStageMap = LoadDataTable(nameof(StageMap), ParseStageMap, sm => sm.StageIndex);
         LoadedText = LoadDataTable(nameof(UIText), ParseUIText, ut => ut.TextIndex);
@@ -108,20 +104,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
         }
 
         return dataTable;
-
-        //var dataTable = new Dictionary<TKey, TValue>();
-
-        //XDocument doc = XDocument.Load($"{_dataRootPath}/{fileName}.xml");
-        //var dataElements = doc.Descendants("data");
-
-        //foreach (var data in dataElements)
-        //{
-        //    TValue value = parseElement(data);
-        //    TKey key = getKey(value);
-        //    dataTable.Add(key, value);
-        //}
-
-        //return dataTable;
     }
     #endregion
 
@@ -167,45 +149,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
         };
     }
 
-    private LoopBlock ParseLoopBlock(XElement data)
-    {
-        var subBlockIndices = data.Attribute("SubBlockIndices").Value
-            .Split(',')
-            .Select(int.Parse)
-            .ToList();
-
-        return new LoopBlock
-        {
-            BlockIndex = int.Parse(data.Attribute(nameof(LoopBlock.BlockIndex)).Value),
-            LoopCount = int.Parse(data.Attribute(nameof(LoopBlock.LoopCount)).Value),
-            SubBlockIndices = subBlockIndices
-        };
-    }
-
-    public void AddLoopBlockData(LoopBlock loopBlock)
-    {
-        if (!LoadedLoopBlockList.ContainsKey(loopBlock.BlockIndex))
-        {
-            LoadedLoopBlockList.Add(loopBlock.BlockIndex, loopBlock);
-        }
-    }
-
-    private ConditionalBlock ParseConditionalBlock(XElement data)
-    {
-        return new ConditionalBlock(
-            int.Parse(data.Attribute(nameof(ConditionalBlock.BlockIndex)).Value),
-            () => EvaluateCondition(data.Attribute("Condition").Value),
-            int.Parse(data.Attribute(nameof(ConditionalBlock.TrueBlockIndex)).Value),
-            int.Parse(data.Attribute(nameof(ConditionalBlock.FalseBlockIndex)).Value)
-        );
-    }
-
-    private bool EvaluateCondition(string condition)
-    {
-
-        return true;
-    }
-
     private MonsterType ParseMonsterType(XElement data)
     {
         return new MonsterType
@@ -231,6 +174,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
         SetDataList(out tempStageMap.BlockNameList, data, "BlockNameList");
         SetDataList(out tempStageMap.MonsterNameList, data, "MonsterNameList");
         SetDataList(out tempStageMap.MonsterSpawnPosList, data, "MonsterSpawnPosList", ParseVector2Int);
+        SetDataList(out tempStageMap.BushMonsterList, data, "BushMonsterList", ParseVector2Int);
 
         return tempStageMap;
     }
@@ -334,24 +278,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
             return null;
 
         return LoadedAttackBlockList[blockIndex];
-    }
-
-    public LoopBlock GetLoopBlockData(int blockIndex)
-    {
-        if (LoadedLoopBlockList.ContainsKey(blockIndex))
-        {
-            return LoadedLoopBlockList[blockIndex];
-        }
-        return null;
-    }
-
-    public ConditionalBlock GetConditionalBlockData(int blockIndex)
-    {
-        if (LoadedConditionalBlockList.ContainsKey(blockIndex))
-        {
-            return LoadedConditionalBlockList[blockIndex];
-        }
-        return null;
     }
 
     public StageMap GetStageMapData(int dataIndex)

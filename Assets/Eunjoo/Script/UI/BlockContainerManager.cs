@@ -124,12 +124,41 @@ public class BlockContainerManager : MonoBehaviour
 
         List<int> list = new List<int>();
         materialChangers.Clear();
+
         for (int i = 0; i < this.transform.childCount; i++)
         {
-            int blockIndex = DataManagerTest.Instance.GetCodeBlockData(this.transform.GetChild(i).name).BlockIndex;
-            MaterialChanger mC = transform.GetChild(i).GetComponent<MaterialChanger>();
-            materialChangers.Add(mC);
-            list.Add(blockIndex);
+            Transform childTransform = this.transform.GetChild(i);
+            GameObject block = childTransform.gameObject;
+            int blockIndex = DataManagerTest.Instance.GetCodeBlockData(block.name).BlockIndex;
+
+            ConditionalBlock conditionalBlock = block.GetComponent<ConditionalBlock>();
+            if(conditionalBlock != null)
+            {
+                int commandIndex = conditionalBlock.EvaluateCondition();
+                list.Add(commandIndex);
+            }
+
+            LoopBlock loopBlock = block.GetComponent<LoopBlock>();
+            if(loopBlock != null)
+            {
+                int commandIndex;
+                while((commandIndex = loopBlock.GetNextBlockIndex()) != -1)
+                {
+                    list.Add(commandIndex);
+                } 
+            }
+
+            if(conditionalBlock == null && loopBlock == null)
+            {
+                list.Add(blockIndex);
+            }
+
+            MaterialChanger mC = block.GetComponent<MaterialChanger>();
+            if(mC != null)
+            {
+                materialChangers.Add(mC);
+            }
+            
             if(i>=6)
             {
                 //DebugBoxManager.Instance.Log(transform.GetChild(i).name);
