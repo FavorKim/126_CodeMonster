@@ -66,7 +66,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5145295504303693025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: -5620798050236748967}
   - component: {fileID: -6075006855654281152}
   - component: {fileID: 8339747967980974270}
+  - component: {fileID: 4326250392073721388}
   m_Layer: 0
   m_Name: UILoopBlock
   m_TagString: Untagged
@@ -394,6 +395,20 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7a014f78414e0fe43915b0fe8d6c6352, type: 2}
   - {fileID: 2100000, guid: efc4f5324278b1441b2f7f94929c6e17, type: 2}
   X_Icon: {fileID: 0}
+--- !u!114 &4326250392073721388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369126874611500125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a0efa3dea6e974a983fac94269fee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoopBlockListBox: {fileID: 7312527589254677285}
+  LoopBlockListImage: {fileID: 2596730963124314203}
 --- !u!1 &7107494626610251707
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,3 +618,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a0efa3dea6e974a983fac94269fee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoopBlockListBox: {fileID: 0}
+  LoopBlockListImage: {fileID: 0}
