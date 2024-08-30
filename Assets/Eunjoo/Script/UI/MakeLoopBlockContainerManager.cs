@@ -43,7 +43,7 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
         bool blockInserted = false;
         foreach (Transform block in existingBlocks)
         {
-            if (!blockInserted && newBlockWorldPosition.y < block.position.y)
+            if (!blockInserted && newBlockWorldPosition.y > block.position.y)
             {
                 sortedBlocks.Add(newBlock.transform);
                 blockInserted = true;

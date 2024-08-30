@@ -205,6 +205,10 @@ public class CodeBlockDrag : MonoBehaviour
     {
         OnBoxGrabbed();
     }
+    private void OnMouseUp()
+    {
+        OnBoxRelease();
+    }
 
     private void OnBoxGrabbed()
     {
@@ -237,14 +241,15 @@ public class CodeBlockDrag : MonoBehaviour
             {
 
                 SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponentInChildren<SetLoopBlockUI>();
+                SetLoopBlockUI.EnableLoopBlockImage();
+
                 if (SetLoopBlockUI.CountLoopBlockListBox() >= UIManager.Instance.LoopBlockList.Count) return;
 
                 GameObject loopBlock = ObjectPoolManager.Instance.GetObject(blockName);
                 HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
-                CodeBlockDrag loopBlockCodeBlockDrag = loopBlock.GetComponent<CodeBlockDrag>();
-                loopBlockCodeBlockDrag.enabled = false;
+                BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();
+                loopBlockCodeBlockBoxCollider.enabled = false;
                 loopBlockHandGrab.enabled = false;
-                SetLoopBlockUI.EnableLoopBlockImage();
                 SetLoopBlockUI.AddBlock(loopBlock);
             }
         }
@@ -337,8 +342,8 @@ public class CodeBlockDrag : MonoBehaviour
 
         HandGrabInteractable BlockHandGrab = GetComponent<HandGrabInteractable>();
         BlockHandGrab.enabled = true;
-        CodeBlockDrag loopBlockCodeBlockDrag = GetComponent<CodeBlockDrag>();
-        loopBlockCodeBlockDrag.enabled = true;
+        BoxCollider loopBlockCodeBlockBoxCollider = GetComponent<BoxCollider>();
+        loopBlockCodeBlockBoxCollider.enabled = true;
         transform.SetParent(PoolParent.transform, false);
         transform.localScale = new Vector3(30f, 30f, 30f);
 
