@@ -553,7 +553,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7423044622916071254}
   - component: {fileID: 4208530828924425436}
-  - component: {fileID: 8549317281737152660}
   m_Layer: 5
   m_Name: Loop Block
   m_TagString: Untagged
@@ -606,17 +605,3 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8549317281737152660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312527589254677285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01a0efa3dea6e974a983fac94269fee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoopBlockListBox: {fileID: 0}
-  LoopBlockListImage: {fileID: 0}

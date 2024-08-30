@@ -312,6 +312,7 @@ public class CodeBlockDrag : MonoBehaviour
         BlockContainerUI = null;
 
         transform.SetParent(PoolParent.transform, false);
+        transform.localScale = new Vector3(30f, 30f, 30f);
 
         // SetParent 바뀌어서 피벗 맞춰주기
         _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);

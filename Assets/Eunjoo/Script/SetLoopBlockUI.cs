@@ -9,6 +9,36 @@ public class SetLoopBlockUI : MonoBehaviour
     [SerializeField] GameObject LoopBlockListBox;
     [SerializeField] GameObject LoopBlockListImage;
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            ResetBlock();
+        }
+    }
+
+    public void ResetBlock()
+    {
+        // 현재 컨테이너 하위에 있는 모든 자식 객체를 리스트에 저장
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in LoopBlockListBox.transform)
+        {
+            children.Add(child);
+        }
+
+        // 저장한 리스트를 순회하면서 블록들을 리셋
+        foreach (Transform child in children)
+        {
+            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+
+
+            if (codeBlockDrag != null)
+            {
+                codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
+            }
+        }
+    }
+
     public void EnableLoopBlockImage()
     {
         LoopBlockListImage.SetActive(true);
