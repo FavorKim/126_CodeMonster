@@ -17,29 +17,17 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
         private set;
     }
 
-    public void SetTrueBlock(CodeBlockDrag block)
+    public void SetConditionBlock(CodeBlockDrag block, bool trueorFalse)
     {
-        if(this.trueBlock != null)
-        {
-            this.trueBlock.ReturnToPool();
-        }
-        this.trueBlock = block;
+        CodeBlockDrag dest = trueorFalse ? trueBlock : falseBlock;
+        Transform destPos = trueorFalse ? trueBlockPos : falseBlockPos;
+        if (dest != null)
+            dest.ReturnToPool();
+        dest = block;
+        dest.transform.SetParent(destPos, false);
+        Vector3 newPos = dest.transform.localPosition;
+        newPos.z = 0;
+        dest.transform.localPosition = newPos;
+    }
 
-        this.trueBlock.transform.SetParent(trueBlockPos, false);
-        Vector3 newPos = trueBlock.transform.localPosition;
-        newPos.z = 0;
-        this.trueBlock.transform.localPosition = newPos;
-    }
-    public void SetFalseBlock(CodeBlockDrag block)
-    {
-        if(this.falseBlock != null)
-        {
-            this.falseBlock.ReturnToPool();
-        }
-        this.falseBlock = block;
-        this.falseBlock.transform.SetParent(falseBlockPos, false);
-        Vector3 newPos = falseBlock.transform.localPosition;
-        newPos.z = 0;
-        this.falseBlock.transform.localPosition = newPos;
-    }
 }
