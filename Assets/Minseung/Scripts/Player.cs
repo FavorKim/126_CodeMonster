@@ -17,7 +17,11 @@ public class Player : MonoBehaviour
     public bool isAttack = false;
     public bool isGameOver = false;
     //bool isMove;
-    //bool isPlaying;
+    public bool IsPlaying
+    {
+        get;
+        private set;
+    }
 
     public Vector2Int playerPosition { get { return position; } }
     public StateMachine<Player> playerStateMachine { get { return stateMachine; } }
@@ -66,9 +70,13 @@ public class Player : MonoBehaviour
 
     public void StartPlayerAction()
     {
-        blockIndexList = UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
-        CurrentIndex = 0;
-        stateMachine.ChangeState(PlayerStateName.CHECK);
+        if (!IsPlaying)
+        {
+            IsPlaying = true;
+            blockIndexList = UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
+            CurrentIndex = 0;
+            stateMachine.ChangeState(PlayerStateName.CHECK);
+        }
     }
 
     public int GetCurrentBlockIndex()
@@ -287,7 +295,7 @@ public class Player : MonoBehaviour
         EnableTypeMonsterPrefab(4);
         position = stageManager.GetStartPosition();
         transform.position = stageManager.GetPlayerRestPos();
-
+        IsPlaying = false;
         DebugBoxManager.Instance.ClearText();
     }
 

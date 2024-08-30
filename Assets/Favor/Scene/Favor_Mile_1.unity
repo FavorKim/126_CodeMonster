@@ -520,6 +520,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136725901}
   m_CullTransparentMesh: 1
+--- !u!114 &160473855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5158626298115148189, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76636bfa3ff89ef4d81ea6adfdf800b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &244256495
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +1001,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851163454}
   m_CullTransparentMesh: 1
+--- !u!224 &979885483 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8638652933197848010, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009990623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +1683,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
   m_PrefabInstance: {fileID: 2816616365707777681}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1725653622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725653618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765322ebe32e3f54980ea1296e6701c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trueBlockPos: {fileID: 979885483}
+  falseBlockPos: {fileID: 1009990624}
 --- !u!1 &1769468411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1853340788741765288, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3690026286124830195, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.001
@@ -2226,7 +2260,7 @@ PrefabInstance:
     - target: {fileID: 6330316872665450915, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: conditionMakeBtn
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 160473855}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: TextBox
       value: 
@@ -2322,7 +2356,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7390374908388247197, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423619048}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6021920975477035370, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1725653622}
   m_SourcePrefab: {fileID: 100100000, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
 --- !u!1 &2816616365707777682 stripped
 GameObject:

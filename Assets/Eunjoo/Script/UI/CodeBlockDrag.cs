@@ -159,7 +159,8 @@ public class CodeBlockDrag : MonoBehaviour
             EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCountError);
             ReturnToPool();
         }
-        else if (MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount < UIManager.Instance.MakeLoopBlockContainerLength)
+        // 반복문 등록부
+        else if(MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount < UIManager.Instance.MakeLoopBlockContainerLength)
         {
             MakeLoopBlockUI.AddBlock(gameObject);
         }
@@ -167,24 +168,28 @@ public class CodeBlockDrag : MonoBehaviour
         {
             ReturnToPool();
         }
-        else if (MakeConditionBlockUI !=null && isConditionTrue)
+        // 조건문 (if시 행동) 등록부
+        else if(MakeConditionBlockUI !=null && isConditionTrue)
         {
             MakeConditionBlockUI.SetTrueBlock(this);
+            isConditionTrue = false;
         }
         else if (MakeConditionBlockUI != null && !isConditionTrue)
         {
             ReturnToPool();
         }
+        // 조건문 (else시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionFalse)
         {
             MakeConditionBlockUI.SetFalseBlock(this);
+            isConditionFalse = false;
         }
         else if(MakeConditionBlockUI != null && !isConditionFalse)
         {
             ReturnToPool();
         }
         // Container 외에 있을때 
-        else if (BlockContainerUI == null)
+        else 
         {
             ReturnToPool();
         }
@@ -243,10 +248,12 @@ public class CodeBlockDrag : MonoBehaviour
                 break;
             case "MakeConditionTrue":
                 isConditionTrue = true;
+                DebugBoxManager.Instance.Log("참일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
                 isConditionFalse = true;
+                DebugBoxManager.Instance.Log("거짓일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -275,10 +282,12 @@ public class CodeBlockDrag : MonoBehaviour
                 break;
             case "MakeConditionTrue":
                 isConditionTrue = false;
+                DebugBoxManager.Instance.Log("참일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
                 isConditionFalse = false;
+                DebugBoxManager.Instance.Log("거짓일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
         }

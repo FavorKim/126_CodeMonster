@@ -7,12 +7,11 @@ using UnityEngine;
 public class MakeLoopBlockContainerManager : BlockContainerManager
 {
 
-    private void Awake()
+    private void Start()
     {
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, UIManager.Instance.MakeLoopBlockBoxEnable);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, GetMakeLoopBlocksName);
     }
-
 
     public override void AddBlock(GameObject newBlock)
     {
@@ -85,6 +84,7 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
     {
         if (this.transform.childCount <= 0)
         {
+            DebugBoxManager.Instance.Log("루프블록 자식 갯수 0");
             return;
         }
 
