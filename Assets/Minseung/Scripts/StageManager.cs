@@ -12,6 +12,7 @@ public class StageManager : Singleton<StageManager>
     private Vector3 playerPosition;
 
     private Dictionary<int, GameObject> monsterDic = new Dictionary<int, GameObject>();
+    private Dictionary<int, GameObject> bushMonsterDic = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> stageBlockDic = new Dictionary<int, GameObject>();
 
     public void InitializeStage(StageMap stageMap, GameObject[] floorPrefabs, GameObject[] wallPrefabs, GameObject playerPrefab)
@@ -60,12 +61,19 @@ public class StageManager : Singleton<StageManager>
         // 적 생성 및 위치 설정
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
-            int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
-            Vector3 enemyPosition = stageBlockDic[key].transform.GetChild(0).position;
-            GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(currentStageMap.MonsterNameList[i]);
-            enemy.SetActive(true);
-            enemy.transform.position = enemyPosition;
-            monsterDic.Add(ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y), enemy);
+            if (currentStageMap.MonsterNameList[i] == "Bush")
+            {
+                
+            }
+            else
+            {
+                int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
+                Vector3 enemyPosition = stageBlockDic[key].transform.GetChild(0).position;
+                GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(currentStageMap.MonsterNameList[i]);
+                enemy.SetActive(true);
+                enemy.transform.position = enemyPosition;
+                monsterDic.Add(ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y), enemy);
+            }
         }
     }
 
@@ -128,9 +136,6 @@ public class StageManager : Singleton<StageManager>
     {
         return currentStageMap.StageSize.y * posY + posX;
     }
-
-
-
 
     public bool CheckMonsterAndPlayerPos(Vector2Int playerPos)
     {

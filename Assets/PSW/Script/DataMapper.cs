@@ -32,7 +32,7 @@ public class AttackBlock
     public int AttackType { get; set; }
 }
 
-    public class StageMap
+public class StageMap
 {
     public int StageIndex { get; set; }
     public Vector2Int StageSize { get; set; }
@@ -42,7 +42,7 @@ public class AttackBlock
     public List<string> MonsterNameList = new List<string>();
     public List<Vector2Int> MonsterSpawnPosList = new List<Vector2Int>();
     public Vector2Int PlayerSpawnPos { get; set; }
-    public List<Vector2Int> BushMonsterList = new List<Vector2Int>();
+    public List<string> BushMonsterList = new List<string>();
 }
 
 public class MonsterType

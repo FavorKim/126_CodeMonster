@@ -7,29 +7,24 @@ public class ConditionalBlock : MonoBehaviour
 {
     public int TrueBlockIndex { get; private set; }
     public int FalseBlockIndex { get; private set; }
-    private Func<Vector2Int, bool> condition;
+
+    private int selectedAttribute;
+    private DropdownManager dropdownManager;
 
     private void Start()
     {
-        
+        dropdownManager = FindAnyObjectByType<DropdownManager>();
+        selectedAttribute = dropdownManager.GetSelectedConditionAttribute();
     }
 
-    public void Initialize(Func<bool> condition, int trueBlockIndex, int falseBlockIndex)
+    public void Initialize(int trueBlockIndex, int falseBlockIndex)
     {
-        this.condition = condition;
         this.TrueBlockIndex = trueBlockIndex;
         this.FalseBlockIndex = falseBlockIndex;
     }
 
-    public int EvaluateCondition()
+    public bool EvaluateCondition(int currentAttribute)
     {
-        if (condition != null && condition.Invoke())
-        {
-            return TrueBlockIndex;
-        }
-        else
-        {
-            return FalseBlockIndex;
-        }
+        return currentAttribute == selectedAttribute;
     }
 }

@@ -10,15 +10,16 @@ public class LoopBlock : MonoBehaviour
 
     private int currentLoopIndex = 0;
     private int currentSubBlockIndex = 0;
+    private DropdownManager dropdownManager;
 
     public void Start()
     {
-        //LoopCount = GetLoopCount(); - 
+        dropdownManager = FindAnyObjectByType<DropdownManager>();
+        LoopCount = dropdownManager.GetSelectedLoopCount();
     }
 
     public void Initialize(List<int> subBlockIndices)
     {
-        // currentLoopIndex = LoopCount;
         this.SubBlockIndices = subBlockIndices;
     }
 
