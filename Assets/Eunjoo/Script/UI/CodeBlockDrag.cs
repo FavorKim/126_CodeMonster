@@ -196,8 +196,16 @@ public class CodeBlockDrag : MonoBehaviour
         
     }
 
+    private void OnMouseDown()
+    {
+        Debug.Log("?");
+        OnBoxGrabbed();
+    }
+
     private void OnBoxGrabbed()
     {
+        Debug.Log("!");
+
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
 

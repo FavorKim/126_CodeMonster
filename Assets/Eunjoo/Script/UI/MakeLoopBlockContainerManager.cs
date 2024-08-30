@@ -13,6 +13,16 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, GetMakeLoopBlocksName);
     }
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("UPDATE");
+            GetMakeLoopBlocksName();
+        }
+    }
+
+
     public override void AddBlock(GameObject newBlock)
     {
         // 기존 블록들 existingBlocks에 저장
@@ -82,6 +92,8 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
     public void GetMakeLoopBlocksName()
     {
+        UIManager.Instance.LoopBlockList.Clear();
+
         if (this.transform.childCount <= 0)
         {
             DebugBoxManager.Instance.Log("루프블록 자식 갯수 0");
@@ -98,6 +110,6 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
     public void LoseMakeLoopBlocksName()
     {
         ResetBlockContainer();
-        UIManager.Instance.LoopBlockList = null;
+        UIManager.Instance.LoopBlockList.Clear();
     }
 }
