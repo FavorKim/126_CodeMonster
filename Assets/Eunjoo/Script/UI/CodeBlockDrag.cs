@@ -148,6 +148,12 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxRelease()
     {
+        if (BlockType == BlockType.LoopCodeBlock /*|| BlockType == BlockType.ConditionalCodeBlock*/)
+        {
+            SetLoopBlockUI SetLoopBlockUI = gameObject.GetComponentInChildren<SetLoopBlockUI>();
+            SetLoopBlockUI.DisableLoopBlockImage();
+        }
+
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         // Container 내에 있고 자식 수가 BlockContainer Length 보다 적을 때 
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
@@ -192,14 +198,18 @@ public class CodeBlockDrag : MonoBehaviour
         {
             ReturnToPool();
         }
+    }
 
+
+    private void OnMouseDown()
+    {
+        OnBoxGrabbed();
     }
 
     private void OnBoxGrabbed()
     {
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
-
 
         // 부모를 UIManager로 변경
         Transform uiManagerTransform = GameObject.Find("UIManager").transform;
@@ -231,6 +241,8 @@ public class CodeBlockDrag : MonoBehaviour
 
                 GameObject loopBlock = ObjectPoolManager.Instance.GetObject(blockName);
                 HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
+                CodeBlockDrag loopBlockCodeBlockDrag = loopBlock.GetComponent<CodeBlockDrag>();
+                loopBlockCodeBlockDrag.enabled = false;
                 loopBlockHandGrab.enabled = false;
                 SetLoopBlockUI.EnableLoopBlockImage();
                 SetLoopBlockUI.AddBlock(loopBlock);
@@ -325,6 +337,8 @@ public class CodeBlockDrag : MonoBehaviour
 
         HandGrabInteractable BlockHandGrab = GetComponent<HandGrabInteractable>();
         BlockHandGrab.enabled = true;
+        CodeBlockDrag loopBlockCodeBlockDrag = GetComponent<CodeBlockDrag>();
+        loopBlockCodeBlockDrag.enabled = true;
         transform.SetParent(PoolParent.transform, false);
         transform.localScale = new Vector3(30f, 30f, 30f);
 

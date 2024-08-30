@@ -49,6 +49,11 @@ public class SetLoopBlockUI : MonoBehaviour
         LoopBlockListImage.SetActive(true);
     }
 
+    public void DisableLoopBlockImage()
+    {
+        LoopBlockListImage.SetActive(false);
+    }
+
     public void AddBlock(GameObject newBlock)
     {
         newBlock.transform.SetParent(LoopBlockListBox.transform, false);
