@@ -1,5 +1,6 @@
 using EnumTypes;
 using EventLibrary;
+using Oculus.Interaction.HandGrab;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -194,14 +195,8 @@ public class CodeBlockDrag : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
-    {
-        OnBoxGrabbed();
-    }
-
     private void OnBoxGrabbed()
     {
-
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
 
@@ -230,8 +225,13 @@ public class CodeBlockDrag : MonoBehaviour
             List<BlockName> loopBlockNames = UIManager.Instance.LoopBlockList;
             foreach (BlockName blockName in loopBlockNames)
             {
+
+                SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponentInChildren<SetLoopBlockUI>();
+                if (SetLoopBlockUI.CountLoopBlockListBox() >= UIManager.Instance.LoopBlockList.Count) return;
+
                 GameObject loopBlock = ObjectPoolManager.Instance.GetObject(blockName);
-                SetLoopBlockUI SetLoopBlockUI = gameObject.GetComponentInChildren<SetLoopBlockUI>();
+                HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
+                loopBlockHandGrab.enabled = false;
                 SetLoopBlockUI.EnableLoopBlockImage();
                 SetLoopBlockUI.AddBlock(loopBlock);
             }
@@ -323,6 +323,8 @@ public class CodeBlockDrag : MonoBehaviour
     {
         BlockContainerUI = null;
 
+        HandGrabInteractable BlockHandGrab = GetComponent<HandGrabInteractable>();
+        BlockHandGrab.enabled = true;
         transform.SetParent(PoolParent.transform, false);
         transform.localScale = new Vector3(30f, 30f, 30f);
 
