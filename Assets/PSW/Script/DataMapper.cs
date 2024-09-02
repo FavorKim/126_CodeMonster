@@ -64,6 +64,7 @@ public class ConditionalBlock
     public int BlockContainerLength { get; set; }
     public List<string> MonsterNameList = new List<string>();
     public List<Vector2Int> MonsterSpawnPosList = new List<Vector2Int>();
+    public List<string> BushMonsterNameList = new List<string>();
     public Vector2Int PlayerSpawnPos { get; set; }
 }
 

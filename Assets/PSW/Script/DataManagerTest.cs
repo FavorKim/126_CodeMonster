@@ -231,6 +231,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
         SetDataList(out tempStageMap.BlockNameList, data, "BlockNameList");
         SetDataList(out tempStageMap.MonsterNameList, data, "MonsterNameList");
         SetDataList(out tempStageMap.MonsterSpawnPosList, data, "MonsterSpawnPosList", ParseVector2Int);
+        SetDataList(out tempStageMap.BushMonsterNameList, data, "BushMonsterNameList");
 
         return tempStageMap;
     }
