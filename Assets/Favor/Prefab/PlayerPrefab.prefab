@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uBA74?"
+  m_text: "(\uC774)\uBA74?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 514d578054873df439da2cf80cc8754d, type: 2}
   m_sharedMaterial: {fileID: 974371937073064155, guid: 514d578054873df439da2cf80cc8754d, type: 2}
@@ -6534,10 +6534,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Option A
+  m_text: "\uBD88\uC18D\uC131 \uC801\uC744 \uB9CC\uB09C\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 514d578054873df439da2cf80cc8754d, type: 2}
+  m_sharedMaterial: {fileID: 974371937073064155, guid: 514d578054873df439da2cf80cc8754d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9528,11 +9528,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: "\uBD88\uC18D\uC131 \uC801\uC744 \uB9CC\uB09C\uB2E4"
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: "\uBB3C\uC18D\uC131 \uC801\uC744 \uB9CC\uB09C\uB2E4"
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: "\uD480\uC18D\uC131 \uC801\uC744 \uB9CC\uB09C\uB2E4"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11691,6 +11691,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trueBlockPos: {fileID: 8638652933197848010}
   falseBlockPos: {fileID: 6378662396384989966}
+  drop: {fileID: 6686956854893947714}
+  Prefab_ConditionBlock: {fileID: -4531241400238833402, guid: 95204140410bc574fa465a872f195f16, type: 3}
+  makeBtn: {fileID: 5158626298115148189}
 --- !u!1 &6042624271710994477
 GameObject:
   m_ObjectHideFlags: 0
@@ -14109,7 +14112,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 4766812034915225032}
-  _enterHoverNormal: 0.01
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -18159,7 +18162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2664236302370583725, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
       propertyPath: _enterHoverNormal
-      value: 0.01
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2839910896775222717, guid: a5a37c181d7ebfe419b294df2a5edaf1, type: 3}
       propertyPath: m_Enabled

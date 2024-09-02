@@ -179,14 +179,14 @@ public class CodeBlockDrag : MonoBehaviour
         else if (MakeConditionBlockUI != null && isConditionTrue)
         {
             DebugBoxManager.Instance.Log("참 등록");
-            MakeConditionBlockUI.SetConditionBlock(this, true);
+            MakeConditionBlockUI.SetConditionBlockPos(this, true);
             isConditionTrue = false;
         }
         // 조건문 (else시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionFalse)
         {
             DebugBoxManager.Instance.Log("거짓 등록");
-            MakeConditionBlockUI.SetConditionBlock(this, false);
+            MakeConditionBlockUI.SetConditionBlockPos(this, false);
             isConditionFalse = false;
         }
         else if (MakeConditionBlockUI != null && (!isConditionFalse || !isConditionTrue))

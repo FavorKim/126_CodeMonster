@@ -438,33 +438,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1532022959399781634, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: _size.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1774111945963554034, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 2022218983652653427, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
+    - target: {fileID: 2062376336595968492, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: poolInfoList.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 3369126874611500125, guid: 95204140410bc574fa465a872f195f16, type: 3}
+    - target: {fileID: 7074455025462231275, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_fontSize
+      value: 7.4
       objectReference: {fileID: 0}
-    - target: {fileID: 2333818692143261637, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: _enterHoverNormal
-      value: 0.04
+    - target: {fileID: 7074455025462231275, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 514d578054873df439da2cf80cc8754d, type: 2}
+    - target: {fileID: 7074455025462231275, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 7.4
       objectReference: {fileID: 0}
-    - target: {fileID: 5702719244143030394, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: _radiusTopRight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6692679214418217713, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 7074455025462231275, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6877290674781826017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-      propertyPath: _enterHoverNormal
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x

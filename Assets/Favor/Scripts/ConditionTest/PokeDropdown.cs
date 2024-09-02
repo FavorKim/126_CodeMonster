@@ -14,14 +14,6 @@ public class PokeDropdown : MonoBehaviour
         poke = GetComponent<CustomPokedObject>();
     }
 
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            dropDown.Show();
-        }
-    }
     private void Start()
     {
         poke.OnPoke += dropDown.Show;
@@ -57,4 +49,10 @@ public class PokeDropdown : MonoBehaviour
         }
     }
 
+    // 현재 드랍다운에서 선택된 것의 텍스트를 반환
+    public string GetSeletedOptionText()
+    {
+        return dropDown.options[dropDown.value].text;
+    }
+    
 }
