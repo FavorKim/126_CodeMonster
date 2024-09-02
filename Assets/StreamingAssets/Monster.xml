@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Monster>
   <dataCategory>
-    <data ID="1" MonsterName="RedMonster" MonsterViewName="빨갱이" TypeIndex="7" Description="빨갛다" />
-    <data ID="2" MonsterName="BlueMonster" MonsterViewName="파랭이" TypeIndex="6" Description="파랗다" />
-    <data ID="3" MonsterName="GreenMonster" MonsterViewName="초랭이" TypeIndex="5" Description="푸르다" />
+    <data ID="1" MonsterName="Bush" MonsterViewName="수풀" TypeIndex="0" Description="무슨 적이 나올지 알 수 없다" />
+    <data ID="2" MonsterName="RedMonster" MonsterViewName="빨갱이" TypeIndex="7" Description="빨갛다" />
+    <data ID="3" MonsterName="BlueMonster" MonsterViewName="파랭이" TypeIndex="6" Description="파랗다" />
+    <data ID="4" MonsterName="GreenMonster" MonsterViewName="초랭이" TypeIndex="5" Description="푸르다" />
   </dataCategory>
 </Monster>

@@ -471,6 +471,7 @@ MonoBehaviour:
   - {fileID: 4595729284490711594, guid: 043865b47292c9a4785370388018b628, type: 3}
   - {fileID: 1174187840377850448, guid: c44c9bb253714764dbf7b4c1f77add37, type: 3}
   - {fileID: 4832793224300057041, guid: c006220e3cfcb5c4683550dce9ae8124, type: 3}
+  - {fileID: 1352726795475305806, guid: 964602d6720dea44da478637d011fad4, type: 3}
   _poolCount: 10
 --- !u!4 &2057160832
 Transform:

@@ -9,8 +9,6 @@ enum PlayerStateName
     CHECK,
     MOVE,
     ATTACK,
-    LOOP,
-    CONDITION,
     DIEMOVE,
     DIEHIT,
     HINTACCENT

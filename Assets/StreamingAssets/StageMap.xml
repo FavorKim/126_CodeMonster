@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StageMap>
   <dataCategory>
-    <data StageIndex="1" StageSize="(6/6)" ArrayInfo="{0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0}" BlockNameList="{UIUpMoveBlock,UIDownMoveBlock,UILeftMoveBlock,UIRightMoveBlock,UIWaterAttackBlock,UIGrassAttackBlock,UIFireAttackBlock}" BlockContainerLength="10" MonsterNameList="{BlueMonster}" MonsterSpawnPosList="{(4/4)}" PlayerSpawnPos="(1/1)" />
+    <data StageIndex="1" StageSize="(6/6)" ArrayInfo="{0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0}" BlockNameList="{UIUpMoveBlock,UIDownMoveBlock,UILeftMoveBlock,UIRightMoveBlock,UIWaterAttackBlock,UIGrassAttackBlock,UIFireAttackBlock}" BlockContainerLength="10" MonsterNameList="{BlueMonster}" MonsterSpawnPosList="{(4/4)}" BushMonsterNameList="" PlayerSpawnPos="(1/1)" />
+    <data StageIndex="2" StageSize="(6/6)" ArrayInfo="{0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0}" BlockNameList="{UIUpMoveBlock,UIDownMoveBlock,UILeftMoveBlock,UIRightMoveBlock,UIWaterAttackBlock,UIGrassAttackBlock,UIFireAttackBlock}" BlockContainerLength="10" MonsterNameList="{Bush}" MonsterSpawnPosList="{(4/4)}" BushMonsterNameList="{(BlueMonster/RedMonster)}" PlayerSpawnPos="(1/1)" />
   </dataCategory>
 </StageMap>

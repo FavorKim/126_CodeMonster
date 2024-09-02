@@ -67,10 +67,6 @@ public class CheckState : BaseState<Player>
         {
             Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
         }
-        else if (blockIndex >= 8)
-        {
-            Controller.playerStateMachine.ChangeState(PlayerStateName.LOOP);
-        }
     }
 
     public override void OnUpdateState() { }
@@ -124,107 +120,6 @@ public class AttackState : BaseState<Player>
 
     public override void OnExitState() { }
 }
-
-
-
-public class LoopState : BaseState<Player>
-{
-    private LoopBlock currentLoopBlock;
-    private int currentLoopIndex;
-    private int currentSubBlockIndex;
-
-    public LoopState(Player controller) : base(controller) { }
-
-    public override void OnEnterState()
-    {
-        currentLoopIndex = 0;
-        currentSubBlockIndex = 0;
-
-        int blockIndex = Controller.GetCurrentBlockIndex();
-        LoopBlock loopBlock = DataManagerTest.Instance.GetLoopBlockData(blockIndex);
-
-        if (currentLoopBlock != null)
-        {
-            ExecuteNextSubBlock();
-        }
-    }
-
-    public override void OnUpdateState()
-    {
-        if(currentLoopBlock == null || currentLoopIndex >= currentLoopBlock.LoopCount)
-        {
-            Controller.playerStateMachine.ChangeState(PlayerStateName.CHECK);
-            return;
-        }
-
-        if(!Controller.isAttack && !Controller.isGameOver)
-        {
-            ExecuteNextSubBlock();
-        }
-    }
-
-    private void ExecuteNextSubBlock()
-    {
-        if(currentSubBlockIndex >= currentLoopBlock.SubBlockIndices.Count)
-        {
-            currentSubBlockIndex = 0;
-            currentLoopIndex++;
-        }
-
-        if(currentLoopIndex < currentLoopBlock.LoopCount)
-        {
-            int subBlockIndex = currentLoopBlock.SubBlockIndices[currentLoopIndex];
-            currentSubBlockIndex++;
-
-            Controller.Execute(subBlockIndex);
-        }
-    }
-
-    public override void OnExitState()
-    {
-        currentLoopBlock = null;
-    }
-}
-
-public class ConditionState : BaseState<Player>
-{
-    private ConditionalBlock currentConditionalBlock;
-
-    public ConditionState(Player controller) : base(controller) { }
-
-    public override void OnEnterState()
-    {
-        int blockInedx = Controller.GetCurrentBlockIndex();
-        currentConditionalBlock = DataManagerTest.Instance.GetConditionalBlockData(blockInedx);
-
-        if(currentConditionalBlock != null)
-        {
-            ExecuteConditionalBlock();
-        }
-    }
-
-    private void ExecuteConditionalBlock()
-    {
-        if (currentConditionalBlock.Condition())
-        {
-            Controller.Execute(currentConditionalBlock.TrueBlockIndex);
-        }
-        else
-        {
-            Controller.Execute(currentConditionalBlock.FalseBlockIndex);
-        }
-
-        Controller.playerStateMachine.ChangeState(PlayerStateName.CHECK);
-    }
-
-    public override void OnUpdateState() { }
-
-    public override void OnExitState()
-    {
-        currentConditionalBlock = null;
-    }
-}
-
 
 public class DIEMOVE : BaseState<Player>
 {
