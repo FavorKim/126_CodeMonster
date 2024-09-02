@@ -14,14 +14,23 @@ public class StageManager : Singleton<StageManager>
     private Dictionary<int, GameObject> monsterDic = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> bushMonsterDic = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> stageBlockDic = new Dictionary<int, GameObject>();
+    private Dictionary<int, List<GameObject>> bushMonster = new Dictionary<int, List<GameObject>>();
 
     public void InitializeStage(StageMap stageMap, GameObject[] floorPrefabs, GameObject[] wallPrefabs, GameObject playerPrefab)
     {
+        ClearDic();
         this.currentStageMap = stageMap;
         GenerateStage(floorPrefabs, wallPrefabs);
         SetPlayer(playerPrefab);
         SetEnemies();
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART,ResetStage);
+    }
+
+    public void ClearDic()
+    {
+        monsterDic.Clear();
+        stageBlockDic.Clear();
+        bushMonster.Clear();
     }
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
@@ -59,20 +68,21 @@ public class StageManager : Singleton<StageManager>
     private void SetEnemies()
     {
         // 적 생성 및 위치 설정
+
+        
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
-            if (currentStageMap.MonsterNameList[i] == "Bush")
+            int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
+            Vector3 enemyPosition = stageBlockDic[key].transform.GetChild(0).position;
+            string enemyName = currentStageMap.MonsterNameList[i];
+            GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(enemyName);
+            enemy.SetActive(true);
+            enemy.transform.position = enemyPosition;
+            monsterDic.Add(key, enemy);
+            if (DataManagerTest.Instance.GetMonsterData(enemyName).TypeIndex == 0)
             {
-                
-            }
-            else
-            {
-                int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
-                Vector3 enemyPosition = stageBlockDic[key].transform.GetChild(0).position;
-                GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(currentStageMap.MonsterNameList[i]);
-                enemy.SetActive(true);
-                enemy.transform.position = enemyPosition;
-                monsterDic.Add(ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y), enemy);
+                List<GameObject> list = ReturnBushMonsterObj(currentStageMap.BushMonsterNameList[i]);
+                bushMonster.Add(key, list);
             }
         }
     }
@@ -193,6 +203,36 @@ public class StageManager : Singleton<StageManager>
             {
                 item.SetActive(true);
             }
+        }
+    }
+
+    public List<GameObject> ReturnBushMonsterObj(string bushMonsterName)
+    {
+        List<GameObject> list = new List<GameObject>();
+        var nameList = bushMonsterName.Replace("(", "").Replace(")", "").Split('/');
+        foreach (var item in nameList)
+        {
+            list.Add(MonsterObjPoolManger.Instance.GetMonsterPrefab(item));
+        }
+
+        return list;
+    }
+
+    public GameObject GetMonsterInBush(Vector2Int playerPos,int randomIndex)
+    {
+        int key = ChangePosToKeyValue(playerPos);
+        if(monsterDic.ContainsKey(key))
+        {
+            if (bushMonster.ContainsKey(key))
+            {
+                return bushMonster[key][randomIndex];
+            }
+
+            return monsterDic[key];
+        }
+        else
+        {
+            return null;
         }
     }
 }

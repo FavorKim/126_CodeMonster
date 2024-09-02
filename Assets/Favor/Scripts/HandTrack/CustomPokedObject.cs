@@ -27,12 +27,12 @@ public class CustomPokedObject : MonoBehaviour
     public UnityEvent OnPokeRelease;
 
 
-    private void OnEnable()
+    private void Awake()
     {
         poke.WhenStateChanged += OnPokeStateChanged;
     }
 
-    private void OnDisable()
+    private void OnApplicationQuit()
     {
         poke.WhenStateChanged -= OnPokeStateChanged;
     }

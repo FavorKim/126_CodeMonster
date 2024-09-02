@@ -1,5 +1,6 @@
 using EnumTypes;
 using EventLibrary;
+using Oculus.Interaction.HandGrab;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class CodeBlockDrag : MonoBehaviour
     public MakeLoopBlockContainerManager MakeLoopBlockUI;
     public MakeConditionBlockUIManager MakeConditionBlockUI;
     public GameObject PoolParent;
-    [SerializeField]private MaterialChanger matChanger;
+    [SerializeField] private MaterialChanger matChanger;
     private CustomGrabObject grab;
 
     bool isConditionTrue;
@@ -93,7 +94,7 @@ public class CodeBlockDrag : MonoBehaviour
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        if(gameObject.TryGetComponent(out CustomGrabObject grabobj))
+        if (gameObject.TryGetComponent(out CustomGrabObject grabobj))
         {
             grab = grabobj;
         }
@@ -112,7 +113,7 @@ public class CodeBlockDrag : MonoBehaviour
 
     }
 
-    
+
     private void OnEnable()
     {
         if (grab != null)
@@ -134,7 +135,7 @@ public class CodeBlockDrag : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+
         if (grab != null)
         {
             grab.OnRelease -= OnBoxRelease;
@@ -144,9 +145,15 @@ public class CodeBlockDrag : MonoBehaviour
             Debug.LogWarning($"OnDisable : {gameObject.name}'s grab is null");
     }
 
-   
+
     private void OnBoxRelease()
     {
+        if (BlockType == BlockType.LoopCodeBlock /*|| BlockType == BlockType.ConditionalCodeBlock*/)
+        {
+            SetLoopBlockUI SetLoopBlockUI = gameObject.GetComponentInChildren<SetLoopBlockUI>();
+            SetLoopBlockUI.DisableLoopBlockImage();
+        }
+
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         // Container 내에 있고 자식 수가 BlockContainer Length 보다 적을 때 
         if (BlockContainerUI != null && BlockContainerUI.transform.childCount < UIManager.Instance.BlockContainerLength)
@@ -159,6 +166,7 @@ public class CodeBlockDrag : MonoBehaviour
             EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCountError);
             ReturnToPool();
         }
+        // 반복문 등록부
         else if (MakeLoopBlockUI != null && MakeLoopBlockUI.transform.childCount < UIManager.Instance.MakeLoopBlockContainerLength)
         {
             MakeLoopBlockUI.AddBlock(gameObject);
@@ -167,28 +175,39 @@ public class CodeBlockDrag : MonoBehaviour
         {
             ReturnToPool();
         }
-        else if (MakeConditionBlockUI !=null && isConditionTrue)
+        // 조건문 (if시 행동) 등록부
+        else if (MakeConditionBlockUI != null && isConditionTrue)
         {
-            MakeConditionBlockUI.SetTrueBlock(this);
+            DebugBoxManager.Instance.Log("참 등록");
+            MakeConditionBlockUI.SetConditionBlock(this, true);
+            isConditionTrue = false;
         }
-        else if (MakeConditionBlockUI != null && !isConditionTrue)
-        {
-            ReturnToPool();
-        }
+        // 조건문 (else시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionFalse)
         {
-            MakeConditionBlockUI.SetFalseBlock(this);
+            DebugBoxManager.Instance.Log("거짓 등록");
+            MakeConditionBlockUI.SetConditionBlock(this, false);
+            isConditionFalse = false;
         }
-        else if(MakeConditionBlockUI != null && !isConditionFalse)
+        else if (MakeConditionBlockUI != null && (!isConditionFalse || !isConditionTrue))
         {
             ReturnToPool();
         }
         // Container 외에 있을때 
-        else if (BlockContainerUI == null)
+        else
         {
             ReturnToPool();
         }
-        
+    }
+
+
+    private void OnMouseDown()
+    {
+        OnBoxGrabbed();
+    }
+    private void OnMouseUp()
+    {
+        OnBoxRelease();
     }
 
     private void OnBoxGrabbed()
@@ -196,16 +215,15 @@ public class CodeBlockDrag : MonoBehaviour
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
 
-        
         // 부모를 UIManager로 변경
         Transform uiManagerTransform = GameObject.Find("UIManager").transform;
         transform.SetParent(uiManagerTransform, false); // 부모 변경, 월드 좌표는 일단 무시
-        
+
 
         // 부모 변경 후에도 같은 월드 좌표를 유지하도록 다시 설정
         _rectTransform.position = worldPositionBeforeChange;
 
-        
+
         if (BlockContainerUI == null)
         {
             GameObject objInstance = ObjectPoolManager.Instance.GetObject(BlockName);
@@ -214,11 +232,32 @@ public class CodeBlockDrag : MonoBehaviour
         {
             EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
         }
+
+
+        if (BlockType == BlockType.LoopCodeBlock /*|| BlockType == BlockType.ConditionalCodeBlock*/)
+        {
+            List<BlockName> loopBlockNames = UIManager.Instance.LoopBlockList;
+            foreach (BlockName blockName in loopBlockNames)
+            {
+
+                SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponentInChildren<SetLoopBlockUI>();
+                SetLoopBlockUI.EnableLoopBlockImage();
+
+                if (SetLoopBlockUI.CountLoopBlockListBox() >= UIManager.Instance.LoopBlockList.Count) return;
+
+                GameObject loopBlock = ObjectPoolManager.Instance.GetObject(blockName);
+                HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
+                BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();
+                loopBlockCodeBlockBoxCollider.enabled = false;
+                loopBlockHandGrab.enabled = false;
+                SetLoopBlockUI.AddBlock(loopBlock);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        switch(other.tag)
+        switch (other.tag)
         {
             case "BlockContainerUI":
                 BlockContainerUI = other.GetComponent<BlockContainerManager>();
@@ -229,11 +268,21 @@ public class CodeBlockDrag : MonoBehaviour
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionTrue":
+                if (MakeConditionBlockUI == null)
+                {
+                    MakeConditionBlockUI = other.transform.parent.GetComponent<MakeConditionBlockUIManager>();
+                }
                 isConditionTrue = true;
+                DebugBoxManager.Instance.Log("참일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
+                if (MakeConditionBlockUI == null)
+                {
+                    MakeConditionBlockUI = other.transform.parent.GetComponent<MakeConditionBlockUIManager>();
+                }
                 isConditionFalse = true;
+                DebugBoxManager.Instance.Log("거짓일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -245,7 +294,7 @@ public class CodeBlockDrag : MonoBehaviour
 
     }
 
-   
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -261,11 +310,19 @@ public class CodeBlockDrag : MonoBehaviour
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionTrue":
+                if (MakeConditionBlockUI != null)
+                    MakeConditionBlockUI = null;
+                
                 isConditionTrue = false;
+                DebugBoxManager.Instance.Log("참일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
+                if (MakeConditionBlockUI != null)
+                    MakeConditionBlockUI = null; 
+                
                 isConditionFalse = false;
+                DebugBoxManager.Instance.Log("거짓일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -277,13 +334,18 @@ public class CodeBlockDrag : MonoBehaviour
         //}
     }
 
-   
+
 
     public void ReturnToPool()
     {
         BlockContainerUI = null;
 
+        HandGrabInteractable BlockHandGrab = GetComponent<HandGrabInteractable>();
+        BlockHandGrab.enabled = true;
+        BoxCollider loopBlockCodeBlockBoxCollider = GetComponent<BoxCollider>();
+        loopBlockCodeBlockBoxCollider.enabled = true;
         transform.SetParent(PoolParent.transform, false);
+        transform.localScale = new Vector3(30f, 30f, 30f);
 
         // SetParent 바뀌어서 피벗 맞춰주기
         _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);

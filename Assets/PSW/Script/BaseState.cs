@@ -40,7 +40,7 @@ public class Idle : BaseState<Player>
 
     public override void OnExitState()
     {
-
+        
     }
 }
 

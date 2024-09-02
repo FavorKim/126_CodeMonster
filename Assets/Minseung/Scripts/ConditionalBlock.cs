@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,8 +21,20 @@ public class ConditionalBlock : MonoBehaviour
         this.FalseBlockIndex = falseBlockIndex;
     }
 
-    public bool EvaluateCondition(int currentAttribute)
+    public int EvaluateCondiiton(Player player)
     {
-        return currentAttribute == selectedAttribute;
+        Vector2Int playerPosition = player.GetCurrentPosition();
+
+        List<GameObject> bushMonsters = StageManager.Instance.GetBushMonsterWithPlayerPos(playerPosition);
+
+        if(bushMonsters == null || bushMonsters.Count == 0)
+        {
+            return FalseBlockIndex;
+        }
+
+        foreach(var bushMonster in bushMonsters)
+        {
+            
+        }
     }
 }

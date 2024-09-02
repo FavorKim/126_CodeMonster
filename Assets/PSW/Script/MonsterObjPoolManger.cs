@@ -10,7 +10,6 @@ public class MonsterObjPoolManger : MonoBehaviour
     [SerializeField]
     private int _poolCount;
     private Dictionary<string, List<GameObject>> _monsterPrefabsPool = new Dictionary<string, List<GameObject>>();
-    private List<GameObject> _monsterPrefabObjList = new List<GameObject>();
 
     private void Awake()
     {
@@ -28,7 +27,7 @@ public class MonsterObjPoolManger : MonoBehaviour
         {
             if (_monsterPrefabsPool.ContainsKey(_monsterPrefabs[i].name) == false)
             {
-                _monsterPrefabsPool.Add(_monsterPrefabs[i].name, _monsterPrefabObjList);
+                _monsterPrefabsPool.Add(_monsterPrefabs[i].name, new List<GameObject>());
 
             }
         }
@@ -40,8 +39,7 @@ public class MonsterObjPoolManger : MonoBehaviour
         for (int i = 0; i < _monsterPrefabs.Count; i++)
         {
 
-
-            if (_monsterPrefabsPool.ContainsKey(_monsterPrefabs[i].name) == true)
+            if (_monsterPrefabsPool.ContainsKey(_monsterPrefabs[i].name) == true) 
             {
 
                 for (int k = 0; k < _poolCount; k++)
@@ -50,6 +48,7 @@ public class MonsterObjPoolManger : MonoBehaviour
                     _monsterPrefabsPool[_monsterPrefabs[i].name].Add(monsterPrefab);
                     monsterPrefab.SetActive(false);
                 }
+                
             }
         }
     }
@@ -83,4 +82,5 @@ public class MonsterObjPoolManger : MonoBehaviour
             }
         }
     }
+
 }

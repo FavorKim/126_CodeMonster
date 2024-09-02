@@ -10,19 +10,17 @@ public class BlockContainerManager : MonoBehaviour
     private BoxCollider BlockContainerBoxCollider;
     protected List<MaterialChanger> materialChangers = new List<MaterialChanger>();
 
-    protected void Awake()
+    private void Awake()
     {
         //base.Awake();
         BlockContainerUIRectTransform = GetComponent<RectTransform>();
         BlockContainerBoxCollider = GetComponent<BoxCollider>();
-        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET,ResetBlockContainer);
-        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART,ResetBlockContainer);
-        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE,ResetContainerBlockMaterial);
     }
-
-    public void OnDisable()
+    private void Start()
     {
-        
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetContainerBlockMaterial);
     }
 
     public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
@@ -43,6 +41,7 @@ public class BlockContainerManager : MonoBehaviour
 
     public virtual void AddBlock(GameObject newBlock)
     {
+        
         // 기존 블록들 existingBlocks에 저장
         List<Transform> existingBlocks = new List<Transform>();
 
@@ -84,7 +83,7 @@ public class BlockContainerManager : MonoBehaviour
             newPosition.z = 0;
             sortedBlocks[i].localPosition = newPosition;
             sortedBlocks[i].SetSiblingIndex(i);
-            sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45, 0, 0));
+            //sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45, 0, 0));
         }
         EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - sortedBlocks.Count);
     }
