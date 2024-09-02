@@ -12,7 +12,6 @@ public class StageManager : Singleton<StageManager>
     private Vector3 playerPosition;
 
     private Dictionary<int, GameObject> monsterDic = new Dictionary<int, GameObject>();
-    private Dictionary<int, GameObject> bushMonsterDic = new Dictionary<int, GameObject>();
     private Dictionary<int, GameObject> stageBlockDic = new Dictionary<int, GameObject>();
     private Dictionary<int, List<GameObject>> bushMonster = new Dictionary<int, List<GameObject>>();
 
@@ -221,14 +220,9 @@ public class StageManager : Singleton<StageManager>
     public GameObject GetMonsterInBush(Vector2Int playerPos,int randomIndex)
     {
         int key = ChangePosToKeyValue(playerPos);
-        if(monsterDic.ContainsKey(key))
+        if (bushMonster.ContainsKey(key))
         {
-            if (bushMonster.ContainsKey(key))
-            {
-                return bushMonster[key][randomIndex];
-            }
-
-            return monsterDic[key];
+            return bushMonster[key][randomIndex];
         }
         else
         {

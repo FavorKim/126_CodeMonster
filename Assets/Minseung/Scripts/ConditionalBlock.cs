@@ -21,20 +21,28 @@ public class ConditionalBlock : MonoBehaviour
         this.FalseBlockIndex = falseBlockIndex;
     }
 
-    public int EvaluateCondiiton(Player player)
+    public int EvaluateCondition()
     {
+        Player player = StageManager.Instance.GetPlayer();
+
         Vector2Int playerPosition = player.GetCurrentPosition();
 
-        List<GameObject> bushMonsters = StageManager.Instance.GetBushMonsterWithPlayerPos(playerPosition);
+        int randomIndex = Random.Range(0, 1);
 
-        if(bushMonsters == null || bushMonsters.Count == 0)
+        GameObject bushMonster = StageManager.Instance.GetMonsterInBush(playerPosition, randomIndex);
+
+        if(bushMonster != null )
         {
-            return FalseBlockIndex;
+            string bushMonsterName = bushMonster.name;
+
+            Monster monsterData = DataManagerTest.Instance.GetMonsterData(bushMonsterName);
+
+            if(monsterData != null && monsterData.TypeIndex == selectedAttribute)
+            {
+                return TrueBlockIndex;
+            }
         }
 
-        foreach(var bushMonster in bushMonsters)
-        {
-            
-        }
+        return FalseBlockIndex;
     }
 }
