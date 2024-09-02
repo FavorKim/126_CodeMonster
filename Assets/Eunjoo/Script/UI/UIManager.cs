@@ -206,6 +206,7 @@ public class UIManager : Singleton<UIManager>
 
     public void MakeConditionalBlockBoxEnable()
     {
+        DebugBoxManager.Instance.Log("Enabled");
         MakeConditionalBlockBoxUI.SetActive(true);
     }
     public void MakeConditionalBlockBoxDisable()
