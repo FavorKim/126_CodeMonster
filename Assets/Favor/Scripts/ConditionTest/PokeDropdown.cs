@@ -16,11 +16,11 @@ public class PokeDropdown : MonoBehaviour
 
     private void Start()
     {
-        poke.OnPoke += dropDown.Show;
+        poke.OnPoke += OnPokeDropDown;
     }
     private void OnApplicationQuit()
     {
-        poke.OnPoke -= dropDown.Show;
+        poke.OnPoke -= OnPokeDropDown;
     }
 
     public void OnPokeItem(Toggle toggle)
@@ -50,9 +50,22 @@ public class PokeDropdown : MonoBehaviour
     }
 
     // 현재 드랍다운에서 선택된 것의 텍스트를 반환
-    public string GetSeletedOptionText()
+    public int GetSelectedValue()
     {
-        return dropDown.options[dropDown.value].text;
+        return dropDown.value;
+        //if(dropDown.IsExpanded)
+    }
+
+    private void OnPokeDropDown()
+    {
+        if (dropDown.IsExpanded)
+        {
+            dropDown.Hide();
+        }
+        else
+        {
+            dropDown.Show();
+        }
     }
     
 }

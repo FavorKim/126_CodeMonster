@@ -73,7 +73,7 @@ public class UIManager : Singleton<UIManager>
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
 
-        SetUIManager();
+        //SetUIManager();
         StartCoroutine(SetHintTimer());
     }
 
@@ -82,7 +82,7 @@ public class UIManager : Singleton<UIManager>
         BlockIndexLength = BlockIndexList.Length;
 
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화 
-        BlockIndexListCheck();
+        //BlockIndexListCheck();
 
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI Size 설정 
         //BlockUISizeSet();

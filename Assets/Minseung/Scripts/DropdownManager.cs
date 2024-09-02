@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DropdownManager : Singleton<DropdownManager>
 {
-    [SerializeField] private Dropdown loopDropdown;
-    [SerializeField] private Dropdown conditionDropdown;
+    [SerializeField] private TMP_Dropdown loopDropdown;
+    [SerializeField] private TMP_Dropdown conditionDropdown;
 
     public int GetSelectedLoopCount()
     {

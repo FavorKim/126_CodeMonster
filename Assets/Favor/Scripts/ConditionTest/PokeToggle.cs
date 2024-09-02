@@ -23,7 +23,7 @@ public class PokeToggle : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("포크 널");
+            DebugBoxManager.Instance.Log("포크 널");
         }
     }
 
@@ -39,5 +39,6 @@ public class PokeToggle : MonoBehaviour
     private void OnPoked()
     {
         PokeDropdown.OnPokeItem(toggle);
+        DebugBoxManager.Instance.Log($"{PokeDropdown.GetSelectedValue()}");
     }
 }

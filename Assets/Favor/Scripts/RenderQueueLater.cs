@@ -9,7 +9,7 @@ public class RenderQueueLater : MonoBehaviour
     void Start()
     {
         text = GetComponent<TMP_Text>();
-        Material mat = new Material(text.font.material.shader);
+        Material mat = new Material(text.fontMaterial);
         mat.renderQueue = 3005;
         text.font.material = mat;
     }

@@ -130,7 +130,7 @@ public class BlockContainerManager : MonoBehaviour
             GameObject block = childTransform.gameObject;
             int blockIndex = DataManagerTest.Instance.GetCodeBlockData(block.name).BlockIndex;
 
-            ConditionalBlock conditionalBlock = block.GetComponent<ConditionalBlock>();
+            ConditionBlock conditionalBlock = block.GetComponent<ConditionBlock>();
             if(conditionalBlock != null)
             {
                 int commandIndex = conditionalBlock.EvaluateCondition();

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class ConditionalBlock : MonoBehaviour
 {
     public int TrueBlockIndex { get; private set; }
@@ -46,3 +46,4 @@ public class ConditionalBlock : MonoBehaviour
         return FalseBlockIndex;
     }
 }
+*/

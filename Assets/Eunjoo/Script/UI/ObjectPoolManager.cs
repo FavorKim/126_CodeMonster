@@ -114,7 +114,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         // Instantiate the prefab as a child of the corresponding RectTransform container
         GameObject newObject = Instantiate(poolInfo.prefab, poolContainers[poolInfo.BlockName]);
-        
+
         return newObject;
     }
 

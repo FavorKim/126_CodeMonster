@@ -1,37 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConditionBlock : MonoBehaviour
 {
     public CodeBlockDrag TrueBlock { get; private set; }
     public CodeBlockDrag FalseBlock { get; private set; }
-    public string Condition {  get; private set; }
+    public int indexValue {  get; private set; }
+
     CustomGrabObject grab;
 
     private void Start()
     {
         grab = GetComponent<CustomGrabObject>();
         grab.OnGrab += OnGrabSetData;
-        grab.OnGrab += () => { DebugBoxManager.Instance.Log(Condition); };
+        grab.OnGrab += () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
     }
 
     private void OnApplicationQuit()
     {
-        grab.OnGrab -= () => { DebugBoxManager.Instance.Log(Condition); };
+        grab.OnGrab -= () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
         grab.OnGrab -= OnGrabSetData;
     }
 
     // 조건 블록 정보 초기화
-    public void InitConditionBlock(CodeBlockDrag trueBlock, CodeBlockDrag falseBlock, string condition)
+    public void InitConditionBlock(CodeBlockDrag trueBlock, CodeBlockDrag falseBlock, int indexValue)
     {
-        this.Condition = condition;
+        this.indexValue = indexValue;
         this.TrueBlock = trueBlock;
         this.FalseBlock = falseBlock;
     }
     public void InitConditionBlock(ConditionBlock dest)
     {
-        this.Condition = dest.Condition;
+        this.indexValue = dest.indexValue;
         this.TrueBlock = dest.TrueBlock;
         this.FalseBlock = dest.FalseBlock;
     }
@@ -42,5 +41,28 @@ public class ConditionBlock : MonoBehaviour
         InitConditionBlock(MakeConditionBlockUIManager.Instance.GetConditionBlockInfo());
     }
 
+    public int EvaluateCondition()
+    {
+        Player player = StageManager.Instance.GetPlayer();
 
+        Vector2Int playerPosition = player.GetCurrentPosition();
+
+        int randomIndex = Random.Range(0, 1);
+
+        GameObject bushMonster = StageManager.Instance.GetMonsterInBush(playerPosition, randomIndex);
+
+        if (bushMonster != null)
+        {
+            string bushMonsterName = bushMonster.name;
+
+            Monster monsterData = DataManagerTest.Instance.GetMonsterData(bushMonsterName);
+
+            if (monsterData != null && monsterData.TypeIndex == indexValue)
+            {
+                return (int)TrueBlock.BlockName;
+            }
+        }
+
+        return (int)FalseBlock.BlockName;
+    }
 }
