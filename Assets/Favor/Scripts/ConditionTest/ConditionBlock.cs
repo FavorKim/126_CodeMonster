@@ -49,6 +49,8 @@ public class ConditionBlock : MonoBehaviour
 
         int randomIndex = Random.Range(0, 1);
 
+        //GameObject monster = StageManager.Instance.GetMonsterWithPlayerPos(player.playerPosition);
+
         GameObject bushMonster = StageManager.Instance.GetMonsterInBush(playerPosition, randomIndex);
 
         if (bushMonster != null)

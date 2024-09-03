@@ -67,6 +67,18 @@ public class CheckState : BaseState<Player>
         {
             Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
         }
+        else if (blockIndex == 8)
+        {
+            // 조건
+            // If문 사용 안 하면 못 깨게 해야함
+            // 1안 - bool isIfUsed를 선언, Evaluate할 때, 플레이어의 isIfUsed를 True로 바꿈.
+            // 이후, 부시에서 몬스터 튀어나올 때 isIfUsed가 false면 사용한 공격블록으로 이길 수 없는 속성을 소환시킴
+
+        }
+        else if (blockIndex == 9)
+        {
+            // 반복
+        }
     }
 
     public override void OnUpdateState() { }

@@ -159,6 +159,22 @@ public class StageManager : Singleton<StageManager>
             return false;
         }
     }
+    public bool CheckBushAndPlayerPos(Vector2Int playerPos)
+    {
+        int playerPosKey = ChangePosToKeyValue(playerPos);
+        if (bushMonster.ContainsKey(playerPosKey) && monsterDic[playerPosKey].activeSelf == true)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    // 부쉬 몬스터에 들어있는 몬스터 랜덤하게 하나 뽑고, 그 몬스터를 몬스터 딕셔너리에 등록
+
 
     public bool CheckPlayerPosToDeadZone(Vector2Int playerPos)
     {

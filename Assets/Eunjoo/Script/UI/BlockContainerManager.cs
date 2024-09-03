@@ -129,14 +129,16 @@ public class BlockContainerManager : MonoBehaviour
             Transform childTransform = this.transform.GetChild(i);
             GameObject block = childTransform.gameObject;
             int blockIndex = DataManagerTest.Instance.GetCodeBlockData(block.name).BlockIndex;
-
-            ConditionBlock conditionalBlock = block.GetComponent<ConditionBlock>();
-            if(conditionalBlock != null)
+            
+            /*
+            ConditionBlock conditionBlock = block.GetComponent<ConditionBlock>();
+            if(conditionBlock != null)
             {
-                int commandIndex = conditionalBlock.EvaluateCondition();
+                int commandIndex = conditionBlock.EvaluateCondition();
                 list.Add(commandIndex);
             }
-
+            */
+            
             LoopBlock loopBlock = block.GetComponent<LoopBlock>();
             if(loopBlock != null)
             {
@@ -147,7 +149,7 @@ public class BlockContainerManager : MonoBehaviour
                 } 
             }
 
-            if(conditionalBlock == null && loopBlock == null)
+            if(/*conditionBlock == null &&*/ loopBlock == null)
             {
                 list.Add(blockIndex);
             }
