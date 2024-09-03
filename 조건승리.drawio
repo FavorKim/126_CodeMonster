@@ -1,9 +1,71 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.10">
   <diagram name="페이지-1" id="KRwRDKZDJEwkjq0ppRVp">
-    <mxGraphModel>
+    <mxGraphModel dx="2261" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="am65aY2mdnmvBpbBLGid-1" value="부시를&lt;div&gt;밟았을 때&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="am65aY2mdnmvBpbBLGid-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="374" y="390" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="am65aY2mdnmvBpbBLGid-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="390" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="am65aY2mdnmvBpbBLGid-8" target="am65aY2mdnmvBpbBLGid-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-8" value="무조건 지게끔&lt;div&gt;몬스터를 뱉음&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-9" value="걍 원래대로&lt;div&gt;랜덤하게&lt;/div&gt;&lt;div&gt;몬스터를 뱉음&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="314" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="am65aY2mdnmvBpbBLGid-11" target="am65aY2mdnmvBpbBLGid-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-11" value="이 때 필요한 것 :&amp;nbsp;&lt;div&gt;플레이어의&lt;/div&gt;&lt;div&gt;공격 인덱스&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="am65aY2mdnmvBpbBLGid-15" target="am65aY2mdnmvBpbBLGid-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="am65aY2mdnmvBpbBLGid-15" target="am65aY2mdnmvBpbBLGid-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-15" value="상성 속성&lt;div&gt;몬스터가&lt;/div&gt;&lt;div&gt;부시에 있는가?&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="690" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-17" value="상성 속성 몬스터&lt;div&gt;뱉기&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-90" y="820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-19" value="플레이어의 공격 블록&lt;div&gt;속성과 같은 속성&lt;/div&gt;&lt;div&gt;몬스터 뱉기&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="am65aY2mdnmvBpbBLGid-22" target="am65aY2mdnmvBpbBLGid-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-25" value="공격" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="am65aY2mdnmvBpbBLGid-23">
+          <mxGeometry x="0.1111" y="-4" relative="1" as="geometry">
+            <mxPoint x="-60" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="am65aY2mdnmvBpbBLGid-22" target="am65aY2mdnmvBpbBLGid-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-26" value="조건" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="am65aY2mdnmvBpbBLGid-24">
+          <mxGeometry x="0.1898" y="1" relative="1" as="geometry">
+            <mxPoint x="51" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="am65aY2mdnmvBpbBLGid-22" value="현재 검사하는 블록이&amp;nbsp;&lt;div&gt;조건&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;블록인가?&lt;/span&gt;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="240" width="220" height="80" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
