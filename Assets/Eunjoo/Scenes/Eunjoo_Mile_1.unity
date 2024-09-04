@@ -335,10 +335,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1157262455183477422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_text
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157262455183477422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_margin.x
+      value: 44.98589
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157262455183477422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_margin.z
+      value: 7.367607
+      objectReference: {fileID: 0}
     - target: {fileID: 1597385295297947930, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _handGrabState
       value: 
       objectReference: {fileID: 852932333}
+    - target: {fileID: 1768408571403710434, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1774111945963554034, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
@@ -346,6 +362,26 @@ PrefabInstance:
     - target: {fileID: 1808441684677123951, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817440644416540966, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817440644416540966, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988674825704296716, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988674825704296716, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 29.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988674825704296716, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 154.9
       objectReference: {fileID: 0}
     - target: {fileID: 2910692491199705865, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_Name
@@ -379,6 +415,34 @@ PrefabInstance:
       propertyPath: conditionMakeBtn
       value: 
       objectReference: {fileID: 918961663}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7949888893684777782, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -393,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: MakeLoopBlockContainerLength
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x

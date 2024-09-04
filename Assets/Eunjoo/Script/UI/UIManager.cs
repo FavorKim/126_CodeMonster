@@ -93,6 +93,8 @@ public class UIManager : Singleton<UIManager>
 
         BlockContainerManager.SetBlockContainerUISize(BlockContainerLength);
         EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, BlockContainerLength);
+        EventManager<UIEvent>.TriggerEvent(UIEvent.LoopBlockContainerBlockCount, MakeLoopBlockContainerLength);
+
     }
 
     IEnumerator SetHintTimer()
@@ -102,50 +104,6 @@ public class UIManager : Singleton<UIManager>
         yield return new WaitForSeconds(HintCount);
 
         HintBoxUI.SetActive(true);
-    }
-
-    private void BlockUISizeSet()
-    {
-        // foreach 문을 돌릴때 이동타입의 블럭인 0,1,2,3이 다있을 때 사이즈를 한번만 세팅하기 위해 bool 값 설정
-        bool moveBlockUISizeSet = false;
-        bool stageBlockUISizeSet = false;
-
-        foreach (int index in BlockIndexList)
-        {
-            moveBlockUISizeSet = SetMoveBlockUISize(index, moveBlockUISizeSet);
-            stageBlockUISizeSet = SetStageBlockUISize(index, stageBlockUISizeSet);
-            CheckPlusContainerUI(index);
-        }
-    }
-
-    private bool SetMoveBlockUISize(int index, bool moveBlockUISizeSet)
-    {
-        if (!moveBlockUISizeSet && (index == 0 || index == 1 || index == 2 || index == 3))
-        {
-            // UI사이즈 조절 함수, 그냥 원래 사이즈 그대로 둬도 될것 같아서 주석처리
-            // MoveBlockUIManager.Instance.SetMoveBlockUISize(UIConstants.MOVE_BLOCK_COUNT);
-            return true;
-        }
-        return moveBlockUISizeSet;
-    }
-
-    private bool SetStageBlockUISize(int index, bool stageBlockUISizeSet)
-    {
-        if (!stageBlockUISizeSet && (index == 4 || index == 5 || index == 6))
-        {
-            // UI사이즈 조절 함수, 그냥 원래 사이즈 그대로 둬도 될것 같아서 주석처리
-            //StageBlockUIManager.Instance.SetStageBlockUISize(UIConstants.ATTACK_BLOCK_COUNT);
-            return true;
-        }
-        return stageBlockUISizeSet;
-    }
-
-    private void CheckPlusContainerUI(int index)
-    {
-        if (index == 7 || index == 8)
-        {
-            PlusContainerUI = true;
-        }
     }
 
     private void BlockIndexListCheck()

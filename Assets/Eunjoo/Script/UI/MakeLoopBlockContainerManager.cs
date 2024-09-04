@@ -58,6 +58,8 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
             sortedBlocks[i].SetSiblingIndex(i);
             sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45, 0, 0));
         }
+        EventManager<UIEvent>.TriggerEvent(UIEvent.LoopBlockContainerBlockCount, UIManager.Instance.MakeLoopBlockContainerLength - sortedBlocks.Count);
+
     }
 
     public override void ResetBlockContainer()
