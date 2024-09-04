@@ -254,6 +254,7 @@ public class CodeBlockDrag : MonoBehaviour
                 BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();
                 loopBlockCodeBlockBoxCollider.enabled = false;
                 loopBlockHandGrab.enabled = false;
+                SetLoopBlockUI.AddBlockName(blockName);
                 SetLoopBlockUI.AddBlock(loopBlock);
             }
         }
@@ -348,6 +349,8 @@ public class CodeBlockDrag : MonoBehaviour
         BlockHandGrab.enabled = true;
         BoxCollider loopBlockCodeBlockBoxCollider = GetComponent<BoxCollider>();
         loopBlockCodeBlockBoxCollider.enabled = true;
+        SetLoopBlockUI setLoopBlockUI = GetComponent<SetLoopBlockUI>();
+        setLoopBlockUI.ClearLoopBlockList();
         transform.SetParent(PoolParent.transform, false);
         transform.localScale = new Vector3(30f, 30f, 30f);
 
