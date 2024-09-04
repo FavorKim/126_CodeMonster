@@ -10,9 +10,9 @@ public enum BlockName
     UpMoveCodeBlock,
     DownMoveCodeBlock,
 
-    FireAttackCodeBlock,
-    WaterAttackCodeBlock,
     GrassAttackCodeBlock,
+    WaterAttackCodeBlock,
+    FireAttackCodeBlock,
 
     CondionalCodeBlock,
     LoopCodeBlock,

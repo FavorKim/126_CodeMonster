@@ -56,11 +56,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.UpdateState();
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            ResetPlayer();
+            StartPlayerAction();
         }
     }
+
+
     public void InitStateMachine()
     {
         stateMachine = new StateMachine<Player>(PlayerStateName.IDLE, new Idle(this));
@@ -74,6 +76,7 @@ public class Player : MonoBehaviour
 
     public void StartPlayerAction()
     {
+        
         if (!IsPlaying)
         {
             IsPlaying = true;
@@ -104,12 +107,7 @@ public class Player : MonoBehaviour
             {
                 transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
                 //DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
-                UIManager.Instance.PrintUIText(TextTypeName.SMALLHINT);
-                if (/*부시 == */true)
-                {
-                    
-                    
-                }
+                //UIManager.Instance.PrintUIText(TextTypeName.SMALLHINT);
                 
             }
             else if (GameRule.CheckPlayerPosInDeadzone(position))
@@ -126,6 +124,7 @@ public class Player : MonoBehaviour
 
     public void Attack(int blockIndex)
     {
+        DebugBoxManager.Instance.Log("어택으로 들어옴");
         int attackBlockType = blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
 
         //EnableTypeMonsterPrefab(attackBlockType);
@@ -168,6 +167,7 @@ public class Player : MonoBehaviour
     {
         DisableTypeMonsterPrefab();
         this.transform.GetChild(monsterTypeIndex - 4).gameObject.SetActive(true);
+        DebugBoxManager.Instance.Log($"{transform.GetChild(monsterTypeIndex-4).name}의 활성화 상태 : {transform.GetChild(monsterTypeIndex - 4).gameObject.activeSelf}");
     }
 
 

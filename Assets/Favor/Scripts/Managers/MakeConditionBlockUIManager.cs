@@ -24,13 +24,6 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
         private set;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            InitConditionBlockInfo();
-        }
-    }
 
     protected override void Start()
     {
@@ -74,7 +67,6 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
     // 내부에 제작한 컨디션 블록 정보 저장
     public void InitConditionBlockInfo()
     {
-        DebugBoxManager.Instance.Log("InitConditionBlockInfo");
         conditionBlockInfo.InitConditionBlock(trueBlock, falseBlock, drop.GetSelectedValue());
         UIManager.Instance.MakeConditionalBlockBoxEnable();
     }

@@ -52,7 +52,7 @@ public class PokeDropdown : MonoBehaviour
     // 현재 드랍다운에서 선택된 것의 텍스트를 반환
     public int GetSelectedValue()
     {
-        return dropDown.value;
+        return dropDown.value + 5;
         //if(dropDown.IsExpanded)
     }
 

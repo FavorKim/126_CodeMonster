@@ -14,13 +14,7 @@ public class CustomPokedObject : MonoBehaviour
         poke = GetComponent<PokeInteractable>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            OnPoke.Invoke();
-        }
-    }
+
 
     public Action OnPoke;
     public UnityEvent OnHover;

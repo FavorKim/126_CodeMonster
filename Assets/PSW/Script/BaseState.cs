@@ -69,14 +69,8 @@ public class CheckState : BaseState<Player>
         }
         else if (blockIndex == 8)
         {
-            // 조건문
-            // isIfUsed = true
-            // Evaluate이 끝난 블럭을 들고 Attack State로 감
-            // or
-            // 새 상태 IfBattleState
-            // 까서 공격상태로 가
-            // 조건일때는
-            Controller.IsIfUsed = true;
+            DebugBoxManager.Instance.Log("8번 인덱스. 조건블록");
+            //Controller.IsIfUsed = true;
             Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
         }
         else if (blockIndex == 9)
@@ -139,6 +133,20 @@ public class AttackState : BaseState<Player>
             
         }
         Controller.Attack(blockIndex);
+    }
+
+    public override void OnUpdateState() { }
+
+    public override void OnExitState() { }
+}
+
+public class LoopState : BaseState<Player>
+{
+    public LoopState(Player controller) : base(controller) { }
+
+    public override void OnEnterState()
+    {
+        
     }
 
     public override void OnUpdateState() { }

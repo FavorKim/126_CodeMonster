@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ConditionBlock : MonoBehaviour
 {
+    [SerializeField] CodeBlockDrag TrueType;
+    [SerializeField] CodeBlockDrag FalseType;
     public CodeBlockDrag TrueBlock { get; private set; }
     public CodeBlockDrag FalseBlock { get; private set; }
-    public int indexValue {  get; private set; }
+    public int indexValue { get; private set; }
 
     CustomGrabObject grab;
 
@@ -12,12 +14,16 @@ public class ConditionBlock : MonoBehaviour
     {
         grab = GetComponent<CustomGrabObject>();
         grab.OnGrab += OnGrabSetData;
-        grab.OnGrab += () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
+        if (TrueType != null)
+            TrueBlock = TrueType;
+        if (FalseType != null)
+            FalseBlock = FalseType;
+        //grab.OnGrab += () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
     }
 
     private void OnApplicationQuit()
     {
-        grab.OnGrab -= () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
+        //grab.OnGrab -= () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
         grab.OnGrab -= OnGrabSetData;
     }
 
@@ -43,12 +49,14 @@ public class ConditionBlock : MonoBehaviour
 
     public int EvaluateCondition(Monster monster)
     {
-        if(monster.TypeIndex == indexValue)
+        if (monster.TypeIndex == indexValue)
         {
+            DebugBoxManager.Instance.Log("참 블록 평가완료");
             return (int)TrueBlock.BlockName + 1;
         }
         else
         {
+            DebugBoxManager.Instance.Log("거짓 블록 평가완료");
             return (int)FalseBlock.BlockName + 1;
         }
     }

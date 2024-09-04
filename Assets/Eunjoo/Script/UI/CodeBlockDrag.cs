@@ -178,14 +178,14 @@ public class CodeBlockDrag : MonoBehaviour
         // 조건문 (if시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionTrue)
         {
-            DebugBoxManager.Instance.Log("참 등록");
+            //DebugBoxManager.Instance.Log("참 등록");
             MakeConditionBlockUI.SetConditionBlockPos(this, true);
             isConditionTrue = false;
         }
         // 조건문 (else시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionFalse)
         {
-            DebugBoxManager.Instance.Log("거짓 등록");
+            //DebugBoxManager.Instance.Log("거짓 등록");
             MakeConditionBlockUI.SetConditionBlockPos(this, false);
             isConditionFalse = false;
         }
@@ -277,7 +277,7 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = other.transform.parent.GetComponent<MakeConditionBlockUIManager>();
                 }
                 isConditionTrue = true;
-                DebugBoxManager.Instance.Log("참일 때 true");
+                //DebugBoxManager.Instance.Log("참일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
@@ -286,7 +286,7 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = other.transform.parent.GetComponent<MakeConditionBlockUIManager>();
                 }
                 isConditionFalse = true;
-                DebugBoxManager.Instance.Log("거짓일 때 true");
+                //DebugBoxManager.Instance.Log("거짓일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -318,7 +318,7 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = null;
                 
                 isConditionTrue = false;
-                DebugBoxManager.Instance.Log("참일 때 false");
+                //DebugBoxManager.Instance.Log("참일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
@@ -326,7 +326,7 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = null; 
                 
                 isConditionFalse = false;
-                DebugBoxManager.Instance.Log("거짓일 때 false");
+                //DebugBoxManager.Instance.Log("거짓일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
         }

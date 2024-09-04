@@ -14643,7 +14643,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2B9\uB9AC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 514d578054873df439da2cf80cc8754d, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 974371937073064155, guid: 514d578054873df439da2cf80cc8754d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

@@ -138,8 +138,7 @@ public class BlockContainerManager : MonoBehaviour
                     list.Add(commandIndex);
                 } 
             }
-
-            if(/*conditionBlock == null &&*/ loopBlock == null)
+            else
             {
                 list.Add(blockIndex);
             }

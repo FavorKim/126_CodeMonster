@@ -56,9 +56,11 @@ public class MonsterObjPoolManger : MonoBehaviour
 
     public GameObject GetMonsterPrefab(string monsterName)
     {
-        if (_monsterPrefabsPool.Count > 0 && _monsterPrefabsPool.ContainsKey(monsterName) == true)
+        string name = DataManagerTest.Instance.RemoveTextAfterParenthesis(monsterName);
+
+        if (_monsterPrefabsPool.Count > 0 && _monsterPrefabsPool.ContainsKey(name) == true)
         {
-            foreach (var item in _monsterPrefabsPool[monsterName])
+            foreach (var item in _monsterPrefabsPool[name])
             {
                 if (item.activeSelf == false)
                 {
