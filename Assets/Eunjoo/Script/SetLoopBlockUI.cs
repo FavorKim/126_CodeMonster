@@ -9,14 +9,6 @@ public class SetLoopBlockUI : MonoBehaviour
     [SerializeField] GameObject LoopBlockListBox;
     [SerializeField] GameObject LoopBlockListImage;
 
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            ResetBlock();
-        }
-    }
-
     public int CountLoopBlockListBox()
     {
         return LoopBlockListBox.transform.childCount;
