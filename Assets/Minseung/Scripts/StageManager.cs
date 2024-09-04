@@ -32,6 +32,8 @@ public class StageManager : Singleton<StageManager>
         bushMonster.Clear();
     }
 
+    public StageMap GetStageMap() {  return currentStageMap; }
+
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
     {
         int index = 0;

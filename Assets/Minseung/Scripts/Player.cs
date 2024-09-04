@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     public Vector2Int playerPosition { get { return position; } }
     public StateMachine<Player> playerStateMachine { get { return stateMachine; } }
 
-    //[SerializeField]
-    //private List<GameObject> monsterPrefabs;
+    [SerializeField]
+    private List<GameObject> monsterPrefabs;
 
     public void InitPlayer(StageManager stageManager)
     {
@@ -44,8 +44,9 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
-        //SetPlayerType();
-        //SetPlayerPrefab();
+        SetPlayerType();
+        SetPlayerPrefab();
+        IsPlaying = false;
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.START, StartPlayerAction);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetPlayer);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetPlayer);
@@ -54,6 +55,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.UpdateState();
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ResetPlayer();
+        }
     }
     public void InitStateMachine()
     {
@@ -99,6 +104,12 @@ public class Player : MonoBehaviour
                 transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
                 //DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
                 UIManager.Instance.PrintUIText(TextTypeName.SMALLHINT);
+                if (/*부시 == */true)
+                {
+                    
+                    
+                }
+                
             }
             else if (GameRule.CheckPlayerPosInDeadzone(position))
             {
@@ -177,6 +188,55 @@ public class Player : MonoBehaviour
     }
 
 
+    private void SetPlayerType()
+    {
+        int index = DataManagerTest.Instance.LoadedMonsterType.Count;
+
+        for (int i = 0; i < index; i++)
+        {
+            GameObject typeObj = new GameObject();
+            typeObj.transform.SetParent(this.transform);
+            typeObj.transform.localPosition = Vector3.zero;
+            typeObj.gameObject.name = DataManagerTest.Instance.GetMonsterTypeData(i + 5).TypeName;
+        }
+    }
+
+    private void SetPlayerPrefab()
+    {
+        for (int i = 0; i < monsterPrefabs.Count; i++)
+        {
+            GameObject monster = Instantiate(monsterPrefabs[i]);
+            monster.name = monsterPrefabs[i].name;
+            monster.SetActive(true);
+            SetPrefabsParent(monster);
+            monster.transform.localPosition = Vector3.zero;
+
+        }
+
+        DisableTypeMonsterPrefab();
+        EnableTypeMonsterPrefab(4);
+    }
+
+    private void SetPrefabsParent(GameObject monster)
+    {
+        int monsterTypeIndex = DataManagerTest.Instance.GetMonsterData(monster.name).TypeIndex;
+
+        switch (monsterTypeIndex)
+        {
+            case 5:
+                monster.transform.SetParent(this.transform.GetChild(1));
+                break;
+            case 6:
+                monster.transform.SetParent(this.transform.GetChild(2));
+                break;
+            case 7:
+                monster.transform.SetParent(this.transform.GetChild(3));
+                break;
+        }
+
+    }
+
+
     private int GetAttackTypeFromBlock(int blockIndex)
     {
         // AttackBlock의 타입에 따른 처리 (5: Grass, 6: Water, 7: Fire)
@@ -198,7 +258,7 @@ public class Player : MonoBehaviour
 
     public void ResetPlayer()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
         EnableTypeMonsterPrefab(4);
         position = stageManager.GetStartPosition();

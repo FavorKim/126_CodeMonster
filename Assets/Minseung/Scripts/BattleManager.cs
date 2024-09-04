@@ -27,9 +27,24 @@ public class BattleManager : Singleton<BattleManager>
 
         DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} 타입 공격");
         // 플레이어의 위치와 적의 위치를 비교하여 같은 위치에 있는지 확인
-        
-        if (stageManager.CheckMonsterAndPlayerPos(playerPosition))
+
+        if (stageManager.CheckBushAndPlayerPos(playerPosition))
         {
+            // 학원도 맘에 안 드는게 기획서를 먼저 받고 개발을 들어가야지 우리가 제안서만 받고 기획서부터 같이 시작하는게 말이 안됨.
+            // 기획서 다 나오고 우리가 개발 들어갔으면 이런일이 있어? 없어?
+        }
+        else if (stageManager.CheckMonsterAndPlayerPos(playerPosition))
+        {
+            // 부시인가?
+            // isIfUsed인가?
+
+            // attackBlockType을 비교해서 무조건 지게끔 소환
+
+            // 조건 블록이어도 조건을 제대로 안 짜면 지니까.
+            // 나 - 물공격
+            // 부시 - 불 물
+
+
             GameObject monsterObj= stageManager.GetMonsterWithPlayerPos(playerPosition);
             
             string monsterName = monsterObj.name;

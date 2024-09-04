@@ -69,10 +69,13 @@ public class CheckState : BaseState<Player>
         }
         else if (blockIndex == 8)
         {
-            // 조건
-            // If문 사용 안 하면 못 깨게 해야함
-            // 1안 - bool isIfUsed를 선언, Evaluate할 때, 플레이어의 isIfUsed를 True로 바꿈.
-            // 이후, 부시에서 몬스터 튀어나올 때 isIfUsed가 false면 사용한 공격블록으로 이길 수 없는 속성을 소환시킴
+            // 조건문
+            // isIfUsed = true
+            // Evaluate이 끝난 블럭을 들고 Attack State로 감
+            // or
+            // 새 상태 IfBattleState
+            // 까서 공격상태로 가
+            // 조건일때는
 
         }
         else if (blockIndex == 9)
@@ -92,11 +95,12 @@ public class MoveState : BaseState<Player>
 {
     public MoveState(Player controller) : base(controller) { }
 
+    Vector2Int direction;
+
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
-        Vector2Int direction = GetDirectionFromBlock(blockIndex);
-        Controller.Move(direction);
+        direction = GetDirectionFromBlock(blockIndex);
     }
 
     private Vector2Int GetDirectionFromBlock(int blockIndex)
@@ -111,7 +115,10 @@ public class MoveState : BaseState<Player>
         }
     }
 
-    public override void OnUpdateState() { }
+    public override void OnUpdateState() 
+    {
+        Controller.Move(direction);
+    }
 
     public override void OnExitState() { }
 }
@@ -132,6 +139,7 @@ public class AttackState : BaseState<Player>
 
     public override void OnExitState() { }
 }
+
 
 public class DIEMOVE : BaseState<Player>
 {

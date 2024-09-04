@@ -496,8 +496,28 @@ PrefabInstance:
       value: -68.70001
       objectReference: {fileID: 0}
     - target: {fileID: 6236630320042872978, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8daef877dc35a434cba4323a65d04528, type: 2}
+    - target: {fileID: 6236630320042872978, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_sharedMaterial
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516744146605183499, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_text
+      value: "2\uD68C \uBC18\uBCF5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671126522836436855, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: "2\uD68C \uBC18\uBCF5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671126522836436855, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: "3\uD68C \uBC18\uBCF5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671126522836436855, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: "4\uD68C \uBC18\uBCF5"
       objectReference: {fileID: 0}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x

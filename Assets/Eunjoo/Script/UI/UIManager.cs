@@ -73,9 +73,14 @@ public class UIManager : Singleton<UIManager>
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
 
+
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);
+
         //SetUIManager();
         StartCoroutine(SetHintTimer());
     }
+
+    
 
     private void SetUIManager()
     {
@@ -214,7 +219,11 @@ public class UIManager : Singleton<UIManager>
         MakeConditionalBlockBoxUI.SetActive(false);
     }
 
-
+    private void PrintStageDirectHint()
+    {
+        TextBox.text = $"{StageManager.Instance.GetStageMap().StageIndex} 스테이지 힌트";
+        SetText(TextBox.text);
+    }
 
     public void PrintUIText(TextTypeName type, int stageIndex = 0, int UITextindex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
     {
