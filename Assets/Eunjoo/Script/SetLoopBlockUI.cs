@@ -8,7 +8,7 @@ public class SetLoopBlockUI : MonoBehaviour
 {
     [SerializeField] GameObject LoopBlockListBox;
     [SerializeField] GameObject LoopBlockListImage;
-
+    public List<BlockName> LoopBlockList = new List<BlockName>();
     public int CountLoopBlockListBox()
     {
         return LoopBlockListBox.transform.childCount;
@@ -50,5 +50,15 @@ public class SetLoopBlockUI : MonoBehaviour
     {
         newBlock.transform.SetParent(LoopBlockListBox.transform, false);
         newBlock.transform.localScale = Vector3.one;
+    }
+
+    public void AddBlockName(BlockName newBlock)
+    {
+        LoopBlockList.Add(newBlock);
+    }
+
+    public void ClearLoopBlockList()
+    {
+        LoopBlockList.Clear();
     }
 }

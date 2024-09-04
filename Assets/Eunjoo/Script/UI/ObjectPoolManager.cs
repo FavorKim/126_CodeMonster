@@ -14,8 +14,9 @@ public enum BlockName
     WaterAttackCodeBlock,
     FireAttackCodeBlock,
 
-    CondionalCodeBlock,
     LoopCodeBlock,
+    CondionalCodeBlock,
+    
 }
 
 public enum BlockType
