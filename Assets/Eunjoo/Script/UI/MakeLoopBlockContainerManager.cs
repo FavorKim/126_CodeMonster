@@ -13,16 +13,6 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, GetMakeLoopBlocksName);
     }
 
-    public void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("UPDATE");
-            GetMakeLoopBlocksName();
-        }
-    }
-
-
     public override void AddBlock(GameObject newBlock)
     {
         // 기존 블록들 existingBlocks에 저장

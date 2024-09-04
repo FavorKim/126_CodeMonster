@@ -71,12 +71,14 @@ public class UIManager : Singleton<UIManager>
         MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
+        // TODO : 상욱
+        // MakeLoopBlockContainerLength = DataManagerTest.instance.GetStageMapData(1).루프블럭의 길이를 받아와야함
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
 
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);
 
-        //SetUIManager();
+        SetUIManager();
         StartCoroutine(SetHintTimer());
     }
 
@@ -87,14 +89,10 @@ public class UIManager : Singleton<UIManager>
         BlockIndexLength = BlockIndexList.Length;
 
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화 
-        //BlockIndexListCheck();
+        BlockIndexListCheck();
 
-        // BlockIndexList에 있는 인덱스 숫자 체크 후 UI Size 설정 
-        //BlockUISizeSet();
-
-        BlockContainerManager.SetBlockContainerUISize(BlockContainerLength, PlusContainerUI);
-        //BlockCountBox.SetBlockCountText(BlockContainerLength);
-        //EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
+        BlockContainerManager.SetBlockContainerUISize(BlockContainerLength);
+        EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, BlockContainerLength);
     }
 
     IEnumerator SetHintTimer()
@@ -154,7 +152,8 @@ public class UIManager : Singleton<UIManager>
     {
         bool hasMoveBlock = false;
         bool hasAttackBlock = false;
-        bool hasLoopConBlock = false;
+        bool hasLoopBlock = false;
+        bool hasConditionalBlock = false;
 
         foreach (int index in BlockIndexList)
         {
@@ -166,18 +165,21 @@ public class UIManager : Singleton<UIManager>
             {
                 hasAttackBlock = true;
             }
-            if (index == 7 || index == 8)
+            if (index == 7)
             {
-                hasLoopConBlock = true;
+                hasLoopBlock = true;
+            }
+            if (index == 8)
+            {
+                hasConditionalBlock = true;
             }
         }
 
         // 인덱스 리스트에 따라 UI 활성화/비활성화 처리
         MoveBlockUI.SetActive(hasMoveBlock);
         AttackBlockUI.SetActive(hasAttackBlock);
-
-        // Loop랑 Conditional Block UI는 인덱스 리스트에 따라 판별 X 
-        //Loop_ConBlockUI.SetActive(hasLoopConBlock);
+        MakeLoopBlockUI.SetActive(hasLoopBlock);
+        MakeConditionalBlockUI.SetActive(hasConditionalBlock);
     }
 
     public void VictoryUIEnable()

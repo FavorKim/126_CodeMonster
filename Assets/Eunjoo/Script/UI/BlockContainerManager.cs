@@ -23,20 +23,10 @@ public class BlockContainerManager : MonoBehaviour
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetContainerBlockMaterial);
     }
 
-    public void SetBlockContainerUISize(int BlockContainerLength, bool PlusContainerUI)
+    public void SetBlockContainerUISize(int BlockContainerLength)
     {
-        if (PlusContainerUI == true)
-        {
-            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.LOOP_CON_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
-            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.LOOP_CON_BLOCK_SIZE, UIConstants.ATTACK_MOVE_BLOCK_SIZE);
-        }
-        else
-        {
-            BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
-            BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
-        }
-        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, BlockContainerLength);
-
+        BlockContainerUIRectTransform.sizeDelta = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
+        BlockContainerBoxCollider.size = new Vector2(BlockContainerLength * UIConstants.CONTAINER_WIDTH_SIZE, UIConstants.CONTAINER_HEIGHT_SIZE);
     }
 
     public virtual void AddBlock(GameObject newBlock)
@@ -85,7 +75,7 @@ public class BlockContainerManager : MonoBehaviour
             sortedBlocks[i].SetSiblingIndex(i);
             //sortedBlocks[i].rotation = Quaternion.Euler(new Vector3(45, 0, 0));
         }
-        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - sortedBlocks.Count);
+        EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, UIManager.Instance.BlockContainerLength - sortedBlocks.Count);
     }
 
     

@@ -20,7 +20,7 @@ public class BlockCountBox : MonoBehaviour
     private void OnEnable()
     {
         // 이벤트 리스너 등록
-        EventManager<UIEvent>.StartListening<int>(UIEvent.SetBlockCount, SetBlockCountText);
+        EventManager<UIEvent>.StartListening<int>(UIEvent.BlockCountainerBlockCount, SetBlockCountText);
         EventManager<UIEvent>.StartListening(UIEvent.SetBlockCountError, SetBlockCountErrorText);
 
     }
@@ -28,7 +28,7 @@ public class BlockCountBox : MonoBehaviour
     private void OnDisable()
     {
         // 이벤트 리스너 해제
-        EventManager<UIEvent>.StopListening<int>(UIEvent.SetBlockCount, SetBlockCountText);
+        EventManager<UIEvent>.StopListening<int>(UIEvent.BlockCountainerBlockCount, SetBlockCountText);
         EventManager<UIEvent>.StopListening(UIEvent.SetBlockCountError, SetBlockCountErrorText);
 
     }

@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2910692491199705865, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Name
+      value: LoopBlockCountText
+      objectReference: {fileID: 0}
     - target: {fileID: 3406600054583048325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 314.1

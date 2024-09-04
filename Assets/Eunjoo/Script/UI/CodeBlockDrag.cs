@@ -230,7 +230,7 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
-            EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
+            EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
         }
 
 
@@ -356,6 +356,6 @@ public class CodeBlockDrag : MonoBehaviour
 
         _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
-        EventManager<UIEvent>.TriggerEvent(UIEvent.SetBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
+        EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
     }
 }

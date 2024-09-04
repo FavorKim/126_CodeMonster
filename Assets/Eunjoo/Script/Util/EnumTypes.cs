@@ -6,7 +6,8 @@ namespace EnumTypes
 
     public enum UIEvent
     {
-        SetBlockCount,
+        BlockCountainerBlockCount,
+        LoopBlockContainerBlockCount,
         SetBlockCountError,
         SetMoveBlockUISize,
     }
