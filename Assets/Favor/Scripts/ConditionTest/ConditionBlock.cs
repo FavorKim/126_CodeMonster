@@ -41,6 +41,18 @@ public class ConditionBlock : MonoBehaviour
         InitConditionBlock(MakeConditionBlockUIManager.Instance.GetConditionBlockInfo());
     }
 
+    public int EvaluateCondition(Monster monster)
+    {
+        if(monster.TypeIndex == indexValue)
+        {
+            return (int)TrueBlock.BlockName + 1;
+        }
+        else
+        {
+            return (int)FalseBlock.BlockName + 1;
+        }
+    }
+
     public int EvaluateCondition()
     {
         Player player = StageManager.Instance.GetPlayer();
@@ -61,10 +73,10 @@ public class ConditionBlock : MonoBehaviour
 
             if (monsterData != null && monsterData.TypeIndex == indexValue)
             {
-                return (int)TrueBlock.BlockName;
+                return (int)TrueBlock.BlockName + 1;
             }
         }
 
-        return (int)FalseBlock.BlockName;
+        return (int)FalseBlock.BlockName + 1;
     }
 }

@@ -51,12 +51,7 @@ public class CheckState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
-        if (blockIndex == 8)
-        {
-            Controller.IsIfUsed = true;
-            ConditionBlock cond = UIManager.Instance.BlockContainerManager.GetConditionBlockByIndex(Controller.CurrentIndex);
-            blockIndex = cond.EvaluateCondition();
-        }
+        
         if (blockIndex == -1)
         {
             DebugBoxManager.Instance.Log("플레이어 행동 종료.");
@@ -81,6 +76,8 @@ public class CheckState : BaseState<Player>
             // 새 상태 IfBattleState
             // 까서 공격상태로 가
             // 조건일때는
+            Controller.IsIfUsed = true;
+            Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
         }
         else if (blockIndex == 9)
         {
@@ -137,7 +134,10 @@ public class AttackState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
-        
+        if(blockIndex == 8)
+        {
+            
+        }
         Controller.Attack(blockIndex);
     }
 

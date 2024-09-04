@@ -30,22 +30,41 @@ public class BattleManager : Singleton<BattleManager>
 
         if (stageManager.CheckMonsterAndPlayerPos(playerPosition))
         {
-           
-            // 부시인가?
-            // isIfUsed인가?
-
-            // attackBlockType을 비교해서 무조건 지게끔 소환
-
-            // 조건 블록이어도 조건을 제대로 안 짜면 지니까.
-            // 나 - 물공격
-            // 부시 - 불 물
-
-
-            GameObject monsterObj= stageManager.GetMonsterWithPlayerPos(playerPosition);
+            GameObject monsterObj;
+            // 부시라면
+            if (stageManager.CheckBushAndPlayerPos(playerPosition))
+            {
+                int rand = UnityEngine.Random.Range(0, 1);
+                if(attackBlockType == 8)
+                {
+                    monsterObj = stageManager.GetMonsterInBush(playerPosition, rand);
+                    GameObject pref = MonsterObjPoolManger.Instance.GetMonsterPrefab(monsterObj.name);
+                    GameObject bush = stageManager.GetMonsterWithPlayerPos(playerPosition).transform.GetChild(0).gameObject;
+                    pref.transform.position = bush.transform.position;
+                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
+                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
+                }
+                else
+                {
+                    DebugBoxManager.Instance.Log("부쉬에서 조건문을 사용하지 않음. 패배");
+                    //monsterObj = null;
+                    return;
+                }
+            }
+            else
+            {
+                monsterObj = stageManager.GetMonsterWithPlayerPos(playerPosition);
+            }
             
             string monsterName = monsterObj.name;
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
+            
+            if(attackBlockType == 8)
+            {
+                attackBlockType = UIManager.Instance.BlockContainerManager.GetConditionBlockByIndex(player.CurrentIndex).EvaluateCondition(monster);
+            }
+            player.EnableTypeMonsterPrefab(attackBlockType);
 
             // 공격 블록의 타입과 몬스터의 약점 비교
             if (GameRule.CompareType(attackBlockType, monsterType.TypeIndex))

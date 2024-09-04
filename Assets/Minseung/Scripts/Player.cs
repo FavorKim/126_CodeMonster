@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
     {
         int attackBlockType = blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
 
-        EnableTypeMonsterPrefab(attackBlockType);
+        //EnableTypeMonsterPrefab(attackBlockType);
         BattleManager.Instance.BattlePhase(position, attackBlockType);
 
         isAttack = true;
