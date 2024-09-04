@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         get;
         private set;
     }
+    public bool IsIfUsed { get; set; }
 
     public Vector2Int playerPosition { get { return position; } }
     public StateMachine<Player> playerStateMachine { get { return stateMachine; } }
@@ -264,6 +265,7 @@ public class Player : MonoBehaviour
         position = stageManager.GetStartPosition();
         transform.position = stageManager.GetPlayerRestPos();
         IsPlaying = false;
+        IsIfUsed = false;
         DebugBoxManager.Instance.ClearText();
     }
 

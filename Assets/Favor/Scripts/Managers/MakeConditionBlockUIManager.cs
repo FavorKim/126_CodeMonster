@@ -77,14 +77,6 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
         DebugBoxManager.Instance.Log("InitConditionBlockInfo");
         conditionBlockInfo.InitConditionBlock(trueBlock, falseBlock, drop.GetSelectedValue());
         UIManager.Instance.MakeConditionalBlockBoxEnable();
-
-        if (trueBlock != null && falseBlock != null)
-            DebugBoxManager.Instance.Log($"참 블록 : {trueBlock.name} \n 거짓 블록 : {falseBlock.name}");
-        else
-        {
-            DebugBoxManager.Instance.Log("참 혹은 거짓 블록 할당 x");
-        }
-        
     }
     // 내부에 저장된 컨디션 블록 정보 반환
     public ConditionBlock GetConditionBlockInfo()

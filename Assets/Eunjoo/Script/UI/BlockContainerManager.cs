@@ -169,6 +169,20 @@ public class BlockContainerManager : MonoBehaviour
         return list;
     }
 
+    public ConditionBlock GetConditionBlockByIndex(int index)
+    {
+        var child = this.transform.GetChild(index);
+        if(child.TryGetComponent(out ConditionBlock condition))
+        {
+            return condition;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("컨디션블록이 아닙니다.");
+            return null;
+        }
+    }
+
     public virtual void SetBlockMaterial(int index, MaterialType type)
     {
         materialChangers[index].ChangeMaterial(type);
