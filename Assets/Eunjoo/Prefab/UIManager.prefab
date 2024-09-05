@@ -1460,14 +1460,19 @@ MonoBehaviour:
   AttackBlockUI: {fileID: 7895903523279074623}
   MoveBlockUI: {fileID: 4776451766569959550}
   MakeLoopBlockUI: {fileID: 1702462669200610587}
+  MakeLoopBlockBoxUI: {fileID: 0}
   MakeConditionalBlockUI: {fileID: 8325298432954445439}
+  MakeConditionalBlockBoxUI: {fileID: 0}
   HintBoxUI: {fileID: 171714672920300015}
   VictoryUI: {fileID: 3443666532820835426}
   GetMonsterUI: {fileID: 5641007280984063011}
+  BlockCountObject: {fileID: 0}
+  TextBox: {fileID: 0}
   BlockContainerLength: 5
   BlockIndexList: 040000000500000006000000080000000700000007000000070000000700000008000000
   HintCount: 5
   MakeLoopBlockContainerLength: 0
+  LoopBlockList: 
   BlockContainerManager: {fileID: 0}
   MakeLoopBlockContainerManager: {fileID: 0}
 --- !u!1 &5417538294824181607
