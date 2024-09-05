@@ -10,19 +10,80 @@ public class Player : MonoBehaviour
     private StageManager stageManager;
 
     private StateMachine<Player> stateMachine;
-    public int CurrentIndex { get; set; } = 0;
+    private SetLoopBlockUI loopBlock;
+
+    private int currentIndex = 0;
+    public int CurrentIndex 
+    {
+        get
+        {
+            if (isLoop == false)
+                return currentIndex;
+            else
+                return CurLoopIndex;
+        }
+        //set; 
+    }
+    
+    private int curLoopIndex = 0;
+    public int CurLoopIndex
+    {
+        get { return curLoopIndex; }
+        set
+        {
+            curLoopIndex = value;
+            if (curLoopIndex >= maxLoopIndex)
+            {
+                CurLoopCount++;
+                curLoopIndex = 0;
+            }
+        }
+    }
+
+    private int maxLoopIndex = 0;
+
+
+    private int curLoopCount = 0;
+    public int CurLoopCount
+    {
+        get { return curLoopCount;}
+        set
+        {
+            curLoopCount = value;
+            if(curLoopCount >= maxLoopCount)
+            {
+                isLoop = false;
+            }
+        }
+    }
+
+    private int maxLoopCount = 0;
+    
 
     private List<int> blockIndexList;
 
     public bool isAttack = false;
     public bool isGameOver = false;
+    public bool isLoop = false;
     //bool isMove;
     public bool IsPlaying
     {
         get;
         private set;
     }
-    public bool IsIfUsed { get; set; }
+
+    public void SetMaxLoopCount(int loopCount) { maxLoopCount = loopCount; }   
+    public void SetMaxLoopIndex(int index) { maxLoopIndex = index; }   
+    public void SetLoopBlock(SetLoopBlockUI loopBlock) { this.loopBlock = loopBlock; }
+
+    private void ResetLoopVariable()
+    {
+        maxLoopCount = 0;
+        maxLoopIndex = 0;
+        CurLoopIndex = 0;
+        CurLoopCount = 0;
+        isLoop = false;
+    }
 
     public Vector2Int playerPosition { get { return position; } }
     public StateMachine<Player> playerStateMachine { get { return stateMachine; } }
@@ -69,6 +130,7 @@ public class Player : MonoBehaviour
         stateMachine.AddState(PlayerStateName.CHECK, new CheckState(this));
         stateMachine.AddState(PlayerStateName.MOVE, new MoveState(this));
         stateMachine.AddState(PlayerStateName.ATTACK, new AttackState(this));
+        stateMachine.AddState(PlayerStateName.Loop, new LoopState(this));
         stateMachine.AddState(PlayerStateName.DIEMOVE, new DIEMOVE(this));
         stateMachine.AddState(PlayerStateName.DIEHIT, new DIEHIT(this));
         stateMachine.AddState(PlayerStateName.HINTACCENT, new HINTACCENT(this));
@@ -81,14 +143,33 @@ public class Player : MonoBehaviour
         {
             IsPlaying = true;
             blockIndexList = UIManager.Instance.BlockContainerManager.GetContatinerBlocks();
-            CurrentIndex = 0;
+            currentIndex = 0;
             stateMachine.ChangeState(PlayerStateName.CHECK);
         }
     }
 
     public int GetCurrentBlockIndex()
     {
-        return blockIndexList != null && CurrentIndex < blockIndexList.Count ? blockIndexList[CurrentIndex] : -1;
+        if (isLoop == false)
+        {
+            if (blockIndexList != null)
+            {
+                return currentIndex < blockIndexList.Count ? blockIndexList[currentIndex] : -1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        else
+        {
+            if (loopBlock.LoopBlockList != null)
+                return CurLoopIndex < loopBlock.LoopBlockList.Count ? loopBlock.LoopBlockList[CurLoopIndex] : -1;
+            else
+                return -1;
+        }
+
+        //return blockIndexList != null && CurrentIndex < blockIndexList.Count ? blockIndexList[CurrentIndex] : -1;
     }
 
     public void Move(Vector2Int direction)
@@ -117,7 +198,10 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            CurrentIndex++;
+            if (!isLoop)
+                currentIndex++;
+            else
+                CurLoopIndex = curLoopIndex + 1;
             stateMachine.ChangeState(PlayerStateName.CHECK);
         }
     }
@@ -137,7 +221,10 @@ public class Player : MonoBehaviour
     public void PlayerWinEvent()
     {
         isAttack = false;
-        CurrentIndex++;
+        if (!isLoop)
+            currentIndex++;
+        else
+            CurLoopIndex = curLoopIndex + 1;
         WinEvent -= PlayerWinEvent;
         stateMachine.ChangeState(PlayerStateName.CHECK);
     }
@@ -265,7 +352,7 @@ public class Player : MonoBehaviour
         position = stageManager.GetStartPosition();
         transform.position = stageManager.GetPlayerRestPos();
         IsPlaying = false;
-        IsIfUsed = false;
+        ResetLoopVariable();
         DebugBoxManager.Instance.ClearText();
     }
 

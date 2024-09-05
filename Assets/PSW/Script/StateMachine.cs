@@ -9,9 +9,10 @@ enum PlayerStateName
     CHECK,
     MOVE,
     ATTACK,
+    Loop,
     DIEMOVE,
     DIEHIT,
-    HINTACCENT
+    HINTACCENT,
 }
 
 public class StateMachine<T> where T : class

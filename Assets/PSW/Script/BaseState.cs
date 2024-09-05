@@ -75,8 +75,10 @@ public class CheckState : BaseState<Player>
         }
         else if (blockIndex == 9)
         {
-            // 반복
+            DebugBoxManager.Instance.Log("9번 인덱스. 반복블록");
+            Controller.playerStateMachine.ChangeState(PlayerStateName.Loop);
         }
+
     }
 
     public override void OnUpdateState() { }
@@ -128,10 +130,6 @@ public class AttackState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
-        if(blockIndex == 8)
-        {
-            
-        }
         Controller.Attack(blockIndex);
     }
 
@@ -143,15 +141,25 @@ public class AttackState : BaseState<Player>
 public class LoopState : BaseState<Player>
 {
     public LoopState(Player controller) : base(controller) { }
-
+    SetLoopBlockUI loopBlock;
+    int curIndex;
     public override void OnEnterState()
     {
-        
+        Controller.isLoop = true;
+        loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.GetCurrentBlockIndex());
+        Controller.SetLoopBlock(loopBlock);
+        Controller.SetMaxLoopIndex(loopBlock.LoopBlockList.Count);
+        Controller.SetMaxLoopCount(loopBlock.LoopCount);
+        Controller.CurLoopIndex = 0;
+        Controller.CurLoopCount = 0;
+
+        Controller.playerStateMachine.ChangeState(PlayerStateName.CHECK);
     }
 
     public override void OnUpdateState() { }
 
     public override void OnExitState() { }
+
 }
 
 

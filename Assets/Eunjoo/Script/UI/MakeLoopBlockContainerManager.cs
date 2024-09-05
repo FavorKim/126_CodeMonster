@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class MakeLoopBlockContainerManager : BlockContainerManager
 {
+    [SerializeField] private PokeDropdown pokeDropDown;
+    public SetLoopBlockUI LoopInfo { get; private set; }
+    
 
     private void Start()
     {
@@ -94,9 +97,18 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
         for (int i = 0; i < this.transform.childCount; i++)
         {
-            BlockName codeBlockDrag = transform.GetChild(i).GetComponent<CodeBlockDrag>().BlockName;
+            int codeBlockDrag = (int)transform.GetChild(i).GetComponent<CodeBlockDrag>().BlockName + 1;
             UIManager.Instance.LoopBlockList.Add(codeBlockDrag);
         }
+    }
+
+    public int GetLoopCount()
+    {
+        int loopCount = 0;
+
+        loopCount = pokeDropDown.GetSelectedValue() + 2;
+
+        return loopCount;
     }
 
     public void LoseMakeLoopBlocksName()

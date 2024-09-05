@@ -171,6 +171,19 @@ public class BlockContainerManager : MonoBehaviour
             return null;
         }
     }
+    public SetLoopBlockUI GetLoopBlockByIndex(int index)
+    {
+        var child = this.transform.GetChild(index);
+        if (child.TryGetComponent(out SetLoopBlockUI condition))
+        {
+            return condition;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("루프블록이 아닙니다.");
+            return null;
+        }
+    }
 
     public virtual void SetBlockMaterial(int index, MaterialType type)
     {

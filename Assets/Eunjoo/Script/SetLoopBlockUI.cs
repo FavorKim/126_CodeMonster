@@ -1,6 +1,3 @@
-using EnumTypes;
-using EventLibrary;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +5,9 @@ public class SetLoopBlockUI : MonoBehaviour
 {
     [SerializeField] GameObject LoopBlockListBox;
     [SerializeField] GameObject LoopBlockListImage;
-    public List<BlockName> LoopBlockList = new List<BlockName>();
+    public List<int> LoopBlockList = new List<int>();
+    public int LoopCount { get; set; }
+
     public int CountLoopBlockListBox()
     {
         return LoopBlockListBox.transform.childCount;
@@ -52,7 +51,7 @@ public class SetLoopBlockUI : MonoBehaviour
         newBlock.transform.localScale = Vector3.one;
     }
 
-    public void AddBlockName(BlockName newBlock)
+    public void AddBlockName(int newBlock)
     {
         LoopBlockList.Add(newBlock);
     }
