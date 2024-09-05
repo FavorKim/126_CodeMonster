@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 
     public void Attack(int blockIndex)
     {
-        DebugBoxManager.Instance.Log("어택으로 들어옴");
+        //DebugBoxManager.Instance.Log("어택으로 들어옴");
         int attackBlockType = blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
 
         //EnableTypeMonsterPrefab(attackBlockType);
@@ -363,5 +363,21 @@ public class Player : MonoBehaviour
     public void Die()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public bool AttackedByMonster(out MonsterController mon)
+    {
+        // 이동하려할 때 몬스터가 같이 붙어있으면
+        if (StageManager.Instance.CheckMonsterAndPlayerPos(playerPosition))
+        {
+            mon = StageManager.Instance.GetMonsterWithPlayerPos(playerPosition).GetComponent<MonsterController>();
+            Die();
+            return true;
+        }
+        else 
+        {
+            mon = null;
+            return false; 
+        }
     }
 }

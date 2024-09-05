@@ -13,6 +13,7 @@ public class BattleManager : Singleton<BattleManager>
     private Player player;
     private StageManager stageManager;
     private GameObject targetMonster;
+    private MonsterController targetMonsterController;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class BattleManager : Singleton<BattleManager>
 
     public void BattlePhase(Vector2Int playerPosition, int attackBlockType)
     {
-        DebugBoxManager.Instance.Log("배틀페이즈로 들어옴");
+        //DebugBoxManager.Instance.Log("배틀페이즈로 들어옴");
         player = stageManager.GetPlayer();
 
         //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} 타입 공격");
@@ -31,13 +32,13 @@ public class BattleManager : Singleton<BattleManager>
 
         if (stageManager.CheckMonsterAndPlayerPos(playerPosition))
         {
-            DebugBoxManager.Instance.Log("몬스터와 같은 공간");
+            //DebugBoxManager.Instance.Log("몬스터와 같은 공간");
 
             GameObject monsterObj;
             // 부시라면
             if (stageManager.CheckBushAndPlayerPos(playerPosition))
             {
-                DebugBoxManager.Instance.Log("부시에 있음");
+                //DebugBoxManager.Instance.Log("부시에 있음");
                 int rand = UnityEngine.Random.Range(0, 1);
                 // 조건문을 사용했을 경우
                 if (attackBlockType == 8)
@@ -49,13 +50,15 @@ public class BattleManager : Singleton<BattleManager>
                     pref.SetActive(true);
                     GameObject bush = stageManager.GetMonsterWithPlayerPos(playerPosition).transform.GetChild(0).gameObject;
                     pref.transform.position = bush.transform.position;
+                    pref.transform.position = new Vector3(pref.transform.position.x, player.transform.position.y, pref.transform.position.z);
                     bush.SetActive(false);
                     // 리셋 시 초기화를 위한 이벤트 구독
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
 
+                    // 조건문 UI 띄우고
 
-                    DebugBoxManager.Instance.Log("조건 + 부시");
+                    //DebugBoxManager.Instance.Log("조건 + 부시");
                 }
                 else
                 {
@@ -66,21 +69,22 @@ public class BattleManager : Singleton<BattleManager>
             }
             else
             {
-                DebugBoxManager.Instance.Log("부시가 아님");
+                //DebugBoxManager.Instance.Log("부시가 아님");
                 monsterObj = stageManager.GetMonsterWithPlayerPos(playerPosition);
             }
 
             string monsterName = monsterObj.name;
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
+            targetMonsterController = monsterObj.GetComponent<MonsterController>();
 
-            DebugBoxManager.Instance.Log($"플레이어 {monsterName}몬스터의 속성은 {monsterType.TypeIndex}번 인덱스");
+            //DebugBoxManager.Instance.Log($"플레이어 {monsterName}몬스터의 속성은 {monsterType.TypeIndex}번 인덱스");
 
             // 조건문을 사용할 경우 등장한 조건문에 맞는 공격블록으로 인덱스 변경
             if (attackBlockType == 8)
             {
                 attackBlockType = UIManager.Instance.BlockContainerManager.GetConditionBlockByIndex(player.CurrentIndex).EvaluateCondition(monster);
-                DebugBoxManager.Instance.Log($"{attackBlockType}번 인덱스 공격 (풀 물 불)");
+                //DebugBoxManager.Instance.Log($"{attackBlockType}번 인덱스 공격 (풀 물 불)");
             }
 
             player.EnableTypeMonsterPrefab(attackBlockType);
@@ -92,6 +96,7 @@ public class BattleManager : Singleton<BattleManager>
                 UnityEngine.Debug.Log("Attack successful! Monster defeated.");
                 UnityEngine.Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 DebugBoxManager.Instance.Log("공격성공");
+                targetMonsterController.Hit();
                 //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
                 // 승리 처리: 플레이어의 승리 메서드 호출
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
@@ -99,14 +104,14 @@ public class BattleManager : Singleton<BattleManager>
             }
             else
             {
-                UnityEngine.Debug.Log("Attack failed! Player defeated.");
+                UnityEngine.Debug.Log("Attack failed!");
                 DebugBoxManager.Instance.Log("공격실패");
 
                 // 패배 처리: 플레이어의 패배 메서드 호출
                 UIManager.Instance.BlockContainerManager.SetXIcon(player.GetCurrentBlockIndex(), true);
 
                 //player.EnableTypeMonsterPrefab(4);
-                Invoke(nameof(PlayerDefeat), 2);
+                //Invoke(nameof(PlayerDefeat), 2);
             }
         }
         else
@@ -140,9 +145,9 @@ public class BattleManager : Singleton<BattleManager>
     {
 
         player.Win();
-        if (targetMonster != null && targetMonster.activeSelf == true)
+        if (targetMonsterController.CheckMonsterHPUnderZero())
         {
-            targetMonster.SetActive(false);
+            targetMonsterController.Die();
 
         }
     }

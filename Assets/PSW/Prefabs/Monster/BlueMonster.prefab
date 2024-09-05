@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5862183688381750658}
   - component: {fileID: 7625749071419712159}
   - component: {fileID: 2353700046989145442}
+  - component: {fileID: 4736861538452827052}
   m_Layer: 0
   m_Name: BlueMonster
   m_TagString: Untagged
@@ -108,6 +109,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4736861538452827052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595729284490711594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5b3bf2659cbd04a97b2ab88c38d6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9199608218418597078
 PrefabInstance:
   m_ObjectHideFlags: 0

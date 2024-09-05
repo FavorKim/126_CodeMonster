@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Monster>
   <dataCategory>
-    <data ID="1" MonsterName="Bush" MonsterViewName="수풀" TypeIndex="0" Description="무슨 적이 나올지 알 수 없다" />
-    <data ID="2" MonsterName="RedMonster" MonsterViewName="빨갱이" TypeIndex="7" Description="빨갛다" />
-    <data ID="3" MonsterName="BlueMonster" MonsterViewName="파랭이" TypeIndex="6" Description="파랗다" />
-    <data ID="4" MonsterName="GreenMonster" MonsterViewName="초랭이" TypeIndex="5" Description="푸르다" />
+    <data ID="1" MonsterName="Char_Enemy_Unknown_01" MonsterViewName="수풀" TypeIndex="0" Description="무슨 적이 나올지 알 수 없다" />
+    <data ID="2" MonsterName="Char_Common_ Battle_Character_Fire_01" MonsterViewName="빨갱이" TypeIndex="7" Description="빨갛다" />
+    <data ID="3" MonsterName="Char_Common_ Battle_Character_Water_01" MonsterViewName="파랭이" TypeIndex="6" Description="파랗다" />
+    <data ID="4" MonsterName="Char_Common_ Battle_Character_Leaf_01" MonsterViewName="초랭이" TypeIndex="5" Description="푸르다" />
+    <data ID="5" MonsterName="Char_Giant_ Battle_Character_Fire_01" MonsterViewName="큰빨갱이" TypeIndex="7" Description="크다" />
   </dataCategory>
 </Monster>

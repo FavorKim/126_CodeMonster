@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 4250079896102709200}
   - component: {fileID: 2162466128400662621}
   - component: {fileID: 7976115481824621924}
+  - component: {fileID: -2180327681872365862}
   m_Layer: 0
   m_Name: Char_Unique_ Battle_Character_Leaf_01 1
   m_TagString: Untagged
@@ -160,6 +161,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2180327681872365862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677719122148885517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5b3bf2659cbd04a97b2ab88c38d6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2056548570338984662
 GameObject:
   m_ObjectHideFlags: 0

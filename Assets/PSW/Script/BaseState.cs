@@ -55,6 +55,12 @@ public class CheckState : BaseState<Player>
         if (blockIndex == -1)
         {
             DebugBoxManager.Instance.Log("플레이어 행동 종료.");
+            // if(적이 안 죽었다) -> 패배
+            if(Controller.AttackedByMonster(out MonsterController mon))
+            {
+                mon.Attack();
+                
+            }
             Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
             return;
         }
@@ -97,7 +103,12 @@ public class MoveState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
-        
+
+        if (Controller.AttackedByMonster(out MonsterController mon))
+        {
+            mon.Attack();
+        }
+
         direction = GetDirectionFromBlock(blockIndex);
     }
 
@@ -150,7 +161,7 @@ public class LoopState : BaseState<Player>
         Controller.SetLoopBlock(loopBlock);
         Controller.SetMaxLoopIndex(loopBlock.LoopBlockList.Count);
         Controller.SetMaxLoopCount(loopBlock.LoopCount);
-        DebugBoxManager.Instance.Log($"루프블록의 루프카운트 : {loopBlock.LoopCount}");
+        //DebugBoxManager.Instance.Log($"루프블록의 루프카운트 : {loopBlock.LoopCount}");
         Controller.CurLoopIndex = 0;
         Controller.CurLoopCount = 0;
 

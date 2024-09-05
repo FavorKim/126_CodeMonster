@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 2977214833743838725}
   - component: {fileID: 3437389962336923611}
   - component: {fileID: 5434994238722885128}
+  - component: {fileID: 3734273301149884908}
   m_Layer: 0
   m_Name: Char_Unique_ Battle_Character_Fire_01 1
   m_TagString: Untagged
@@ -436,6 +437,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3734273301149884908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5119512694560608456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5b3bf2659cbd04a97b2ab88c38d6ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5157184499967080757
 GameObject:
   m_ObjectHideFlags: 0

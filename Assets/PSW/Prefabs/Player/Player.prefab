@@ -47,10 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttack: 0
   isGameOver: 0
+  isLoop: 0
   monsterPrefabs:
-  - {fileID: 1174187840377850448, guid: c44c9bb253714764dbf7b4c1f77add37, type: 3}
-  - {fileID: 4595729284490711594, guid: 043865b47292c9a4785370388018b628, type: 3}
-  - {fileID: 4832793224300057041, guid: c006220e3cfcb5c4683550dce9ae8124, type: 3}
+  - {fileID: 3239263549213024796, guid: 9d4c1dfcd117949408152fc9764bdc35, type: 3}
+  - {fileID: 2375313993706534797, guid: ce0c484ba69cef44f86c19d77dd11692, type: 3}
+  - {fileID: 428011253251531291, guid: 33cab56f6a9536347b88fa0f80fd4d6f, type: 3}
 --- !u!1001 &2186717478662855414
 PrefabInstance:
   m_ObjectHideFlags: 0

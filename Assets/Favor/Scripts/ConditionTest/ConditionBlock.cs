@@ -51,12 +51,14 @@ public class ConditionBlock : MonoBehaviour
     {
         if (monster.TypeIndex == indexValue)
         {
-            DebugBoxManager.Instance.Log("참 블록 평가완료");
+            //DebugBoxManager.Instance.Log("참 블록 평가완료");
+            // true거 하이라이트 해주고
             return (int)TrueBlock.BlockName + 1;
         }
         else
         {
-            DebugBoxManager.Instance.Log("거짓 블록 평가완료");
+            //DebugBoxManager.Instance.Log("거짓 블록 평가완료");
+            // false거 하이라이트 해주고
             return (int)FalseBlock.BlockName + 1;
         }
     }
