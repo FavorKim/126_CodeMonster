@@ -10,6 +10,7 @@ public class MonsterController : MonoBehaviour
 
     protected Animator _animator;
 
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();

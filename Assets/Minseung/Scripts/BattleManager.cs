@@ -82,6 +82,7 @@ public class BattleManager : Singleton<BattleManager>
                 attackBlockType = UIManager.Instance.BlockContainerManager.GetConditionBlockByIndex(player.CurrentIndex).EvaluateCondition(monster);
                 DebugBoxManager.Instance.Log($"{attackBlockType}번 인덱스 공격 (풀 물 불)");
             }
+
             player.EnableTypeMonsterPrefab(attackBlockType);
 
             // 공격 블록의 타입과 몬스터의 약점 비교

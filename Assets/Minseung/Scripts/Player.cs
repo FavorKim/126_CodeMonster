@@ -259,7 +259,6 @@ public class Player : MonoBehaviour
     {
         DisableTypeMonsterPrefab();
         this.transform.GetChild(monsterTypeIndex - 4).gameObject.SetActive(true);
-        DebugBoxManager.Instance.Log($"{transform.GetChild(monsterTypeIndex-4).name}의 활성화 상태 : {transform.GetChild(monsterTypeIndex - 4).gameObject.activeSelf}");
     }
 
 
