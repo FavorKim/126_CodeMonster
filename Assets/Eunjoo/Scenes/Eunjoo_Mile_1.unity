@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1353206187389359983, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -162
+      objectReference: {fileID: 0}
     - target: {fileID: 1597385295297947930, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _handGrabState
       value: 

@@ -71,10 +71,7 @@ public class UIManager : Singleton<UIManager>
         MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
-        // TODO : 상욱
-        // MakeLoopBlockContainerLength = DataManagerTest.instance.GetStageMapData(1).루프블럭의 길이를 받아와야함
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
-
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);
 
