@@ -40,6 +40,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
     public GameObject BlockCountObject;
+    public GameObject DirectHintBox;
+    public GameObject IndirectHintBox;
     [SerializeField] TMP_Text TextBox;
 
 
@@ -164,6 +166,26 @@ public class UIManager : Singleton<UIManager>
     public void MakeLoopBlockBoxDisable()
     {
         MakeLoopBlockBoxUI.SetActive(false);
+    }
+
+    public void DirectHintBoxEnable()
+    {
+        DirectHintBox.SetActive(true);
+    }
+
+    public void DirectHintBoxDisble()
+    {
+        DirectHintBox.SetActive(false);
+    }
+
+    public void IndirectHintBoxEnable()
+    {
+        IndirectHintBox.SetActive(true);
+    }
+
+    public void IndirectHintBoxDisable()
+    {
+        IndirectHintBox.SetActive(false);
     }
 
     public void MakeConditionalBlockBoxEnable()
