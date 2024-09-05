@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    private string _monsterName;
-    private int _monsterType;
-    private int _enemyType;
+   
 
     protected Animator _animator;
+    private int hp;
 
 
     private void Awake()
@@ -18,8 +17,8 @@ public class MonsterController : MonoBehaviour
 
     void Start()
     {
-        _monsterName = this.transform.gameObject.name;
-        _monsterType = DataManagerTest.Instance.GetMonsterData(_monsterName).TypeIndex;
+        //hp=DataManagerTest.Instance.GetMonsterData(this.gameObject.name).HP;
+        hp = 3;
     }
 
     // Update is called once per frame
@@ -28,36 +27,50 @@ public class MonsterController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+   
 
-        if(other.gameObject.GetComponent<MonsterController>() != null)
-        {
-            var enemy = other.gameObject.GetComponent<MonsterController>();
-            _enemyType = enemy._enemyType;
-        }
+    public void Attack()
+    {
+       //애니메이션 재생
+
+        //플레이어 죽는 함수 호출 아니면 이벤트 호출
+
+        
     }
 
-
-    protected void Attack()
-    {
-       
-    }
-
-    protected virtual void Hit()
+    public virtual void Hit()
     {
         //애니메이션 재생
 
-        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        hp--;
 
-        float startTime = stateInfo.length + 0.5f;
-
-        //플레이어는 남지만 몬스터는 사라짐
-        Invoke(nameof(Die), startTime);
     }
 
-    protected void Die()
+    public bool CheckMonsterHPUnderZero()
+    {
+        if (hp <= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Die()
+    {
+        //애니메이션 재생
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);//현재 실행중인 애니메이션 얻어옴
+
+        float startTime = stateInfo.length + 0.5f;//애니메이션 재생시간
+
+        Invoke(nameof(DisableMonster), startTime);
+
+    }
+
+    private void DisableMonster()
     {
         this.gameObject.SetActive(false);
     }
+
+   
 }
