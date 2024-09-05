@@ -409,6 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoopBlockListBox: {fileID: 7312527589254677285}
   LoopBlockListImage: {fileID: 2596730963124314203}
+  Text_LoopCountIndicator: {fileID: 2627348907481260276}
   LoopBlockList: 
 --- !u!1 &7107494626610251707
 GameObject:

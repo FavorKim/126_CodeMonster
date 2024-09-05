@@ -767,6 +767,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
   m_PrefabInstance: {fileID: 2816616365707777681}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1554276917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1211493460033868821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76636bfa3ff89ef4d81ea6adfdf800b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1621106760
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +842,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725682054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8010816956005447599, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76636bfa3ff89ef4d81ea6adfdf800b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1737333006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1454996620759157249, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
@@ -949,6 +971,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3957090350595034336, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Name
+      value: ConditionResetBtn
+      objectReference: {fileID: 0}
     - target: {fileID: 3972288134352841500, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -989,6 +1015,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6330316872665450915, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: loopResetBtn
+      value: 
+      objectReference: {fileID: 1725682054}
+    - target: {fileID: 6330316872665450915, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: conditionResetBtn
+      value: 
+      objectReference: {fileID: 1554276917}
     - target: {fileID: 6516744146605183499, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_text
       value: "2\uD68C \uBC18\uBCF5"

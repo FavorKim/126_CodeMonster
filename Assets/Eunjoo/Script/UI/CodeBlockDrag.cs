@@ -191,6 +191,7 @@ public class CodeBlockDrag : MonoBehaviour
                 SetLoopBlockUI.AddBlockName(blockName);
                 SetLoopBlockUI.AddBlock(loopBlock);
                 SetLoopBlockUI.LoopCount = UIManager.Instance.MakeLoopBlockContainerManager.GetLoopCount();
+                SetLoopBlockUI.SetLoopCountText(UIManager.Instance.MakeLoopBlockContainerManager.GetLoopCount());
             }
         }
     }

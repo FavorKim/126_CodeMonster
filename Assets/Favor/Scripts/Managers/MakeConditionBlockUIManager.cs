@@ -30,6 +30,8 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
         makeBtn.OnPoke += InitConditionBlockInfo;
         conditionBlockInfo = Prefab_ConditionBlock;
         base.Start();
+
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.CONDITIONRESET, ResetConditionContainer);
     }
 
     private void OnApplicationQuit()
@@ -74,5 +76,14 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
     public ConditionBlock GetConditionBlockInfo()
     {
         return conditionBlockInfo;
+    }
+
+    private void ResetConditionContainer()
+    {
+        trueBlock?.ReturnToPool();
+        falseBlock?.ReturnToPool();
+        trueBlock = null;
+        falseBlock = null;
+        UIManager.Instance.MakeConditionalBlockBoxDisable();
     }
 }

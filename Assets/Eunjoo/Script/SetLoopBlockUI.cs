@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SetLoopBlockUI : MonoBehaviour
 {
     [SerializeField] GameObject LoopBlockListBox;
     [SerializeField] GameObject LoopBlockListImage;
+    [SerializeField] TMP_Text Text_LoopCountIndicator;
+
     public List<int> LoopBlockList = new List<int>();
     public int LoopCount { get; set; }
 
@@ -59,5 +62,9 @@ public class SetLoopBlockUI : MonoBehaviour
     public void ClearLoopBlockList()
     {
         LoopBlockList.Clear();
+    }
+    public void SetLoopCountText(int loopCount)
+    {
+        Text_LoopCountIndicator.text = $"{loopCount}회 반복";
     }
 }

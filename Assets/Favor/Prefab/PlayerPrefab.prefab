@@ -15313,6 +15313,8 @@ MonoBehaviour:
   hintBtn: {fileID: 7083409857746812109}
   loopMakeBtn: {fileID: 1608838332951108498}
   conditionMakeBtn: {fileID: 5158626298115148189}
+  loopResetBtn: {fileID: 0}
+  conditionResetBtn: {fileID: 0}
 --- !u!1 &6570616487628952971
 GameObject:
   m_ObjectHideFlags: 0

@@ -146,7 +146,7 @@ public class LoopState : BaseState<Player>
     public override void OnEnterState()
     {
         Controller.SetIsLoop(true);
-        loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.CurrentIndex);
+        loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.ForceGetCurrentIndex());
         Controller.SetLoopBlock(loopBlock);
         Controller.SetMaxLoopIndex(loopBlock.LoopBlockList.Count);
         Controller.SetMaxLoopCount(loopBlock.LoopCount);

@@ -13,6 +13,8 @@ public enum PokeButton
     HINT,
     LOOPMAKE,
     CONDITIONMAKE,
+    LOOPRESET,
+    CONDITIONRESET,
 }
 public class InteractEventManager : Singleton<InteractEventManager>
 {
@@ -23,6 +25,9 @@ public class InteractEventManager : Singleton<InteractEventManager>
     [SerializeField] CustomPokedObject hintBtn;
     [SerializeField] CustomPokedObject loopMakeBtn;
     [SerializeField] CustomPokedObject conditionMakeBtn;
+    [SerializeField] CustomPokedObject loopResetBtn;
+    [SerializeField] CustomPokedObject conditionResetBtn;
+    
 
     private Dictionary<PokeButton, CustomPokedObject> btnDict = new Dictionary<PokeButton, CustomPokedObject>();
 
@@ -35,6 +40,8 @@ public class InteractEventManager : Singleton<InteractEventManager>
         btnDict.Add(PokeButton.HINT, hintBtn);
         btnDict.Add(PokeButton.LOOPMAKE, loopMakeBtn);
         btnDict.Add(PokeButton.CONDITIONMAKE, conditionMakeBtn);
+        btnDict.Add(PokeButton.LOOPRESET, loopResetBtn);
+        btnDict.Add(PokeButton.CONDITIONRESET, conditionResetBtn);
     }
 
     public void RegistOnPokeBtn(PokeButton btn, Action action)
