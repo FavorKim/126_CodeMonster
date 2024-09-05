@@ -179,9 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockName: 2
+  BlockName: 0
   BlockType: 0
   BlockContainerUI: {fileID: 0}
+  MakeLoopBlockUI: {fileID: 0}
+  MakeConditionBlockUI: {fileID: 0}
   PoolParent: {fileID: 0}
   matChanger: {fileID: 0}
 --- !u!54 &3947697832130028750
@@ -315,6 +317,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e3373a39e16e2104fa087181f19a548e, type: 2}
   - {fileID: 2100000, guid: 7a014f78414e0fe43915b0fe8d6c6352, type: 2}
   - {fileID: 2100000, guid: efc4f5324278b1441b2f7f94929c6e17, type: 2}
+  X_Icon: {fileID: 0}
 --- !u!1 &4007982500558620024
 GameObject:
   m_ObjectHideFlags: 0

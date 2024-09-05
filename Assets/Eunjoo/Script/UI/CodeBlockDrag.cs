@@ -172,13 +172,18 @@ public class CodeBlockDrag : MonoBehaviour
             List<int> loopBlockNames = UIManager.Instance.LoopBlockList;
             foreach (int blockName in loopBlockNames)
             {
-
-                SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponentInChildren<SetLoopBlockUI>();
-                SetLoopBlockUI.EnableLoopBlockImage();
+                if (TryGetComponent(out SetLoopBlockUI SetLoopBlockUI))
+                    //SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponent<SetLoopBlockUI>();
+                    SetLoopBlockUI.EnableLoopBlockImage();
+                else
+                {
+                    DebugBoxManager.Instance.Log("SetLoopBlockUI NULL!");
+                    return;
+                }
 
                 if (SetLoopBlockUI.CountLoopBlockListBox() >= UIManager.Instance.LoopBlockList.Count) return;
 
-                GameObject loopBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName-1);
+                GameObject loopBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);
                 HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
                 BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();
                 loopBlockCodeBlockBoxCollider.enabled = false;
@@ -279,8 +284,8 @@ public class CodeBlockDrag : MonoBehaviour
         BlockHandGrab.enabled = true;
         BoxCollider loopBlockCodeBlockBoxCollider = GetComponent<BoxCollider>();
         loopBlockCodeBlockBoxCollider.enabled = true;
-        SetLoopBlockUI setLoopBlockUI = GetComponent<SetLoopBlockUI>();
-        setLoopBlockUI.ClearLoopBlockList();
+        if (TryGetComponent(out SetLoopBlockUI setLoopBlockUI))
+            setLoopBlockUI.ClearLoopBlockList();
         transform.SetParent(PoolParent.transform, false);
         transform.localScale = new Vector3(30f, 30f, 30f);
 

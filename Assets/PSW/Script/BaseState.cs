@@ -145,11 +145,12 @@ public class LoopState : BaseState<Player>
     int curIndex;
     public override void OnEnterState()
     {
-        Controller.isLoop = true;
-        loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.GetCurrentBlockIndex());
+        Controller.SetIsLoop(true);
+        loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.CurrentIndex);
         Controller.SetLoopBlock(loopBlock);
         Controller.SetMaxLoopIndex(loopBlock.LoopBlockList.Count);
         Controller.SetMaxLoopCount(loopBlock.LoopCount);
+        DebugBoxManager.Instance.Log($"루프블록의 루프카운트 : {loopBlock.LoopCount}");
         Controller.CurLoopIndex = 0;
         Controller.CurLoopCount = 0;
 

@@ -831,6 +831,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1737333006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1454996620759157249, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d13087c9610a5a49b4d4fe26fecabdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2057160829
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1808441684677123951, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: pokeDropDown
+      value: 
+      objectReference: {fileID: 1737333006}
     - target: {fileID: 2062376336595968492, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: poolInfoList.Array.data[7].prefab
       value: 
@@ -992,6 +1007,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7275450233720954624, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: LoopBlockList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: LoopBlockList.Array.data[0]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}

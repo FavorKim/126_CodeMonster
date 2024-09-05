@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockName: 0
+  BlockName: 2
   BlockType: 0
   BlockContainerUI: {fileID: 0}
   MakeLoopBlockUI: {fileID: 0}

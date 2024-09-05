@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
             if(curLoopCount >= maxLoopCount)
             {
                 isLoop = false;
+                currentIndex++;
             }
         }
     }
@@ -65,7 +66,6 @@ public class Player : MonoBehaviour
     public bool isAttack = false;
     public bool isGameOver = false;
     public bool isLoop = false;
-    //bool isMove;
     public bool IsPlaying
     {
         get;
@@ -75,6 +75,10 @@ public class Player : MonoBehaviour
     public void SetMaxLoopCount(int loopCount) { maxLoopCount = loopCount; }   
     public void SetMaxLoopIndex(int index) { maxLoopIndex = index; }   
     public void SetLoopBlock(SetLoopBlockUI loopBlock) { this.loopBlock = loopBlock; }
+    public void SetIsLoop(bool isloop) 
+    {
+        isLoop = isloop;
+    }
 
     private void ResetLoopVariable()
     {

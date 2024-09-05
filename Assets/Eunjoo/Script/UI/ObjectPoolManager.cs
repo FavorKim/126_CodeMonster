@@ -5,10 +5,10 @@ using UnityEngine;
 
 public enum BlockName
 {
-    LeftMoveCodeBlock,
-    RightMoveCodeBlock,
     UpMoveCodeBlock,
     DownMoveCodeBlock,
+    LeftMoveCodeBlock,
+    RightMoveCodeBlock,
 
     GrassAttackCodeBlock,
     WaterAttackCodeBlock,
