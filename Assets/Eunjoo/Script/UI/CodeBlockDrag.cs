@@ -167,33 +167,73 @@ public class CodeBlockDrag : MonoBehaviour
         }
 
 
-        if (BlockType == BlockType.LoopCodeBlock /*|| BlockType == BlockType.ConditionalCodeBlock*/)
+        if (BlockType == BlockType.LoopCodeBlock)
         {
-            List<int> loopBlockNames = UIManager.Instance.LoopBlockList;
-            foreach (int blockName in loopBlockNames)
-            {
-                if (TryGetComponent(out SetLoopBlockUI SetLoopBlockUI))
-                    //SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponent<SetLoopBlockUI>();
-                    SetLoopBlockUI.EnableLoopBlockImage();
-                else
-                {
-                    DebugBoxManager.Instance.Log("SetLoopBlockUI NULL!");
-                    return;
-                }
-
-                if (SetLoopBlockUI.CountLoopBlockListBox() >= UIManager.Instance.LoopBlockList.Count) return;
-
-                GameObject loopBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);
-                HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
-                BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();
-                loopBlockCodeBlockBoxCollider.enabled = false;
-                loopBlockHandGrab.enabled = false;
-                SetLoopBlockUI.AddBlockName(blockName);
-                SetLoopBlockUI.AddBlock(loopBlock);
-                SetLoopBlockUI.LoopCount = UIManager.Instance.MakeLoopBlockContainerManager.GetLoopCount();
-                SetLoopBlockUI.SetLoopCountText(UIManager.Instance.MakeLoopBlockContainerManager.GetLoopCount());
-            }
+            GrabLoopCodeBlock();
         }
+
+        if(BlockType == BlockType.ConditionalCodeBlock)
+        {
+            GrabConditionCodeBlock();
+        }
+    }
+
+
+
+    private void GrabLoopCodeBlock()
+    {
+        List<int> loopBlockNames = UIManager.Instance.LoopBlockList;
+        foreach (int blockName in loopBlockNames)
+        {
+            if (TryGetComponent(out SetLoopBlockUI SetLoopBlockUI))
+                //SetLoopBlockUI SetLoopBlockUI= gameObject.GetComponent<SetLoopBlockUI>();
+                SetLoopBlockUI.EnableLoopBlockImage();
+            else
+            {
+                DebugBoxManager.Instance.Log("SetLoopBlockUI NULL!");
+                return;
+            }
+
+            if (SetLoopBlockUI.CountLoopBlockListBox() >= UIManager.Instance.LoopBlockList.Count) return;
+
+            GameObject loopBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);
+            HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
+            BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();
+            loopBlockCodeBlockBoxCollider.enabled = false;
+            loopBlockHandGrab.enabled = false;
+            SetLoopBlockUI.AddBlockName(blockName);
+            SetLoopBlockUI.AddBlock(loopBlock);
+            SetLoopBlockUI.LoopCount = UIManager.Instance.MakeLoopBlockContainerManager.GetLoopCount();
+            SetLoopBlockUI.SetLoopCountText(UIManager.Instance.MakeLoopBlockContainerManager.GetLoopCount());
+        }
+    }
+
+
+    private void GrabConditionCodeBlock()
+    {
+
+        if (TryGetComponent(out SetConditionBlockUI SetConditionBlockUI))
+            SetConditionBlockUI.EnableConditionBlockListImage();
+        else
+        {
+            DebugBoxManager.Instance.Log("SetLoopBlockUI NULL!");
+            return;
+        }
+        
+        
+        GameObject trueBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);  // true block 이름
+        HandGrabInteractable trueBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();
+        BoxCollider trueBlockCodeBlockBoxCollider = trueBlock.GetComponent<BoxCollider>();
+        trueBlockHandGrab.enabled = false;
+        trueBlockCodeBlockBoxCollider.enabled = false;
+        SetConditionBlockUI.AddTrueBlock(trueBlock);
+
+        GameObject falseBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);  // true block 이름
+        HandGrabInteractable falseBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();
+        BoxCollider falseBlockCodeBlockBoxCollider = trueBlock.GetComponent<BoxCollider>();
+        falseBlockHandGrab.enabled = false;
+        falseBlockCodeBlockBoxCollider.enabled = false;
+        SetConditionBlockUI.AddFalseBlock(falseBlock);
     }
 
     private void OnTriggerEnter(Collider other)
