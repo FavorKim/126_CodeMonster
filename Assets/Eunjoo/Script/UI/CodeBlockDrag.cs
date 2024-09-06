@@ -216,19 +216,29 @@ public class CodeBlockDrag : MonoBehaviour
             SetConditionBlockUI.EnableConditionBlockListImage();
         else
         {
-            DebugBoxManager.Instance.Log("SetLoopBlockUI NULL!");
+            DebugBoxManager.Instance.Log("SetConditionBlockUI NULL!");
+            return;
+        }
+        ConditionBlock condition;
+        if(TryGetComponent(out ConditionBlock cond))
+        {
+            condition = cond;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("ConditionBlockNULL!");
             return;
         }
         
         
-        GameObject trueBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);  // true block 이름
+        GameObject trueBlock = ObjectPoolManager.Instance.GetObject(condition.TrueBlock.BlockName);  // true block 이름
         HandGrabInteractable trueBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();
         BoxCollider trueBlockCodeBlockBoxCollider = trueBlock.GetComponent<BoxCollider>();
         trueBlockHandGrab.enabled = false;
         trueBlockCodeBlockBoxCollider.enabled = false;
         SetConditionBlockUI.AddTrueBlock(trueBlock);
 
-        GameObject falseBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);  // true block 이름
+        GameObject falseBlock = ObjectPoolManager.Instance.GetObject(condition.FalseBlock.BlockName);  // false block 이름
         HandGrabInteractable falseBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();
         BoxCollider falseBlockCodeBlockBoxCollider = trueBlock.GetComponent<BoxCollider>();
         falseBlockHandGrab.enabled = false;
