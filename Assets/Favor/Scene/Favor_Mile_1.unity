@@ -949,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 2062376336595968492, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: poolInfoList.Array.data[7].prefab
       value: 
-      objectReference: {fileID: 3369126874611500125, guid: 8cf709d62751728429751e74e7387425, type: 3}
+      objectReference: {fileID: 3369126874611500125, guid: 95204140410bc574fa465a872f195f16, type: 3}
     - target: {fileID: 2062376336595968492, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: poolInfoList.Array.data[8].prefab
       value: 

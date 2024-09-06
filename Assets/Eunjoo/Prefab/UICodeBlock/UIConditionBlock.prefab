@@ -60,12 +60,12 @@ GameObject:
   - component: {fileID: 4859413156488834202}
   - component: {fileID: 2241401760747374772}
   - component: {fileID: 7435384205563493961}
-  - component: {fileID: 2957669399325071676}
   - component: {fileID: 3947697832130028750}
+  - component: {fileID: -6075006855654281152}
+  - component: {fileID: 2957669399325071676}
   - component: {fileID: 6812432221488743834}
   - component: {fileID: -4889243595519333434}
   - component: {fileID: -5620798050236748967}
-  - component: {fileID: -6075006855654281152}
   - component: {fileID: 8339747967980974270}
   - component: {fileID: 5887207274176587088}
   m_Layer: 0
@@ -166,25 +166,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2957669399325071676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369126874611500125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlockName: 7
-  BlockType: 3
-  BlockContainerUI: {fileID: 0}
-  MakeLoopBlockUI: {fileID: 0}
-  MakeConditionBlockUI: {fileID: 0}
-  PoolParent: {fileID: 0}
-  matChanger: {fileID: 0}
 --- !u!54 &3947697832130028750
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -212,6 +193,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
+--- !u!114 &-6075006855654281152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369126874611500125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockId: 5c5184f2-c2f5-4063-b14b-3b1264fb3c1a
+  instanceId: 761533c9-a77d-4d1d-836d-8357e60ed80d
+  version: 1
+--- !u!114 &2957669399325071676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369126874611500125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockName: 7
+  BlockType: 3
+  BlockContainerUI: {fileID: 0}
+  MakeLoopBlockUI: {fileID: 0}
+  MakeConditionBlockUI: {fileID: 0}
+  PoolParent: {fileID: 0}
+  matChanger: {fileID: 0}
 --- !u!114 &6812432221488743834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,21 +300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grab: {fileID: -4889243595519333434}
---- !u!114 &-6075006855654281152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369126874611500125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b023183069df224080314a560e6e1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockId: 5c5184f2-c2f5-4063-b14b-3b1264fb3c1a
-  instanceId: 761533c9-a77d-4d1d-836d-8357e60ed80d
-  version: 1
 --- !u!114 &8339747967980974270
 MonoBehaviour:
   m_ObjectHideFlags: 0

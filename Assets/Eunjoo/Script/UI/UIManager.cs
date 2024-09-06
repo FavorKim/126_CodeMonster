@@ -91,7 +91,7 @@ public class UIManager : Singleton<UIManager>
         // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화 
         BlockIndexListCheck();
 
-        BlockContainerManager.SetBlockContainerUISize(BlockContainerLength);
+        //BlockContainerManager.SetBlockContainerUISize(BlockContainerLength);
         EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, BlockContainerLength);
         EventManager<UIEvent>.TriggerEvent(UIEvent.LoopBlockContainerBlockCount, MakeLoopBlockContainerLength);
 
