@@ -75,16 +75,18 @@ public class CheckState : BaseState<Player>
             Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
             return;
         }
-
+        
         BlockContainerManager curContainer;
         curContainer = Controller.isLoop ? UIManager.Instance.MakeLoopBlockContainerManager : UIManager.Instance.BlockContainerManager;
-
-        curContainer.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
-        if (Controller.CurrentIndex > 0)
+        if (!Controller.isLoop)
         {
-            curContainer.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+            curContainer.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            if (Controller.CurrentIndex > 0)
+            {
+                curContainer.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+            }
         }
-
+        
         if (blockIndex <= 4)
         {
             Controller.playerStateMachine.ChangeState(PlayerStateName.MOVE);
