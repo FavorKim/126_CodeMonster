@@ -77,10 +77,16 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxRelease()
     {
-        if (BlockType == BlockType.LoopCodeBlock /*|| BlockType == BlockType.ConditionalCodeBlock*/)
+        if (BlockType == BlockType.LoopCodeBlock)
         {
             SetLoopBlockUI SetLoopBlockUI = gameObject.GetComponentInChildren<SetLoopBlockUI>();
             SetLoopBlockUI.DisableLoopBlockImage();
+        }
+
+        if(BlockType == BlockType.ConditionalCodeBlock)
+        {
+            SetConditionBlockUI SetConditionBlockUI = gameObject.GetComponentInChildren<SetConditionBlockUI>();
+            SetConditionBlockUI.DisableConditionBlockListImage();
         }
 
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
