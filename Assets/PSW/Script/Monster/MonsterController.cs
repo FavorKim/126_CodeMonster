@@ -47,7 +47,7 @@ public class MonsterController : MonoBehaviour
 
     }
 
-    public bool CheckMonsterHPUnderZero()
+    public bool IsMonsterHPUnderZero()
     {
         if (hp <= 0)
         {

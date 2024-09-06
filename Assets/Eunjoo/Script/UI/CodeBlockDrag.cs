@@ -225,17 +225,13 @@ public class CodeBlockDrag : MonoBehaviour
             DebugBoxManager.Instance.Log("SetConditionBlockUI NULL!");
             return;
         }
-        ConditionBlock condition;
-        if(TryGetComponent(out ConditionBlock cond))
-        {
-            condition = cond;
-        }
-        else
+        ConditionBlock condition = GetComponent<ConditionBlock>();
+        if(condition == null)
         {
             DebugBoxManager.Instance.Log("ConditionBlockNULL!");
             return;
         }
-        
+        condition = MakeConditionBlockUIManager.Instance.GetConditionBlockInfo();
         
         GameObject trueBlock = ObjectPoolManager.Instance.GetObject(condition.TrueBlock.BlockName);  // true block 이름
         HandGrabInteractable trueBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();

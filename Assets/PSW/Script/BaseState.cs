@@ -55,11 +55,19 @@ public class CheckState : BaseState<Player>
         if (blockIndex == -1)
         {
             DebugBoxManager.Instance.Log("플레이어 행동 종료.");
-            // if(적이 안 죽었다) -> 패배
-            if(Controller.AttackedByMonster(out MonsterController mon))
+            // 행동이 종료됐는데도 적과 같이 있으면
+            if(StageManager.Instance.CheckMonsterAndPlayerPos(Controller.playerPosition))
             {
-                mon.Attack();
-                
+                MonsterController mon = Controller.GetMonsterControllerWithPlayer();
+                if(mon != null)
+                {
+                    mon.Attack();
+                    Controller.Die();
+                }
+                else
+                {
+                    DebugBoxManager.Instance.Log("몬스터 널");
+                }
             }
             Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
             return;
@@ -104,9 +112,9 @@ public class MoveState : BaseState<Player>
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
 
-        if (Controller.AttackedByMonster(out MonsterController mon))
+        if (StageManager.Instance.CheckMonsterAndPlayerPos(Controller.playerPosition))
         {
-            mon.Attack();
+            
         }
 
         direction = GetDirectionFromBlock(blockIndex);

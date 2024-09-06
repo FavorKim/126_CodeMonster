@@ -57,6 +57,7 @@ public class BattleManager : Singleton<BattleManager>
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
 
                     // 조건문 UI 띄우고
+                    
 
                     //DebugBoxManager.Instance.Log("조건 + 부시");
                 }
@@ -76,7 +77,15 @@ public class BattleManager : Singleton<BattleManager>
             string monsterName = monsterObj.name;
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
+            if(monsterObj == null)
+            {
+                DebugBoxManager.Instance.Log("몬스터오브젝 널");
+            }
             targetMonsterController = monsterObj.GetComponent<MonsterController>();
+            if (targetMonsterController == null)
+            {
+                DebugBoxManager.Instance.Log("타겟몬스터 널");
+            }
 
             //DebugBoxManager.Instance.Log($"플레이어 {monsterName}몬스터의 속성은 {monsterType.TypeIndex}번 인덱스");
 
@@ -145,7 +154,7 @@ public class BattleManager : Singleton<BattleManager>
     {
 
         player.Win();
-        if (targetMonsterController.CheckMonsterHPUnderZero())
+        if (targetMonsterController.IsMonsterHPUnderZero())
         {
             targetMonsterController.Die();
 
