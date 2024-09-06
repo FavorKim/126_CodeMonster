@@ -362,6 +362,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        DebugBoxManager.Instance.Log("플레이어 기절!");
         this.gameObject.SetActive(false);
     }
 

@@ -8,7 +8,7 @@ public class MonsterController : MonoBehaviour
 
     protected Animator _animator;
     [SerializeField]private int hp;
-
+    private int maxHP;
 
     private void Awake()
     {
@@ -17,8 +17,8 @@ public class MonsterController : MonoBehaviour
 
     void Start()
     {
-        //hp=DataManagerTest.Instance.GetMonsterData(this.gameObject.name).HP;
-        //hp = 3;
+        maxHP = hp;
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, OnReset_ResetHP);
     }
 
     // Update is called once per frame
@@ -76,6 +76,11 @@ public class MonsterController : MonoBehaviour
     private void DisableMonster()
     {
         this.gameObject.SetActive(false);
+    }
+
+    private void OnReset_ResetHP()
+    {
+        hp = maxHP;
     }
 
    
