@@ -51,7 +51,10 @@ public class CheckState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
+
         
+
+
         if (blockIndex == -1)
         {
             DebugBoxManager.Instance.Log("플레이어 행동 종료.");
@@ -73,6 +76,15 @@ public class CheckState : BaseState<Player>
             return;
         }
 
+        BlockContainerManager curContainer;
+        curContainer = Controller.isLoop ? UIManager.Instance.MakeLoopBlockContainerManager : UIManager.Instance.BlockContainerManager;
+
+        curContainer.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+        if (Controller.CurrentIndex > 0)
+        {
+            curContainer.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+        }
+
         if (blockIndex <= 4)
         {
             Controller.playerStateMachine.ChangeState(PlayerStateName.MOVE);
@@ -85,11 +97,15 @@ public class CheckState : BaseState<Player>
         {
             DebugBoxManager.Instance.Log("8번 인덱스. 조건블록");
             //Controller.IsIfUsed = true;
+            SetConditionBlockUI cond = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex(Controller.CurrentIndex).GetConditionBlockUI();
+            cond.EnableConditionBlockListImage();
             Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
         }
         else if (blockIndex == 9)
         {
             DebugBoxManager.Instance.Log("9번 인덱스. 반복블록");
+            SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex((int)Controller.CurrentIndex).GetLoopBlockUI();
+            loop.EnableLoopBlockImage();
             Controller.playerStateMachine.ChangeState(PlayerStateName.Loop);
         }
 
@@ -114,9 +130,11 @@ public class MoveState : BaseState<Player>
 
         if (StageManager.Instance.CheckMonsterAndPlayerPos(Controller.playerPosition))
         {
-            
+            MonsterController mon = Controller.GetMonsterControllerWithPlayer();
+            mon.Attack();
+            Controller.Die();
         }
-
+        
         direction = GetDirectionFromBlock(blockIndex);
     }
 

@@ -10,6 +10,7 @@ public class BlockContainerManager : MonoBehaviour
     private BoxCollider BlockContainerBoxCollider;
     protected List<MaterialChanger> materialChangers = new List<MaterialChanger>();
 
+
     private void Awake()
     {
         //base.Awake();
@@ -220,6 +221,11 @@ public class BlockContainerManager : MonoBehaviour
         {
             mat.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         }
+    }
+
+    public CodeBlockDrag GetCodeBlockByIndex(int index)
+    {
+        return transform.GetChild(index).GetComponent<CodeBlockDrag>();
     }
 }
 

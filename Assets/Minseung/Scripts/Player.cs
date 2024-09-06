@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
             else
                 return CurLoopIndex;
         }
-        //set; 
     }
     public int ForceGetCurrentIndex() { return currentIndex; }
     

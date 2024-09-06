@@ -354,4 +354,29 @@ public class CodeBlockDrag : MonoBehaviour
         EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
         EventManager<UIEvent>.TriggerEvent(UIEvent.LoopBlockContainerBlockCount, UIManager.Instance.MakeLoopBlockContainerLength - UIManager.Instance.MakeLoopBlockContainerManager.CountCodeBlockDragComponents());
     }
+
+    public SetConditionBlockUI GetConditionBlockUI()
+    {
+        if(TryGetComponent(out SetConditionBlockUI condUI))
+        {
+            return condUI;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("SetConditionBlockUI가 없습니다.");
+            return null;
+        }
+    }
+    public SetLoopBlockUI GetLoopBlockUI()
+    {
+        if (TryGetComponent(out SetLoopBlockUI condUI))
+        {
+            return condUI;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("SetLoopBlockUI가 없습니다.");
+            return null;
+        }
+    }
 }
