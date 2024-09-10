@@ -40,9 +40,9 @@ public class UIManager : Singleton<UIManager>
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
     public GameObject BlockCountObject;
-    public GameObject DirectHintBox;
-    public GameObject IndirectHintBox;
-    [SerializeField] TMP_Text TextBox;
+    public TMP_Text DirectHintBox;
+    public TMP_Text IndirectHintBox;
+    [SerializeField] TMP_Text StageIndection;
 
 
     [Header("BlockContainer UI")]
@@ -169,25 +169,25 @@ public class UIManager : Singleton<UIManager>
         MakeLoopBlockBoxUI.SetActive(false);
     }
 
-    public void DirectHintBoxEnable()
-    {
-        DirectHintBox.SetActive(true);
-    }
+    //public void DirectHintBoxEnable()
+    //{
+    //    DirectHintBox.SetActive(true);
+    //}
 
-    public void DirectHintBoxDisble()
-    {
-        DirectHintBox.SetActive(false);
-    }
+    //public void DirectHintBoxDisble()
+    //{
+    //    DirectHintBox.SetActive(false);
+    //}
 
-    public void IndirectHintBoxEnable()
-    {
-        IndirectHintBox.SetActive(true);
-    }
+    //public void IndirectHintBoxEnable()
+    //{
+    //    IndirectHintBox.SetActive(true);
+    //}
 
-    public void IndirectHintBoxDisable()
-    {
-        IndirectHintBox.SetActive(false);
-    }
+    //public void IndirectHintBoxDisable()
+    //{
+    //    IndirectHintBox.SetActive(false);
+    //}
 
     public void MakeConditionalBlockBoxEnable()
     {
@@ -201,8 +201,8 @@ public class UIManager : Singleton<UIManager>
 
     private void PrintStageDirectHint()
     {
-        TextBox.text = $"{StageManager.Instance.GetStageMap().StageIndex} 스테이지 힌트";
-        SetText(TextBox.text);
+        StageIndection.text = $"{StageManager.Instance.GetStageMap().StageIndex} 스테이지 힌트";
+        SetText(StageIndection.text, StageIndection);
     }
 
     public void PrintUIText(TextTypeName type, int stageIndex = 0, int UITextindex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
@@ -215,15 +215,15 @@ public class UIManager : Singleton<UIManager>
                 break;
             case TextTypeName.SMALLHINT:
                 text = DataManagerTest.Instance.GetTextData(UITextindex).Description;
+                SetText(text,IndirectHintBox);
                 break;
             case TextTypeName.BIGHINT:
                 //text = DataManagerTest.Instance.GetStageMapData(stageIndex).bighint;
                 break;
         }
-        SetText(text);
     }
 
-    private void SetText(string text)
+    private void SetText(string text,TMP_Text hintBox)
     {
         var elements = text.Split('/');
 
@@ -234,22 +234,22 @@ public class UIManager : Singleton<UIManager>
             list.Add(element);
         }
 
-        StartCoroutine(PrintText(list));
+        StartCoroutine(PrintText(list,hintBox));
 
     }
 
-    private IEnumerator PrintText(List<string> list)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
+    private IEnumerator PrintText(List<string> list, TMP_Text hintBox)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
     {
-        TextBox.transform.parent.gameObject.SetActive(true);
-        TextBox.text = string.Empty;
+        hintBox.transform.parent.gameObject.SetActive(true);
+        hintBox.text = string.Empty;
         foreach (var element in list)
         {
-            TextBox.text += element + "\n";
+            hintBox.text += element + "\n";
             yield return new WaitForSeconds(2);
         }
 
         yield return new WaitForSeconds(5);
 
-        TextBox.transform.parent.gameObject.SetActive(false);
+        hintBox.transform.parent.gameObject.SetActive(false);
     }
 }
