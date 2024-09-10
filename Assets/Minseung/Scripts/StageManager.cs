@@ -49,7 +49,7 @@ public class StageManager : Singleton<StageManager>
                 // 랜덤한 프리팹 선택
                 GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
-                GameObject block = Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity);
+                GameObject block = Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity, gameObject.transform);
                 stageBlockDic.Add(ChangePosToKeyValue(x, y), block);
                 index++;
             }

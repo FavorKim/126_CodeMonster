@@ -83,12 +83,14 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(SetHintTimer());
-        StageManager.Instance.gameObject.SetActive(true);
-    }
 
+    public void OnStartStage()
+    {
+        IngameUI.SetActive(true);
+        StageManager.Instance.gameObject.SetActive(true);
+        StartCoroutine(SetHintTimer());
+    }
+    
 
 
     private void SetUIManager()
