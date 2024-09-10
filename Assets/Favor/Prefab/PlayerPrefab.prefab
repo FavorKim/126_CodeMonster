@@ -69,7 +69,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 7569225708496358768}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -212,6 +212,12 @@ MonoBehaviour:
   poke: {fileID: 93833510950224067}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -225,12 +231,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &45753798008199598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3564,7 +3564,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 1677840848616343439}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -3707,6 +3707,12 @@ MonoBehaviour:
   poke: {fileID: 4105512465795096997}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -3720,12 +3726,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &820520455275699070
 GameObject:
   m_ObjectHideFlags: 0
@@ -3926,7 +3926,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 8991229113498255716}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -4069,6 +4069,12 @@ MonoBehaviour:
   poke: {fileID: 8852579132233182979}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -4082,12 +4088,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &958375782007341707
 GameObject:
   m_ObjectHideFlags: 0
@@ -5494,6 +5494,70 @@ Transform:
   - {fileID: 2105833901412092651}
   m_Father: {fileID: 456786490554301179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1350499682855716995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6462280545599945648}
+  - component: {fileID: 1919756726719572949}
+  - component: {fileID: 8882278409379507844}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6462280545599945648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350499682855716995}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5084883, y: 0.00024357557, z: 0.0004879814, w: 0.8610688}
+  m_LocalPosition: {x: -1031.122, y: -665.2432, z: 2101.1536}
+  m_LocalScale: {x: 517.8624, y: 517.86237, z: 517.86237}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2350920551792286107}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1919756726719572949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350499682855716995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4470acf7c6f2255448591326d8e3d5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8882278409379507844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350499682855716995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ef1c78925f62d4cbe6452d53c47e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageManager: {fileID: 1919756726719572949}
+  dataManagerTest: {fileID: 0}
+  floorPrefabs:
+  - {fileID: 5901688003461151482, guid: bf91349db7bfc854d843762c21830d6b, type: 3}
+  wallPrefabs:
+  - {fileID: 5602656187477458789, guid: 4edc5ccf75daafa47b16fc88211201cb, type: 3}
+  playerPrefab: {fileID: 7779173909317927437, guid: 53d101314de95344eb707e592e4e628a, type: 3}
 --- !u!1 &1355611169206601094
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,7 +6751,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 1334197472724470854}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -6830,6 +6894,12 @@ MonoBehaviour:
   poke: {fileID: 5128623357206859625}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -6843,12 +6913,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1688601414290832261
 GameObject:
   m_ObjectHideFlags: 0
@@ -7841,7 +7905,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 2943504763727140803}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -7984,6 +8048,12 @@ MonoBehaviour:
   poke: {fileID: 6653348284847134314}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -7997,12 +8067,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1969644965396193417
 GameObject:
   m_ObjectHideFlags: 0
@@ -8614,6 +8678,7 @@ RectTransform:
   - {fileID: 6148863870881076414}
   - {fileID: 5305338744338392161}
   - {fileID: 9210655685889291650}
+  - {fileID: 6462280545599945648}
   m_Father: {fileID: 403970697697794777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -13000,7 +13065,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 383777421656188180}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -13143,6 +13208,12 @@ MonoBehaviour:
   poke: {fileID: 7444104168971552000}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -13168,12 +13239,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3429415523052776438
 GameObject:
   m_ObjectHideFlags: 0
@@ -15474,7 +15539,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 8420045697000476194}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -15617,6 +15682,12 @@ MonoBehaviour:
   poke: {fileID: 5664102576599817572}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -15630,12 +15701,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4064545996477438213
 GameObject:
   m_ObjectHideFlags: 0
@@ -22658,7 +22723,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 304161143601924682}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -22801,6 +22866,12 @@ MonoBehaviour:
   poke: {fileID: 466620325584422820}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -22826,12 +22897,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6416105422264460585
 GameObject:
   m_ObjectHideFlags: 0
@@ -23821,7 +23886,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6723965409306277483}
   m_LocalRotation: {x: 0.000000014901158, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000019430974}
+  m_LocalPosition: {x: 0, y: 0, z: 120.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23832,7 +23897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 21.083, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000022128224}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3704907254059750444
@@ -24713,7 +24778,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 7232767494286024319}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -24856,6 +24921,12 @@ MonoBehaviour:
   poke: {fileID: 9188167429962909943}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -24869,12 +24940,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6990563196379257262
 GameObject:
   m_ObjectHideFlags: 0
@@ -26216,7 +26281,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 3726154185805265927}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -26359,6 +26424,12 @@ MonoBehaviour:
   poke: {fileID: 2527461718224491449}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -26384,12 +26455,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7275450233720954624
 GameObject:
   m_ObjectHideFlags: 0
@@ -28545,7 +28610,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 391527641750497052}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -28688,6 +28753,12 @@ MonoBehaviour:
   poke: {fileID: 5608733628230944408}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -28701,12 +28772,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7799349024421585387
 GameObject:
   m_ObjectHideFlags: 0
@@ -30828,7 +30893,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 0}
   _surfacePatch: {fileID: 210093686374035693}
-  _enterHoverNormal: 0.02
+  _enterHoverNormal: 0.04
   _enterHoverTangent: 0
   _exitHoverNormal: 0.05
   _exitHoverTangent: 0
@@ -30971,6 +31036,12 @@ MonoBehaviour:
   poke: {fileID: 4695007778755241244}
   OnPoke:
     m_PersistentCalls:
+      m_Calls: []
+  OnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokeRelease:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
@@ -30996,12 +31067,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPokeRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8733272045386501453
 GameObject:
   m_ObjectHideFlags: 0
@@ -32618,6 +32683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Direct Hint Box
       objectReference: {fileID: 0}
+    - target: {fileID: 4287640761771984267, guid: 972ced4aaae93204984e1f505b8c2b8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33094,7 +33163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.136
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33118,7 +33187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.767
+      value: -0.778
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -33353,6 +33422,10 @@ PrefabInstance:
     - target: {fileID: 5242280475790918080, guid: 08b42f8eb8102bb4a8d5278f940995a0, type: 3}
       propertyPath: m_Name
       value: Indirect Hint Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242280475790918080, guid: 08b42f8eb8102bb4a8d5278f940995a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
