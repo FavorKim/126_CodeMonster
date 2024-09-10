@@ -86,6 +86,17 @@ public class CheckState : BaseState<Player>
                 curContainer.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
             }
         }
+        else
+        {
+            int curIndex = Controller.CurrentIndex;
+            DebugBoxManager.Instance.Log($"현재 검사중인 루프블록 인덱스 : {curIndex}");
+            Debug.LogError($"현재 검사중인 루프블록 인덱스 : {curIndex}");
+            curContainer.SetBlockMaterial(curIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            if (curIndex > 0)
+            {
+                curContainer.SetBlockMaterial(curIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+            }
+        }
         
         if (blockIndex <= 4)
         {
