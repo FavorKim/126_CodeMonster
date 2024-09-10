@@ -28,6 +28,8 @@ public static class UIConstants
 
 public class UIManager : Singleton<UIManager>
 {
+    public GameObject IngameUI;
+
     [Header("UI List")]
     public GameObject BlockContainerUI;
     public GameObject AttackBlockUI;
@@ -251,5 +253,17 @@ public class UIManager : Singleton<UIManager>
         yield return new WaitForSeconds(5);
 
         hintBox.transform.parent.gameObject.SetActive(false);
+    }
+
+
+
+    public void EnableIngameUI()
+    {
+        IngameUI.SetActive(true);
+    }
+
+    public void DisableIngameUI()
+    {
+        IngameUI.SetActive(false);
     }
 }

@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4513005266210684394}
   - component: {fileID: 2057129043033993485}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TrueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: True
+  m_text: "\uBD88\uC18D\uC131\uC758 \uC801\uC744 \uB9CC\uB0AC\uC744 \uB54C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8daef877dc35a434cba4323a65d04528, type: 2}
   m_sharedMaterial: {fileID: -7797630275008263474, guid: 8daef877dc35a434cba4323a65d04528, type: 2}
@@ -565,6 +565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrueBlockBox: {fileID: 2227501028903786872}
   FalseBlockBox: {fileID: 3076632548391525764}
+  TrueText: {fileID: 2057129043033993485}
+  FalseText: {fileID: 1942258746518671114}
   ConditionBlockListImage: {fileID: 6283195739631603880}
 --- !u!1 &4537540654337805038
 GameObject:
@@ -658,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7904294944168877116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -769,7 +771,7 @@ GameObject:
   - component: {fileID: 7208809189907426040}
   - component: {fileID: 1942258746518671114}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: FalseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

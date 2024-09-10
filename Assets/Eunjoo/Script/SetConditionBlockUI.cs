@@ -7,6 +7,8 @@ public class SetConditionBlockUI : MonoBehaviour
 {
     [SerializeField] GameObject TrueBlockBox;
     [SerializeField] GameObject FalseBlockBox;
+    [SerializeField] TextMeshProUGUI TrueText;
+    [SerializeField] TextMeshProUGUI FalseText;
     [SerializeField] GameObject ConditionBlockListImage;
 
     public void ResetBlock()
@@ -55,5 +57,24 @@ public class SetConditionBlockUI : MonoBehaviour
     {
         newBlock.transform.SetParent(FalseBlockBox.transform, false);
         newBlock.transform.localScale = Vector3.one;
+    }
+
+    public void TrueTextColorChangeRed()
+    {
+        TrueText.color = Color.red;
+    }
+
+    public void TrueTextColorChangeWhite()
+    {
+        TrueText.color = Color.white;
+    }
+    public void FalseTextColorChangeRed()
+    {
+        FalseText.color = Color.red;
+    }
+
+    public void FalseTextColorChangeWhite()
+    {
+        FalseText.color = Color.white;
     }
 }
