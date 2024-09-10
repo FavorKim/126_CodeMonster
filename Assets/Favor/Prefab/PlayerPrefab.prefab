@@ -18335,6 +18335,7 @@ MonoBehaviour:
   IntroUI: {fileID: 2358605286435004631}
   ChapterUI: {fileID: 7865469701369376910}
   StageUI: {fileID: 8298475253429873258}
+  ChapterText: {fileID: 7262620193416762879}
 --- !u!1 &6760238024908393752
 GameObject:
   m_ObjectHideFlags: 0
