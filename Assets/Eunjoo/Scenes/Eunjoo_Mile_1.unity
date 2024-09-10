@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1353206187389359983, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -162
+      objectReference: {fileID: 0}
     - target: {fileID: 1597385295297947930, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: _handGrabState
       value: 
@@ -379,6 +383,18 @@ PrefabInstance:
       propertyPath: conditionMakeBtn
       value: 
       objectReference: {fileID: 918961663}
+    - target: {fileID: 7074455025462231275, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7797630275008263474, guid: 8daef877dc35a434cba4323a65d04528, type: 2}
+    - target: {fileID: 7074455025462231275, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139124631053724914, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7369404732618550017, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

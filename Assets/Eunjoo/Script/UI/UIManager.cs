@@ -40,6 +40,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
     public GameObject BlockCountObject;
+    public GameObject DirectHintBox;
+    public GameObject IndirectHintBox;
     [SerializeField] TMP_Text TextBox;
 
 
@@ -71,10 +73,7 @@ public class UIManager : Singleton<UIManager>
         MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
-        // TODO : 상욱
-        // MakeLoopBlockContainerLength = DataManagerTest.instance.GetStageMapData(1).루프블럭의 길이를 받아와야함
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
-
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);
 
@@ -168,6 +167,26 @@ public class UIManager : Singleton<UIManager>
     public void MakeLoopBlockBoxDisable()
     {
         MakeLoopBlockBoxUI.SetActive(false);
+    }
+
+    public void DirectHintBoxEnable()
+    {
+        DirectHintBox.SetActive(true);
+    }
+
+    public void DirectHintBoxDisble()
+    {
+        DirectHintBox.SetActive(false);
+    }
+
+    public void IndirectHintBoxEnable()
+    {
+        IndirectHintBox.SetActive(true);
+    }
+
+    public void IndirectHintBoxDisable()
+    {
+        IndirectHintBox.SetActive(false);
     }
 
     public void MakeConditionalBlockBoxEnable()
