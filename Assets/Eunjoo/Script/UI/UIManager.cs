@@ -80,10 +80,16 @@ public class UIManager : Singleton<UIManager>
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);
 
         SetUIManager();
-        StartCoroutine(SetHintTimer());
+        IngameUI.SetActive(false);
     }
 
-    
+    private void OnEnable()
+    {
+        StartCoroutine(SetHintTimer());
+        StageManager.Instance.gameObject.SetActive(true);
+    }
+
+
 
     private void SetUIManager()
     {
