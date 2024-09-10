@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: _handGrabInteractor
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6236630320042872978, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6330316872665450915, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: hintBtn
       value: 
@@ -407,6 +411,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7432375377126176046, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7949888893684777782, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -415,6 +423,10 @@ PrefabInstance:
       propertyPath: _handGrabState
       value: 
       objectReference: {fileID: 175869860}
+    - target: {fileID: 8298475253429873258, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: Loop_ConBlockUI
       value: 
@@ -466,9 +478,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5671465153983839671, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
     - {fileID: 9021231456822567947, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 4691640655874080385, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
-    - {fileID: 8352322160222331009, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
