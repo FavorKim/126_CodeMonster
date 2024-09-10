@@ -27,7 +27,7 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
 
     protected override void Start()
     {
-        makeBtn.OnPoke += InitConditionBlockInfo;
+        makeBtn.OnPoke.AddListener(InitConditionBlockInfo);
         conditionBlockInfo = Prefab_ConditionBlock;
         base.Start();
 
@@ -36,7 +36,7 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
 
     private void OnApplicationQuit()
     {
-        makeBtn.OnPoke -= InitConditionBlockInfo;
+        makeBtn.OnPoke.RemoveAllListeners();// -= InitConditionBlockInfo;
     }
 
     // 조건 블록 위치 정렬

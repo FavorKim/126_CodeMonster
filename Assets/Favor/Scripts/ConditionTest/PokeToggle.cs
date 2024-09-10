@@ -19,7 +19,7 @@ public class PokeToggle : MonoBehaviour
     {
         if (poke != null)
         {
-            poke.OnPoke += OnPoked;
+            poke.OnPoke.AddListener(OnPoked);
         }
         else
         {
@@ -31,7 +31,7 @@ public class PokeToggle : MonoBehaviour
     {
         if (poke != null)
         {
-            poke.OnPoke -= OnPoked;
+            poke.OnPoke.RemoveAllListeners();
         }
         poke.OnPoke = null;
     }

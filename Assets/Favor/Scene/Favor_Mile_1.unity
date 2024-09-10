@@ -938,6 +938,158 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChapterClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickChapter
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2816616365707777685}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 142728612369621005, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChapterClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickChapter
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2816616365707777686}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 262638300855290325, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 880447239758990195, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_Name
+      value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271928466287439366, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1774111945963554034, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
@@ -946,6 +1098,10 @@ PrefabInstance:
       propertyPath: pokeDropDown
       value: 
       objectReference: {fileID: 1737333006}
+    - target: {fileID: 2014195022934658650, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2062376336595968492, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: poolInfoList.Array.data[7].prefab
       value: 
@@ -962,6 +1118,10 @@ PrefabInstance:
       propertyPath: poolInfoList.Array.data[8].container
       value: 
       objectReference: {fileID: 1330311548}
+    - target: {fileID: 2358605286435004631, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2776093771103455227, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 130.9
@@ -982,6 +1142,122 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickGoToIntroUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161586637148299050, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickGoToChapter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319921090373932110, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChapterClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickChapter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2816616365707777684}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343829112954137422, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3957090350595034336, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_Name
       value: ConditionResetBtn
@@ -994,6 +1270,34 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4428089532740940407, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4767253805677745170, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 9
@@ -1005,6 +1309,94 @@ PrefabInstance:
     - target: {fileID: 4767253805677745170, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -127
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChapterClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickChapter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2816616365707777683}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055354231557207965, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5676260222350760291, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6230516588474005065, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1054,18 +1446,74 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364815329194090895, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748296931928165453, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: DirectHintBox
       value: 
-      objectReference: {fileID: 2816616365707777683}
+      objectReference: {fileID: 0}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: StageIndection
       value: 
-      objectReference: {fileID: 2816616365707777683}
+      objectReference: {fileID: 0}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: IndirectHintBox
       value: 
-      objectReference: {fileID: 2816616365707777682}
+      objectReference: {fileID: 0}
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: LoopBlockList.Array.size
       value: 0
@@ -1073,6 +1521,34 @@ PrefabInstance:
     - target: {fileID: 8497447839839996821, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: LoopBlockList.Array.data[0]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2816616365707777682}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickStartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OutgameUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011521316931329557, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: OnPoke.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9016973466719204292, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1127,26 +1603,35 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
 --- !u!114 &2816616365707777682 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2939927354049732652, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8154401799125623332, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
   m_PrefabInstance: {fileID: 2816616365707777681}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 57aa51d7c59bc39489cd426a84696a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2816616365707777683 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7242693519998049594, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+--- !u!1 &2816616365707777683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6408202240199787512, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
   m_PrefabInstance: {fileID: 2816616365707777681}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+--- !u!1 &2816616365707777684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3427692260806406563, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2816616365707777685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8712616528614924638, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2816616365707777686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7212593784837158659, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

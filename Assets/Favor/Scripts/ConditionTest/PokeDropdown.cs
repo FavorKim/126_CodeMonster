@@ -16,11 +16,11 @@ public class PokeDropdown : MonoBehaviour
 
     private void Start()
     {
-        poke.OnPoke += OnPokeDropDown;
+        poke.OnPoke.AddListener(OnPokeDropDown);// += OnPokeDropDown;
     }
     private void OnApplicationQuit()
     {
-        poke.OnPoke -= OnPokeDropDown;
+        poke.OnPoke.RemoveAllListeners();// -= OnPokeDropDown;
     }
 
     public void OnPokeItem(Toggle toggle)

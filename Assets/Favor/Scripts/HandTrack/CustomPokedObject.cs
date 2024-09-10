@@ -16,7 +16,7 @@ public class CustomPokedObject : MonoBehaviour
 
 
 
-    public Action OnPoke;
+    public UnityEvent OnPoke;
     public UnityEvent OnHover;
     public UnityEvent OnPokeRelease;
 

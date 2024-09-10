@@ -9,6 +9,8 @@ public class OutgameUIManager : MonoBehaviour
     [SerializeField] GameObject ChapterUI;
     [SerializeField] GameObject StageUI;
     [SerializeField] TextMeshProUGUI ChapterText; // 챕터 텍스트 UI
+    [SerializeField] CustomPokedObject StartBtn;
+
 
     string chapterNumber = ""; // 챕터 번호 저장 변수
 
@@ -62,4 +64,5 @@ public class OutgameUIManager : MonoBehaviour
             }
         }
     }
+
 }

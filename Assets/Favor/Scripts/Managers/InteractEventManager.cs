@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public enum PokeButton
@@ -44,9 +45,9 @@ public class InteractEventManager : Singleton<InteractEventManager>
         btnDict.Add(PokeButton.CONDITIONRESET, conditionResetBtn);
     }
 
-    public void RegistOnPokeBtn(PokeButton btn, Action action)
+    public void RegistOnPokeBtn(PokeButton btn, UnityAction action)
     {
-        btnDict[btn].OnPoke += action;
+        btnDict[btn].OnPoke.AddListener(action);// += action;
     }
 
 
