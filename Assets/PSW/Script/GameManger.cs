@@ -60,4 +60,38 @@ public class GameManger : Singleton<GameManger>
             return string.Empty;
         }
     }
+
+    public List<int> GetMonsterTypeInIndex(int stageIndex)
+    {
+        var list = DataManagerTest.instance.GetStageMapData(stageIndex).MonsterNameList;
+
+        if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList.Count > 0)
+        {
+            foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList)
+            {
+               
+                var replaceString = item.Replace("(", "").Replace(")", "");
+
+                var elements = replaceString.Split('/');
+
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    var element = elements[i];
+                    list.Add(element);
+                }
+            }
+        }
+        List<int> monsterTypeIndexList = new List<int>();
+        foreach (var item in list)
+        {
+            int monsterTypeIndex = DataManagerTest.instance.GetMonsterData(item).TypeIndex;
+
+            if (monsterTypeIndexList.Contains(monsterTypeIndex) == false)
+            {
+                monsterTypeIndexList.Add(monsterTypeIndex);
+            }
+        }
+
+        return monsterTypeIndexList;
+    }
 }
