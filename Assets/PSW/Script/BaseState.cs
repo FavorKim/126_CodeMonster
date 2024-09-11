@@ -76,25 +76,22 @@ public class CheckState : BaseState<Player>
             return;
         }
         
-        BlockContainerManager curContainer;
-        curContainer = Controller.isLoop ? UIManager.Instance.MakeLoopBlockContainerManager : UIManager.Instance.BlockContainerManager;
         if (!Controller.isLoop)
         {
-            curContainer.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+            UIManager.Instance.BlockContainerManager.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
             if (Controller.CurrentIndex > 0)
             {
-                curContainer.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+                UIManager.Instance.BlockContainerManager.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
             }
         }
         else
         {
-            int curIndex = Controller.CurrentIndex;
-            DebugBoxManager.Instance.Log($"현재 검사중인 루프블록 인덱스 : {curIndex}");
-            Debug.LogError($"현재 검사중인 루프블록 인덱스 : {curIndex}");
-            curContainer.SetBlockMaterial(curIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
-            if (curIndex > 0)
+            SetLoopBlockUI loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.ForceGetCurrentIndex());
+            loopBlock.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+
+            if (Controller.CurrentIndex > 0)
             {
-                curContainer.SetBlockMaterial(curIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
+                loopBlock.SetBlockMaterial(Controller.CurrentIndex - 1, MaterialType.USE_CODEBLOCK_MATERIAL);
             }
         }
         

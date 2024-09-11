@@ -10,6 +10,7 @@ public class ConditionBlock : MonoBehaviour
 
     CustomGrabObject grab;
 
+
     private void Start()
     {
         grab = GetComponent<CustomGrabObject>();
@@ -49,16 +50,20 @@ public class ConditionBlock : MonoBehaviour
 
     public int EvaluateCondition(Monster monster)
     {
+        SetConditionBlockUI conUI = GetComponent<SetConditionBlockUI>();
+
         if (monster.TypeIndex == indexValue)
         {
             //DebugBoxManager.Instance.Log("참 블록 평가완료");
             // true거 하이라이트 해주고
+            conUI.AccentTrueBlock();
             return (int)TrueBlock.BlockName + 1;
         }
         else
         {
             //DebugBoxManager.Instance.Log("거짓 블록 평가완료");
             // false거 하이라이트 해주고
+            conUI.AccentFalseBlock();
             return (int)FalseBlock.BlockName + 1;
         }
     }

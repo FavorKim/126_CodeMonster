@@ -379,4 +379,9 @@ public class CodeBlockDrag : MonoBehaviour
             return null;
         }
     }
+
+    public void SetMaterial(MaterialType type)
+    {
+        matChanger.ChangeMaterial(type);
+    }
 }

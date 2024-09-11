@@ -198,6 +198,8 @@ public class Player : MonoBehaviour
             else if (GameRule.CheckPlayerPosInDeadzone(position))
             {
                 //DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
+                UIManager.Instance.BlockContainerManager.SetXIcon(CurrentIndex, true);
+
                 stateMachine.ChangeState(PlayerStateName.DIEMOVE);
                 return;
             }

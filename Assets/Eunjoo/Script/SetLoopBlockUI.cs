@@ -9,6 +9,8 @@ public class SetLoopBlockUI : MonoBehaviour
     [SerializeField] TMP_Text Text_LoopCountIndicator;
 
     public List<int> LoopBlockList = new List<int>();
+    private List<MaterialChanger> materialChangers = new List<MaterialChanger>();
+
     public int LoopCount { get; set; }
 
     public int CountLoopBlockListBox()
@@ -52,6 +54,7 @@ public class SetLoopBlockUI : MonoBehaviour
     {
         newBlock.transform.SetParent(LoopBlockListBox.transform, false);
         newBlock.transform.localScale = Vector3.one;
+        materialChangers.Add(newBlock.GetComponent<MaterialChanger>());
     }
 
     public void AddBlockName(int newBlock)
@@ -66,5 +69,9 @@ public class SetLoopBlockUI : MonoBehaviour
     public void SetLoopCountText(int loopCount)
     {
         Text_LoopCountIndicator.text = $"{loopCount}회 반복";
+    }
+    public void SetBlockMaterial(int index, MaterialType type)
+    {
+        materialChangers[index].ChangeMaterial(type);
     }
 }

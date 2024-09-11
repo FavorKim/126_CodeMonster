@@ -77,4 +77,24 @@ public class SetConditionBlockUI : MonoBehaviour
     {
         FalseText.color = Color.white;
     }
+
+    public void AccentTrueBlock()
+    {
+        TrueTextColorChangeRed();
+        FalseTextColorChangeWhite();
+        CodeBlockDrag trueBlock = TrueBlockBox.transform.GetChild(0).GetComponent<CodeBlockDrag>();
+        CodeBlockDrag falseBlock = FalseBlockBox.transform.GetChild(0).GetComponent<CodeBlockDrag>();
+        trueBlock.SetMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+        falseBlock.SetMaterial(MaterialType.USE_CODEBLOCK_MATERIAL);
+    }
+
+    public void AccentFalseBlock()
+    {
+        FalseTextColorChangeRed();
+        TrueTextColorChangeWhite();
+        CodeBlockDrag trueBlock = TrueBlockBox.transform.GetChild(0).GetComponent<CodeBlockDrag>();
+        CodeBlockDrag falseBlock = FalseBlockBox.transform.GetChild(0).GetComponent<CodeBlockDrag>();
+        falseBlock.SetMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
+        trueBlock.SetMaterial(MaterialType.USE_CODEBLOCK_MATERIAL);
+    }
 }

@@ -26,7 +26,6 @@ public class BattleManager : Singleton<BattleManager>
     {
         //DebugBoxManager.Instance.Log("배틀페이즈로 들어옴");
         player = stageManager.GetPlayer();
-
         //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} 타입 공격");
         // 플레이어의 위치와 적의 위치를 비교하여 같은 위치에 있는지 확인
 
@@ -56,14 +55,13 @@ public class BattleManager : Singleton<BattleManager>
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
 
-                    // 조건문 UI 띄우고
-                    
-
                     //DebugBoxManager.Instance.Log("조건 + 부시");
                 }
                 else
                 {
                     DebugBoxManager.Instance.Log("부쉬에서 조건문을 사용하지 않음. 패배");
+                    UIManager.Instance.BlockContainerManager.SetXIcon(player.CurrentIndex, true);
+
                     //monsterObj = null;
                     return;
                 }
@@ -105,6 +103,9 @@ public class BattleManager : Singleton<BattleManager>
                 UnityEngine.Debug.Log("Attack successful! Monster defeated.");
                 UnityEngine.Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 DebugBoxManager.Instance.Log("공격성공");
+
+                
+
                 targetMonsterController.Hit();
                 //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
                 // 승리 처리: 플레이어의 승리 메서드 호출
@@ -117,7 +118,7 @@ public class BattleManager : Singleton<BattleManager>
                 DebugBoxManager.Instance.Log("공격실패");
 
                 // 패배 처리: 플레이어의 패배 메서드 호출
-                UIManager.Instance.BlockContainerManager.SetXIcon(player.GetCurrentBlockIndex(), true);
+                UIManager.Instance.BlockContainerManager.SetXIcon(player.CurrentIndex, true);
 
                 //player.EnableTypeMonsterPrefab(4);
                 //Invoke(nameof(PlayerDefeat), 2);
