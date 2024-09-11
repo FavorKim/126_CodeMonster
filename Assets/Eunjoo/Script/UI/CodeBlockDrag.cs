@@ -47,8 +47,8 @@ public class CodeBlockDrag : MonoBehaviour
     {
         if (grab != null)
         {
-            grab.OnGrab += OnBoxGrabbed;
-            grab.OnRelease += OnBoxRelease;
+            grab.OnGrab.AddListener(OnBoxGrabbed);
+            grab.OnRelease.AddListener(OnBoxRelease);
             //DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist";
         }
         else
@@ -67,8 +67,8 @@ public class CodeBlockDrag : MonoBehaviour
 
         if (grab != null)
         {
-            grab.OnRelease -= OnBoxRelease;
-            grab.OnGrab -= OnBoxGrabbed;
+            grab.OnRelease.RemoveAllListeners();// -= OnBoxRelease;
+            grab.OnGrab.RemoveAllListeners();// -= OnBoxGrabbed;
         }
         else
             Debug.LogWarning($"OnDisable : {gameObject.name}'s grab is null");

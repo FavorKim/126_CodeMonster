@@ -14,7 +14,7 @@ public class ConditionBlock : MonoBehaviour
     private void Start()
     {
         grab = GetComponent<CustomGrabObject>();
-        grab.OnGrab += OnGrabSetData;
+        grab.OnGrab.AddListener(OnGrabSetData);
         if (TrueType != null)
             TrueBlock = TrueType;
         if (FalseType != null)
@@ -25,7 +25,7 @@ public class ConditionBlock : MonoBehaviour
     private void OnApplicationQuit()
     {
         //grab.OnGrab -= () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
-        grab.OnGrab -= OnGrabSetData;
+        grab.OnGrab.AddListener(OnGrabSetData);
     }
 
     // 조건 블록 정보 초기화

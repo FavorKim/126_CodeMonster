@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CustomGrabObject : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class CustomGrabObject : MonoBehaviour
         grab = GetComponent<HandGrabInteractable>();
     }
 
-    public event Action OnGrab;
-    public event Action OnRelease;
+    public UnityEvent OnGrab;
+    public UnityEvent OnRelease;
 
     private void OnEnable()
     {
