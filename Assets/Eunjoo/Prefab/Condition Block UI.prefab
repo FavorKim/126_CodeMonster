@@ -443,6 +443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poke: {fileID: 6747146410217699822}
+  OnPoke:
+    m_PersistentCalls:
+      m_Calls: []
   OnHover:
     m_PersistentCalls:
       m_Calls: []

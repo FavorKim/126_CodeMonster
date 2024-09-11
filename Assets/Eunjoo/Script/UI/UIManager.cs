@@ -68,6 +68,9 @@ public class UIManager : Singleton<UIManager>
     private StageBlockUIManager StageBlockManager;
     private BlockCountBox BlockCountBox;
 
+    public int SelectChaterNum;
+    public int SelectStageNum;
+
     protected override void Start()
     {
         base.Start();
