@@ -20653,7 +20653,9 @@ MonoBehaviour:
   VictoryUI: {fileID: 1139713755869487991}
   GetMonsterUI: {fileID: 7949888893684777782}
   BlockCountObject: {fileID: 3451118283099488851}
-  TextBox: {fileID: 6236630320042872978}
+  DirectHintBox: {fileID: 0}
+  IndirectHintBox: {fileID: 0}
+  StageIndection: {fileID: 0}
   BlockContainerLength: 11
   BlockIndexList: 000000000100000002000000030000000400000005000000060000000700000008000000
   HintCount: 5
