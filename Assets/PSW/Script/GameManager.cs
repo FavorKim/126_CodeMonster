@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManger : Singleton<GameManger>
+public class GameManager : Singleton<GameManager>
 {
     private List<string> _playerMonsterNameList = new List<string>();
 

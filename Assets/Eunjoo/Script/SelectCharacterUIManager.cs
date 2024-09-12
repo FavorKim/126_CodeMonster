@@ -16,7 +16,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     public void CheckMonsterAttributes()
     {
         // 몬스터 타입 인덱스 리스트를 가져옴
-        List<int> monsterTypeIndices = GameManger.Instance.GetMonsterTypeInIndex(UIManager.Instance.SelectStageNum + UIManager.Instance.SelectChaterNum);
+        List<int> monsterTypeIndices = GameManager.Instance.GetMonsterTypeInIndex(/*UIManager.Instance.SelectStageNum 이 부분 DT에 스테이지 인덱스가 4자리수가 되면 지울 것 +*/ UIManager.Instance.SelectChaterNum);
 
         // 리스트에서 몬스터 타입을 확인
         foreach (int monsterType in monsterTypeIndices)
