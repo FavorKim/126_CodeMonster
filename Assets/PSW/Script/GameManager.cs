@@ -16,14 +16,14 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AddMonsterInPlayerList(string monsterName)//플레이어 보유 몬스터에 몬스터를 추가
     {
-        var name= DataManagerTest.instance.RemoveTextAfterParenthesis(monsterName);
+        var name = DataManagerTest.instance.RemoveTextAfterParenthesis(monsterName);
 
-        if (CheckMonsterInPlayerList(name) == false) 
+        if (CheckMonsterInPlayerList(name) == false)
         {
             _playerMonsterNameList.Add(name);
         }
@@ -63,13 +63,13 @@ public class GameManager : Singleton<GameManager>
 
     public List<int> GetMonsterTypeInIndex(int stageIndex)
     {
-        var list = DataManagerTest.instance.GetStageMapData(stageIndex).MonsterNameList;
+        List<string> list = DataManagerTest.instance.GetStageMapData(stageIndex).MonsterNameList;
 
-        if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList.Count > 0)
+        if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList != null)
         {
             foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList)
             {
-               
+
                 var replaceString = item.Replace("(", "").Replace(")", "");
 
                 var elements = replaceString.Split('/');
@@ -81,6 +81,7 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
+
         List<int> monsterTypeIndexList = new List<int>();
         foreach (var item in list)
         {

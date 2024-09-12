@@ -106,8 +106,8 @@ public class OutgameUIManager : MonoBehaviour
             if (char.IsDigit(c))
             {
                 stageNumber += c;  // 숫자를 chapterNumber에 추가
-                Debug.LogError("");
                 UIManager.Instance.SelectStageNum = int.Parse(stageNumber);
+                Debug.LogError($"{UIManager.Instance.SelectStageNum}");
             }
         }
     }

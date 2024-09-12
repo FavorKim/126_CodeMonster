@@ -221,11 +221,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: ClickStage
-        m_Mode: 1
+        m_MethodName: OnStageClick
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 32034256576007181}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -233,11 +233,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: OnStageClick
-        m_Mode: 2
+        m_MethodName: ClickStage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 32034256576007181}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7511,11 +7511,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: ClickStage
-        m_Mode: 1
+        m_MethodName: OnStageClick
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1682392304448798279}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7523,11 +7523,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: OnStageClick
-        m_Mode: 2
+        m_MethodName: ClickStage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 1682392304448798279}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8677,11 +8677,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: ClickStage
-        m_Mode: 1
+        m_MethodName: OnStageClick
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1967729022207422533}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8689,11 +8689,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: OnStageClick
-        m_Mode: 2
+        m_MethodName: ClickStage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 1967729022207422533}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9278,7 +9278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2350920551792286107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16778,11 +16778,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: ClickStage
-        m_Mode: 1
+        m_MethodName: OnStageClick
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4025904046829493575}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16790,11 +16790,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: OnStageClick
-        m_Mode: 2
+        m_MethodName: ClickStage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 4025904046829493575}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -29722,9 +29722,9 @@ MonoBehaviour:
   VictoryUI: {fileID: 1139713755869487991}
   GetMonsterUI: {fileID: 7949888893684777782}
   BlockCountObject: {fileID: 3451118283099488851}
-  DirectHintBox: {fileID: 0}
-  IndirectHintBox: {fileID: 0}
-  StageIndection: {fileID: 0}
+  DirectHintBox: {fileID: 3586777266977294254}
+  IndirectHintBox: {fileID: 5124047551637421509}
+  StageIndection: {fileID: 3586777266977294254}
   BlockContainerLength: 11
   BlockIndexList: 000000000100000002000000030000000400000005000000060000000700000008000000
   HintCount: 5
@@ -30927,11 +30927,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: ClickStage
-        m_Mode: 1
+        m_MethodName: OnStageClick
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7771010889474421088}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -30939,11 +30939,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8154401799125623332}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: OnStageClick
-        m_Mode: 2
+        m_MethodName: ClickStage
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 7771010889474421088}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -34946,6 +34946,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 972ced4aaae93204984e1f505b8c2b8a, type: 3}
+--- !u!114 &3586777266977294254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6846126593781746401, guid: 972ced4aaae93204984e1f505b8c2b8a, type: 3}
+  m_PrefabInstance: {fileID: 7981672900758834511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8497488867844569569 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1957302411871761582, guid: 972ced4aaae93204984e1f505b8c2b8a, type: 3}
@@ -35680,3 +35691,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011111762596246554, guid: 08b42f8eb8102bb4a8d5278f940995a0, type: 3}
   m_PrefabInstance: {fileID: 9208737173639094791}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5124047551637421509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4093850895123455938, guid: 08b42f8eb8102bb4a8d5278f940995a0, type: 3}
+  m_PrefabInstance: {fileID: 9208737173639094791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
