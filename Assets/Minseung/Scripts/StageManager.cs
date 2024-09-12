@@ -69,7 +69,7 @@ public class StageManager : Singleton<StageManager>
         if (playerPrefab != null && currentStageMap.PlayerSpawnPos != null)
         {
             playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
-            if (playerInstance == null)
+            if (playerInstance != null)
                 Destroy(playerInstance.gameObject);
             playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity,transform).GetComponent<Player>();
         }
