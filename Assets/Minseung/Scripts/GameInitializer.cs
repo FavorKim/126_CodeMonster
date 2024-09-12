@@ -15,8 +15,7 @@ public class GameInitializer : MonoBehaviour
     private void Start()
     {
         // 데이터 로드 후 스테이지 데이터 가져오기
-        var stageMapData = dataManagerTest.GetStageMapData(UIManager.Instance.SelectStageNum); // 디버깅용 인덱스 ------- 1. 물딩몬 2. 부시 3. 거대불딩몬
-
+        var stageMapData = dataManagerTest.GetStageMapData(UIManager.Instance.SelectStageNum);
         // StageManager에 전달하여 스테이지 생성
         stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab);
 

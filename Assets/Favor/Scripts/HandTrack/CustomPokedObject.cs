@@ -51,7 +51,7 @@ public class CustomPokedObject : MonoBehaviour
         }
 
         // 포크 해제됐을 때
-        else if(args.PreviousState == InteractableState.Hover && args.NewState != InteractableState.Select)
+        else if(args.PreviousState == InteractableState.Hover && (args.NewState != InteractableState.Select|| args.NewState != InteractableState.Hover))
         {
             OnPokeRelease.Invoke();
         }

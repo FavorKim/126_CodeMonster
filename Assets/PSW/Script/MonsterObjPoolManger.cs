@@ -84,5 +84,15 @@ public class MonsterObjPoolManger : MonoBehaviour
             }
         }
     }
+    public void DisableAllMonsters()
+    {
+        foreach (List<GameObject> gameObjects in _monsterPrefabsPool.Values) 
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
 
 }

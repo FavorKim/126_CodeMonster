@@ -36,6 +36,13 @@ public class StageManager : Singleton<StageManager>
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
     {
+        if(gameObject.transform.childCount != 0)
+        {
+            for(int i=0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
+        }
         int index = 0;
         for (int y = 0; y < currentStageMap.StageSize.y; y++)
         {
@@ -62,6 +69,8 @@ public class StageManager : Singleton<StageManager>
         if (playerPrefab != null && currentStageMap.PlayerSpawnPos != null)
         {
             playerPosition = new Vector3(currentStageMap.PlayerSpawnPos.x, 0, currentStageMap.PlayerSpawnPos.y);
+            if (playerInstance == null)
+                Destroy(playerInstance.gameObject);
             playerInstance = Instantiate(playerPrefab, playerPosition, Quaternion.identity,transform).GetComponent<Player>();
         }
     }
@@ -70,7 +79,7 @@ public class StageManager : Singleton<StageManager>
     {
         // 적 생성 및 위치 설정
 
-        
+        MonsterObjPoolManger.Instance.DisableAllMonsters();
         for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
         {
             int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
