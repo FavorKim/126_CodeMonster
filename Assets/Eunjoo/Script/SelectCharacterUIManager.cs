@@ -12,6 +12,10 @@ public class SelectCharacterUIManager : MonoBehaviour
         CheckMonsterAttributes();
     }
 
+    private void OnDisable()
+    {
+        ResetBlock();
+    }
 
     public void CheckMonsterAttributes()
     {
@@ -49,5 +53,27 @@ public class SelectCharacterUIManager : MonoBehaviour
         attackCodeBlockBoxCollider.enabled = false;
         attackCodeBlockHandGrab.transform.SetParent(MonsterAttributeBox.transform, false);
         attackCodeBlockHandGrab.transform.localScale = new Vector3(30, 30, 30);
+    }
+
+    public void ResetBlock()
+    {
+        // 현재 컨테이너 하위에 있는 모든 자식 객체를 리스트에 저장
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in MonsterAttributeBox.transform)
+        {
+            children.Add(child);
+        }
+
+        // 저장한 리스트를 순회하면서 블록들을 리셋
+        foreach (Transform child in children)
+        {
+            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+
+
+            if (codeBlockDrag != null)
+            {
+                codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
+            }
+        }
     }
 }
