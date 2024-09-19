@@ -299,6 +299,7 @@ public class Player : MonoBehaviour
             GameObject monster = Instantiate(monsterPrefabs[i]);
             monster.name = monsterPrefabs[i].name;
             monster.SetActive(true);
+            //DontDestroyOnLoad(monster);
             SetPrefabsParent(monster);
             monster.transform.localPosition = Vector3.zero;
 
@@ -314,13 +315,13 @@ public class Player : MonoBehaviour
 
         switch (monsterTypeIndex)
         {
-            case 5:
+            case 3:
                 monster.transform.SetParent(this.transform.GetChild(1));
                 break;
-            case 6:
+            case 2:
                 monster.transform.SetParent(this.transform.GetChild(2));
                 break;
-            case 7:
+            case 1:
                 monster.transform.SetParent(this.transform.GetChild(3));
                 break;
         }

@@ -13,11 +13,6 @@ public class GameManager : Singleton<GameManager>
         _playerMonsterNameList = DataManagerTest.instance.GetPlayerData("Player").StartMonsterNameList;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void AddMonsterInPlayerList(string monsterName)//플레이어 보유 몬스터에 몬스터를 추가
     {

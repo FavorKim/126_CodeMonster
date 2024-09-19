@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 5511195436905232200}
   - component: {fileID: -6162138267061811130}
   m_Layer: 0
-  m_Name: Char_Giant_ Battle_Character_Fire_01
+  m_Name: Char_Giant_Battle_Character_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

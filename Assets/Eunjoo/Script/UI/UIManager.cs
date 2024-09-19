@@ -77,7 +77,6 @@ public class UIManager : Singleton<UIManager>
         BlockContainerManager = BlockContainerUI.GetComponent<BlockContainerManager>();
         MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
-        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);
@@ -86,10 +85,18 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(false);
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnStartStage();
+        }
+    }
 
     public void OnStartStage()
     {
         IngameUI.SetActive(true);
+        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
         StageManager.Instance.gameObject.SetActive(true);
         StartCoroutine(SetHintTimer());
     }

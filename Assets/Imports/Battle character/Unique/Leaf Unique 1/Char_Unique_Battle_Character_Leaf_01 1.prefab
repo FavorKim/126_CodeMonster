@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 7976115481824621924}
   - component: {fileID: -2180327681872365862}
   m_Layer: 0
-  m_Name: Char_Unique_ Battle_Character_Leaf_01 1
+  m_Name: Char_Unique_Battle_Character_Leaf_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 1103833756879051675}
   - component: {fileID: 3011213368094498431}
   m_Layer: 0
-  m_Name: Char_Giant_ Battle_Character_Water_01
+  m_Name: Char_Giant_Battle_Character_Water_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

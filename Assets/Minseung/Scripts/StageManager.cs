@@ -17,6 +17,11 @@ public class StageManager : Singleton<StageManager>
 
     public void InitializeStage(StageMap stageMap, GameObject[] floorPrefabs, GameObject[] wallPrefabs, GameObject playerPrefab)
     {
+        if(MonsterObjPoolManger.Instance == null)
+        {
+            MonsterObjPoolManger.SetInstance();
+            MonsterObjPoolManger.Instance.InitialiizePool();
+        }
         ClearDic();
         this.currentStageMap = stageMap;
         GenerateStage(floorPrefabs, wallPrefabs);

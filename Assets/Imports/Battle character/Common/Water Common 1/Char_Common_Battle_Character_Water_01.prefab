@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 6811669743606358127}
   - component: {fileID: 6113914557013232347}
   m_Layer: 0
-  m_Name: Char_Common_ Battle_Character_Water_01
+  m_Name: Char_Common_Battle_Character_Water_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

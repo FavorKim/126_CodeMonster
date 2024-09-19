@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 3701583169001772672}
   - component: {fileID: -1893245649154046364}
   m_Layer: 0
-  m_Name: Char_Starting_ Battle_Character_Fire_01
+  m_Name: Char_Starting_Battle_Character_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

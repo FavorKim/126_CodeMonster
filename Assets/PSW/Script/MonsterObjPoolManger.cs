@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class MonsterObjPoolManger : MonoBehaviour
 {
-    public static MonsterObjPoolManger Instance { get; private set; }
+    public static MonsterObjPoolManger Instance;
     [SerializeField]
     private List<GameObject> _monsterPrefabs = new List<GameObject>();
     [SerializeField]
     private int _poolCount;
     private Dictionary<string, List<GameObject>> _monsterPrefabsPool = new Dictionary<string, List<GameObject>>();
 
-    private void Awake()
+    
+    public void InitialiizePool()
     {
-        Instance = this;
+        //Instance = this;
         InitPool();
         SetMosterPool();
     }
-    void Start()
+
+    public static void SetInstance()
     {
-        
+        Instance = FindAnyObjectByType<MonsterObjPoolManger>();
     }
+    
+    
     private void InitPool()
     {
         for (int i = 0; i < _monsterPrefabs.Count; i++)
@@ -58,20 +62,23 @@ public class MonsterObjPoolManger : MonoBehaviour
     {
         string name = DataManagerTest.Instance.RemoveTextAfterParenthesis(monsterName);
 
-        if (_monsterPrefabsPool.Count > 0 && _monsterPrefabsPool.ContainsKey(name) == true)
+        if (_monsterPrefabsPool.Count > 0 )
         {
-            foreach (var item in _monsterPrefabsPool[name])
+            if (_monsterPrefabsPool.ContainsKey(name) == true)
             {
-                if (item.activeSelf == false)
+                foreach (var item in _monsterPrefabsPool[name])
                 {
-                    return item;
+                    if (item.activeSelf == false)
+                    {
+                        return item;
+                    }
                 }
             }
         }
         return null;
     }
     public GameObject GetMonsterPrefab(int monsterId) 
-    {
+     {
         foreach(Monster mon in DataManagerTest.Instance.LoadedMonsterList.Values)
         {
             if (mon.ID == monsterId)

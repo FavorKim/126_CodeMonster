@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9072437976919560146}
   - component: {fileID: 7996612407704578821}
   m_Layer: 0
-  m_Name: Char_Common_ Battle_Character_Fire_01
+  m_Name: Char_Common_Battle_Character_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

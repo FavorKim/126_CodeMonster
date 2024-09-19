@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7741724734492770376}
   - component: {fileID: 6538890436119979177}
   m_Layer: 0
-  m_Name: Char_Starting_ Battle_Character_Water_01
+  m_Name: Char_Starting_Battle_Character_Water_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
