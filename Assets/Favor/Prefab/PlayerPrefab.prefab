@@ -19394,15 +19394,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4519488542835325082}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.22646904, y: 0.36605588, z: -0.06608284, w: 0.90019333}
-  m_LocalPosition: {x: 301, y: -1.6, z: 299.4}
+  m_LocalRotation: {x: -0.21930447, y: 0.44855818, z: -0.08695237, w: 0.86205596}
+  m_LocalPosition: {x: 299.6, y: -29.7, z: 244.9}
   m_LocalScale: {x: 454.1276, y: 454.1277, z: 151.37854}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1342411361259966190}
   - {fileID: 7688563866763888275}
   m_Father: {fileID: 2350920551792286107}
-  m_LocalEulerAnglesHint: {x: -21.06, y: 47.586, z: -17.768}
+  m_LocalEulerAnglesHint: {x: -17.464, y: 58.289, z: -21.31}
 --- !u!114 &7499517446604531602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30441,7 +30441,7 @@ MonoBehaviour:
   LoopBlockList: 
   BlockContainerManager: {fileID: 0}
   MakeLoopBlockContainerManager: {fileID: 0}
-  SelectChaterNum: 0
+  SelectChapterNum: 0
   SelectStageNum: 0
 --- !u!1 &7468310966738762226
 GameObject:

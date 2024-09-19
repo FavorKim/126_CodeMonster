@@ -1,10 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Monster>
   <dataCategory>
-    <data ID="1" MonsterName="Char_Enemy_Unknown_01" MonsterViewName="수풀" TypeIndex="0" Description="무슨 적이 나올지 알 수 없다" />
-    <data ID="2" MonsterName="Char_Common_ Battle_Character_Fire_01" MonsterViewName="빨갱이" TypeIndex="7" Description="빨갛다" />
-    <data ID="3" MonsterName="Char_Common_ Battle_Character_Water_01" MonsterViewName="파랭이" TypeIndex="6" Description="파랗다" />
-    <data ID="4" MonsterName="Char_Common_ Battle_Character_Leaf_01" MonsterViewName="초랭이" TypeIndex="5" Description="푸르다" />
-    <data ID="5" MonsterName="Char_Giant_ Battle_Character_Fire_01" MonsterViewName="큰빨갱이" TypeIndex="7" Description="크다" />
+    <data ID="111001" FileName="Char_Starting_Battle_Character_Fire_01" ViewName="불속성스타팅1" TypeIndex="1" Description="" MonsterName="FireStarting1" />
+    <data ID="121001" FileName="Char_Starting_Battle_Character_Water_01" ViewName="물속성스타팅1" TypeIndex="2" Description="" MonsterName="WaterStarting1" />
+    <data ID="131001" FileName="Char_Starting_Battle_Character_Leaf_01" ViewName="풀속성스타팅1" TypeIndex="3" Description="" MonsterName="LeafStarting1" />
+    <data ID="112001" FileName="Char_Unique_Battle_Character_Fire_01" ViewName="불속성유니크1" TypeIndex="1" Description="" MonsterName="FireUnique1" />
+    <data ID="122001" FileName="Char_Unique_Battle_Character_Water_01" ViewName="물속성유니크1" TypeIndex="2" Description="" MonsterName="WaterUnique1" />
+    <data ID="132001" FileName="Char_Unique_Battle_Character_Leaf_01" ViewName="풀속성유니크1" TypeIndex="3" Description="" MonsterName="LeafUnique1" />
+    <data ID="113001" FileName="Char_Common_Battle_Character_Fire_01" ViewName="불속성커먼1" TypeIndex="1" Description="" MonsterName="FireCommon1" />
+    <data ID="123001" FileName="Char_Common_Battle_Character_Water_01" ViewName="물속성커먼1" TypeIndex="2" Description="" MonsterName="WaterCommon1" />
+    <data ID="133001" FileName="Char_Common_Battle_Character_Leaf_01" ViewName="풀속성커먼1" TypeIndex="3" Description="" MonsterName="LeafCommon1" />
+    <data ID="115001" FileName="Char_Giant_Battle_Character_Fire_01" ViewName="불속성거대한적1" TypeIndex="1" Description="" MonsterName="EnemyGiantA" />
+    <data ID="125001" FileName="Char_Giant_Battle_Character_Water_01" ViewName="물속성거대한적1" TypeIndex="2" Description="" MonsterName="EnemyGiantB" />
+    <data ID="135001" FileName="Char_Giant_Battle_Character_Leaf_01" ViewName="풀속성거대한적1" TypeIndex="3" Description="" MonsterName="EnemyGiantC" />
+    <data ID="104001" FileName="Char_Enemy_Unknown_01" ViewName="의문의적A" TypeIndex="0" Description="" MonsterName="Enemy_Unknown_A" />
+    <data ID="104002" FileName="Char_Enemy_Unknown_02" ViewName="의문의적B" TypeIndex="0" Description="" MonsterName="Enemy_Unknown_B" />
+    <data ID="104003" FileName="Char_Enemy_Unknown_03" ViewName="의문의적C" TypeIndex="0" Description="" MonsterName="Enemy_Unknown_C" />
   </dataCategory>
 </Monster>

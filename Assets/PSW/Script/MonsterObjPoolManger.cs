@@ -70,6 +70,20 @@ public class MonsterObjPoolManger : MonoBehaviour
         }
         return null;
     }
+    public GameObject GetMonsterPrefab(int monsterId) 
+    {
+        foreach(Monster mon in DataManagerTest.Instance.LoadedMonsterList.Values)
+        {
+            if (mon.ID == monsterId)
+            {
+                GameObject monster = GetMonsterPrefab(mon.FileName);
+                if (monster != null)
+                    return monster;
+            }
+        }
+        Debug.LogError("ID에 해당하는 몬스터가 풀에 존재하지 않습니다.");
+        return null;
+    }
 
     public void DiableAllMonsterObjInList(string monsterName)
     {

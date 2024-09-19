@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CodeBlockData>
   <dataCategory>
-    <data BlockIndex="1" BlockName="UIUpMoveBlock" ViewName="" Description="" />
-    <data BlockIndex="2" BlockName="UIDownMoveBlock" ViewName="" Description="" />
-    <data BlockIndex="3" BlockName="UILeftMoveBlock" ViewName="" Description="" />
-    <data BlockIndex="4" BlockName="UIRightMoveBlock" ViewName="" Description="" />
-    <data BlockIndex="5" BlockName="UIGrassAttackBlock" ViewName="" Description="" />
-    <data BlockIndex="6" BlockName="UIWaterAttackBlock" ViewName="" Description="" />
-    <data BlockIndex="7" BlockName="UIFireAttackBlock" ViewName="" Description="" />
-    <data BlockIndex="8" BlockName="UIConditionBlock" ViewName="" Description="" />
-    <data BlockIndex="9" BlockName="UILoopBlock" ViewName="" Description="" />
+    <data ID="1" BlockIndex="1" BlockName="UIUpMoveBlock" ViewName="" Description="" />
+    <data ID="2" BlockIndex="2" BlockName="UIDownMoveBlock" ViewName="" Description="" />
+    <data ID="3" BlockIndex="3" BlockName="UILeftMoveBlock" ViewName="" Description="" />
+    <data ID="4" BlockIndex="4" BlockName="UIRightMoveBlock" ViewName="" Description="" />
+    <data ID="7" BlockIndex="5" BlockName="UIGrassAttackBlock" ViewName="" Description="" />
+    <data ID="6" BlockIndex="6" BlockName="UIWaterAttackBlock" ViewName="" Description="" />
+    <data ID="5" BlockIndex="7" BlockName="UIFireAttackBlock" ViewName="" Description="" />
+    <data ID="100" BlockIndex="8" BlockName="UIConditionBlock" ViewName="" Description="" />
+    <data ID="101" BlockIndex="9" BlockName="UILoopBlock" ViewName="" Description="" />
   </dataCategory>
 </CodeBlockData>

@@ -80,18 +80,18 @@ public class StageManager : Singleton<StageManager>
         // 적 생성 및 위치 설정
 
         MonsterObjPoolManger.Instance.DisableAllMonsters();
-        for (int i = 0; i < currentStageMap.MonsterNameList.Count; i++)
+        for (int i = 0; i < currentStageMap.MonsterIDList.Count; i++)
         {
             int key = ChangePosToKeyValue(currentStageMap.MonsterSpawnPosList[i].x, currentStageMap.MonsterSpawnPosList[i].y);
             Vector3 enemyPosition = stageBlockDic[key].transform.GetChild(0).position;
-            string enemyName = currentStageMap.MonsterNameList[i];
-            GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(enemyName);
+            int enemyID = currentStageMap.MonsterIDList[i];
+            GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(enemyID);
             enemy.SetActive(true);
             enemy.transform.position = enemyPosition;
             monsterDic.Add(key, enemy);
-            if (DataManagerTest.Instance.GetMonsterData(enemyName).TypeIndex == 0)
+            if (DataManagerTest.Instance.GetMonsterData(enemyID).TypeIndex == 0)
             {
-                List<GameObject> list = ReturnBushMonsterObj(currentStageMap.BushMonsterNameList[i]);
+                List<GameObject> list = ReturnBushMonsterObj(currentStageMap.BushMonsterIDList[i]);
                 bushMonster.Add(key, list);
             }
         }
@@ -140,9 +140,9 @@ public class StageManager : Singleton<StageManager>
     }
     public string GetMonsterNameAtIndex(int index)
     {
-        if (index >= 0 && index < currentStageMap.MonsterNameList.Count)
+        if (index >= 0 && index < currentStageMap.MonsterIDList.Count)
         {
-            return currentStageMap.MonsterNameList[index];
+            return DataManagerTest.Instance.GetMonsterData(currentStageMap.MonsterIDList[index]).FileName;
         }
         return null;
     }
@@ -231,7 +231,7 @@ public class StageManager : Singleton<StageManager>
             }
         }
     }
-
+    /*
     public List<GameObject> ReturnBushMonsterObj(string bushMonsterName)
     {
         List<GameObject> list = new List<GameObject>();
@@ -243,6 +243,20 @@ public class StageManager : Singleton<StageManager>
 
         return list;
     }
+    */
+    public List<GameObject> ReturnBushMonsterObj(string bushMonsterID)
+    {
+        List<GameObject> list = new List<GameObject>();
+        var IDList = bushMonsterID.Replace("(", "").Replace(")", "").Split('/');
+        foreach (var id in IDList)
+        {
+            int itemId = int.Parse(id);
+            list.Add(MonsterObjPoolManger.Instance.GetMonsterPrefab(itemId));
+        }
+
+        return list;
+    }
+
 
     public GameObject GetMonsterInBush(Vector2Int playerPos,int randomIndex)
     {

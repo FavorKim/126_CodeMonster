@@ -63,11 +63,11 @@ public class GameManager : Singleton<GameManager>
 
     public List<int> GetMonsterTypeInIndex(int stageIndex)
     {
-        List<string> list = DataManagerTest.instance.GetStageMapData(stageIndex).MonsterNameList;
+        List<int> list = DataManagerTest.instance.GetStageMapData(stageIndex).MonsterIDList;
 
-        if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList != null)
+        if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList != null)
         {
-            foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterNameList)
+            foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList)
             {
 
                 var replaceString = item.Replace("(", "").Replace(")", "");
@@ -77,7 +77,7 @@ public class GameManager : Singleton<GameManager>
                 for (int i = 0; i < elements.Length; i++)
                 {
                     var element = elements[i];
-                    list.Add(element);
+                    list.Add(int.Parse(element));
                 }
             }
         }

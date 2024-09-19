@@ -68,7 +68,7 @@ public class UIManager : Singleton<UIManager>
     private StageBlockUIManager StageBlockManager;
     private BlockCountBox BlockCountBox;
 
-    public int SelectChaterNum;
+    public int SelectChapterNum;
     public int SelectStageNum;
 
     protected override void Start()
@@ -77,7 +77,7 @@ public class UIManager : Singleton<UIManager>
         BlockContainerManager = BlockContainerUI.GetComponent<BlockContainerManager>();
         MakeLoopBlockContainerManager = MakeLoopBlockUI.GetComponentInChildren<MakeLoopBlockContainerManager>();
         StageBlockManager = AttackBlockUI.GetComponent<StageBlockUIManager>();
-        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(1).BlockContainerLength;
+        BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
         BlockCountBox = BlockCountObject.GetComponentInChildren<BlockCountBox>();
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.HINT, PrintStageDirectHint);

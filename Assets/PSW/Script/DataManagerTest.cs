@@ -31,7 +31,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
     #region 데이터테이블 로드
     private void ReadAllDataOnAwake()
     {
-        LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.MonsterName);
+        LoadedMonsterList = LoadDataTable(nameof(Monster), ParseMonster, m => m.FileName);
         LoadedCodeBlockList = LoadDataTable(nameof(CodeBlockData), ParseCodeBlockData, cb => cb.BlockName);
         LoadedMonsterType = LoadDataTable(nameof(MonsterType), ParseMonsterType, mt => mt.TypeIndex);
         LoadedStageMap = LoadDataTable(nameof(StageMap), ParseStageMap, sm => sm.StageIndex);
@@ -112,11 +112,13 @@ public class DataManagerTest : Singleton<DataManagerTest>
     {
         return new Monster
         {
+            FileName = data.Attribute(nameof(Monster.FileName)).Value,
             ID = int.Parse(data.Attribute(nameof(Monster.ID)).Value),
             MonsterName = data.Attribute(nameof(Monster.MonsterName)).Value,
-            MonsterViewName = data.Attribute(nameof(Monster.MonsterViewName)).Value,
+            ViewName = data.Attribute(nameof(Monster.ViewName)).Value,
             Description = data.Attribute(nameof(Monster.Description)).Value,
-            TypeIndex = int.Parse(data.Attribute(nameof(Monster.TypeIndex)).Value)
+            TypeIndex = int.Parse(data.Attribute(nameof(Monster.TypeIndex)).Value),
+            
         };
     }
 
@@ -171,10 +173,10 @@ public class DataManagerTest : Singleton<DataManagerTest>
         };
 
         SetDataList(out tempStageMap.ArrayInfo, data, "ArrayInfo");
-        SetDataList(out tempStageMap.BlockNameList, data, "BlockNameList");
-        SetDataList(out tempStageMap.MonsterNameList, data, "MonsterNameList");
+        SetDataList(out tempStageMap.BlockIDList, data, "BlockIDList");
+        SetDataList(out tempStageMap.MonsterIDList, data, "MonsterIDList");
         SetDataList(out tempStageMap.MonsterSpawnPosList, data, "MonsterSpawnPosList", ParseVector2Int);
-        SetDataList(out tempStageMap.BushMonsterNameList, data, "BushMonsterNameList");
+        SetDataList(out tempStageMap.BushMonsterIDList, data, "BushMonsterIDList");
 
         return tempStageMap;
     }
@@ -253,6 +255,16 @@ public class DataManagerTest : Singleton<DataManagerTest>
             return null;
 
         return LoadedMonsterList[name];
+    }
+    public Monster GetMonsterData(int id)
+    {
+        foreach(Monster mon in LoadedMonsterList.Values)
+        {
+            if(mon.ID == id) return mon;
+        }
+        
+        Debug.LogError("해당하는 ID의 몬스터가 없습니다.");
+        return null;
     }
 
     public CodeBlockData GetCodeBlockData(string dataClassName)

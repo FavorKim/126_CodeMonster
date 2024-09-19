@@ -43,7 +43,7 @@ public class OutgameUIManager : MonoBehaviour
     {
         ChapterUI.SetActive(true);
         StageUI.SetActive(false);
-        UIManager.Instance.SelectChaterNum = 0;
+        UIManager.Instance.SelectChapterNum = 0;
     }
 
     // Select Stage UI -> Select Character UI
@@ -89,7 +89,7 @@ public class OutgameUIManager : MonoBehaviour
         if (!string.IsNullOrEmpty(chapterNumber))
         {
             int chapterValue = int.Parse(chapterNumber) * 1000;
-            UIManager.Instance.SelectChaterNum = chapterValue;
+            UIManager.Instance.SelectChapterNum = chapterValue;
         }
     }
 
