@@ -73,7 +73,12 @@ public class BattleManager : Singleton<BattleManager>
             }
 
             string monsterName = monsterObj.name;
+            DebugBoxManager.Instance.Log(monsterName);
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
+            if(monster == null)
+            {
+                DebugBoxManager.Instance.Log("monster 널");
+            }
             MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex + 4);
             if (monsterObj == null)
             {
@@ -97,8 +102,17 @@ public class BattleManager : Singleton<BattleManager>
                 }
                 else
                 {
-                    SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(player.ForceGetCurrentIndex());
+                    int curIndex = player.ForceGetCurrentIndex();
+                    SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(curIndex);
+                    if(loop == null)
+                    {
+                        DebugBoxManager.instance.Log($"루프 중 조건 공격 중 loop null");
+                    }
                     ConditionBlock cond = loop.GetConditionBlockByIndex(player.CurrentIndex);
+                    if(cond == null)
+                    {
+                        DebugBoxManager.instance.Log($"루프 중 조건 공격 중 cond null");
+                    }
                     attackBlockType = cond.EvaluateCondition(monster);
                     DebugBoxManager.instance.Log($"{attackBlockType}번 인덱스 공격 (반복중)");
                 }

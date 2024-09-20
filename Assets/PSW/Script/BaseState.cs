@@ -127,6 +127,7 @@ public class CheckState : BaseState<Player>
                 if(cond != null)
                 {
                     DebugBoxManager.Instance.Log("컨디션블록 불러옴");
+                    
                     cond.EnableConditionBlockListImage();
                     Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
                 }
@@ -142,6 +143,7 @@ public class CheckState : BaseState<Player>
         {
             DebugBoxManager.Instance.Log("9번 인덱스. 반복블록");
             SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex((int)Controller.CurrentIndex).GetLoopBlockUI();
+            DebugBoxManager.Instance.Log($"loop 차일드 카운트 : {loop.CountLoopBlockListBox()}");
             loop.EnableLoopBlockImage();
             Controller.playerStateMachine.ChangeState(PlayerStateName.Loop);
         }

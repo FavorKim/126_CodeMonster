@@ -209,6 +209,7 @@ public class CodeBlockDrag : MonoBehaviour
             {
                 DebugBoxManager.Instance.Log("루프블록 안에 조건블록");
                 loopBlock.GetComponent<CodeBlockDrag>().GrabConditionCodeBlock();
+                loopBlock.GetComponent<ConditionBlock>().OnGrabSetData();
             }
             HandGrabInteractable loopBlockHandGrab = loopBlock.GetComponent<HandGrabInteractable>();
             BoxCollider loopBlockCodeBlockBoxCollider = loopBlock.GetComponent<BoxCollider>();

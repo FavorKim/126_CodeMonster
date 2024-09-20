@@ -1570,6 +1570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrueType: {fileID: 2957669399325071676, guid: 68556d297bc20e941bebe0911b34e510, type: 3}
   FalseType: {fileID: 2957669399325071676, guid: 78c621f5245c95049885fdc02de6e066, type: 3}
+  indexValueDebug: 1
 --- !u!114 &5082145321626671607
 MonoBehaviour:
   m_ObjectHideFlags: 0

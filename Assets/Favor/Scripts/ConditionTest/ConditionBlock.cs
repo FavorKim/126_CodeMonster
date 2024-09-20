@@ -47,7 +47,7 @@ public class ConditionBlock : MonoBehaviour
     }
 
     // 블록을 잡을 때마다 저장되어있는 정보로 본인의 정보를 초기화
-    private void OnGrabSetData()
+    public void OnGrabSetData()
     {
         InitConditionBlock(MakeConditionBlockUIManager.Instance.GetConditionBlockInfo());
     }
@@ -56,6 +56,12 @@ public class ConditionBlock : MonoBehaviour
     {
         SetConditionBlockUI conUI = GetComponent<SetConditionBlockUI>();
         DebugBoxManager.Instance.Log($" 조건블록 인덱스 밸류 {indexValue}");
+        if(TrueBlock == null)
+        {
+
+        }
+        DebugBoxManager.Instance.Log($"TrueBlock = : {TrueBlock.name}");
+        DebugBoxManager.Instance.Log($"FalseBlock = : {FalseBlock.name}");
         if (monster.TypeIndex == indexValue)
         {
             //DebugBoxManager.Instance.Log("참 블록 평가완료");

@@ -50,18 +50,18 @@ public class SetConditionBlockUI : MonoBehaviour
     public void AddTrueBlock(GameObject newBlock)
     {
         DebugBoxManager.Instance.Log("애드트루블록(컨디션ui)");
-        newBlock.transform.parent = null;
+        //newBlock.transform.parent = null;
         newBlock.transform.SetParent(TrueBlockBox.transform, false);
-        newBlock.transform.parent = TrueBlockBox.transform;
+        //newBlock.transform.parent = TrueBlockBox.transform;
         newBlock.transform.localScale = Vector3.one;
     }
 
     public void AddFalseBlock(GameObject newBlock)
     {
         DebugBoxManager.Instance.Log("애드펄스블록(컨디션ui)");
-        newBlock.transform.parent = null;
+        //newBlock.transform.parent = null;
         newBlock.transform.SetParent(FalseBlockBox.transform, false);
-        newBlock.transform.parent = FalseBlockBox.transform;
+        //newBlock.transform.parent = FalseBlockBox.transform;
         newBlock.transform.localScale = Vector3.one;
     }
 
