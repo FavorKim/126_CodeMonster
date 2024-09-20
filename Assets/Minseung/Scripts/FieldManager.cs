@@ -1,3 +1,5 @@
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +22,41 @@ public class FieldManager : MonoBehaviour
 
     private void Start()
     {
+        //DataManagerTest.Instance.LoadedMonsterList
+        //foreach (GameObject gobj in)
+
         foreach (GameObject prefab in monsterPrefabs)
         {
             Vector3 randomPosition = GetRandomSpawnPosition();
             GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
 
             RandomMove randomMove = monster.AddComponent<RandomMove>();
+            Rigidbody rb = monster.AddComponent<Rigidbody>();
+            rb.isKinematic = true;
+            SphereCollider collider = monster.AddComponent<SphereCollider>();
+            Grabbable grab = monster.AddComponent<Grabbable>();
+            HandGrabInteractable hand = monster.AddComponent<HandGrabInteractable>();
+            hand.InjectRigidbody(rb);
+            CustomGrabObject customGrabObject = monster.AddComponent<CustomGrabObject>();
+            customGrabObject.InitHandGrabInteractable(hand);
             randomMove.SetMoveSpeed(Random.Range(2f, 5f));
 
             fieldMonsterList.Add(monster);
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            TeleportMonstersToTargetPositions();
+            StopAllMonsters();
+        }
+    }
+    public void OnPokeCharacterSelect()
+    {
+        TeleportMonstersToTargetPositions();
+        StopAllMonsters();
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -101,7 +128,7 @@ public class FieldManager : MonoBehaviour
         switch (type)
         {
             case SoltType.Name:
-                sortedMonsters = monsters.OrderBy(p => DataManagerTest.Instance.GetMonsterData(p.name).MonsterViewName).ToList();
+                sortedMonsters = monsters.OrderBy(p => DataManagerTest.Instance.GetMonsterData(p.name).ViewName).ToList();
                 break;
             case SoltType.ID:
                 sortedMonsters = monsters.OrderBy(p => DataManagerTest.Instance.GetMonsterData(p.name).ID).ToList();
@@ -121,7 +148,7 @@ public class FieldManager : MonoBehaviour
         switch (type)
         {
             case SoltType.Name:
-                sortedMonsters = monsters.OrderByDescending(p => DataManagerTest.Instance.GetMonsterData(p.name).MonsterViewName).ToList();
+                sortedMonsters = monsters.OrderByDescending(p => DataManagerTest.Instance.GetMonsterData(p.name).ViewName).ToList();
                 break;
             case SoltType.ID:
                 sortedMonsters = monsters.OrderByDescending(p => DataManagerTest.Instance.GetMonsterData(p.name).ID).ToList();

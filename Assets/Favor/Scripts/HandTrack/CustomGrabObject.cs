@@ -10,23 +10,31 @@ public class CustomGrabObject : MonoBehaviour
 {
     [SerializeField] HandGrabInteractable grab;
     bool isGrabbing;
-    void Start()
-    {
-        grab = GetComponent<HandGrabInteractable>();
-    }
+
 
     public UnityEvent OnGrab;
     public UnityEvent OnRelease;
 
     private void OnEnable()
     {
-        grab.WhenStateChanged += OnGrabStateChanged;
+        if (grab == null)
+            grab = GetComponent<HandGrabInteractable>();
+        if (grab != null)
+        {
+            grab.WhenStateChanged += OnGrabStateChanged;
+        }
     }
-  
+
 
     private void OnDisable()
     {
         grab.WhenStateChanged -= OnGrabStateChanged;
+    }
+
+    public void InitHandGrabInteractable(HandGrabInteractable grab)
+    {
+        this.grab = grab;
+        this.grab.WhenStateChanged += OnGrabStateChanged;
     }
 
     private void OnGrabStateChanged(InteractableStateChangeArgs args)
