@@ -42,8 +42,12 @@ public class UIManager : Singleton<UIManager>
     public GameObject VictoryUI;
     public GameObject GetMonsterUI;
     public GameObject BlockCountObject;
-    public TMP_Text DirectHintBox;
-    public TMP_Text IndirectHintBox;
+    public GameObject DirectHintBox;
+    public GameObject IndirectHintBox;
+    public GameObject StageTextBox;
+
+    //[SerializeField] TMP_Text DirectHintBoxText;
+    //[SerializeField] TMP_Text IndirectHintBoxText;
     [SerializeField] TMP_Text StageIndection;
 
 
@@ -235,7 +239,8 @@ public class UIManager : Singleton<UIManager>
                 break;
             case TextTypeName.SMALLHINT:
                 text = DataManagerTest.Instance.GetTextData(UITextindex).Description;
-                SetText(text,IndirectHintBox);
+                TMP_Text IndirectHintBoxText = IndirectHintBox.GetComponent<TMP_Text>();
+                SetText(text,IndirectHintBoxText);
                 break;
             case TextTypeName.BIGHINT:
                 //text = DataManagerTest.Instance.GetStageMapData(stageIndex).bighint;
@@ -284,4 +289,39 @@ public class UIManager : Singleton<UIManager>
     {
         IngameUI.SetActive(false);
     }
-}
+
+
+
+    public void EnableDirectHintBox()
+    {
+        DirectHintBox.SetActive(true);
+        Invoke("DisableDirectHintBox", 5f);
+    }
+
+    public void EnableIndirectHintBox()
+    {
+        IndirectHintBox.SetActive(true);
+        Invoke("DisableIndirectHintBox", 5f);
+    }
+
+    public void EnableStageTextBox()
+    {
+        StageTextBox.SetActive(true);
+    }
+
+
+    public void DisableDirectHintBox()
+    {
+        DirectHintBox.SetActive(false);
+    }
+
+    public void DisableIndirectHintBox()
+    {
+        IndirectHintBox.SetActive(false);
+    }
+
+    public void DisableStageTextBox()
+    {
+        StageTextBox.SetActive(false);
+    }
+}                    
