@@ -12,6 +12,7 @@ TagManager:
   - MakeConditionBlockUI
   - MakeConditionTrue
   - MakeConditionFalse
+  - SelectCharacterUI
   layers:
   - Default
   - TransparentFX

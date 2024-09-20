@@ -373,6 +373,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7084745484113641323, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
   m_PrefabInstance: {fileID: 2816616365707777681}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1236622195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6195193993455869956, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+  m_PrefabInstance: {fileID: 2816616365707777681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1236622199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236622195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1370811494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1062,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4087194579973294410, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: CharacterContainer
+      value: 
+      objectReference: {fileID: 1236622195}
     - target: {fileID: 4199336389489579549, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 337.69998
@@ -1186,6 +1221,10 @@ PrefabInstance:
     - target: {fileID: 6230516588474005065, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -67.10003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6395649933773761635, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: m_TagString
+      value: SelectCharacterUI
       objectReference: {fileID: 0}
     - target: {fileID: 6462280545599945648, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1699,7 +1738,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 403970697697794777, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1419883480}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6195193993455869956, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1236622199}
   m_SourcePrefab: {fileID: 100100000, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
 --- !u!224 &2816616365707777682 stripped
 RectTransform:

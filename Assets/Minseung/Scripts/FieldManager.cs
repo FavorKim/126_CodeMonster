@@ -12,7 +12,7 @@ public enum SoltType
     Name
 }
 
-public class FieldManager : MonoBehaviour
+public class FieldManager : Singleton<FieldManager>
 {
     [SerializeField] List<GameObject> monsterPrefabs;
     [SerializeField] float spawnRadius;
@@ -20,8 +20,9 @@ public class FieldManager : MonoBehaviour
     [SerializeField] List<Vector3> targetPositions;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         //DataManagerTest.Instance.LoadedMonsterList
         //foreach (GameObject gobj in)
 
@@ -29,21 +30,8 @@ public class FieldManager : MonoBehaviour
         {
             Vector3 randomPosition = GetRandomSpawnPosition();
             GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
-
-            RandomMove randomMove = monster.AddComponent<RandomMove>();
-            Rigidbody rb = monster.AddComponent<Rigidbody>();
-            rb.isKinematic = true;
-            rb.useGravity = false;
-            SphereCollider collider = monster.AddComponent<SphereCollider>();
-            Grabbable grab = monster.AddComponent<Grabbable>();
-            HandGrabInteractable hand = monster.AddComponent<HandGrabInteractable>();
-            hand.InjectRigidbody(rb);
-            hand.InjectOptionalPointableElement(grab);
-            CustomGrabObject customGrabObject = monster.AddComponent<CustomGrabObject>();
-            customGrabObject.InitHandGrabInteractable(hand);
-            randomMove.SetMoveSpeed(Random.Range(1f, 3f));
-
-            fieldMonsterList.Add(monster);
+            InitMonster(monster);
+            
             monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
@@ -55,6 +43,27 @@ public class FieldManager : MonoBehaviour
         }
     }
 
+    private void InitMonster(GameObject monster)
+    {
+        RandomMove randomMove = monster.AddComponent<RandomMove>();
+        Rigidbody rb = monster.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        SphereCollider collider = monster.AddComponent<SphereCollider>();
+        collider.isTrigger = true;
+        Grabbable grab = monster.AddComponent<Grabbable>();
+        HandGrabInteractable hand = monster.AddComponent<HandGrabInteractable>();
+        hand.InjectRigidbody(rb);
+        hand.InjectOptionalPointableElement(grab);
+        CustomGrabObject customGrabObject = monster.AddComponent<CustomGrabObject>();
+        customGrabObject.InitHandGrabInteractable(hand);
+        randomMove.SetMoveSpeed(Random.Range(1f, 3f));
+        monster.AddComponent<RectTransform>();
+        GrabCharacter GC = monster.AddComponent<GrabCharacter>();
+        GC.InitGrab(customGrabObject);
+
+        fieldMonsterList.Add(monster);
+    }
     public void OnPokeCharacterSelect()
     {
         TeleportMonstersToTargetPositions();

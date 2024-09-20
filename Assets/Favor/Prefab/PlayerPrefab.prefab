@@ -13914,6 +13914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterAttributeBox: {fileID: 2278322732088715979}
+  CharacterContainer: {fileID: 0}
 --- !u!1 &3099858416496082554
 GameObject:
   m_ObjectHideFlags: 0

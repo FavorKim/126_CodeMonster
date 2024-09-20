@@ -7,6 +7,41 @@ public class SelectCharacterUIManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject MonsterAttributeBox;
+    private List<GameObject> monsters = new List<GameObject>();
+    [SerializeField] GameObject CharacterContainer;
+
+    public void AddMonster(GameObject monster)
+    {
+        if (!monsters.Contains(monster))
+        {
+            monsters.Add(monster);
+            FieldManager.Instance.TeleportMonstersToTargetPositions();
+            monster.transform.SetParent(CharacterContainer.transform, false);
+            monster.transform.localPosition = Vector3.zero;
+            monster.transform.localScale = new Vector3(50, 50, 50);
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("추가하려는 몬스터가 이미 리스트 내에 존재합니다.");
+        }
+        
+    }
+    public void RemoveMonster(GameObject monster)
+    {
+        if (monsters.Contains(monster))
+        {
+            monsters.Remove(monster);
+            monster.transform.SetParent(null);
+            FieldManager.Instance.TeleportMonstersToTargetPositions();
+            monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("삭제하려는 몬스터가 리스트내에 없습니다.");
+        }
+    }
+
+
     private void OnEnable()
     {
         CheckMonsterAttributes();
