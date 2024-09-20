@@ -37,6 +37,12 @@ public class RandomMove : MonoBehaviour
         moveDirection = new Vector3(randomX, 0, randomZ).normalized;
     }
 
+    public void StartMoving()
+    {
+        isMoving = true;
+        SetRandomDirection();
+    }
+
     public void StopMoving()
     {
         isMoving = false;

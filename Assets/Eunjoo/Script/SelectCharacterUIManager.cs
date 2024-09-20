@@ -25,15 +25,16 @@ public class SelectCharacterUIManager : MonoBehaviour
         // 리스트에서 몬스터 타입을 확인
         foreach (int monsterType in monsterTypeIndices)
         {
+            DebugBoxManager.Instance.Log($"{monsterType}");
             switch (monsterType)
             {
-                case 5:
+                case 1:
                     SetupMonsterAttribute(BlockName.FireAttackCodeBlock);
                     break;
-                case 6:
+                case 2:
                     SetupMonsterAttribute(BlockName.WaterAttackCodeBlock);
                     break;
-                case 7:
+                case 3:
                     SetupMonsterAttribute(BlockName.GrassAttackCodeBlock);
                     break;
                 default:

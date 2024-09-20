@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 public enum SoltType
 {
@@ -33,26 +33,28 @@ public class FieldManager : MonoBehaviour
             RandomMove randomMove = monster.AddComponent<RandomMove>();
             Rigidbody rb = monster.AddComponent<Rigidbody>();
             rb.isKinematic = true;
+            rb.useGravity = false;
             SphereCollider collider = monster.AddComponent<SphereCollider>();
             Grabbable grab = monster.AddComponent<Grabbable>();
             HandGrabInteractable hand = monster.AddComponent<HandGrabInteractable>();
             hand.InjectRigidbody(rb);
+            hand.InjectOptionalPointableElement(grab);
             CustomGrabObject customGrabObject = monster.AddComponent<CustomGrabObject>();
             customGrabObject.InitHandGrabInteractable(hand);
-            randomMove.SetMoveSpeed(Random.Range(2f, 5f));
+            randomMove.SetMoveSpeed(Random.Range(1f, 3f));
 
             fieldMonsterList.Add(monster);
+            monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            OnPokeCharacterSelect();
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            TeleportMonstersToTargetPositions();
-            StopAllMonsters();
-        }
-    }
     public void OnPokeCharacterSelect()
     {
         TeleportMonstersToTargetPositions();
@@ -87,6 +89,32 @@ public class FieldManager : MonoBehaviour
             {
                 moveComponenet.StopMoving();
             }
+        }
+    }
+    public void MoveAllMonsters()
+    {
+        foreach (GameObject monster in fieldMonsterList)
+        {
+            RandomMove moveComponenet = monster.GetComponent<RandomMove>();
+            if (moveComponenet != null)
+            {
+                moveComponenet.StartMoving();
+            }
+        }
+    }
+
+    public void DisableAllMonsters()
+    {
+        foreach (GameObject monster in fieldMonsterList)
+        {
+            monster.SetActive(false);
+        }
+    }
+    public void EnableAllMonsters()
+    {
+        foreach (GameObject monster in fieldMonsterList)
+        {
+            monster.SetActive(true);
         }
     }
 
