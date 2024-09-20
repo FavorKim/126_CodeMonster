@@ -49,9 +49,9 @@ MonoBehaviour:
   isGameOver: 0
   isLoop: 0
   monsterPrefabs:
-  - {fileID: 3239263549213024796, guid: 9d4c1dfcd117949408152fc9764bdc35, type: 3}
-  - {fileID: 2375313993706534797, guid: ce0c484ba69cef44f86c19d77dd11692, type: 3}
   - {fileID: 428011253251531291, guid: 33cab56f6a9536347b88fa0f80fd4d6f, type: 3}
+  - {fileID: 2375313993706534797, guid: ce0c484ba69cef44f86c19d77dd11692, type: 3}
+  - {fileID: 3239263549213024796, guid: 9d4c1dfcd117949408152fc9764bdc35, type: 3}
 --- !u!1001 &2186717478662855414
 PrefabInstance:
   m_ObjectHideFlags: 0

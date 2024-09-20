@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d32f5131cc4c64ea072de23d5396bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockName: 4
+  BlockName: 6
   BlockType: 1
   BlockContainerUI: {fileID: 0}
   MakeLoopBlockUI: {fileID: 0}
@@ -236,6 +236,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grab: {fileID: -4889243595519333434}
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-6075006855654281152
 MonoBehaviour:
   m_ObjectHideFlags: 0

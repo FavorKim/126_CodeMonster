@@ -47,7 +47,7 @@ public class InteractEventManager : Singleton<InteractEventManager>
 
     public void RegistOnPokeBtn(PokeButton btn, UnityAction action)
     {
-        btnDict[btn].OnPoke.AddListener(action);// += action;
+        btnDict[btn].OnPoke?.AddListener(action);// += action;
     }
 
 

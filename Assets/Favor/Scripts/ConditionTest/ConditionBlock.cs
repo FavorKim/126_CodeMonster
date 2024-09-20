@@ -6,6 +6,8 @@ public class ConditionBlock : MonoBehaviour
     [SerializeField] CodeBlockDrag FalseType;
     public CodeBlockDrag TrueBlock { get; private set; }
     public CodeBlockDrag FalseBlock { get; private set; }
+
+    public int indexValueDebug;
     public int indexValue { get; private set; }
 
     CustomGrabObject grab;
@@ -13,6 +15,8 @@ public class ConditionBlock : MonoBehaviour
 
     private void Start()
     {
+        if(indexValueDebug !=0)
+            indexValue = indexValueDebug;
         grab = GetComponent<CustomGrabObject>();
         grab.OnGrab.AddListener(OnGrabSetData);
         if (TrueType != null)
@@ -51,7 +55,7 @@ public class ConditionBlock : MonoBehaviour
     public int EvaluateCondition(Monster monster)
     {
         SetConditionBlockUI conUI = GetComponent<SetConditionBlockUI>();
-
+        DebugBoxManager.Instance.Log($" 조건블록 인덱스 밸류 {indexValue}");
         if (monster.TypeIndex == indexValue)
         {
             //DebugBoxManager.Instance.Log("참 블록 평가완료");

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public abstract class BaseState<T>  where T : class
@@ -62,14 +63,10 @@ public class CheckState : BaseState<Player>
             if(StageManager.Instance.CheckMonsterAndPlayerPos(Controller.playerPosition))
             {
                 MonsterController mon = Controller.GetMonsterControllerWithPlayer();
-                if(mon != null)
+                if(!mon.IsMonsterHPUnderZero())
                 {
                     mon.Attack();
                     Controller.Die();
-                }
-                else
-                {
-                    DebugBoxManager.Instance.Log("몬스터 널");
                 }
             }
             Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);
@@ -106,10 +103,40 @@ public class CheckState : BaseState<Player>
         else if (blockIndex == 8)
         {
             DebugBoxManager.Instance.Log("8번 인덱스. 조건블록");
+            DebugBoxManager.Instance.Log($"현재 인덱스 : {Controller.CurrentIndex}");
             //Controller.IsIfUsed = true;
-            SetConditionBlockUI cond = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex(Controller.CurrentIndex).GetConditionBlockUI();
-            cond.EnableConditionBlockListImage();
-            Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
+            DebugBoxManager.Instance.Log($"isLoop : {Controller.isLoop}");
+            if (Controller.isLoop == false)
+            {
+                SetConditionBlockUI cond = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex(Controller.CurrentIndex).GetConditionBlockUI();
+                if (cond != null)
+                {
+                    DebugBoxManager.Instance.Log("컨디션블록 불러옴");
+                    cond.EnableConditionBlockListImage();
+                    Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
+                }
+                else
+                {
+                    DebugBoxManager.Instance.Log("컨디션 블록 널");
+                }
+            }
+            else
+            {
+                SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex(Controller.ForceGetCurrentIndex()).GetLoopBlockUI();
+                SetConditionBlockUI cond = loop.GetConditionByIndex(Controller.CurrentIndex);
+                if(cond != null)
+                {
+                    DebugBoxManager.Instance.Log("컨디션블록 불러옴");
+                    cond.EnableConditionBlockListImage();
+                    Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
+                }
+                else
+                {
+                    DebugBoxManager.Instance.Log("컨디션 블록 널 (loop)");
+
+                }
+
+            }
         }
         else if (blockIndex == 9)
         {
@@ -177,6 +204,7 @@ public class AttackState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
+        DebugBoxManager.Instance.Log($"현재 공격 블록의 인덱스 : {blockIndex}");
         Controller.Attack(blockIndex);
     }
 

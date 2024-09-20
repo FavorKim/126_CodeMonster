@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
             curLoopCount = value;
             if(curLoopCount >= maxLoopCount)
             {
+                DebugBoxManager.Instance.Log("루프카운트 초과로 인한 루프 비활성화");
                 isLoop = false;
                 currentIndex++;
             }
@@ -87,6 +88,8 @@ public class Player : MonoBehaviour
         CurLoopIndex = 0;
         CurLoopCount = 0;
         isLoop = false;
+        DebugBoxManager.Instance.Log("리셋으로 인한 루프 비활성화");
+
     }
 
     public Vector2Int playerPosition { get { return position; } }
@@ -216,7 +219,7 @@ public class Player : MonoBehaviour
     {
         int attackBlockType = blockIndex; // 블록의 인덱스 자체를 공격 타입으로 사용
 
-        WinEvent += PlayerWinEvent;
+        //WinEvent += PlayerWinEvent;
         BattleManager.Instance.BattlePhase(position, attackBlockType);
 
         isAttack = true;
@@ -229,7 +232,7 @@ public class Player : MonoBehaviour
             currentIndex++;
         else
             CurLoopIndex = curLoopIndex + 1;
-        WinEvent -= PlayerWinEvent;
+        //WinEvent -= PlayerWinEvent;
         stateMachine.ChangeState(PlayerStateName.CHECK);
     }
 
@@ -264,7 +267,8 @@ public class Player : MonoBehaviour
     public void Win()
     {
         EnableTypeMonsterPrefab(4);
-        WinEvent?.Invoke();
+        PlayerWinEvent();
+        //WinEvent?.Invoke();
     }
 
     public void Defeat()
@@ -315,13 +319,13 @@ public class Player : MonoBehaviour
 
         switch (monsterTypeIndex)
         {
-            case 3:
+            case 1:
                 monster.transform.SetParent(this.transform.GetChild(1));
                 break;
             case 2:
                 monster.transform.SetParent(this.transform.GetChild(2));
                 break;
-            case 1:
+            case 3:
                 monster.transform.SetParent(this.transform.GetChild(3));
                 break;
         }

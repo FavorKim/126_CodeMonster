@@ -11,7 +11,18 @@ public class SetLoopBlockUI : MonoBehaviour
     public List<int> LoopBlockList = new List<int>();
     private List<MaterialChanger> materialChangers = new List<MaterialChanger>();
 
-    public int LoopCount { get; set; }
+    public int loopCount;
+    public int LoopCount 
+    {
+        get 
+        {
+            return loopCount;
+        }
+        set
+        {
+            loopCount = value;
+        }
+    }
 
     public int CountLoopBlockListBox()
     {
@@ -72,6 +83,44 @@ public class SetLoopBlockUI : MonoBehaviour
     }
     public void SetBlockMaterial(int index, MaterialType type)
     {
+        if(materialChangers.Count == 0)
+        {
+            for (int i = 0; i < LoopBlockListBox.transform.childCount; i++) 
+            {
+                materialChangers.Add(LoopBlockListBox.transform.GetChild(i).GetComponent<MaterialChanger>());
+            }
+        }
         materialChangers[index].ChangeMaterial(type);
+    }
+
+    public SetConditionBlockUI GetConditionByIndex(int index)
+    {
+        //DebugBoxManager.Instance.Log($"Loop : 매개 인덱스 : {index}, 차일드 카운트 : {LoopBlockListBox.transform.childCount}");
+
+        if (LoopBlockList[index]== 8)
+        {
+            SetConditionBlockUI cond = LoopBlockListBox.transform.GetChild(index).GetComponent<SetConditionBlockUI>();
+            return cond;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("조건블록이 아닙니다 (루프블록)");
+            return null;
+        }
+    }
+    public ConditionBlock GetConditionBlockByIndex(int index)
+    {
+        //DebugBoxManager.Instance.Log($"Loop cb : 매개 인덱스 : {index}, 차일드 카운트 : {LoopBlockListBox.transform.childCount}");
+
+        if (LoopBlockList[index] == 8)
+        {
+            ConditionBlock cond = LoopBlockListBox.transform.GetChild(index).GetComponent<ConditionBlock>();
+            return cond;
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("조건블록이 아닙니다 (루프블록)");
+            return null;
+        }
     }
 }

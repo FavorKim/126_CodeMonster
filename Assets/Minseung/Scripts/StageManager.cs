@@ -94,10 +94,12 @@ public class StageManager : Singleton<StageManager>
             enemy.SetActive(true);
             enemy.transform.position = enemyPosition;
             monsterDic.Add(key, enemy);
+            int bushIndex = 0;
             if (DataManagerTest.Instance.GetMonsterData(enemyID).TypeIndex == 0)
             {
-                List<GameObject> list = ReturnBushMonsterObj(currentStageMap.BushMonsterIDList[i]);
+                List<GameObject> list = ReturnBushMonsterObj(currentStageMap.BushMonsterIDList[bushIndex]);
                 bushMonster.Add(key, list);
+                bushIndex++;
             }
         }
     }

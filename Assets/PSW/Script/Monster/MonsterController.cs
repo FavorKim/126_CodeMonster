@@ -8,6 +8,16 @@ public class MonsterController : MonoBehaviour
 
     protected Animator _animator;
     [SerializeField]private int hp;
+    int HP
+    {
+        get { return hp; }
+        set
+        {
+            hp = value;
+            if (IsMonsterHPUnderZero())
+                Die();
+        }
+    }
     private int maxHP;
 
     private void Awake()
@@ -42,7 +52,7 @@ public class MonsterController : MonoBehaviour
     {
         //애니메이션 재생
 
-        hp--;
+        HP--;
         DebugBoxManager.Instance.Log($"적 몬스터 피격! 적 몬스터 남은 체력 : {hp}");
 
     }

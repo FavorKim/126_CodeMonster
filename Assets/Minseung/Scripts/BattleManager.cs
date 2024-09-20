@@ -74,8 +74,8 @@ public class BattleManager : Singleton<BattleManager>
 
             string monsterName = monsterObj.name;
             Monster monster = DataManagerTest.Instance.GetMonsterData(monsterName);
-            MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex);
-            if(monsterObj == null)
+            MonsterType monsterType = DataManagerTest.Instance.GetMonsterTypeData(monster.TypeIndex + 4);
+            if (monsterObj == null)
             {
                 DebugBoxManager.Instance.Log("몬스터오브젝 널");
             }
@@ -90,12 +90,24 @@ public class BattleManager : Singleton<BattleManager>
             // 조건문을 사용할 경우 등장한 조건문에 맞는 공격블록으로 인덱스 변경
             if (attackBlockType == 8)
             {
-                attackBlockType = UIManager.Instance.BlockContainerManager.GetConditionBlockByIndex(player.CurrentIndex).EvaluateCondition(monster);
-                //DebugBoxManager.Instance.Log($"{attackBlockType}번 인덱스 공격 (풀 물 불)");
+                if (player.isLoop == false)
+                {
+                    attackBlockType = UIManager.Instance.BlockContainerManager.GetConditionBlockByIndex(player.CurrentIndex).EvaluateCondition(monster);
+                    DebugBoxManager.Instance.Log($"{attackBlockType}번 인덱스 공격 (불 물 풀)");
+                }
+                else
+                {
+                    SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(player.ForceGetCurrentIndex());
+                    ConditionBlock cond = loop.GetConditionBlockByIndex(player.CurrentIndex);
+                    attackBlockType = cond.EvaluateCondition(monster);
+                    DebugBoxManager.instance.Log($"{attackBlockType}번 인덱스 공격 (반복중)");
+                }
             }
 
             player.EnableTypeMonsterPrefab(attackBlockType);
 
+            UnityEngine.Debug.LogWarning($"공격블록 타입 : {attackBlockType}");
+            UnityEngine.Debug.LogWarning($"적 몬스터 타입 : {monsterType.TypeIndex}");
             // 공격 블록의 타입과 몬스터의 약점 비교
             if (GameRule.CompareType(attackBlockType, monsterType.TypeIndex))
             {
@@ -104,9 +116,8 @@ public class BattleManager : Singleton<BattleManager>
                 UnityEngine.Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 DebugBoxManager.Instance.Log("공격성공");
 
-                
 
-                targetMonsterController.Hit();
+
                 //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
                 // 승리 처리: 플레이어의 승리 메서드 호출
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
@@ -118,7 +129,7 @@ public class BattleManager : Singleton<BattleManager>
                 DebugBoxManager.Instance.Log("공격실패");
 
                 // 패배 처리: 플레이어의 패배 메서드 호출
-                UIManager.Instance.BlockContainerManager.SetXIcon(player.CurrentIndex, true);
+                UIManager.Instance.BlockContainerManager.SetXIcon(player.ForceGetCurrentIndex(), true);
 
                 //player.EnableTypeMonsterPrefab(4);
                 //Invoke(nameof(PlayerDefeat), 2);
@@ -153,13 +164,11 @@ public class BattleManager : Singleton<BattleManager>
 
     private void PlayerWin()
     {
+        targetMonsterController.Hit();
 
         player.Win();
-        if (targetMonsterController.IsMonsterHPUnderZero())
-        {
-            targetMonsterController.Die();
 
-        }
+
     }
 
     private void PlayerDefeat()
