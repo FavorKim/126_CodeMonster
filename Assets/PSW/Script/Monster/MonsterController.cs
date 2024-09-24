@@ -28,14 +28,13 @@ public class MonsterController : MonoBehaviour
     void Start()
     {
         maxHP = hp;
-        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, OnReset_ResetHP);
+        if (!TryGetComponent(out GrabCharacter character))
+        {
+            InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, OnReset_ResetHP);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
    
 

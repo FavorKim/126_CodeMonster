@@ -56,5 +56,6 @@ public class RandomMove : MonoBehaviour
     public void TeleportToPosition(Vector3 target)
     {
         transform.position = target;
+        transform.localRotation = Quaternion.identity;
     }
 }

@@ -58,36 +58,45 @@ public class GameManager : Singleton<GameManager>
 
     public List<int> GetMonsterTypeInIndex(int stageIndex)
     {
-        List<int> list = DataManagerTest.instance.GetStageMapData(stageIndex).MonsterIDList;
-
-        if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList != null)
+        StageMap stageInfo = DataManagerTest.instance.GetStageMapData(stageIndex);
+        if (stageInfo == null)
         {
-            foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList)
+            Debug.LogError("StageInfo is NULL!");
+            return null;
+        }
+        else
+        {
+            List<int> list = stageInfo.MonsterIDList;
+
+            if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList != null)
             {
-
-                var replaceString = item.Replace("(", "").Replace(")", "");
-
-                var elements = replaceString.Split('/');
-
-                for (int i = 0; i < elements.Length; i++)
+                foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList)
                 {
-                    var element = elements[i];
-                    list.Add(int.Parse(element));
+
+                    var replaceString = item.Replace("(", "").Replace(")", "");
+
+                    var elements = replaceString.Split('/');
+
+                    for (int i = 0; i < elements.Length; i++)
+                    {
+                        var element = elements[i];
+                        list.Add(int.Parse(element));
+                    }
                 }
             }
-        }
 
-        List<int> monsterTypeIndexList = new List<int>();
-        foreach (var item in list)
-        {
-            int monsterTypeIndex = DataManagerTest.instance.GetMonsterData(item).TypeIndex;
-
-            if (monsterTypeIndexList.Contains(monsterTypeIndex) == false)
+            List<int> monsterTypeIndexList = new List<int>();
+            foreach (var item in list)
             {
-                monsterTypeIndexList.Add(monsterTypeIndex);
-            }
-        }
+                int monsterTypeIndex = DataManagerTest.instance.GetMonsterData(item).TypeIndex;
 
-        return monsterTypeIndexList;
+                if (monsterTypeIndexList.Contains(monsterTypeIndex) == false)
+                {
+                    monsterTypeIndexList.Add(monsterTypeIndex);
+                }
+            }
+
+            return monsterTypeIndexList;
+        }
     }
 }

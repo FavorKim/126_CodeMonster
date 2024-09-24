@@ -284,6 +284,12 @@ public class DataManagerTest : Singleton<DataManagerTest>
         return LoadedMoveBlockList[blockIndex];
     }
 
+    public int GetWeaknessIndexByTypeIndex(int typeIndex)
+    {
+        MonsterType type = GetMonsterTypeData(typeIndex + 4);
+        return type.Weakness - 4;
+    }
+
     public AttackBlock GetAttackBlockData(int blockIndex)
     {
         if (LoadedAttackBlockList.Count == 0 || !LoadedAttackBlockList.ContainsKey(blockIndex))
@@ -294,10 +300,19 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
     public StageMap GetStageMapData(int dataIndex)
     {
-        if (LoadedStageMap.Count == 0 || !LoadedStageMap.ContainsKey(dataIndex))
-            return null;
+        if (LoadedStageMap != null)
+        {
 
-        return LoadedStageMap[dataIndex];
+            if (LoadedStageMap.Count == 0 || !LoadedStageMap.ContainsKey(dataIndex))
+                return null;
+
+            return LoadedStageMap[dataIndex];
+        }
+        else
+        {
+            Debug.LogError("LoadedStageMap is NULL");
+            return null;
+        }
     }
 
     public MonsterType GetMonsterTypeData(int dataIndex)

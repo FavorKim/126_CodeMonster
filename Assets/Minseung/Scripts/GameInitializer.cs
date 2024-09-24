@@ -22,8 +22,11 @@ public class GameInitializer : MonoBehaviour
         OnStageManagerSet?.Invoke(stageManager);
         // 데이터 로드 후 스테이지 데이터 가져오기
         var stageMapData = dataManagerTest.GetStageMapData(UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum);
+        
+        
         // StageManager에 전달하여 스테이지 생성
-        stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab);
+        if (stageMapData != null)
+            stageManager.InitializeStage(stageMapData, floorPrefabs, wallPrefabs, playerPrefab);
     }
   
 }

@@ -69,6 +69,7 @@ public class UIManager : Singleton<UIManager>
 
     public BlockContainerManager BlockContainerManager;
     public MakeLoopBlockContainerManager MakeLoopBlockContainerManager;
+    public SelectCharacterUIManager SelectCharacterUIManager;
     private StageBlockUIManager StageBlockManager;
     private BlockCountBox BlockCountBox;
 

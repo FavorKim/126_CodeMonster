@@ -25,15 +25,25 @@ public class CustomGrabObject : MonoBehaviour
         }
     }
 
+    public void InitOnStateChanged()
+    {
+        if (grab == null)
+        {
+            grab = GetComponent<HandGrabInteractable>();
+            grab.WhenStateChanged += OnGrabStateChanged;
+        }
+    }
+
 
     private void OnDisable()
     {
-        grab.WhenStateChanged -= OnGrabStateChanged;
+        if (grab != null)
+            grab.WhenStateChanged -= OnGrabStateChanged;
     }
 
-    public void InitHandGrabInteractable(HandGrabInteractable grab)
+    public void InitHandGrabInteractable()
     {
-        this.grab = grab;
+        grab = GetComponent<HandGrabInteractable>();
         this.grab.WhenStateChanged += OnGrabStateChanged;
     }
 

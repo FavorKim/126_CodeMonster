@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 67617356280724811}
   - component: {fileID: 6089934158010721257}
   - component: {fileID: -4067766601653071585}
+  - component: {fileID: -6776600802452154970}
   m_Layer: 0
   m_Name: Char_Unique_Battle_Character_Water_01 1 1
   m_TagString: Untagged
@@ -434,6 +435,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+--- !u!114 &-6776600802452154970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754772118753397383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6786b96c7d0d54aad471d6a3e1f642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grab: {fileID: 0}
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3000565681395770975
 GameObject:
   m_ObjectHideFlags: 0

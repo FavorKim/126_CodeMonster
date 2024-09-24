@@ -19,10 +19,8 @@ public class FieldManager : Singleton<FieldManager>
     [SerializeField] List<GameObject> fieldMonsterList = new List<GameObject>();
     [SerializeField] List<Vector3> targetPositions;
 
-
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
         //DataManagerTest.Instance.LoadedMonsterList
         //foreach (GameObject gobj in)
 
@@ -31,17 +29,12 @@ public class FieldManager : Singleton<FieldManager>
             Vector3 randomPosition = GetRandomSpawnPosition();
             GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
             InitMonster(monster);
-            
+
             monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R)) 
-        {
-            OnPokeCharacterSelect();
-        }
-    }
+
+ 
 
     private void InitMonster(GameObject monster)
     {
@@ -55,12 +48,12 @@ public class FieldManager : Singleton<FieldManager>
         HandGrabInteractable hand = monster.AddComponent<HandGrabInteractable>();
         hand.InjectRigidbody(rb);
         hand.InjectOptionalPointableElement(grab);
-        CustomGrabObject customGrabObject = monster.AddComponent<CustomGrabObject>();
-        customGrabObject.InitHandGrabInteractable(hand);
+        CustomGrabObject customGrabObject = monster.GetComponent<CustomGrabObject>();
+        customGrabObject.InitHandGrabInteractable();
         randomMove.SetMoveSpeed(Random.Range(1f, 3f));
         monster.AddComponent<RectTransform>();
         GrabCharacter GC = monster.AddComponent<GrabCharacter>();
-        GC.InitGrab(customGrabObject);
+        GC.InitGrab();
 
         fieldMonsterList.Add(monster);
     }

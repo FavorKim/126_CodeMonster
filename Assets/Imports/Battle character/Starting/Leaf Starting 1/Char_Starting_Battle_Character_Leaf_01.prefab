@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 6338841574263709632}
   - component: {fileID: 8187451374493336663}
   - component: {fileID: -3385685439757072287}
+  - component: {fileID: -173223324532331875}
   m_Layer: 0
   m_Name: Char_Starting_Battle_Character_Leaf_01
   m_TagString: Untagged
@@ -484,6 +485,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+--- !u!114 &-173223324532331875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842458599697738422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6786b96c7d0d54aad471d6a3e1f642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grab: {fileID: 0}
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7657876676996022963
 GameObject:
   m_ObjectHideFlags: 0

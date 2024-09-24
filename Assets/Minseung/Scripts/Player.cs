@@ -73,13 +73,7 @@ public class Player : MonoBehaviour
         private set;
     }
 
-    public void SetMaxLoopCount(int loopCount) { maxLoopCount = loopCount; }   
-    public void SetMaxLoopIndex(int index) { maxLoopIndex = index; }   
-    public void SetLoopBlock(SetLoopBlockUI loopBlock) { this.loopBlock = loopBlock; }
-    public void SetIsLoop(bool isloop) 
-    {
-        isLoop = isloop;
-    }
+    
 
     private void ResetLoopVariable()
     {
@@ -298,6 +292,9 @@ public class Player : MonoBehaviour
 
     private void SetPlayerPrefab()
     {
+        List<GameObject> list = UIManager.Instance.SelectCharacterUIManager.GetSelectedMonsters();
+        monsterPrefabs = list;
+
         for (int i = 0; i < monsterPrefabs.Count; i++)
         {
             GameObject monster = Instantiate(monsterPrefabs[i]);
@@ -375,5 +372,13 @@ public class Player : MonoBehaviour
         GameObject monObj = StageManager.Instance.GetMonsterWithPlayerPos(playerPosition);
         MonsterController mon = monObj.GetComponent<MonsterController>();
         return mon;
+    }
+
+    public void SetMaxLoopCount(int loopCount) { maxLoopCount = loopCount; }
+    public void SetMaxLoopIndex(int index) { maxLoopIndex = index; }
+    public void SetLoopBlock(SetLoopBlockUI loopBlock) { this.loopBlock = loopBlock; }
+    public void SetIsLoop(bool isloop)
+    {
+        isLoop = isloop;
     }
 }
