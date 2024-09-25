@@ -99,6 +99,7 @@ public class OutgameUIManager : MonoBehaviour
     {
         ClickStartStage();
         FieldManager.Instance.DisableAllMonsters();
+        
         UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
     }
     private void OnClickBactToStage()

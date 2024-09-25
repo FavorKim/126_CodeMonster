@@ -8,16 +8,16 @@ public class GameManager : Singleton<GameManager>
 {
     private List<string> _playerMonsterNameList = new List<string>();
     [SerializeField] Transform CollectingPos;
-    [SerializeField] GameObject PlayerPrefab;
+    [SerializeField] public GameObject PlayerPrefab;
     [SerializeField] GameObject ScreenBlocker;
     [SerializeField] GameObject LoadingBar;
-    Transform PlayerOriginPos;
+    Vector3 PlayerOriginPos;
 
     protected override void Start()
     {
         base.Start();
         _playerMonsterNameList = DataManagerTest.instance.GetPlayerData("Player").StartMonsterNameList;
-        PlayerOriginPos.position = PlayerPrefab.transform.position;
+        PlayerOriginPos = PlayerPrefab.transform.position;
     }
 
     private void Update()
@@ -211,6 +211,6 @@ public class GameManager : Singleton<GameManager>
 
     public void ResetPlayerPosition()
     {
-        PlayerPrefab.transform.position = PlayerOriginPos.position;
+        PlayerPrefab.transform.position = PlayerOriginPos;
     }
 }

@@ -37,7 +37,7 @@ public class FieldManager : Singleton<FieldManager>
             GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
             InitMonster(monster);
 
-            monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            monster.transform.localScale = Vector3.one;
         }
     }
 
@@ -80,12 +80,14 @@ public class FieldManager : Singleton<FieldManager>
 
     public void TeleportMonstersToTargetPositions()
     {
+        Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
         for (int i = 0; i < fieldMonsterList.Count; i++)
         {
             RandomMove moveComponent = fieldMonsterList[i].GetComponent<RandomMove>();
             if (moveComponent != null)
             {
                 moveComponent.TeleportToPosition(targetPositions[i]);
+                moveComponent.transform.localScale = scale;
             }
         }
     }
@@ -118,7 +120,10 @@ public class FieldManager : Singleton<FieldManager>
         foreach (GameObject monster in fieldMonsterList)
         {
             monster.SetActive(false);
+            monster.transform.SetParent(null);
         }
+        StopAllMonsters();
+        UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
     }
     public void EnableAllMonsters()
     {

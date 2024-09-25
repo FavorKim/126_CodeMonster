@@ -99,7 +99,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     {
         if (!selectedMonsters.Contains(monster))
         {
-            FieldManager.Instance.TeleportMonstersToTargetPositions();
+            //FieldManager.Instance.TeleportMonstersToTargetPositions();
             monster.transform.SetParent(CharacterContainer.transform, false);
             SetMonsterList();
             //monster.transform.localPosition = Vector3.zero;
@@ -120,8 +120,8 @@ public class SelectCharacterUIManager : MonoBehaviour
         {
             monster.transform.SetParent(null);
             SetMonsterList();
-            FieldManager.Instance.TeleportMonstersToTargetPositions();
-            monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            //FieldManager.Instance.TeleportMonstersToTargetPositions();
+            //monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             DebugBoxManager.Instance.Log("캐릭터 등록 해제");
             CheckCanStart();
         }
@@ -136,7 +136,7 @@ public class SelectCharacterUIManager : MonoBehaviour
         foreach (Transform t in CharacterContainer.transform)
         {
             t.SetParent(null);
-            t.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            t.localScale = Vector3.one;
         }
     }
     private void SetMonsterList()

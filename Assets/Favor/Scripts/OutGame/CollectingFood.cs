@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CollectingFood : MonoBehaviour
 {
-    Transform originPos;
+    Vector3 originPos;
 
     private void Start()
     {
-        transform.position = originPos.position;
+        originPos = transform.position;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +26,6 @@ public class CollectingFood : MonoBehaviour
     }
     public void ResetPosition()
     {
-        transform.position = originPos.position;
+        transform.position = originPos;
     }
 }
