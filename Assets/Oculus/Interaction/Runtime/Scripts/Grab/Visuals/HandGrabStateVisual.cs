@@ -56,7 +56,9 @@ namespace Oculus.Interaction.HandGrab
             this.EndStart(ref _started);
         }
 
-        private void LateUpdate()
+        private void Late
+            
+            ()
         {
             ConstrainingForce(HandGrabState, out float fingersConstraint, out float wristConstraint);
             UpdateHandPose(HandGrabState, fingersConstraint, wristConstraint);

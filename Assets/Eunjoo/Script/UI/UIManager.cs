@@ -91,13 +91,7 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(false);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            OnStartStage();
-        }
-    }
+   
 
     public void OnStartStage()
     {

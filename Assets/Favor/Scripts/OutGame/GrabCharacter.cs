@@ -6,7 +6,7 @@ public class GrabCharacter : MonoBehaviour
 {
     CustomGrabObject grab;
 
-    bool isTriggered = false;
+    [SerializeField]bool isTriggered = false;
 
 
     private void OnEnable()
@@ -29,10 +29,12 @@ public class GrabCharacter : MonoBehaviour
             grab.OnRelease.AddListener(SelectMonster);
         }
     }
-    
+
+   
 
     private void OnDisable()
     {
+        DebugBoxManager.Instance.Log("OnDisable");
         if(grab!= null)
         {
             grab.OnRelease?.RemoveListener(SelectMonster);

@@ -251,6 +251,11 @@ public class DataManagerTest : Singleton<DataManagerTest>
     {
         string name = RemoveTextAfterParenthesis(dataName);
 
+        if(LoadedMonsterList == null || LoadedMonsterList.Count == 0)
+        {
+            DebugBoxManager.Instance.Log("로디드몬스터 설정안됨");
+        }
+
         if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(name))
             return null;
 

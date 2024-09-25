@@ -12,22 +12,17 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject ScreenBlocker;
     [SerializeField] GameObject LoadingBar;
     Vector3 PlayerOriginPos;
+    Quaternion PlayerOriginRot;
 
     protected override void Start()
     {
         base.Start();
         _playerMonsterNameList = DataManagerTest.instance.GetPlayerData("Player").StartMonsterNameList;
         PlayerOriginPos = PlayerPrefab.transform.position;
+        PlayerOriginRot = PlayerPrefab.transform.rotation;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SetPlayerPosToCollectingZone();
-        }
-    }
-
+    
     public void AddMonsterInPlayerList(string monsterName)//플레이어 보유 몬스터에 몬스터를 추가
     {
         var name = DataManagerTest.instance.RemoveTextAfterParenthesis(monsterName);
@@ -212,5 +207,6 @@ public class GameManager : Singleton<GameManager>
     public void ResetPlayerPosition()
     {
         PlayerPrefab.transform.position = PlayerOriginPos;
+        PlayerPrefab.transform.rotation = PlayerOriginRot;
     }
 }

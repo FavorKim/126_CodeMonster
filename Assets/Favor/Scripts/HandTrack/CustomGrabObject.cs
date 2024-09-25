@@ -52,13 +52,21 @@ public class CustomGrabObject : MonoBehaviour
         // Grab됐을 때
         if (args.NewState == InteractableState.Select)
         {
-            OnGrab.Invoke();
+            if(OnGrab == null)
+            {
+                DebugBoxManager.Instance.Log($"{gameObject.name}의 On Grab이 NULL");
+            }
+            OnGrab?.Invoke();
         }
 
         // Release 됐을 때
         else if (args.PreviousState == InteractableState.Select && args.NewState != InteractableState.Select)
         {
-            OnRelease.Invoke();
+            if (OnRelease == null)
+            {
+                DebugBoxManager.Instance.Log($"{gameObject.name}의 OnRelease가 NULL");
+            }
+            OnRelease?.Invoke();
         }
     }
 }

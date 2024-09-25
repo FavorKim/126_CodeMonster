@@ -29,7 +29,7 @@ public class CollectManager : Singleton<CollectManager>
 
     [SerializeField] float MaxCaptureGauge = 5.0f;
     [SerializeField] float decreaseAmount = 0.5f;
-    bool isCapturing;
+    [SerializeField] bool isCapturing;
     public bool IsCapturing
     {
         get
@@ -47,6 +47,8 @@ public class CollectManager : Singleton<CollectManager>
         base.Start();
         gameObject.SetActive(false);
     }
+
+
     public void OnStartCollectScene()
     {
         gameObject.SetActive(true);
@@ -59,6 +61,8 @@ public class CollectManager : Singleton<CollectManager>
         gameObject.SetActive(false);
         UIManager.Instance.OutgameUIManager.ClickGoToChapter();
         GameManager.Instance.ResetPlayerPosition();
+        FieldManager.Instance.EnableAllMonsters();
+        FieldManager.Instance.MoveAllMonsters();
     }
 
     public void OnCompleteCollect()
@@ -91,7 +95,8 @@ public class CollectManager : Singleton<CollectManager>
 
         spawnedMonster = MonsterObjPoolManger.Instance.GetMonsterPrefab(uniqueMonsterName);
 
-        Instantiate(spawnedMonster, MonsterSpawnPos.transform.position, Quaternion.Euler(0, 180, 0));
+        spawnedMonster = Instantiate(spawnedMonster, MonsterSpawnPos.transform.position, Quaternion.Euler(0, 180, 0));
+        spawnedMonster.SetActive(true);
     }
 
     private void Update()
@@ -107,6 +112,7 @@ public class CollectManager : Singleton<CollectManager>
                 CaptureGauge += Time.deltaTime;
         }
         MoveSpawnedMonster();
+
     }
 
     void MoveSpawnedMonster()
@@ -115,7 +121,8 @@ public class CollectManager : Singleton<CollectManager>
         if (isCapturing)
         {
             if (CaptureGauge < MaxCaptureGauge)
-                spawnedMonster.transform.Translate(FeedArea.position * CaptureGauge / MaxCaptureGauge);
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterSpawnPos.position, FeedArea.position, CaptureGauge / MaxCaptureGauge);
+
         }
         else
         {
@@ -125,7 +132,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             else
             {
-                spawnedMonster.transform.Translate(MonsterSpawnPos.position * (1 - CaptureGauge / MaxCaptureGauge));
+                spawnedMonster.transform.position = Vector3.Lerp(FeedArea.position, MonsterSpawnPos.position, CaptureGauge / MaxCaptureGauge);
             }
         }
     }

@@ -104,6 +104,7 @@ public class OutgameUIManager : MonoBehaviour
     {
         ClickGoToStage();
         UIManager.Instance.DisableIngameUI();
+        UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
         FieldManager.Instance.EnableAllMonsters();
         FieldManager.Instance.MoveAllMonsters();
     }

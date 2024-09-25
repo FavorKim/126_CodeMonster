@@ -10,17 +10,20 @@ public class DebugBoxManager : Singleton<DebugBoxManager>
 
     public void Log(string msg)
     {
+        if(Txt_DebugMsg != null)
         Txt_DebugMsg.text += msg + '\n';
             
     }
 
     public void Log()
     {
+        if(Txt_DebugMsg != null)
         Txt_DebugMsg.text += "triggered";
     }
 
     public void ClearText()
     {
+        if(Txt_DebugMsg != null)
         Txt_DebugMsg.text = string.Empty;
     }
     

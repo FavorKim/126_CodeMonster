@@ -2528,6 +2528,7 @@ MonoBehaviour:
   captureGaugeSlider: {fileID: 1582186619}
   MaxCaptureGauge: 5
   decreaseAmount: 0.5
+  isCapturing: 0
 --- !u!1001 &1766097819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28126,7 +28127,7 @@ MonoBehaviour:
   MakeLoopBlockContainerManager: {fileID: 0}
   SelectCharacterUIManager: {fileID: 2134651361393835761}
   OutgameUIManager: {fileID: 6056548687455933855}
-  SelectChapterNum: 4000
+  SelectChapterNum: 1000
   SelectStageNum: 5
 --- !u!114 &5830719908479328763
 MonoBehaviour:
@@ -29041,7 +29042,7 @@ MonoBehaviour:
   ChapterUI: {fileID: 5188336778165290805}
   StageUI: {fileID: 6200740407175126481}
   SelectCharacterUI: {fileID: 1152711704871096943}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 208184972}
   ChapterText: {fileID: 4750573426118517316}
 --- !u!114 &6062355635969746020
 MonoBehaviour:
@@ -31745,7 +31746,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6456597888235070552}
   m_LocalRotation: {x: 0.010810819, y: 0.00032537492, z: 0.00043770554, w: 0.9999415}
-  m_LocalPosition: {x: 0, y: 0, z: 0.649}
+  m_LocalPosition: {x: 0, y: 0, z: 0.654}
   m_LocalScale: {x: 0.0012027929, y: 0.0012027929, z: 0.0012027929}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31756,7 +31757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 1.239, y: 0.038, z: 0.051}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.5, y: -0.777}
+  m_AnchoredPosition: {x: 1.5, y: -0.559}
   m_SizeDelta: {x: 1211.4558, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6456597888215374056
@@ -33150,7 +33151,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6456597888228499830}
   m_HandleRect: {fileID: 6456597888215404544}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -40436,6 +40437,18 @@ MonoBehaviour:
   OnPokeRelease:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2134651361393835761}
+        m_TargetAssemblyTypeName: SelectCharacterUIManager, Assembly-CSharp
+        m_MethodName: RemoveAllMonsters
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6056548687455933855}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
         m_MethodName: ClickGoToStage
@@ -40451,18 +40464,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1871864019333841420}
         m_TargetAssemblyTypeName: FieldManager, Assembly-CSharp
         m_MethodName: MoveAllMonsters
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2134651361393835761}
-        m_TargetAssemblyTypeName: SelectCharacterUIManager, Assembly-CSharp
-        m_MethodName: RemoveAllMonsters
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -46203,7 +46204,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7361049280571607998}
   m_LocalRotation: {x: 0.24411243, y: -0.63924927, z: -0.19213575, w: 0.70345813}
-  m_LocalPosition: {x: 0, y: 0, z: 0.06}
+  m_LocalPosition: {x: 0, y: 0, z: 2.04}
   m_LocalScale: {x: 0.0019300001, y: 0.0019299999, z: 0.0019300006}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46212,7 +46213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.448, y: -83.267, z: 25.104}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -364.11, y: -203.51}
+  m_AnchoredPosition: {x: -364.25, y: -200.79}
   m_SizeDelta: {x: 943.32, y: 1401.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8756671618877344374

@@ -120,10 +120,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.UpdateState();
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            StartPlayerAction();
-        }
+       
     }
 
 

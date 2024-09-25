@@ -25,6 +25,8 @@ public class SelectCharacterUIManager : MonoBehaviour
         ResetBlock();
     }
 
+
+   
     public void CheckMonsterAttributes()
     {
         // 몬스터 타입 인덱스 리스트를 가져옴
@@ -97,6 +99,11 @@ public class SelectCharacterUIManager : MonoBehaviour
     }
     public void AddMonster(GameObject monster)
     {
+        if(monster == null)
+        {
+            DebugBoxManager.Instance.Log("AddmOnster NULL");
+            return;
+        }
         if (!selectedMonsters.Contains(monster))
         {
             //FieldManager.Instance.TeleportMonstersToTargetPositions();
@@ -106,7 +113,7 @@ public class SelectCharacterUIManager : MonoBehaviour
             monster.transform.localScale = new Vector3(70, 70, 70);
             monster.transform.localRotation = Quaternion.Euler(new Vector3(0, 120, 0));
             DebugBoxManager.Instance.Log("캐릭터 등록");
-            CheckCanStart();
+            //CheckCanStart(); 디버깅 할 수 없는 버그로 인해 사용 불가 (예컨대 sdk쪽 오류일 가능성 높음)
         }
         else
         {
@@ -116,6 +123,11 @@ public class SelectCharacterUIManager : MonoBehaviour
     }
     public void RemoveMonster(GameObject monster)
     {
+        if (monster == null)
+        {
+            DebugBoxManager.Instance.Log("RemoveMonster NULL");
+            return;
+        }
         if (selectedMonsters.Contains(monster))
         {
             monster.transform.SetParent(null);
@@ -123,7 +135,7 @@ public class SelectCharacterUIManager : MonoBehaviour
             //FieldManager.Instance.TeleportMonstersToTargetPositions();
             //monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             DebugBoxManager.Instance.Log("캐릭터 등록 해제");
-            CheckCanStart();
+            //CheckCanStart();
         }
         else
         {
@@ -150,6 +162,25 @@ public class SelectCharacterUIManager : MonoBehaviour
 
     private void CheckCanStart()
     {
+
+        if (GameManager.Instance == null || UIManager.Instance == null)
+        {
+            DebugBoxManager.Instance.Log("GameManager 또는 UIManager가 null입니다.");
+            return;
+        }
+
+        if (DataManagerTest.Instance == null)
+        {
+            DebugBoxManager.Instance.Log("DataManagerTest가 null입니다.");
+            return;
+        }
+
+        if (selectedMonsters == null || selectedMonsters.Count == 0)
+        {
+            DebugBoxManager.Instance.Log("selectedMonsters가 null이거나 Count가 0입니다.");
+            return;
+        }
+
         List<int> stageMonTypes = new List<int>();
         stageMonTypes = GameManager.Instance.GetMonsterTypeInIndex(UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum);
 
@@ -157,28 +188,31 @@ public class SelectCharacterUIManager : MonoBehaviour
         foreach (int type in stageMonTypes)
         {
             weaknesses.Add(DataManagerTest.Instance.GetWeaknessIndexByTypeIndex(type));
-            DebugBoxManager.Instance.Log($"weak : {DataManagerTest.Instance.GetWeaknessIndexByTypeIndex(type)}");
 
         }
 
         List<Monster> monsters = new List<Monster>();
-
+        if (selectedMonsters.Count == 0) { DebugBoxManager.Instance.Log("셀릭티드몬스터 카운트 0");  return; }
         foreach (GameObject monster in selectedMonsters)
         {
             Monster mon = DataManagerTest.Instance.GetMonsterData(monster.name);
             if (mon == null)
             {
                 DebugBoxManager.Instance.Log("Mon null");
+                return;
             }
             else
+            {
                 monsters.Add(mon);
+            }
         }
+
         List<int> monsterTypes = new List<int>();
         foreach(Monster mon in monsters)
         {
             monsterTypes.Add(mon.TypeIndex);
-            DebugBoxManager.Instance.Log($"mon Type : {mon.TypeIndex}");
         }
+        
         foreach(int weak in weaknesses)
         {
             if (monsterTypes.Contains(weak) == false)

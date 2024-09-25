@@ -73,7 +73,7 @@ public class CustomPokedObject : MonoBehaviour
         if (Txt_Btn == null)
             Txt_Btn = GetComponentInChildren<TMP_Text>();
         Txt_Btn.color = new Color(1, 1, 1, 1f);
-        poke.enabled = true;
+        //poke.enabled = true;
     }
     public void DisablePokeBtn()
     {
@@ -83,7 +83,7 @@ public class CustomPokedObject : MonoBehaviour
         if (Img_Btn == null)
             Img_Btn = GetComponentInChildren<Image>();
         Img_Btn.color = new Color(0, 0, 0, 0.1f);
-        poke.enabled = false;
+        //poke.enabled = false;
 
     }
 }
