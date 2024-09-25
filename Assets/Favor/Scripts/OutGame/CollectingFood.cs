@@ -27,5 +27,6 @@ public class CollectingFood : MonoBehaviour
     public void ResetPosition()
     {
         transform.position = originPos;
+        transform.rotation = Quaternion.identity;
     }
 }

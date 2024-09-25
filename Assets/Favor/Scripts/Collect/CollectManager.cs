@@ -10,17 +10,17 @@ public class CollectManager : Singleton<CollectManager>
     [SerializeField] Slider captureGaugeSlider;
     GameObject spawnedMonster;
     float captureGauge = 0;
-    public float CaptureGauge 
+    public float CaptureGauge
     {
         get
         {
-            return captureGauge; 
+            return captureGauge;
         }
         set
         {
             captureGauge = value;
             captureGaugeSlider.value = captureGauge / MaxCaptureGauge;
-            if(captureGauge>= MaxCaptureGauge)
+            if (captureGauge >= MaxCaptureGauge)
             {
                 GameManager.Instance.StartLoading(OnCompleteCollect);
             }
@@ -96,16 +96,15 @@ public class CollectManager : Singleton<CollectManager>
 
     private void Update()
     {
-        if(CaptureGauge > 0)
+        if (IsCapturing == false)
         {
-            if (IsCapturing == false)
-            {
-                CaptureGauge -= Time.deltaTime * decreaseAmount; 
-            }
-            else
-            {
+            if (CaptureGauge >= 0)
+                CaptureGauge -= Time.deltaTime * decreaseAmount;
+        }
+        else
+        {
+            if (CaptureGauge <= MaxCaptureGauge)
                 CaptureGauge += Time.deltaTime;
-            }
         }
         MoveSpawnedMonster();
     }

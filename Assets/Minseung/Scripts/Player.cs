@@ -115,6 +115,8 @@ public class Player : MonoBehaviour
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetPlayer);
     }
 
+    
+
     private void Update()
     {
         stateMachine.UpdateState();
@@ -293,6 +295,7 @@ public class Player : MonoBehaviour
     private void SetPlayerPrefab()
     {
         List<GameObject> list = UIManager.Instance.SelectCharacterUIManager.GetSelectedMonsters();
+        
         monsterPrefabs = list;
 
         for (int i = 0; i < monsterPrefabs.Count; i++)
@@ -303,7 +306,11 @@ public class Player : MonoBehaviour
             //DontDestroyOnLoad(monster);
             SetPrefabsParent(monster);
             monster.transform.localPosition = Vector3.zero;
-
+            monster.transform.localScale = Vector3.one;
+            if(monster.TryGetComponent(out RandomMove ran))
+            {
+                ran.StopMoving();
+            }
         }
 
         DisableTypeMonsterPrefab();
