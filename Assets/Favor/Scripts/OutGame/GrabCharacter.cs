@@ -11,6 +11,7 @@ public class GrabCharacter : MonoBehaviour
 
     private void OnEnable()
     {
+        
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = false;

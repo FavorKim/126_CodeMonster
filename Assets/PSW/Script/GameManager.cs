@@ -20,6 +20,9 @@ public class GameManager : Singleton<GameManager>
 
         if (CheckMonsterInPlayerList(name) == false)
         {
+            if(_playerMonsterNameList==null)
+                _playerMonsterNameList = DataManagerTest.instance.GetPlayerData("Player").StartMonsterNameList;
+
             _playerMonsterNameList.Add(name);
         }
         else
@@ -31,7 +34,8 @@ public class GameManager : Singleton<GameManager>
     public bool CheckMonsterInPlayerList(string monsterName)//플레이어 보유 몬스터에 몬스터가 있는지 검사
     {
         var name = DataManagerTest.instance.RemoveTextAfterParenthesis(monsterName);
-
+        if (_playerMonsterNameList == null)
+            _playerMonsterNameList = DataManagerTest.instance.GetPlayerData("Player").StartMonsterNameList;
         if (_playerMonsterNameList.Contains(name))
         {
             return true;

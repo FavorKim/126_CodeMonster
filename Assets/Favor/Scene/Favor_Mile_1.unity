@@ -858,6 +858,22 @@ PrefabInstance:
       propertyPath: Btn_StartStage
       value: 
       objectReference: {fileID: 87597893}
+    - target: {fileID: 4385764565919577527, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: monsterPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385764565919577527, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: monsterPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 5119512694560608456, guid: 13111808dbdbfc847960b30bec92b92f, type: 3}
+    - target: {fileID: 4385764565919577527, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: monsterPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1677719122148885517, guid: 959a95ae3baddc64f950c40be4036457, type: 3}
+    - target: {fileID: 4385764565919577527, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
+      propertyPath: monsterPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 2754772118753397383, guid: d737c226b77636c4f9d894a3df6f5a49, type: 3}
     - target: {fileID: 4431111607863670063, guid: a64e495c41f77894dad06b48508d11e8, type: 3}
       propertyPath: m_IsActive
       value: 1

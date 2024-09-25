@@ -19,12 +19,19 @@ public class FieldManager : Singleton<FieldManager>
     [SerializeField] List<GameObject> fieldMonsterList = new List<GameObject>();
     [SerializeField] List<Vector3> targetPositions;
 
-    private void Awake()
+  
+    protected override void Start()
     {
-        //DataManagerTest.Instance.LoadedMonsterList
-        //foreach (GameObject gobj in)
-
+        base.Start();
         foreach (GameObject prefab in monsterPrefabs)
+        {
+            InstantiateMonster(prefab);
+        }
+    }
+
+    private void InstantiateMonster(GameObject prefab)
+    {
+        if (GameManager.Instance.CheckMonsterInPlayerList(prefab.name))
         {
             Vector3 randomPosition = GetRandomSpawnPosition();
             GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);

@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PlayerData>
   <dataCategory>
-    <data PlayerName="Player" StartMonsterNamelist="{GreenMonster,BlueMonster,RedMonster}" />
+    <data PlayerName="Player" StartMonsterNameList="{Char_Starting_Battle_Character_Fire_01,Char_Starting_Battle_Character_Leaf_01,Char_Starting_Battle_Character_Water_01}" />
   </dataCategory>
 </PlayerData>

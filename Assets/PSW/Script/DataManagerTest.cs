@@ -203,7 +203,7 @@ public class DataManagerTest : Singleton<DataManagerTest>
     {
         var tempPlayerData = new PlayerData
         {
-            PlayerName = data.Attribute(nameof(PlayerData.PlayerName)).Value
+            PlayerName = data.Attribute(nameof(PlayerData.PlayerName)).Value,
         };
 
         SetDataList(out tempPlayerData.StartMonsterNameList, data, "StartMonsterNameList");
