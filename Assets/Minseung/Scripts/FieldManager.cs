@@ -17,7 +17,7 @@ public class FieldManager : Singleton<FieldManager>
     [SerializeField] List<GameObject> monsterPrefabs;
     [SerializeField] float spawnRadius;
     [SerializeField] List<GameObject> fieldMonsterList = new List<GameObject>();
-    [SerializeField] List<Vector3> targetPositions;
+    [SerializeField] List<Transform> targetPositions;
 
   
     protected override void Start()
@@ -57,7 +57,7 @@ public class FieldManager : Singleton<FieldManager>
         hand.InjectOptionalPointableElement(grab);
         CustomGrabObject customGrabObject = monster.GetComponent<CustomGrabObject>();
         customGrabObject.InitHandGrabInteractable();
-        randomMove.SetMoveSpeed(Random.Range(1f, 3f));
+        randomMove.SetMoveSpeed(Random.Range(0.5f, 1.5f));
         monster.AddComponent<RectTransform>();
         GrabCharacter GC = monster.AddComponent<GrabCharacter>();
         GC.InitGrab();
@@ -66,6 +66,7 @@ public class FieldManager : Singleton<FieldManager>
     }
     public void OnPokeCharacterSelect()
     {
+        EnableAllMonsters();
         TeleportMonstersToTargetPositions();
         StopAllMonsters();
     }
@@ -74,7 +75,7 @@ public class FieldManager : Singleton<FieldManager>
     {
         float randomX = Random.Range(-spawnRadius, spawnRadius);
         float randomZ = Random.Range(-spawnRadius, spawnRadius);
-        return new Vector3(randomX, 0, randomZ);
+        return new Vector3(randomX+3, -1.0f, randomZ+3.0f);
     }
 
     public void TeleportMonstersToTargetPositions()

@@ -36,7 +36,7 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
 
     private void OnApplicationQuit()
     {
-        makeBtn.OnPoke.RemoveAllListeners();// -= InitConditionBlockInfo;
+        makeBtn.OnPoke?.RemoveAllListeners();// -= InitConditionBlockInfo;
     }
 
     // 조건 블록 위치 정렬

@@ -116,4 +116,16 @@ public class MonsterObjPoolManger : MonoBehaviour
         }
     }
 
+    public bool CheckEnemyAllDead()
+    {
+        foreach(List<GameObject> list in _monsterPrefabsPool.Values)
+        {
+            foreach(GameObject obj in list)
+            {
+                if (obj.activeSelf == true)
+                    return false;
+            }
+        }
+        return true;
+    }
 }

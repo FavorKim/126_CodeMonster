@@ -13,6 +13,7 @@ TagManager:
   - MakeConditionTrue
   - MakeConditionFalse
   - SelectCharacterUI
+  - FeedArea
   layers:
   - Default
   - TransparentFX

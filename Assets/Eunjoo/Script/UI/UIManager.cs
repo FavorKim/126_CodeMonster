@@ -72,6 +72,7 @@ public class UIManager : Singleton<UIManager>
     public SelectCharacterUIManager SelectCharacterUIManager;
     private StageBlockUIManager StageBlockManager;
     private BlockCountBox BlockCountBox;
+    [SerializeField] public OutgameUIManager OutgameUIManager;
 
     public int SelectChapterNum;
     public int SelectStageNum;

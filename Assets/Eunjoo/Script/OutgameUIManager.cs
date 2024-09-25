@@ -9,6 +9,7 @@ public class OutgameUIManager : MonoBehaviour
     [SerializeField] GameObject ChapterUI;
     [SerializeField] GameObject StageUI;
     [SerializeField] GameObject SelectCharacterUI;
+    [SerializeField] GameObject ClearUI;
     [SerializeField] TextMeshProUGUI ChapterText; // 챕터 텍스트 UI
 
     string chapterNumber = ""; // 챕터 번호 저장 변수
@@ -90,9 +91,60 @@ public class OutgameUIManager : MonoBehaviour
         {
             int chapterValue = int.Parse(chapterNumber) * 1000;
             UIManager.Instance.SelectChapterNum = chapterValue;
+            
         }
     }
 
+    private void OnClickStageStart()
+    {
+        ClickStartStage();
+        FieldManager.Instance.DisableAllMonsters();
+        UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
+    }
+    private void OnClickBactToStage()
+    {
+        ClickGoToStage();
+        UIManager.Instance.DisableIngameUI();
+        FieldManager.Instance.EnableAllMonsters();
+        FieldManager.Instance.MoveAllMonsters();
+    }
+
+    public void StartLoadingOnBackToStage()
+    {
+        GameManager.Instance.StartLoading(OnClickBactToStage);
+    }
+
+    public void StartLoadingOnStartStage()
+    {
+        GameManager.Instance.StartLoading(OnClickStageStart);
+    }
+    public void StartLoadingOnNextStage()
+    {
+        GameManager.Instance.StartLoading(GoToNextStage);
+    }
+
+
+    private void SetNextStageIndex()
+    {
+        if(UIManager.Instance.SelectStageNum<5)
+        UIManager.Instance.SelectStageNum++;
+        else
+        {
+            UIManager.Instance.SelectChapterNum += 1000;
+            UIManager.Instance.SelectStageNum = 1;
+        }
+    }
+
+    public void GoToNextStage()
+    {
+        Debug.LogError($"이전 스테이지 인덱스 : {UIManager.Instance.SelectChapterNum}챕터 {UIManager.Instance.SelectStageNum}스테이지");
+        UIManager.Instance.DisableIngameUI();
+        SetNextStageIndex();
+        Debug.LogError($"변경 후 스테이지 인덱스 : {UIManager.Instance.SelectChapterNum}챕터 {UIManager.Instance.SelectStageNum}스테이지");
+
+        ClickStage();
+        FieldManager.Instance.OnPokeCharacterSelect();
+    }
 
     public void OnStageClick(GameObject clickedObject)
     {
@@ -109,8 +161,12 @@ public class OutgameUIManager : MonoBehaviour
             {
                 stageNumber += c;  // 숫자를 chapterNumber에 추가
                 UIManager.Instance.SelectStageNum = int.Parse(stageNumber);
-                Debug.LogError($"{UIManager.Instance.SelectStageNum}");
             }
         }
+    }
+
+    public void SetClearUIActive(bool truefalse)
+    {
+        ClearUI.SetActive(truefalse);
     }
 }

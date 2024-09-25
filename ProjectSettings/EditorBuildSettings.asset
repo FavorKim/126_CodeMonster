@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Favor/Scene/Favor_Mile_1.unity
     guid: 8dd72ec055ce49a478975ea3cb27a295
+  - enabled: 1
+    path: Assets/Favor/Scene/Example Scene/Example Scene.unity
+    guid: 01c046fbd52317f44820aaebfdcc9f85
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1bcd49750a3084148b01287d2da71cd9, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2c6a954a224a382409c1d469141655a8, type: 2}

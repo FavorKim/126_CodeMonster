@@ -12,50 +12,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     [SerializeField] GameObject CharacterContainer;
     [SerializeField] CustomPokedObject Btn_StartStage;
 
-    public void AddMonster(GameObject monster)
-    {
-        if (!selectedMonsters.Contains(monster))
-        {
-            FieldManager.Instance.TeleportMonstersToTargetPositions();
-            monster.transform.SetParent(CharacterContainer.transform, false);
-            SetMonsterList();
-            //monster.transform.localPosition = Vector3.zero;
-            monster.transform.localScale = new Vector3(70, 70, 70);
-            monster.transform.localRotation = Quaternion.Euler(new Vector3(0, 120, 0));
-            DebugBoxManager.Instance.Log("캐릭터 등록");
-            CheckCanStart();
-        }
-        else
-        {
-            DebugBoxManager.Instance.Log("추가하려는 몬스터가 이미 리스트 내에 존재합니다.");
-        }
-
-    }
-    public void RemoveMonster(GameObject monster)
-    {
-        if (selectedMonsters.Contains(monster))
-        {
-            monster.transform.SetParent(null);
-            SetMonsterList();
-            FieldManager.Instance.TeleportMonstersToTargetPositions();
-            monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            DebugBoxManager.Instance.Log("캐릭터 등록 해제");
-            CheckCanStart();
-        }
-        else
-        {
-            DebugBoxManager.Instance.Log("삭제하려는 몬스터가 리스트내에 없습니다.");
-        }
-    }
-
-    public void RemoveAllMonsters()
-    {
-        foreach(Transform t in CharacterContainer.transform)
-        {
-            t.SetParent(null);
-            t.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        }
-    }
+   
 
     private void OnEnable()
     {
@@ -72,6 +29,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     {
         // 몬스터 타입 인덱스 리스트를 가져옴
         List<int> monsterTypeIndices = GameManager.Instance.GetMonsterTypeInIndex(UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum);
+        
         if (monsterTypeIndices == null)
         {
             Debug.LogError("monsterTypeIndices is NULL!");
@@ -137,7 +95,50 @@ public class SelectCharacterUIManager : MonoBehaviour
     {
         return selectedMonsters;
     }
+    public void AddMonster(GameObject monster)
+    {
+        if (!selectedMonsters.Contains(monster))
+        {
+            FieldManager.Instance.TeleportMonstersToTargetPositions();
+            monster.transform.SetParent(CharacterContainer.transform, false);
+            SetMonsterList();
+            //monster.transform.localPosition = Vector3.zero;
+            monster.transform.localScale = new Vector3(70, 70, 70);
+            monster.transform.localRotation = Quaternion.Euler(new Vector3(0, 120, 0));
+            DebugBoxManager.Instance.Log("캐릭터 등록");
+            CheckCanStart();
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("추가하려는 몬스터가 이미 리스트 내에 존재합니다.");
+        }
 
+    }
+    public void RemoveMonster(GameObject monster)
+    {
+        if (selectedMonsters.Contains(monster))
+        {
+            monster.transform.SetParent(null);
+            SetMonsterList();
+            FieldManager.Instance.TeleportMonstersToTargetPositions();
+            monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            DebugBoxManager.Instance.Log("캐릭터 등록 해제");
+            CheckCanStart();
+        }
+        else
+        {
+            DebugBoxManager.Instance.Log("삭제하려는 몬스터가 리스트내에 없습니다.");
+        }
+    }
+
+    public void RemoveAllMonsters()
+    {
+        foreach (Transform t in CharacterContainer.transform)
+        {
+            t.SetParent(null);
+            t.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+    }
     private void SetMonsterList()
     {
         selectedMonsters.Clear();

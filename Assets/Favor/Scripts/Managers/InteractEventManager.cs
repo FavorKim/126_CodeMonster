@@ -34,19 +34,27 @@ public class InteractEventManager : Singleton<InteractEventManager>
 
     private void Awake()
     {
-        btnDict.Add(PokeButton.START, startBtn);
-        btnDict.Add(PokeButton.RESET, resetBtn);
-        btnDict.Add(PokeButton.RESTART, restartBtn);
-        btnDict.Add(PokeButton.PAUSE, pauseBtn);
-        btnDict.Add(PokeButton.HINT, hintBtn);
-        btnDict.Add(PokeButton.LOOPMAKE, loopMakeBtn);
-        btnDict.Add(PokeButton.CONDITIONMAKE, conditionMakeBtn);
-        btnDict.Add(PokeButton.LOOPRESET, loopResetBtn);
-        btnDict.Add(PokeButton.CONDITIONRESET, conditionResetBtn);
+        InitDict();   
     }
 
+    private void InitDict()
+    {
+        if (btnDict.Count == 0)
+        {
+            btnDict.Add(PokeButton.START, startBtn);
+            btnDict.Add(PokeButton.RESET, resetBtn);
+            btnDict.Add(PokeButton.RESTART, restartBtn);
+            btnDict.Add(PokeButton.PAUSE, pauseBtn);
+            btnDict.Add(PokeButton.HINT, hintBtn);
+            btnDict.Add(PokeButton.LOOPMAKE, loopMakeBtn);
+            btnDict.Add(PokeButton.CONDITIONMAKE, conditionMakeBtn);
+            btnDict.Add(PokeButton.LOOPRESET, loopResetBtn);
+            btnDict.Add(PokeButton.CONDITIONRESET, conditionResetBtn);
+        }
+    }
     public void RegistOnPokeBtn(PokeButton btn, UnityAction action)
     {
+        InitDict();
         btnDict[btn].OnPoke?.AddListener(action);// += action;
     }
 
