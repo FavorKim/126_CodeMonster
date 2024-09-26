@@ -372,10 +372,13 @@ public class DataManagerTest : Singleton<DataManagerTest>
             if(text.TypeName == "Praise")
                 texts.Add(text);
         }
-        foreach(UIText text in texts)
+        if (stageIndex != 0)
         {
-            if(text.StageIndex == stageIndex)
-                return text.Description;
+            foreach (UIText text in texts)
+            {
+                if (text.StageIndex == stageIndex)
+                    return text.Description;
+            }
         }
 
         int rand = UnityEngine.Random.Range(0, 3);

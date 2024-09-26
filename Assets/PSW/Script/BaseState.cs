@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -74,15 +75,8 @@ public class CheckState : BaseState<Player>
             // 행동 종료 후 적을 모두 쓰러트렸으면
             if(MonsterObjPoolManger.Instance.CheckEnemyAllDead() == true)
             {
-                if (UIManager.Instance.SelectStageNum != 5 && UIManager.Instance.SelectChapterNum !=4000)
-                {
-                    // 클리어 UI 출력
-                    UIManager.Instance.PrintPraise();
-                }
-                else
-                {
-                    GameManager.Instance.StartLoading(GameManager.Instance.StartCollectScene);
-                }
+                // 클리어 칭찬 프로세스 ON
+                UIManager.Instance.PrintPraise();
             }
             else
             {

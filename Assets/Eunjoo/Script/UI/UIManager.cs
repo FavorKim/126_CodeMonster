@@ -280,10 +280,18 @@ public class UIManager : Singleton<UIManager>
     }
     public void PrintPraise()
     {
+        StopPrintText(true);
+        hintStop = true;
         int curStageIndex = SelectChapterNum + SelectStageNum;
         List<string> text = DataManagerTest.Instance.GetPraiseByStageIndex(curStageIndex);
         SetText(text, TMP_directBox);
-        StartCoroutine(CorPraise());
+
+        if (SelectStageNum != 5 || SelectChapterNum + SelectStageNum == 4005)
+            StartCoroutine(CorPraise());
+        else
+        {
+            StartCoroutine(CorPraiseOnBoss());
+        }
     }
     IEnumerator CorPraise()
     {
@@ -292,6 +300,15 @@ public class UIManager : Singleton<UIManager>
             yield return null;
         }
         OutgameUIManager.SetClearUIActive(true);
+    }
+    IEnumerator CorPraiseOnBoss()
+    {
+        while(DirectHintBox.activeSelf == true)
+        {
+            yield return null;
+        }
+        Action action = GameManager.instance.StartCollectScene;
+        GameManager.Instance.StartLoading(action);
     }
 
     public void PrintCollectStage()
