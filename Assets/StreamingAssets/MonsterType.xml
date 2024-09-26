@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MonsterType>
   <dataCategory>
-    <data TypeIndex="7" TypeName="Grass" TypeViewName="풀" Weakness="5" />
-    <data TypeIndex="6" TypeName="Water" TypeViewName="물" Weakness="7" />
     <data TypeIndex="5" TypeName="Fire" TypeViewName="불" Weakness="6" />
+    <data TypeIndex="6" TypeName="Water" TypeViewName="물" Weakness="7" />
+    <data TypeIndex="7" TypeName="Grass" TypeViewName="풀" Weakness="5" />
   </dataCategory>
 </MonsterType>

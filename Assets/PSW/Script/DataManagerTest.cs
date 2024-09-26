@@ -289,9 +289,14 @@ public class DataManagerTest : Singleton<DataManagerTest>
         return LoadedMoveBlockList[blockIndex];
     }
 
-    public int GetWeaknessIndexByTypeIndex(int typeIndex)
+    public int GetWeaknessIndexByMonsterTypeIndex(int monsterTypeIndex)
     {
-        MonsterType type = GetMonsterTypeData(typeIndex + 4);
+        MonsterType type = GetMonsterTypeData(monsterTypeIndex + 4);
+        if (type == null)
+        {
+            DebugBoxManager.Instance.Log("type null");
+            return 0;
+        }
         return type.Weakness - 4;
     }
 

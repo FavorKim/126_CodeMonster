@@ -1,6 +1,4 @@
-using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +10,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     [SerializeField] GameObject CharacterContainer;
     [SerializeField] CustomPokedObject Btn_StartStage;
 
-   
+
 
     private void OnEnable()
     {
@@ -26,12 +24,12 @@ public class SelectCharacterUIManager : MonoBehaviour
     }
 
 
-   
+
     public void CheckMonsterAttributes()
     {
         // 몬스터 타입 인덱스 리스트를 가져옴
         List<int> monsterTypeIndices = GameManager.Instance.GetMonsterTypeInIndex(UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum);
-        
+
         if (monsterTypeIndices == null)
         {
             Debug.LogError("monsterTypeIndices is NULL!");
@@ -99,7 +97,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     }
     public void AddMonster(GameObject monster)
     {
-        if(monster == null)
+        if (monster == null)
         {
             DebugBoxManager.Instance.Log("AddmOnster NULL");
             return;
@@ -113,7 +111,8 @@ public class SelectCharacterUIManager : MonoBehaviour
             monster.transform.localScale = new Vector3(70, 70, 70);
             monster.transform.localRotation = Quaternion.Euler(new Vector3(0, 120, 0));
             DebugBoxManager.Instance.Log("캐릭터 등록");
-            //CheckCanStart(); 디버깅 할 수 없는 버그로 인해 사용 불가 (예컨대 sdk쪽 오류일 가능성 높음)
+            CheckCanStart();
+            //디버깅 할 수 없는 버그로 인해 사용 불가 (예컨대 sdk쪽 오류일 가능성 높음)
         }
         else
         {
@@ -135,7 +134,7 @@ public class SelectCharacterUIManager : MonoBehaviour
             //FieldManager.Instance.TeleportMonstersToTargetPositions();
             //monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             DebugBoxManager.Instance.Log("캐릭터 등록 해제");
-            //CheckCanStart();
+            CheckCanStart();
         }
         else
         {
@@ -162,69 +161,40 @@ public class SelectCharacterUIManager : MonoBehaviour
 
     private void CheckCanStart()
     {
-
-        if (GameManager.Instance == null || UIManager.Instance == null)
-        {
-            DebugBoxManager.Instance.Log("GameManager 또는 UIManager가 null입니다.");
-            return;
-        }
-
-        if (DataManagerTest.Instance == null)
-        {
-            DebugBoxManager.Instance.Log("DataManagerTest가 null입니다.");
-            return;
-        }
-
-        if (selectedMonsters == null || selectedMonsters.Count == 0)
-        {
-            DebugBoxManager.Instance.Log("selectedMonsters가 null이거나 Count가 0입니다.");
-            return;
-        }
-
-        List<int> stageMonTypes = new List<int>();
-        stageMonTypes = GameManager.Instance.GetMonsterTypeInIndex(UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum);
-
-        List<int> weaknesses = new List<int>();
-        foreach (int type in stageMonTypes)
-        {
-            weaknesses.Add(DataManagerTest.Instance.GetWeaknessIndexByTypeIndex(type));
-
-        }
-
         List<Monster> monsters = new List<Monster>();
-        if (selectedMonsters.Count == 0) { DebugBoxManager.Instance.Log("셀릭티드몬스터 카운트 0");  return; }
-        foreach (GameObject monster in selectedMonsters)
+        foreach (GameObject mon in selectedMonsters)
         {
-            Monster mon = DataManagerTest.Instance.GetMonsterData(monster.name);
-            if (mon == null)
-            {
-                DebugBoxManager.Instance.Log("Mon null");
-                return;
-            }
-            else
-            {
-                monsters.Add(mon);
-            }
+            Monster monster = DataManagerTest.Instance.GetMonsterData(mon.name);
+            monsters.Add(monster);
+        }
+        int stageIndex = UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum;
+        List<int> stageMonsterIndexes = GameManager.Instance.GetMonsterTypeInIndex(stageIndex);
+
+        List<int> weaks = new List<int>();
+        foreach(int monIndex in stageMonsterIndexes)
+        {
+            int weakIndex = DataManagerTest.Instance.GetWeaknessIndexByMonsterTypeIndex(monIndex);
+            if (weakIndex != 0)
+                weaks.Add(weakIndex);
         }
 
-        List<int> monsterTypes = new List<int>();
-        foreach(Monster mon in monsters)
+        List<int> typeIndexes = new List<int>();
+        foreach (Monster mon in monsters)
         {
-            monsterTypes.Add(mon.TypeIndex);
+            int index = mon.TypeIndex;
+            typeIndexes.Add(index);
         }
-        
-        foreach(int weak in weaknesses)
+        int temp = 0;
+        foreach(int weak in weaks)
         {
-            if (monsterTypes.Contains(weak) == false)
+            if (typeIndexes.Contains(weak) == false)
             {
-                string view = weak == 1 ? "불" : (weak == 2 ? "물" : "풀");
-                DebugBoxManager.Instance.Log($"{view}타입 몬스터가 필요합니다");
+                DebugBoxManager.Instance.Log($"{weak}번 타입 인덱스 없음");
                 Btn_StartStage.DisablePokeBtn();
-                return;
+                temp++;
             }
         }
-        
-
+        if(temp == 0)
         Btn_StartStage.EnablePokeBtn();
     }
 }
