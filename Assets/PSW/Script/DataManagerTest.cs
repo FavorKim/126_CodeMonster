@@ -8,6 +8,8 @@ using UnityEngine.Networking;
 
 public class DataManagerTest : Singleton<DataManagerTest>
 {
+    
+
     private string filePath;
     public Dictionary<string, Monster> LoadedMonsterList { get; private set; }
     public Dictionary<string, CodeBlockData> LoadedCodeBlockList { get; private set; }
@@ -183,12 +185,16 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
     private UIText ParseUIText(XElement data)
     {
-        return new UIText
+        var tempText = new UIText
         {
             TextIndex = int.Parse(data.Attribute(nameof(UIText.TextIndex)).Value),
-            TextTypeIndex = int.Parse(data.Attribute(nameof(UIText.TextTypeIndex)).Value),
-            Description = data.Attribute(nameof(UIText.Description)).Value
+            TypeName = data.Attribute(nameof(UIText.TypeName)).Value,
+            //Description = data.Attribute(nameof(UIText.Description)).Value,
+            StageIndex = int.Parse(data.Attribute(nameof(UIText.StageIndex)).Value)
         };
+        SetDataList(out tempText.Description, data, "Description");
+        
+        return tempText;
     }
 
     private TextType ParseTextType(XElement data)
@@ -339,6 +345,24 @@ public class DataManagerTest : Singleton<DataManagerTest>
             return null;
 
         return LoadedText[dataIndex];
+    }
+
+    public List<string> GetDescriptionByStageIndex(int stageIndex, string typeName)
+    {
+        foreach(UIText text in LoadedText.Values)
+        {
+            if(text.StageIndex == stageIndex && text.TypeName == typeName)
+            {
+                return text.Description;
+            }
+        }
+        
+        return null;
+    }
+    public List<string> GetDescriptionByTextIndex(int textIndex)
+    {
+        UIText text = GetTextData(textIndex);
+        return text.Description;
     }
 
     public TextType GetTextTypeData(string dataClassName)

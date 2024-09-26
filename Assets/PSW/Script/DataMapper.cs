@@ -58,8 +58,9 @@ public class MonsterType
 public class UIText
 {
     public int TextIndex { get; set; }
-    public int TextTypeIndex { get; set; }
-    public string Description { get; set; }
+    public string TypeName { get; set; }
+    public List<string> Description = new List<string>();
+    public int StageIndex { get; set; }
 }
 
 public class TextType

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,7 +13,8 @@ public enum TextTypeName
 {
     STAGEINFO,
     BIGHINT,
-    SMALLHINT
+    SMALLHINT,
+    CHEER,
 }
 
 
@@ -64,7 +66,7 @@ public class UIManager : Singleton<UIManager>
 
     [Header("MakeLoopBlock UI")]
     public int MakeLoopBlockContainerLength;
-        
+
     public List<int> LoopBlockList = new List<int>();
 
     public BlockContainerManager BlockContainerManager;
@@ -89,9 +91,10 @@ public class UIManager : Singleton<UIManager>
 
         SetUIManager();
         IngameUI.SetActive(false);
+        PrintStageInfo();
     }
 
-   
+
 
     public void OnStartStage()
     {
@@ -100,7 +103,7 @@ public class UIManager : Singleton<UIManager>
         StageManager.Instance.gameObject.SetActive(true);
         StartCoroutine(SetHintTimer());
     }
-    
+
 
 
     private void SetUIManager()
@@ -219,57 +222,89 @@ public class UIManager : Singleton<UIManager>
         MakeConditionalBlockBoxUI.SetActive(false);
     }
 
-    private void PrintStageDirectHint()
+    public void PrintStageDirectHint()
     {
-        StageIndection.text = $"{StageManager.Instance.GetStageMap().StageIndex} 스테이지 힌트";
-        SetText(StageIndection.text, StageIndection);
+        int curStageIndex = SelectChapterNum + SelectStageNum;
+        PrintUITextByStageIndex(TextTypeName.BIGHINT, curStageIndex);
+    }
+    public void PrintStageInfo()
+    {
+        int curStageIndex = SelectChapterNum + SelectStageNum;
+        PrintUITextByStageIndex(TextTypeName.STAGEINFO, curStageIndex);
+    }
+    
+    public void PrintUITextByTextIndex(int textIndex, TMP_Text textBox)
+    {
+        List<string> description = DataManagerTest.instance.GetDescriptionByTextIndex(textIndex);
+        SetText(description, textBox);
     }
 
-    public void PrintUIText(TextTypeName type, int stageIndex = 0, int UITextindex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
+    private void PrintUITextByStageIndex(TextTypeName type, int stageIndex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
     {
-        string text = string.Empty;
+        List<string> text = new List<string>();
+        string typeName = GetTypeNameByEnum(type);
+        text = DataManagerTest.Instance.GetDescriptionByStageIndex(stageIndex, typeName);
+        TMP_Text textBox;
         switch (type)
         {
             case TextTypeName.STAGEINFO:
-                //text= DataManagerTest.Instance.GetStageMapData(stageIndex).stageInfo;
-                break;
-            case TextTypeName.SMALLHINT:
-                text = DataManagerTest.Instance.GetTextData(UITextindex).Description;
-                TMP_Text IndirectHintBoxText = IndirectHintBox.GetComponent<TMP_Text>();
-                SetText(text,IndirectHintBoxText);
-                break;
             case TextTypeName.BIGHINT:
-                //text = DataManagerTest.Instance.GetStageMapData(stageIndex).bighint;
+                textBox = DirectHintBox.GetComponent<TMP_Text>();
                 break;
+            default:
+                textBox=null;
+                break;
+
+        }
+        if(textBox != null )
+        {
+            SetText(text, textBox);
         }
     }
-
-    private void SetText(string text,TMP_Text hintBox)
+    private string GetTypeNameByEnum(TextTypeName typeEnum)
     {
-        var elements = text.Split('/');
-
-        var list = new List<string>();
-
-        foreach (var element in elements)
+        string typeName = string.Empty;
+        switch (typeEnum)
         {
-            list.Add(element);
+            case TextTypeName.STAGEINFO:
+                typeName = "Info";
+                break;
+            case TextTypeName.BIGHINT:
+                typeName = "BigHint";
+                break;
+            case TextTypeName.SMALLHINT:
+                typeName = "SmallHint";
+                break;
+            case TextTypeName.CHEER:
+                typeName = "Cheer";
+                break;
+            default:
+                break;
         }
+        return typeName;
+    }
 
-        StartCoroutine(PrintText(list,hintBox));
-
+    private void SetText(List<string> text, TMP_Text hintBox)
+    {
+        StartCoroutine(PrintText(text, hintBox));
     }
 
     private IEnumerator PrintText(List<string> list, TMP_Text hintBox)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
     {
         hintBox.transform.parent.gameObject.SetActive(true);
-        hintBox.text = string.Empty;
-        foreach (var element in list)
-        {
-            hintBox.text += element + "\n";
-            yield return new WaitForSeconds(2);
-        }
+        WaitForSeconds character = new WaitForSeconds(0.1f);
+        WaitForSeconds next = new WaitForSeconds(5.0f);
 
-        yield return new WaitForSeconds(5);
+        foreach (string s in list)
+        {
+            hintBox.text = string.Empty;
+            foreach (char c in s)
+            {
+                hintBox.text += c;
+                yield return character;
+            }
+            yield return next;
+        }
 
         hintBox.transform.parent.gameObject.SetActive(false);
     }
@@ -320,4 +355,4 @@ public class UIManager : Singleton<UIManager>
     {
         StageTextBox.SetActive(false);
     }
-}                    
+}
