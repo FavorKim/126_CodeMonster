@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -79,6 +80,8 @@ public class UIManager : Singleton<UIManager>
     public int SelectChapterNum;
     public int SelectStageNum;
 
+    int cheerCount;
+
     protected override void Start()
     {
         base.Start();
@@ -91,7 +94,6 @@ public class UIManager : Singleton<UIManager>
 
         SetUIManager();
         IngameUI.SetActive(false);
-        PrintStageInfo();
     }
 
 
@@ -101,7 +103,9 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(true);
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
         StageManager.Instance.gameObject.SetActive(true);
-        StartCoroutine(SetHintTimer());
+        cheerCount = 0;
+        PrintStageInfo();
+        
     }
 
 
@@ -120,13 +124,29 @@ public class UIManager : Singleton<UIManager>
 
     }
 
-    IEnumerator SetHintTimer()
+    IEnumerator SetCheerTimer(float waitingTime)
     {
-        HintBoxUI.SetActive(false);
+        yield return new WaitForSeconds(waitingTime);
+        while (true)
+        {
+            yield return new WaitForSeconds(HintCount);
 
-        yield return new WaitForSeconds(HintCount);
+            if (cheerCount < 5)
+            {
+                int rand = UnityEngine.Random.Range(0, 4);
+                PrintUITextByTextIndex(200 + rand, false);
+            }
+            else
+            {
+                PrintUITextByTextIndex(210, false);
+                break;
+            }
+        }
+    }
 
-        HintBoxUI.SetActive(true);
+    void StartCheerTimer(float waitingTime)
+    {
+        StartCoroutine(SetCheerTimer(waitingTime));
     }
 
     private void BlockIndexListCheck()
@@ -233,8 +253,10 @@ public class UIManager : Singleton<UIManager>
         PrintUITextByStageIndex(TextTypeName.STAGEINFO, curStageIndex);
     }
     
-    public void PrintUITextByTextIndex(int textIndex, TMP_Text textBox)
+    public void PrintUITextByTextIndex(int textIndex, bool isDirectBox)
     {
+        TMP_Text textBox;
+        textBox = isDirectBox ? DirectHintBox.GetComponentInChildren<TMP_Text>() : IndirectHintBox.GetComponentInChildren<TMP_Text>();
         List<string> description = DataManagerTest.instance.GetDescriptionByTextIndex(textIndex);
         SetText(description, textBox);
     }
@@ -248,8 +270,11 @@ public class UIManager : Singleton<UIManager>
         switch (type)
         {
             case TextTypeName.STAGEINFO:
+                textBox = DirectHintBox.GetComponentInChildren<TMP_Text>();
+                StartCheerTimer(15);
+                break;
             case TextTypeName.BIGHINT:
-                textBox = DirectHintBox.GetComponent<TMP_Text>();
+                textBox = DirectHintBox.GetComponentInChildren<TMP_Text>();
                 break;
             default:
                 textBox=null;
@@ -293,7 +318,7 @@ public class UIManager : Singleton<UIManager>
     {
         hintBox.transform.parent.gameObject.SetActive(true);
         WaitForSeconds character = new WaitForSeconds(0.1f);
-        WaitForSeconds next = new WaitForSeconds(5.0f);
+        WaitForSeconds next = new WaitForSeconds(3.0f);
 
         foreach (string s in list)
         {
@@ -308,7 +333,15 @@ public class UIManager : Singleton<UIManager>
 
         hintBox.transform.parent.gameObject.SetActive(false);
     }
-
+    public void StopPrintText(bool isDirectBox)
+    {
+        StopAllCoroutines();
+        StartCheerTimer(0);
+        if(isDirectBox)
+            DirectHintBox.gameObject.SetActive(false);
+        else
+            IndirectHintBox.gameObject.SetActive(false);
+    }
 
 
     public void EnableIngameUI()

@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
             {
                 //DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
                 UIManager.Instance.BlockContainerManager.SetXIcon(CurrentIndex, true);
-
+                UIManager.Instance.PrintUITextByTextIndex(420, false);
                 stateMachine.ChangeState(PlayerStateName.DIEMOVE);
                 return;
             }

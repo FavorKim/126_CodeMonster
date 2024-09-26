@@ -67,6 +67,7 @@ public class CheckState : BaseState<Player>
                 {
                     mon.Attack();
                     Controller.Die();
+                    UIManager.Instance.PrintUITextByTextIndex(411, false);
                     return;
                 }
             }
@@ -82,6 +83,10 @@ public class CheckState : BaseState<Player>
                 {
                     GameManager.Instance.StartLoading(GameManager.Instance.StartCollectScene);
                 }
+            }
+            else
+            {
+                UIManager.Instance.PrintUITextByTextIndex(400, false);
             }
             
             Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);

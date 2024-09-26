@@ -141,7 +141,7 @@ public class BattleManager : Singleton<BattleManager>
             {
                 UnityEngine.Debug.Log("Attack failed!");
                 DebugBoxManager.Instance.Log("공격실패");
-
+                UIManager.Instance.PrintUITextByTextIndex(410, false);
                 // 패배 처리: 플레이어의 패배 메서드 호출
                 UIManager.Instance.BlockContainerManager.SetXIcon(player.ForceGetCurrentIndex(), true);
 

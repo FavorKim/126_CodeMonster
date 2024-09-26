@@ -168,5 +168,9 @@ public class OutgameUIManager : MonoBehaviour
     public void SetClearUIActive(bool truefalse)
     {
         ClearUI.SetActive(truefalse);
+        if(truefalse == true)
+        {
+            UIManager.Instance.DisableIngameUI();
+        }
     }
 }
