@@ -46,7 +46,9 @@ public class UIManager : Singleton<UIManager>
     public GameObject GetMonsterUI;
     public GameObject BlockCountObject;
     public GameObject DirectHintBox;
+    [SerializeField] TMP_Text TMP_directBox;
     public GameObject IndirectHintBox;
+    [SerializeField] TMP_Text TMP_IndirectBox;
     public GameObject StageTextBox;
 
     //[SerializeField] TMP_Text DirectHintBoxText;
@@ -81,6 +83,7 @@ public class UIManager : Singleton<UIManager>
     public int SelectStageNum;
 
     int cheerCount;
+    bool hintStop;
 
     protected override void Start()
     {
@@ -94,8 +97,15 @@ public class UIManager : Singleton<UIManager>
 
         SetUIManager();
         IngameUI.SetActive(false);
-    }
 
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C)) 
+        {
+            OnStartStage();
+        }
+    }
 
 
     public void OnStartStage()
@@ -104,10 +114,10 @@ public class UIManager : Singleton<UIManager>
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
         StageManager.Instance.gameObject.SetActive(true);
         cheerCount = 0;
+        hintStop = false;
+        StartCheerTimer();
         PrintStageInfo();
-        
     }
-
 
 
     private void SetUIManager()
@@ -124,29 +134,47 @@ public class UIManager : Singleton<UIManager>
 
     }
 
-    IEnumerator SetCheerTimer(float waitingTime)
+    IEnumerator SetCheerTimer()
     {
-        yield return new WaitForSeconds(waitingTime);
         while (true)
         {
-            yield return new WaitForSeconds(HintCount);
-
-            if (cheerCount < 5)
+            if (hintStop == false)
             {
-                int rand = UnityEngine.Random.Range(0, 4);
-                PrintUITextByTextIndex(200 + rand, false);
+                float t = 0;
+                while (t < HintCount)
+                {
+                    t += Time.deltaTime;
+                    if (hintStop == true) 
+                    {
+                        t = 0;
+                        break; 
+                    }
+                    yield return null;
+                }
+                t = 0;
+                if (hintStop == true)
+                    continue;
+                if (cheerCount < 5)
+                {
+                    int rand = UnityEngine.Random.Range(0, 4);
+                    PrintUITextByTextIndex(200 + rand, false);
+                }
+                else
+                {
+                    cheerCount = 0;
+                    PrintUITextByTextIndex(210, false);
+                }
             }
             else
             {
-                PrintUITextByTextIndex(210, false);
-                break;
+                yield return null;
             }
         }
     }
 
-    void StartCheerTimer(float waitingTime)
+    void StartCheerTimer()
     {
-        StartCoroutine(SetCheerTimer(waitingTime));
+        StartCoroutine(SetCheerTimer());
     }
 
     private void BlockIndexListCheck()
@@ -252,11 +280,11 @@ public class UIManager : Singleton<UIManager>
         int curStageIndex = SelectChapterNum + SelectStageNum;
         PrintUITextByStageIndex(TextTypeName.STAGEINFO, curStageIndex);
     }
-    
+
     public void PrintUITextByTextIndex(int textIndex, bool isDirectBox)
     {
         TMP_Text textBox;
-        textBox = isDirectBox ? DirectHintBox.GetComponentInChildren<TMP_Text>() : IndirectHintBox.GetComponentInChildren<TMP_Text>();
+        textBox = isDirectBox ? TMP_directBox : TMP_IndirectBox;
         List<string> description = DataManagerTest.instance.GetDescriptionByTextIndex(textIndex);
         SetText(description, textBox);
     }
@@ -270,18 +298,17 @@ public class UIManager : Singleton<UIManager>
         switch (type)
         {
             case TextTypeName.STAGEINFO:
-                textBox = DirectHintBox.GetComponentInChildren<TMP_Text>();
-                StartCheerTimer(15);
+                textBox = TMP_directBox;
                 break;
             case TextTypeName.BIGHINT:
-                textBox = DirectHintBox.GetComponentInChildren<TMP_Text>();
+                textBox = TMP_directBox;
                 break;
             default:
-                textBox=null;
+                textBox = null;
                 break;
 
         }
-        if(textBox != null )
+        if (textBox != null)
         {
             SetText(text, textBox);
         }
@@ -316,7 +343,9 @@ public class UIManager : Singleton<UIManager>
 
     private IEnumerator PrintText(List<string> list, TMP_Text hintBox)//실제 줄별로 텍스트를 출력하는 함수 , 할당된 UI에 텍스틑를 넣는 함수
     {
-        hintBox.transform.parent.gameObject.SetActive(true);
+        hintStop = true;
+        GameObject parent = hintBox == TMP_directBox ? DirectHintBox : IndirectHintBox;
+        parent.gameObject.SetActive(true);
         WaitForSeconds character = new WaitForSeconds(0.1f);
         WaitForSeconds next = new WaitForSeconds(3.0f);
 
@@ -331,13 +360,17 @@ public class UIManager : Singleton<UIManager>
             yield return next;
         }
 
-        hintBox.transform.parent.gameObject.SetActive(false);
+        parent.gameObject.SetActive(false);
+
+        hintStop = false;
     }
     public void StopPrintText(bool isDirectBox)
     {
+        hintStop = true;
         StopAllCoroutines();
-        StartCheerTimer(0);
-        if(isDirectBox)
+        StartCheerTimer();
+        hintStop = false;
+        if (isDirectBox)
             DirectHintBox.gameObject.SetActive(false);
         else
             IndirectHintBox.gameObject.SetActive(false);

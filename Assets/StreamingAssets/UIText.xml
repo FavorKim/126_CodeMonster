@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <UIText>
   <dataCategory>
     <data TextIndex="100" TypeName="Info" Description="자~ 우선은 나를 이동 시켜서&#xA; 공격 명령까지 내려보자!&#xA;,&#xA;앞으로의 모험에서 계속 하게 될 일이니&#xA; 지금 잘 익혀보자구!" StageIndex="1001" />
@@ -19,7 +19,7 @@
     <data TextIndex="134" TypeName="Info" Description="드디어 마지막까지 왔어.&#xA;,&#xA;역시... 누가 마지막 아니랄까봐...&#xA; 딱 봐도 우릴 짜증나게 하려는게 목적인것 같지?&#xA;,&#xA;그렇다고 여기서 물러날 순 없지!&#xA; 그동안 배운 모든 것들을 총 동원해서 돌파해보자!" StageIndex="4005" />
     <data TextIndex="200" TypeName="Cheer" Description="열심히 생각중이구나!  난 그런 네 모습이 싫지않아~" StageIndex="0" />
     <data TextIndex="201" TypeName="Cheer" Description="고민이 많을 때는 천천히 해도 괜찮아." StageIndex="0" />
-    <data TextIndex="202" TypeName="Cheer" Description="네가 어떤 선택을 하든, 나는 항상 네 편이야.  자신감을 가져!" StageIndex="0" />
+    <data TextIndex="202" TypeName="Cheer" Description="네가 어떤 선택을 하든 나는 항상 네 편이야.  자신감을 가져!" StageIndex="0" />
     <data TextIndex="203" TypeName="Cheer" Description="넌 해낼 수 있을거야.  난 널 믿어!" StageIndex="0" />
     <data TextIndex="210" TypeName="Cheer" Description="혹시 내가 알고있는 정보가 너에게 도움이 될까?&#xA;,&#xA;음... 너무 어려워서 답답할땐 이 버튼을 눌러보는건 어때?&#xA;,&#xA;내가 도와줄게." StageIndex="0" />
     <data TextIndex="300" TypeName="BigHint" Description="이번 스테이지에서는&#xA; 오른쪽으로 두칸 이동해서&#xA; 불 속성 공격을 사용하면 될 것 같아!" StageIndex="1001" />

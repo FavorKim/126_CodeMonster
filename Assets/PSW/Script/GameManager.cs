@@ -194,8 +194,8 @@ public class GameManager : Singleton<GameManager>
     {
         StartCoroutine(CorFadeOut(0.5f));
         yield return new WaitForSeconds(0.5f);
-        action.Invoke();
         yield return new WaitForSeconds(2f);
+        action.Invoke();
         StartCoroutine(CorFadeIn(0.5f));
     }
 
