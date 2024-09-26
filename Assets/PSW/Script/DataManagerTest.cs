@@ -364,6 +364,24 @@ public class DataManagerTest : Singleton<DataManagerTest>
         UIText text = GetTextData(textIndex);
         return text.Description;
     }
+    public List<string> GetPraiseByStageIndex(int stageIndex)
+    {
+        List<UIText> texts = new List<UIText>();
+        foreach(UIText text in LoadedText.Values)
+        {
+            if(text.TypeName == "Praise")
+                texts.Add(text);
+        }
+        foreach(UIText text in texts)
+        {
+            if(text.StageIndex == stageIndex)
+                return text.Description;
+        }
+
+        int rand = UnityEngine.Random.Range(0, 3);
+        return LoadedText[500 + rand].Description;
+    }
+
 
     public TextType GetTextTypeData(string dataClassName)
     {

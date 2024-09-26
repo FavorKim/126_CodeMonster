@@ -16,6 +16,8 @@ public enum TextTypeName
     BIGHINT,
     SMALLHINT,
     CHEER,
+    PRAISE,
+    COLLECTINFO
 }
 
 
@@ -49,6 +51,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] TMP_Text TMP_directBox;
     public GameObject IndirectHintBox;
     [SerializeField] TMP_Text TMP_IndirectBox;
+    [SerializeField] GameObject CollectTextBox;
+    [SerializeField] TMP_Text TMP_CollectTxt;
     public GameObject StageTextBox;
 
     //[SerializeField] TMP_Text DirectHintBoxText;
@@ -99,13 +103,7 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(false);
 
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) 
-        {
-            OnStartStage();
-        }
-    }
+
 
 
     public void OnStartStage()
@@ -144,10 +142,10 @@ public class UIManager : Singleton<UIManager>
                 while (t < HintCount)
                 {
                     t += Time.deltaTime;
-                    if (hintStop == true) 
+                    if (hintStop == true)
                     {
                         t = 0;
-                        break; 
+                        break;
                     }
                     yield return null;
                 }
@@ -280,6 +278,78 @@ public class UIManager : Singleton<UIManager>
         int curStageIndex = SelectChapterNum + SelectStageNum;
         PrintUITextByStageIndex(TextTypeName.STAGEINFO, curStageIndex);
     }
+    public void PrintPraise()
+    {
+        int curStageIndex = SelectChapterNum + SelectStageNum;
+        List<string> text = DataManagerTest.Instance.GetPraiseByStageIndex(curStageIndex);
+        SetText(text, TMP_directBox);
+        StartCoroutine(CorPraise());
+    }
+    IEnumerator CorPraise()
+    {
+        while (DirectHintBox.activeSelf == true)
+        {
+            yield return null;
+        }
+        OutgameUIManager.SetClearUIActive(true);
+    }
+
+    public void PrintCollectStage()
+    {
+        StopPrintText(TextTypeName.COLLECTINFO);
+        List<string> text = new List<string>();
+        string correct = string.Empty;
+        int curStageIndex = SelectChapterNum / 1000;
+        switch (curStageIndex)
+        {
+            case 1:
+                correct = "바나나";
+                break;
+            case 2:
+                correct = "물고기";
+                break;
+            case 3:
+                correct = "토마토";
+                break;
+        }
+        text.Add($"유니크 몬스터는 {correct}를 좋아해! \n {correct}를 집어봐!");
+        SetText(text, TMP_CollectTxt);
+    }
+    public void PrintOnGrabFood()
+    {
+        StopPrintText(TextTypeName.COLLECTINFO);
+        List<string> text = new List<string>();
+        string correct = string.Empty;
+        int curStageIndex = SelectChapterNum / 1000;
+        switch (curStageIndex)
+        {
+            case 1:
+                correct = "바나나";
+                break;
+            case 2:
+                correct = "물고기";
+                break;
+            case 3:
+                correct = "토마토";
+                break;
+        }
+        text.Add($"이제 {correct}를 검은색 위치에 두고 기다리고 있어봐");
+        SetText(text, TMP_CollectTxt);
+    }
+    public void PrintOnSuccessCollect()
+    {
+        StopPrintText(TextTypeName.COLLECTINFO);
+        List<string> text = new List<string>();
+        text.Add("캐릭터가 수집됐어!");
+        SetText(text, TMP_CollectTxt);
+    }
+    public void PrintOnFeeding()
+    {
+        StopPrintText(TextTypeName.COLLECTINFO);
+        List<string> text = new List<string>();
+        text.Add("좋아 그래로 몬스터가 먹이를 다 먹을 때까지 기다리고 있어~");
+        SetText(text, TMP_CollectTxt);
+    }
 
     public void PrintUITextByTextIndex(int textIndex, bool isDirectBox)
     {
@@ -345,6 +415,13 @@ public class UIManager : Singleton<UIManager>
     {
         hintStop = true;
         GameObject parent = hintBox == TMP_directBox ? DirectHintBox : IndirectHintBox;
+        if (hintBox == TMP_directBox)
+            parent = DirectHintBox;
+        else if (hintBox == IndirectHintBox)
+            parent = IndirectHintBox;
+        else if (hintBox == TMP_CollectTxt)
+            parent = CollectTextBox;
+
         parent.gameObject.SetActive(true);
         WaitForSeconds character = new WaitForSeconds(0.1f);
         WaitForSeconds next = new WaitForSeconds(3.0f);
@@ -364,16 +441,44 @@ public class UIManager : Singleton<UIManager>
 
         hintStop = false;
     }
-    public void StopPrintText(bool isDirectBox)
+    public void StopPrintText(bool isDirect)
     {
-        hintStop = true;
         StopAllCoroutines();
+        hintStop = true;
         StartCheerTimer();
         hintStop = false;
-        if (isDirectBox)
+        if (isDirect)
             DirectHintBox.gameObject.SetActive(false);
         else
             IndirectHintBox.gameObject.SetActive(false);
+    }
+    public void StopPrintText(TextTypeName isDirectBox)
+    {
+        StopAllCoroutines();
+
+        switch (isDirectBox)
+        {
+            case TextTypeName.STAGEINFO:
+            case TextTypeName.BIGHINT:
+                DirectHintBox.gameObject.SetActive(false);
+                hintStop = true;
+                StartCheerTimer();
+                hintStop = false;
+                break;
+            case TextTypeName.SMALLHINT:
+            case TextTypeName.CHEER:
+            case TextTypeName.PRAISE:
+                IndirectHintBox.gameObject.SetActive(false);
+                hintStop = true;
+                StartCheerTimer();
+                hintStop = false;
+                break;
+            case TextTypeName.COLLECTINFO:
+                CollectTextBox.gameObject.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
 
 

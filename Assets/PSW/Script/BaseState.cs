@@ -77,7 +77,7 @@ public class CheckState : BaseState<Player>
                 if (UIManager.Instance.SelectStageNum != 5 && UIManager.Instance.SelectChapterNum !=4000)
                 {
                     // 클리어 UI 출력
-                    UIManager.Instance.OutgameUIManager.SetClearUIActive(true);
+                    UIManager.Instance.PrintPraise();
                 }
                 else
                 {

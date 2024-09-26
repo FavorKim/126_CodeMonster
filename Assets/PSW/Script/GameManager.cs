@@ -209,4 +209,9 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefab.transform.position = PlayerOriginPos;
         PlayerPrefab.transform.rotation = PlayerOriginRot;
     }
+    public IEnumerator CorInvokeCallBack(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+        action.Invoke();
+    }
 }

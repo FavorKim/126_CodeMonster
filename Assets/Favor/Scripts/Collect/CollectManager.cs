@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CollectManager : Singleton<CollectManager>
 {
     [SerializeField] Transform MonsterSpawnPos;
-    [SerializeField] Transform FeedArea;
+    [SerializeField] Transform MonsterDestination;
     [SerializeField] Slider captureGaugeSlider;
     GameObject spawnedMonster;
     float captureGauge = 0;
@@ -21,12 +21,14 @@ public class CollectManager : Singleton<CollectManager>
         {
             captureGauge = value;
             captureGaugeSlider.value = captureGauge / MaxCaptureGauge;
-            if (captureGauge >= MaxCaptureGauge)
+            if (captureGauge >= MaxCaptureGauge + 2)
             {
                 GameManager.Instance.StartLoading(OnCompleteCollect);
             }
         }
     }
+
+    bool isSucceed = false;
 
     [SerializeField] float MaxCaptureGauge = 5.0f;
     [SerializeField] float decreaseAmount = 0.5f;
@@ -40,6 +42,14 @@ public class CollectManager : Singleton<CollectManager>
         set
         {
             isCapturing = value;
+            if (isCapturing)
+            {
+                UIManager.Instance.PrintOnFeeding();
+            }
+            else
+            {
+                UIManager.Instance.PrintOnGrabFood();
+            }
         }
     }
 
@@ -52,8 +62,12 @@ public class CollectManager : Singleton<CollectManager>
 
     public void OnStartCollectScene()
     {
+        isSucceed = false;
+        CaptureGauge = 0;
+        IsCapturing = false;
         gameObject.SetActive(true);
         SpawnCollectableMonster();
+        UIManager.Instance.PrintCollectStage();
     }
     public void OnEndCollectScene()
     {
@@ -68,9 +82,10 @@ public class CollectManager : Singleton<CollectManager>
 
     public void OnCompleteCollect()
     {
+        isSucceed = true;
         GameManager.instance.AddMonsterInPlayerList(spawnedMonster.name);
-
-        OnEndCollectScene();
+        UIManager.Instance.PrintOnSuccessCollect();
+        GameManager.Instance.CorInvokeCallBack(OnEndCollectScene, 6);
     }
 
     public void SpawnCollectableMonster()
@@ -102,17 +117,20 @@ public class CollectManager : Singleton<CollectManager>
 
     private void Update()
     {
-        if (IsCapturing == false)
+        if (!isSucceed)
         {
-            if (CaptureGauge >= 0)
-                CaptureGauge -= Time.deltaTime * decreaseAmount;
+            if (IsCapturing == false)
+            {
+                if (CaptureGauge >= 0)
+                    CaptureGauge -= Time.deltaTime * decreaseAmount;
+            }
+            else
+            {
+                if (CaptureGauge <= MaxCaptureGauge)
+                    CaptureGauge += Time.deltaTime;
+            }
+            MoveSpawnedMonster();
         }
-        else
-        {
-            if (CaptureGauge <= MaxCaptureGauge)
-                CaptureGauge += Time.deltaTime;
-        }
-        MoveSpawnedMonster();
 
     }
 
@@ -122,7 +140,7 @@ public class CollectManager : Singleton<CollectManager>
         if (isCapturing)
         {
             if (CaptureGauge < MaxCaptureGauge)
-                spawnedMonster.transform.position = Vector3.Lerp(MonsterSpawnPos.position, FeedArea.position, CaptureGauge / MaxCaptureGauge);
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterSpawnPos.position, MonsterDestination.position, CaptureGauge / (MaxCaptureGauge - 2));
 
         }
         else
@@ -133,7 +151,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             else
             {
-                spawnedMonster.transform.position = Vector3.Lerp(FeedArea.position, MonsterSpawnPos.position, 1 - (CaptureGauge / MaxCaptureGauge));
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / MaxCaptureGauge));
             }
         }
     }
