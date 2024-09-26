@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -132,7 +133,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             else
             {
-                spawnedMonster.transform.position = Vector3.Lerp(FeedArea.position, MonsterSpawnPos.position, CaptureGauge / MaxCaptureGauge);
+                spawnedMonster.transform.position = Vector3.Lerp(FeedArea.position, MonsterSpawnPos.position, 1 - (CaptureGauge / MaxCaptureGauge));
             }
         }
     }
