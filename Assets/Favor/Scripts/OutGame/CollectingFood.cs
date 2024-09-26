@@ -80,6 +80,7 @@ public class CollectingFood : MonoBehaviour
     {
         if (other.CompareTag("FeedArea"))
         {
+            if(isCorrect)
             CollectManager.Instance.IsCapturing = false;
         }
     }

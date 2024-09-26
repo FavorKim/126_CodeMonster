@@ -19,11 +19,13 @@ public class CollectManager : Singleton<CollectManager>
         }
         set
         {
+            if (isSucceed) return;
+
             captureGauge = value;
             captureGaugeSlider.value = captureGauge / MaxCaptureGauge;
-            if (captureGauge >= MaxCaptureGauge + 2)
+            if (captureGauge >= MaxCaptureGauge)
             {
-                GameManager.Instance.StartLoading(OnCompleteCollect);
+                OnCompleteCollect();
             }
         }
     }
@@ -41,6 +43,7 @@ public class CollectManager : Singleton<CollectManager>
         }
         set
         {
+            if (isSucceed) return;
             isCapturing = value;
             if (isCapturing)
             {
@@ -79,13 +82,17 @@ public class CollectManager : Singleton<CollectManager>
         FieldManager.Instance.EnableAllMonsters();
         FieldManager.Instance.MoveAllMonsters();
     }
+    private void StartLoadingOnEndCollectScene()
+    {
+        GameManager.Instance.StartLoading(OnEndCollectScene);
+    }
 
     public void OnCompleteCollect()
     {
         isSucceed = true;
         GameManager.instance.AddMonsterInPlayerList(spawnedMonster.name);
         UIManager.Instance.PrintOnSuccessCollect();
-        GameManager.Instance.CorInvokeCallBack(OnEndCollectScene, 6);
+        GameManager.Instance.CorInvokeCallBack(StartLoadingOnEndCollectScene, 6);
     }
 
     public void SpawnCollectableMonster()
@@ -131,7 +138,11 @@ public class CollectManager : Singleton<CollectManager>
             }
             MoveSpawnedMonster();
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SpawnCollectableMonster();
 
+        }
     }
 
     void MoveSpawnedMonster()
@@ -151,7 +162,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             else
             {
-                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / MaxCaptureGauge));
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / (MaxCaptureGauge-2)));
             }
         }
     }
