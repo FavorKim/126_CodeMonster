@@ -92,7 +92,7 @@ public class CollectManager : Singleton<CollectManager>
         isSucceed = true;
         GameManager.instance.AddMonsterInPlayerList(spawnedMonster.name);
         UIManager.Instance.PrintOnSuccessCollect();
-        GameManager.Instance.CorInvokeCallBack(StartLoadingOnEndCollectScene, 6);
+        GameManager.Instance.StartInvokeCallBack(StartLoadingOnEndCollectScene, 5);
     }
 
     public void SpawnCollectableMonster()
