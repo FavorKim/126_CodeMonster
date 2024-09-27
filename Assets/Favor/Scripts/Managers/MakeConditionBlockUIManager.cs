@@ -78,7 +78,7 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
         return conditionBlockInfo;
     }
 
-    private void ResetConditionContainer()
+    public void ResetConditionContainer()
     {
         trueBlock?.ReturnToPool();
         falseBlock?.ReturnToPool();

@@ -116,6 +116,9 @@ public class UIManager : Singleton<UIManager>
         StartCheerTimer();
         PrintStageInfo();
         ObjectPoolManager.Instance.SetSelectedAttackCodeBlock();
+        BlockContainerManager.ResetBlockContainer();
+        MakeLoopBlockContainerManager.ResetBlockContainer();
+        MakeConditionBlockUIManager.Instance.ResetConditionContainer();
     }
 
 
