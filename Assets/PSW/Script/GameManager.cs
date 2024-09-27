@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void SetInteractionActive(bool active)
+    public void SetHandActive(bool active)
     {
         Interactions.SetActive(active);
     }
@@ -217,19 +217,13 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator CorLoading(Action action)
     {
-        //SetPokeInteractsEnabled(false);
-        //SetHandsVisible(false);
-        SetInteractionActive(false);
+        SetHandActive(false);
         StartCoroutine(CorFadeOut(0.5f));
         yield return new WaitForSeconds(0.5f);
         yield return new WaitForSeconds(2f);
         action.Invoke();
         StartCoroutine(CorFadeIn(0.5f));
-        SetInteractionActive(true);
-
-        //SetPokeInteractsEnabled(true);
-        //SetHandsVisible(true);
-
+        SetHandActive(true);
     }
 
     public void StartLoading(Action action)
