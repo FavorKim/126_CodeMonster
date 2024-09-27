@@ -38530,6 +38530,7 @@ MonoBehaviour:
   Hands:
   - {fileID: 6055652131870303086}
   - {fileID: 558314838778524903}
+  Interactions: {fileID: 8131642598886821059}
 --- !u!4 &6845280559991085762
 Transform:
   m_ObjectHideFlags: 0

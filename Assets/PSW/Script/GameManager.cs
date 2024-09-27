@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject LoadingBar;
     [SerializeField] List<PokeInteractor> Pokes;
     [SerializeField] List<SkinnedMeshRenderer> Hands;
+    [SerializeField] GameObject Interactions;
     Vector3 PlayerOriginPos;
     Quaternion PlayerOriginRot;
 
@@ -64,6 +65,11 @@ public class GameManager : Singleton<GameManager>
         {
             poke.enabled = onOff;
         }
+    }
+
+    public void SetInteractionActive(bool active)
+    {
+        Interactions.SetActive(active);
     }
 
     public void SetHandsVisible(bool onOff)
@@ -211,15 +217,18 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator CorLoading(Action action)
     {
-        SetPokeInteractsEnabled(false);
-        SetHandsVisible(false);
+        //SetPokeInteractsEnabled(false);
+        //SetHandsVisible(false);
+        SetInteractionActive(false);
         StartCoroutine(CorFadeOut(0.5f));
         yield return new WaitForSeconds(0.5f);
         yield return new WaitForSeconds(2f);
         action.Invoke();
         StartCoroutine(CorFadeIn(0.5f));
-        SetPokeInteractsEnabled(true);
-        SetHandsVisible(true);
+        SetInteractionActive(true);
+
+        //SetPokeInteractsEnabled(true);
+        //SetHandsVisible(true);
 
     }
 
