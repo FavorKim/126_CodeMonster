@@ -161,9 +161,17 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         List<int> indexes = UIManager.instance.SelectCharacterUIManager.GetSelectedTypeIndexes();
         
-        foreach(RectTransform rect in poolContainers.Values)
+        foreach(BlockName name in poolContainers.Keys)
         {
-            rect.gameObject.SetActive(false);
+            switch (name)
+            {
+                case BlockName.FireAttackCodeBlock:
+                case BlockName.WaterAttackCodeBlock:
+                case BlockName.GrassAttackCodeBlock:
+                    poolContainers[name].gameObject.SetActive(false);
+                    break;
+            }
+            
         }
 
         foreach (int index in indexes)

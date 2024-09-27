@@ -140,15 +140,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             MoveSpawnedMonster();
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            OnCompleteCollect();
-            StartLoadingOnEndCollectScene();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            UIManager.Instance.PrintPraise();
-        }
+        
     }
 
     void MoveSpawnedMonster()

@@ -25,8 +25,14 @@ public class GameManager : Singleton<GameManager>
         PlayerOriginPos = PlayerPrefab.transform.position;
         PlayerOriginRot = PlayerPrefab.transform.rotation;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            UIManager.instance.OnStartStage();
+        }
+    }
 
-    
     public void AddMonsterInPlayerList(string monsterName)//플레이어 보유 몬스터에 몬스터를 추가
     {
         var name = DataManagerTest.instance.RemoveTextAfterParenthesis(monsterName);
