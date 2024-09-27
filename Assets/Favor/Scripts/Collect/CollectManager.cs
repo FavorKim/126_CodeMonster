@@ -78,7 +78,9 @@ public class CollectManager : Singleton<CollectManager>
         spawnedMonster = null;
         gameObject.SetActive(false);
         UIManager.Instance.OutgameUIManager.ClickGoToChapter();
+        UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
         GameManager.Instance.ResetPlayerPosition();
+        FieldManager.Instance.OnStartOutGameUI();
         FieldManager.Instance.EnableAllMonsters();
         FieldManager.Instance.MoveAllMonsters();
     }
@@ -138,10 +140,14 @@ public class CollectManager : Singleton<CollectManager>
             }
             MoveSpawnedMonster();
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            OnCompleteCollect();
+            StartLoadingOnEndCollectScene();
+        }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SpawnCollectableMonster();
-
+            UIManager.Instance.PrintPraise();
         }
     }
 
@@ -162,7 +168,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             else
             {
-                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / (MaxCaptureGauge-2)));
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / (MaxCaptureGauge - 2)));
             }
         }
     }

@@ -23,6 +23,11 @@ public class FieldManager : Singleton<FieldManager>
     protected override void Start()
     {
         base.Start();
+        OnStartOutGameUI();
+    }
+
+    public void OnStartOutGameUI()
+    {
         foreach (GameObject prefab in monsterPrefabs)
         {
             InstantiateMonster(prefab);
@@ -33,14 +38,27 @@ public class FieldManager : Singleton<FieldManager>
     {
         if (GameManager.Instance.CheckMonsterInPlayerList(prefab.name))
         {
-            Vector3 randomPosition = GetRandomSpawnPosition();
-            GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
-            InitMonster(monster);
-
-            monster.transform.localScale = Vector3.one;
+            if (CheckIsContainedInFieldMonsterList(prefab.name) == false)
+            {
+                Vector3 randomPosition = GetRandomSpawnPosition();
+                GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
+                InitMonster(monster);
+                monster.transform.localScale = Vector3.one;
+            }
         }
     }
 
+    private bool CheckIsContainedInFieldMonsterList(string name)
+    {
+        name = DataManagerTest.instance.RemoveTextAfterParenthesis(name);
+        foreach(GameObject monster in fieldMonsterList)
+        {
+            string monName = DataManagerTest.Instance.RemoveTextAfterParenthesis(monster.name);
+            if (monName == name)
+                return true;
+        }
+        return false;
+    }
  
 
     private void InitMonster(GameObject monster)

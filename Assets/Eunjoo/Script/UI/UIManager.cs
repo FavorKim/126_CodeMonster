@@ -105,7 +105,7 @@ public class UIManager : Singleton<UIManager>
     }
 
 
-
+    
     public void OnStartStage()
     {
         IngameUI.SetActive(true);
@@ -440,8 +440,8 @@ public class UIManager : Singleton<UIManager>
             parent = CollectTextBox;
 
         parent.gameObject.SetActive(true);
-        WaitForSeconds character = new WaitForSeconds(0.1f);
-        WaitForSeconds next = new WaitForSeconds(3.0f);
+        WaitForSeconds character = new WaitForSeconds(0.05f);
+        WaitForSeconds next = new WaitForSeconds(2.0f);
 
         foreach (string s in list)
         {
@@ -460,7 +460,8 @@ public class UIManager : Singleton<UIManager>
     }
     public void StopPrintText(bool isDirect)
     {
-        StopAllCoroutines();
+        StopCoroutine("PrintText");
+        //StopAllCoroutines();
         hintStop = true;
         StartCheerTimer();
         hintStop = false;

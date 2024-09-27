@@ -59,6 +59,7 @@ public class OutgameUIManager : MonoBehaviour
         StageUI.SetActive(true);
         SelectCharacterUI.SetActive(false);
         UIManager.Instance.SelectStageNum = 0;
+        
     }
 
     public void ClickStartStage()

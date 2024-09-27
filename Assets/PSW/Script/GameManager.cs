@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] public GameObject PlayerPrefab;
     [SerializeField] GameObject ScreenBlocker;
     [SerializeField] GameObject LoadingBar;
+    [SerializeField] List<PokeInteractor> Pokes;
+    [SerializeField] List<SkinnedMeshRenderer> Hands;
     Vector3 PlayerOriginPos;
     Quaternion PlayerOriginRot;
 
@@ -52,6 +55,22 @@ public class GameManager : Singleton<GameManager>
         else
         {
             return false;
+        }
+    }
+
+    public void SetPokeInteractsEnabled(bool onOff)
+    {
+        foreach(PokeInteractor poke in Pokes)
+        {
+            poke.enabled = onOff;
+        }
+    }
+
+    public void SetHandsVisible(bool onOff)
+    {
+        foreach(SkinnedMeshRenderer hand in Hands)
+        {
+            hand.enabled = onOff;
         }
     }
 
@@ -192,11 +211,16 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator CorLoading(Action action)
     {
+        SetPokeInteractsEnabled(false);
+        SetHandsVisible(false);
         StartCoroutine(CorFadeOut(0.5f));
         yield return new WaitForSeconds(0.5f);
         yield return new WaitForSeconds(2f);
         action.Invoke();
         StartCoroutine(CorFadeIn(0.5f));
+        SetPokeInteractsEnabled(true);
+        SetHandsVisible(true);
+
     }
 
     public void StartLoading(Action action)
