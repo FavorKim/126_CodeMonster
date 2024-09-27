@@ -129,7 +129,9 @@ public class BattleManager : Singleton<BattleManager>
                 UnityEngine.Debug.Log("Attack successful! Monster defeated.");
                 UnityEngine.Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 DebugBoxManager.Instance.Log("공격성공");
-
+                int stageBlockIndex = StageManager.instance.ChangePosToKeyValue(playerPosition);
+                Transform stageBlock = StageManager.instance.GetStageBlockPosition(stageBlockIndex);
+                FXManager.Instance.PlayFXAtPosition(stageBlock, (FXType)(attackBlockType - 4));
 
 
                 //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");

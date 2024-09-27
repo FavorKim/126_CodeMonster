@@ -1106,6 +1106,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1676032592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1030694654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030694656}
+  - component: {fileID: 1030694655}
+  m_Layer: 0
+  m_Name: FXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1030694655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030694654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06406a085a88f924f9a129db712a8db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolCount: 10
+  fireFxPrefab: {fileID: -4125996188180307304, guid: 33b16ba861b6ef747846a5e16d1c5900, type: 3}
+  waterFxPrefab: {fileID: -8848923235590772024, guid: 1572cc80aa20e774c88ca629d4bc2718, type: 3}
+  grassFxPrefab: {fileID: 5617841967665247691, guid: 8424c637737f3054e8aab8f72149d834, type: 3}
+--- !u!4 &1030694656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030694654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.683, y: -0.00000047683716, z: 4.0000005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147192294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,3 +2839,4 @@ SceneRoots:
   - {fileID: 6665915109527188583}
   - {fileID: 8250141649611778882}
   - {fileID: 1720113862}
+  - {fileID: 1030694656}

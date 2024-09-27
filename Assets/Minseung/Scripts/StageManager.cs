@@ -215,6 +215,13 @@ public class StageManager : Singleton<StageManager>
         return stageBlockDic[playerPosKey].transform.GetChild(1).transform.position;
     }
 
+    public Transform GetStageBlockPosition(int key)
+    {
+        Transform stageBlock = null;
+        stageBlock = stageBlockDic[key].transform;
+        return stageBlock;
+    }
+
     public GameObject GetMonsterWithPlayerPos(Vector2Int playerPos)
     {
         int playerPosKey = ChangePosToKeyValue(playerPos);
