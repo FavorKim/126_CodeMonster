@@ -156,6 +156,49 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         poolInfo.poolQueue.Enqueue(obj);
         obj.SetActive(false);
     }
+
+    public void SetSelectedAttackCodeBlock()
+    {
+        List<int> indexes = UIManager.instance.SelectCharacterUIManager.GetSelectedTypeIndexes();
+        
+        foreach(RectTransform rect in poolContainers.Values)
+        {
+            rect.gameObject.SetActive(false);
+        }
+
+        foreach (int index in indexes)
+        {
+            BlockName name = GetBlockNameOfTypeIndex(index);
+            poolContainers[name].gameObject.SetActive(true);
+        }
+    }
+
+    public BlockName GetBlockNameOfTypeIndex(int index)
+    {
+        BlockName name;
+        switch (index)
+        {
+            case 1:
+                name = BlockName.FireAttackCodeBlock;
+                break;
+            case 2:
+                name = BlockName.WaterAttackCodeBlock;
+                break;
+            case 3:
+                name = BlockName.GrassAttackCodeBlock;
+                break;
+            default:
+                name = 0;
+                break;
+        }
+        if (name != 0)
+            return name;
+        else
+        {
+            Debug.LogError("인덱스를 통해 블록 네임을 불러올 수 없습니다.");
+            return 0;
+        }
+    }
 }
 
 

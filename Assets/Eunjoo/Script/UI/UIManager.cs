@@ -115,6 +115,7 @@ public class UIManager : Singleton<UIManager>
         hintStop = false;
         StartCheerTimer();
         PrintStageInfo();
+        ObjectPoolManager.Instance.SetSelectedAttackCodeBlock();
     }
 
 

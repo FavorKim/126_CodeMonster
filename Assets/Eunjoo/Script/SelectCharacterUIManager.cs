@@ -95,6 +95,22 @@ public class SelectCharacterUIManager : MonoBehaviour
     {
         return selectedMonsters;
     }
+    public List<int> GetSelectedTypeIndexes()
+    {
+        List <int> indexes = new List<int>();
+        foreach (GameObject monster in selectedMonsters)
+        {
+            Monster mon = DataManagerTest.Instance.GetMonsterData(monster.name);
+            indexes.Add(mon.TypeIndex);
+        }
+        if (indexes.Count > 0)
+            return indexes;
+        else
+        {
+            Debug.LogError("선택된 몬스터가 없거나 타입을 불러올 수 없습니다.");
+            return null;
+        }
+    }
     public void AddMonster(GameObject monster)
     {
         if (monster == null)
@@ -171,7 +187,7 @@ public class SelectCharacterUIManager : MonoBehaviour
         List<int> stageMonsterIndexes = GameManager.Instance.GetMonsterTypeInIndex(stageIndex);
 
         List<int> weaks = new List<int>();
-        foreach(int monIndex in stageMonsterIndexes)
+        foreach (int monIndex in stageMonsterIndexes)
         {
             int weakIndex = DataManagerTest.Instance.GetWeaknessIndexByMonsterTypeIndex(monIndex);
             if (weakIndex != 0)
@@ -185,7 +201,7 @@ public class SelectCharacterUIManager : MonoBehaviour
             typeIndexes.Add(index);
         }
         int temp = 0;
-        foreach(int weak in weaks)
+        foreach (int weak in weaks)
         {
             if (typeIndexes.Contains(weak) == false)
             {
@@ -194,7 +210,7 @@ public class SelectCharacterUIManager : MonoBehaviour
                 temp++;
             }
         }
-        if(temp == 0)
-        Btn_StartStage.EnablePokeBtn();
+        if (temp == 0)
+            Btn_StartStage.EnablePokeBtn();
     }
 }
