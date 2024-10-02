@@ -2725,9 +2725,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1271099303}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: SelectStageNum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: TMP_CollectTxt
       value: 
       objectReference: {fileID: 56046}
+    - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: SelectChapterNum
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 8003467898889469816, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.35
@@ -2768,6 +2776,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.789
       objectReference: {fileID: 0}
+    - target: {fileID: 8293128219710797018, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: _monsterPrefabs.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293128219710797018, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: _monsterPrefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 1352726795475305806, guid: 65c99d2bfdf11c44b81f2f7e1ed2d60e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Monster>
   <dataCategory>
     <data ID="111001" FileName="Char_Starting_Battle_Character_Fire_01" ViewName="불속성스타팅1" TypeIndex="1" Description="" MonsterName="FireStarting1" />
@@ -16,5 +16,6 @@
     <data ID="104001" FileName="Char_Enemy_Unknown_01" ViewName="의문의적A" TypeIndex="0" Description="" MonsterName="Enemy_Unknown_A" />
     <data ID="104002" FileName="Char_Enemy_Unknown_02" ViewName="의문의적B" TypeIndex="0" Description="" MonsterName="Enemy_Unknown_B" />
     <data ID="104003" FileName="Char_Enemy_Unknown_03" ViewName="의문의적C" TypeIndex="0" Description="" MonsterName="Enemy_Unknown_C" />
+    <data ID="104004" FileName="Char_Unique_Battle_Character_Leaf_Unknown" ViewName="풀속성유니크배틀" TypeIndex="0" Description="" MonsterName="LeafUniqueUnknown" />
   </dataCategory>
 </Monster>
