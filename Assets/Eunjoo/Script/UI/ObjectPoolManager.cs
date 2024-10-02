@@ -160,7 +160,11 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     public void SetSelectedAttackCodeBlock()
     {
         List<int> indexes = UIManager.instance.SelectCharacterUIManager.GetSelectedTypeIndexes();
-        
+        if(indexes == null || indexes.Count == 0)
+        {
+            Debug.LogError("잘못된 경로");
+            return;
+        }
         foreach(BlockName name in poolContainers.Keys)
         {
             switch (name)

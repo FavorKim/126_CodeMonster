@@ -98,21 +98,30 @@ public class OutgameUIManager : MonoBehaviour
 
     private void OnClickStageStart()
     {
+        GameManager.Instance.SetPlayerPosToStage();
+
         ClickStartStage();
         FieldManager.Instance.DisableAllMonsters();
+
     }
-    private void OnClickBactToStage()
+    private void OnClickBactToMainMenu()
     {
-        ClickGoToStage();
         UIManager.Instance.DisableIngameUI();
+        GameManager.Instance.SetPlayerPosToMainMenu();
+        
         UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
+        
+        ClickGoToStage();
+
         FieldManager.Instance.EnableAllMonsters();
+
         FieldManager.Instance.MoveAllMonsters();
+
     }
 
-    public void StartLoadingOnBackToStage()
+    public void StartLoadingOnBackToMainMenu()
     {
-        GameManager.Instance.StartLoading(OnClickBactToStage);
+        GameManager.Instance.StartLoading(OnClickBactToMainMenu);
     }
 
     public void StartLoadingOnStartStage()

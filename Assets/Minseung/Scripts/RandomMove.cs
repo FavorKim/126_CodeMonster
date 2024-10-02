@@ -9,7 +9,7 @@ public class RandomMove : MonoBehaviour
     private Vector3 moveDirection;
     private float timeSinceLastDirectionChange;
     private bool isMoving = true;
-
+    [SerializeField] float distance;
     private void Start()
     {
         SetRandomDirection();
@@ -19,13 +19,21 @@ public class RandomMove : MonoBehaviour
     {
         if (isMoving)
         {
-            timeSinceLastDirectionChange += Time.deltaTime;
-            if(timeSinceLastDirectionChange >= changeDirectionTime)
+            distance = Vector3.Distance(GameManager.Instance.PlayerPrefab.transform.position, transform.position);
+            if (distance > 3 || distance < -3)
             {
-                SetRandomDirection();
-                timeSinceLastDirectionChange = 0f;
+                Vector3 tempdir = (GameManager.Instance.PlayerPrefab.transform.position - transform.position).normalized;
+                moveDirection = new Vector3(tempdir.x, 0, tempdir.z);
             }
-
+            else
+            {
+                timeSinceLastDirectionChange += Time.deltaTime;
+                if (timeSinceLastDirectionChange >= changeDirectionTime)
+                {
+                    SetRandomDirection();
+                    timeSinceLastDirectionChange = 0f;
+                }
+            }
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
         }
     }

@@ -79,7 +79,7 @@ public class CollectManager : Singleton<CollectManager>
         gameObject.SetActive(false);
         UIManager.Instance.OutgameUIManager.ClickGoToChapter();
         UIManager.Instance.SelectCharacterUIManager.RemoveAllMonsters();
-        GameManager.Instance.ResetPlayerPosition();
+        GameManager.Instance.SetPlayerPosToMainMenu();
         FieldManager.Instance.OnStartOutGameUI();
         FieldManager.Instance.EnableAllMonsters();
         FieldManager.Instance.MoveAllMonsters();

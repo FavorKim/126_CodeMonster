@@ -8,29 +8,38 @@ using UnityEngine.UIElements;
 public class GameManager : Singleton<GameManager>
 {
     private List<string> _playerMonsterNameList = new List<string>();
-    [SerializeField] Transform CollectingPos;
     [SerializeField] public GameObject PlayerPrefab;
     [SerializeField] GameObject ScreenBlocker;
     [SerializeField] GameObject LoadingBar;
     [SerializeField] List<PokeInteractor> Pokes;
     [SerializeField] List<SkinnedMeshRenderer> Hands;
     [SerializeField] GameObject Interactions;
-    Vector3 PlayerOriginPos;
-    Quaternion PlayerOriginRot;
+
+    [SerializeField] Transform CollectingPos;
+    [SerializeField] Transform mainMenuPos;
+    [SerializeField] Transform stagePos;
 
     protected override void Start()
     {
+        SetPlayerPosToMainMenu();
         base.Start();
         _playerMonsterNameList = DataManagerTest.instance.GetPlayerData("Player").StartMonsterNameList;
-        PlayerOriginPos = PlayerPrefab.transform.position;
-        PlayerOriginRot = PlayerPrefab.transform.rotation;
+
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            UIManager.instance.OnStartStage();
+            UIManager.Instance.OutgameUIManager.StartLoadingOnStartStage();
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            UIManager.Instance.OutgameUIManager.StartLoadingOnBackToMainMenu();
+
+
+        }
+
     }
 
     public void AddMonsterInPlayerList(string monsterName)//플레이어 보유 몬스터에 몬스터를 추가
@@ -147,6 +156,7 @@ public class GameManager : Singleton<GameManager>
     private void SetPlayerPosTo(Transform position)
     {
         PlayerPrefab.transform.position = position.position;
+        PlayerPrefab.transform.rotation = position.rotation;
     }
     private void SetPlayerPosToCollectingZone()
     {
@@ -237,11 +247,6 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(CorLoading(action));
     }
 
-    public void ResetPlayerPosition()
-    {
-        PlayerPrefab.transform.position = PlayerOriginPos;
-        PlayerPrefab.transform.rotation = PlayerOriginRot;
-    }
     private IEnumerator CorInvokeCallBack(Action action, float time)
     {
         yield return new WaitForSeconds(time);
@@ -250,5 +255,15 @@ public class GameManager : Singleton<GameManager>
     public void StartInvokeCallBack(Action action, float time)
     {
         StartCoroutine(CorInvokeCallBack(action, time));
+    }
+
+    
+    public void SetPlayerPosToMainMenu()
+    {
+        SetPlayerPosTo(mainMenuPos);
+    }
+    public void SetPlayerPosToStage()
+    {
+        SetPlayerPosTo(stagePos);
     }
 }

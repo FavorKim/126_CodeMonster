@@ -3371,7 +3371,7 @@ MonoBehaviour:
   SelectCharacterUIManager: {fileID: 5502109454462831571}
   OutgameUIManager: {fileID: 6285455436350169211}
   SelectChapterNum: 1000
-  SelectStageNum: 5
+  SelectStageNum: 4
 --- !u!1 &676003426785059907
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077105239186664977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3266c3d920715b84089935c4ab019210, type: 3}
   m_Name: 
@@ -8550,7 +8550,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6285455436350169211}
         m_TargetAssemblyTypeName: OutgameUIManager, Assembly-CSharp
-        m_MethodName: StartLoadingOnBackToStage
+        m_MethodName: StartLoadingOnBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15110,7 +15110,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3bb64a7726146414393e14551881ad26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15202,7 +15202,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2839896736055105710}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3266c3d920715b84089935c4ab019210, type: 3}
   m_Name: 
@@ -18097,7 +18097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2681442441069833498
 Transform:
   m_ObjectHideFlags: 0
@@ -20459,7 +20459,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3915903464232077072}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3266c3d920715b84089935c4ab019210, type: 3}
   m_Name: 
@@ -24870,7 +24870,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4786797580119439874}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5310861, y: -0.00025639782, z: -0.00048136798, w: 0.84731776}
+  m_LocalRotation: {x: 0.5310884, y: -0.00025419114, z: -0.00048261962, w: 0.84731627}
   m_LocalPosition: {x: 2.323, y: 4.095, z: 1.371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34669,7 +34669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7153042228617603077
 Transform:
   m_ObjectHideFlags: 0
@@ -42989,7 +42989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: aa29bc4f6657cd048b835c137fd68df4, type: 2}
   m_Color: {r: 1, g: 0.95, b: 0.652, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -44262,7 +44262,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3bb64a7726146414393e14551881ad26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -44354,7 +44354,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8668652043856313566}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3266c3d920715b84089935c4ab019210, type: 3}
   m_Name: 
@@ -44529,7 +44529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: aa29bc4f6657cd048b835c137fd68df4, type: 2}
   m_Color: {r: 1, g: 0.95, b: 0.652, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -45067,7 +45067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: aa29bc4f6657cd048b835c137fd68df4, type: 2}
   m_Color: {r: 1, g: 0.95, b: 0.652, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

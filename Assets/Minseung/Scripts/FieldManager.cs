@@ -148,6 +148,11 @@ public class FieldManager : Singleton<FieldManager>
         foreach (GameObject monster in fieldMonsterList)
         {
             monster.SetActive(true);
+            monster.transform.SetParent(null);
+            monster.transform.localScale = Vector3.one;
+            monster.transform.rotation = Quaternion.identity;
+            Vector3 pos = GameManager.Instance.PlayerPrefab.transform.position;
+            monster.transform.position = new Vector3(pos.x, -1, pos.z);
         }
     }
 
