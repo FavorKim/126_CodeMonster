@@ -21,6 +21,7 @@ public class BlockContainerManager : MonoBehaviour
     {
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, ResetBlockContainer);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetBlockContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.BACTTOMAIN, ResetBlockContainer);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetBlockContainer);
     }
 
@@ -152,7 +153,6 @@ public class BlockContainerManager : MonoBehaviour
             
             if(i>=6)
             {
-                //DebugBoxManager.Instance.Log(transform.GetChild(i).name);
             }
         }
 
@@ -168,7 +168,6 @@ public class BlockContainerManager : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("컨디션블록이 아닙니다.");
             return null;
         }
     }
@@ -181,7 +180,6 @@ public class BlockContainerManager : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("루프블록이 아닙니다.");
             return null;
         }
     }

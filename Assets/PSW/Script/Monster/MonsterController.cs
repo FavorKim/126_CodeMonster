@@ -44,7 +44,6 @@ public class MonsterController : MonoBehaviour
 
         //플레이어 죽는 함수 호출 아니면 이벤트 호출
 
-        DebugBoxManager.Instance.Log("적 몬스터 반격!");
     }
 
     public virtual void Hit()
@@ -52,7 +51,6 @@ public class MonsterController : MonoBehaviour
         //애니메이션 재생
 
         HP--;
-        DebugBoxManager.Instance.Log($"적 몬스터 피격! 적 몬스터 남은 체력 : {hp}");
 
     }
 
@@ -78,7 +76,6 @@ public class MonsterController : MonoBehaviour
         Invoke(nameof(DisableMonster), startTime);
         */
 
-        DebugBoxManager.Instance.Log("적 몬스터 기절!");
         DisableMonster();
     }
 

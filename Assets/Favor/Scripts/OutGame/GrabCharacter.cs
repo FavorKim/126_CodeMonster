@@ -34,7 +34,6 @@ public class GrabCharacter : MonoBehaviour
 
     private void OnDisable()
     {
-        DebugBoxManager.Instance.Log("OnDisable");
         if(grab!= null)
         {
             grab.OnRelease?.RemoveListener(SelectMonster);

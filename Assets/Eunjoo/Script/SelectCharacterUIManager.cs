@@ -38,7 +38,6 @@ public class SelectCharacterUIManager : MonoBehaviour
         // 리스트에서 몬스터 타입을 확인
         foreach (int monsterType in monsterTypeIndices)
         {
-            DebugBoxManager.Instance.Log($"{monsterType}");
             switch (monsterType)
             {
                 case 1:
@@ -115,7 +114,6 @@ public class SelectCharacterUIManager : MonoBehaviour
     {
         if (monster == null)
         {
-            DebugBoxManager.Instance.Log("AddmOnster NULL");
             return;
         }
         if (!selectedMonsters.Contains(monster))
@@ -126,13 +124,11 @@ public class SelectCharacterUIManager : MonoBehaviour
             //monster.transform.localPosition = Vector3.zero;
             monster.transform.localScale = new Vector3(70, 70, 70);
             monster.transform.localRotation = Quaternion.Euler(new Vector3(0, 120, 0));
-            DebugBoxManager.Instance.Log("캐릭터 등록");
             CheckCanStart();
             //디버깅 할 수 없는 버그로 인해 사용 불가 (예컨대 sdk쪽 오류일 가능성 높음)
         }
         else
         {
-            DebugBoxManager.Instance.Log("추가하려는 몬스터가 이미 리스트 내에 존재합니다.");
         }
 
     }
@@ -140,7 +136,6 @@ public class SelectCharacterUIManager : MonoBehaviour
     {
         if (monster == null)
         {
-            DebugBoxManager.Instance.Log("RemoveMonster NULL");
             return;
         }
         if (selectedMonsters.Contains(monster))
@@ -149,12 +144,10 @@ public class SelectCharacterUIManager : MonoBehaviour
             SetMonsterList();
             //FieldManager.Instance.TeleportMonstersToTargetPositions();
             //monster.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            DebugBoxManager.Instance.Log("캐릭터 등록 해제");
             CheckCanStart();
         }
         else
         {
-            DebugBoxManager.Instance.Log("삭제하려는 몬스터가 리스트내에 없습니다.");
         }
     }
 
@@ -223,7 +216,6 @@ public class SelectCharacterUIManager : MonoBehaviour
             }
             if (typeIndexes.Contains(weak) == false)
             {
-                DebugBoxManager.Instance.Log($"{weak}번 타입 인덱스 없음");
                 Btn_StartStage.DisablePokeBtn();
                 temp++;
             }

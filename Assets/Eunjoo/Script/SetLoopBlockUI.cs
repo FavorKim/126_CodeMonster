@@ -101,7 +101,6 @@ public class SetLoopBlockUI : MonoBehaviour
 
     public SetConditionBlockUI GetConditionByIndex(int index)
     {
-        //DebugBoxManager.Instance.Log($"Loop : 매개 인덱스 : {index}, 차일드 카운트 : {LoopBlockListBox.transform.childCount}");
 
         if (LoopBlockList[index]== 8)
         {
@@ -110,13 +109,11 @@ public class SetLoopBlockUI : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("조건블록이 아닙니다 (루프블록)");
             return null;
         }
     }
     public ConditionBlock GetConditionBlockByIndex(int index)
     {
-        //DebugBoxManager.Instance.Log($"Loop cb : 매개 인덱스 : {index}, 차일드 카운트 : {LoopBlockListBox.transform.childCount}");
 
         if (LoopBlockList[index] == 8)
         {
@@ -125,7 +122,6 @@ public class SetLoopBlockUI : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("조건블록이 아닙니다 (루프블록)");
             return null;
         }
     }

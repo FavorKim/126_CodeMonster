@@ -115,7 +115,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     {
         // Instantiate the prefab as a child of the corresponding RectTransform container
         GameObject newObject = Instantiate(poolInfo.prefab, poolContainers[poolInfo.BlockName]);
-
+        DebugBoxManager.Instance.Log("새오브젝트 생성");
         return newObject;
     }
 
@@ -135,16 +135,20 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     // 오브젝트가 필요할 때 호출하는 함수
     public GameObject GetObject(BlockName type)
     {
-        PoolInfo poolInfo = Instance.GetPoolByType(type);
+        PoolInfo poolInfo = GetPoolByType(type);
         GameObject objInstance = null;
-        if (poolInfo.poolQueue.Count == 0)
+        if (poolInfo.poolQueue.Count <= 2)
         {
-            objInstance = Instance.CreatNewObject(poolInfo);
+            objInstance = CreatNewObject(poolInfo);
             ReturnObject(objInstance, poolInfo.BlockName);
         }
         objInstance = poolInfo.poolQueue.Dequeue();
-
         objInstance.SetActive(true);
+        //Renderer[] renders =objInstance.GetComponentsInChildren<Renderer>();
+        //foreach (Renderer render in renders)
+        //{
+        //    render.enabled = true;
+        //}
 
         return objInstance;
     }
@@ -152,9 +156,14 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     // 오브젝트 사용 후 다시 풀에 반환하는 함수
     public void ReturnObject(GameObject obj, BlockName type)
     {
-        PoolInfo poolInfo = Instance.GetPoolByType(type);
+        PoolInfo poolInfo = GetPoolByType(type);
         poolInfo.poolQueue.Enqueue(obj);
-        obj.SetActive(false);
+        //obj.SetActive(false);
+        //Renderer[] renders = obj.GetComponentsInChildren<Renderer>();
+        //foreach(Renderer render in renders)
+        //{
+        //    render.enabled = false;
+        //}
     }
 
     public void SetSelectedAttackCodeBlock()

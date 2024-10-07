@@ -28,6 +28,7 @@ public class StageManager : Singleton<StageManager>
         SetPlayer(playerPrefab);
         SetEnemies();
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART,ResetStage);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.BACTTOMAIN,ResetStage);
     }
 
     public void ClearDic()

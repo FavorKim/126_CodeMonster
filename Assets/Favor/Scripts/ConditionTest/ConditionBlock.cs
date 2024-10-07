@@ -23,12 +23,10 @@ public class ConditionBlock : MonoBehaviour
             TrueBlock = TrueType;
         if (FalseType != null)
             FalseBlock = FalseType;
-        //grab.OnGrab += () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
     }
 
     private void OnApplicationQuit()
     {
-        //grab.OnGrab -= () => { DebugBoxManager.Instance.Log($"{indexValue}"); };
         grab.OnGrab.AddListener(OnGrabSetData);
     }
 
@@ -55,23 +53,18 @@ public class ConditionBlock : MonoBehaviour
     public int EvaluateCondition(Monster monster)
     {
         SetConditionBlockUI conUI = GetComponent<SetConditionBlockUI>();
-        DebugBoxManager.Instance.Log($" 조건블록 인덱스 밸류 {indexValue}");
         if(TrueBlock == null)
         {
 
         }
-        DebugBoxManager.Instance.Log($"TrueBlock = : {TrueBlock.name}");
-        DebugBoxManager.Instance.Log($"FalseBlock = : {FalseBlock.name}");
         if (monster.TypeIndex == indexValue)
         {
-            //DebugBoxManager.Instance.Log("참 블록 평가완료");
             // true거 하이라이트 해주고
             conUI.AccentTrueBlock();
             return (int)TrueBlock.BlockName + 1;
         }
         else
         {
-            //DebugBoxManager.Instance.Log("거짓 블록 평가완료");
             // false거 하이라이트 해주고
             conUI.AccentFalseBlock();
             return (int)FalseBlock.BlockName + 1;

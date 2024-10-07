@@ -104,10 +104,27 @@ public class UIManager : Singleton<UIManager>
 
     }
 
+    private void OnDisable()
+    {
+        DebugBoxManager.Instance.ClearText();
+        StopAllCoroutines();
+        DirectHintBox.SetActive(false);
+        IndirectHintBox.SetActive(false);
+        TMP_directBox.text = string.Empty;
+        TMP_IndirectBox.text = string.Empty;
 
-    
+    }
+
+
     public void OnStartStage()
     {
+        StopAllCoroutines();
+        DirectHintBox.SetActive(false);
+        IndirectHintBox.SetActive(false);
+        TMP_directBox.text = string.Empty;
+        TMP_IndirectBox.text = string.Empty;
+
+        DebugBoxManager.Instance.ClearText();
         IngameUI.SetActive(true);
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
         EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, BlockContainerLength);
@@ -265,7 +282,6 @@ public class UIManager : Singleton<UIManager>
 
     public void MakeConditionalBlockBoxEnable()
     {
-        DebugBoxManager.Instance.Log("Enabled");
         MakeConditionalBlockBoxUI.SetActive(true);
     }
     public void MakeConditionalBlockBoxDisable()
@@ -275,19 +291,20 @@ public class UIManager : Singleton<UIManager>
 
     public void PrintStageDirectHint()
     {
-        StopPrintText(true);
+        StopPrintText(TextTypeName.BIGHINT);
+
         int curStageIndex = SelectChapterNum + SelectStageNum;
         PrintUITextByStageIndex(TextTypeName.BIGHINT, curStageIndex);
     }
     public void PrintStageInfo()
     {
-        StopPrintText(true);
+        StopPrintText(TextTypeName.STAGEINFO);
         int curStageIndex = SelectChapterNum + SelectStageNum;
         PrintUITextByStageIndex(TextTypeName.STAGEINFO, curStageIndex);
     }
     public void PrintPraise()
     {
-        StopPrintText(true);
+        StopPrintText(TextTypeName.PRAISE);
         hintStop = true;
         int curStageIndex = SelectChapterNum + SelectStageNum;
         List<string> text = DataManagerTest.Instance.GetPraiseByStageIndex(curStageIndex);
@@ -465,17 +482,13 @@ public class UIManager : Singleton<UIManager>
 
         hintStop = false;
     }
-    public void StopPrintText(bool isDirect)
+    public void OnClickIndirectBox()
     {
-        StopCoroutine("PrintText");
-        //StopAllCoroutines();
-        hintStop = true;
-        StartCheerTimer();
-        hintStop = false;
-        if (isDirect)
-            DirectHintBox.gameObject.SetActive(false);
-        else
-            IndirectHintBox.gameObject.SetActive(false);
+        StopPrintText(TextTypeName.SMALLHINT);
+    }
+    public void OnClickDirectBox()
+    {
+        StopPrintText(TextTypeName.BIGHINT);
     }
     public void StopPrintText(TextTypeName isDirectBox)
     {

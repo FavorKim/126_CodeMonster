@@ -18,6 +18,7 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, LoseMakeLoopBlocksName);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, LoseMakeLoopBlocksName);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.BACTTOMAIN, LoseMakeLoopBlocksName);
     }
     
 
@@ -96,7 +97,6 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
         if (this.transform.childCount <= 0)
         {
-            DebugBoxManager.Instance.Log("루프블록 자식 갯수 0");
             return;
         }
 

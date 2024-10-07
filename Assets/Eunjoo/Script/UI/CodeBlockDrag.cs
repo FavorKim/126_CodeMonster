@@ -28,6 +28,7 @@ public class CodeBlockDrag : MonoBehaviour
     bool isConditionTrue;
     bool isConditionFalse;
 
+    bool isGrabbed = false;
 
 
 
@@ -50,13 +51,11 @@ public class CodeBlockDrag : MonoBehaviour
         {
             grab.OnGrab.AddListener(OnBoxGrabbed);
             grab.OnRelease.AddListener(OnBoxRelease);
-            //DebugBoxManager.Instance.Txt_DebugMsg.text += "Event Successfully Regist";
         }
         else
         {
             Debug.LogWarning($"OnEnable : {gameObject.name}'s grab is null");
 
-            //DebugBoxManager.Instance.Txt_DebugMsg.text = "Event Didn't Regist";
         }
         if (matChanger == null)
             matChanger = GetComponent<MaterialChanger>();
@@ -78,6 +77,10 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxRelease()
     {
+        if (!isGrabbed) return;
+
+        isGrabbed = false;
+
         if (BlockType == BlockType.LoopCodeBlock)
         {
             SetLoopBlockUI SetLoopBlockUI = gameObject.GetComponentInChildren<SetLoopBlockUI>();
@@ -114,14 +117,12 @@ public class CodeBlockDrag : MonoBehaviour
         // 조건문 (if시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionTrue)
         {
-            //DebugBoxManager.Instance.Log("참 등록");
             MakeConditionBlockUI.SetConditionBlockPos(this, true);
             isConditionTrue = false;
         }
         // 조건문 (else시 행동) 등록부
         else if (MakeConditionBlockUI != null && isConditionFalse)
         {
-            //DebugBoxManager.Instance.Log("거짓 등록");
             MakeConditionBlockUI.SetConditionBlockPos(this, false);
             isConditionFalse = false;
         }
@@ -148,6 +149,9 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void OnBoxGrabbed()
     {
+        if (isGrabbed) return;
+
+        isGrabbed = true;
         // 부모 변경 전에 현재 월드 좌표를 저장
         Vector3 worldPositionBeforeChange = _rectTransform.position;
 
@@ -163,6 +167,10 @@ public class CodeBlockDrag : MonoBehaviour
         if (BlockContainerUI == null)
         {
             GameObject objInstance = ObjectPoolManager.Instance.GetObject(BlockName);
+            RectTransform rect = objInstance.GetComponent<RectTransform>();
+            //rect.SetParent(null, false);
+            //rect.localScale = Vector3.one;
+
         }
         else
         {
@@ -183,6 +191,7 @@ public class CodeBlockDrag : MonoBehaviour
         {
             GrabConditionCodeBlock();
         }
+        DebugBoxManager.Instance.Log($"풀 패런트 카운트 그랩 : {PoolParent.transform.childCount}");
     }
 
 
@@ -198,7 +207,6 @@ public class CodeBlockDrag : MonoBehaviour
                 SetLoopBlockUI.EnableLoopBlockImage();
             else
             {
-                DebugBoxManager.Instance.Log("SetLoopBlockUI NULL!");
                 return;
             }
 
@@ -207,7 +215,6 @@ public class CodeBlockDrag : MonoBehaviour
             GameObject loopBlock = ObjectPoolManager.Instance.GetObject((BlockName)blockName - 1);
             if (blockName == 8)
             {
-                DebugBoxManager.Instance.Log("루프블록 안에 조건블록");
                 loopBlock.GetComponent<CodeBlockDrag>().GrabConditionCodeBlock();
                 loopBlock.GetComponent<ConditionBlock>().OnGrabSetData();
             }
@@ -232,13 +239,11 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("SetConditionBlockUI NULL!");
             return;
         }
         ConditionBlock condition = GetComponent<ConditionBlock>();
         if (condition == null)
         {
-            DebugBoxManager.Instance.Log("ConditionBlockNULL!");
             return;
         }
         condition = MakeConditionBlockUIManager.Instance.GetConditionBlockInfo();
@@ -277,7 +282,6 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = other.transform.parent.GetComponent<MakeConditionBlockUIManager>();
                 }
                 isConditionTrue = true;
-                //DebugBoxManager.Instance.Log("참일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
@@ -286,7 +290,6 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = other.transform.parent.GetComponent<MakeConditionBlockUIManager>();
                 }
                 isConditionFalse = true;
-                //DebugBoxManager.Instance.Log("거짓일 때 true");
                 matChanger.ChangeMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -318,7 +321,6 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = null;
 
                 isConditionTrue = false;
-                //DebugBoxManager.Instance.Log("참일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
             case "MakeConditionFalse":
@@ -326,7 +328,6 @@ public class CodeBlockDrag : MonoBehaviour
                     MakeConditionBlockUI = null;
 
                 isConditionFalse = false;
-                //DebugBoxManager.Instance.Log("거짓일 때 false");
                 matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
                 break;
         }
@@ -342,6 +343,8 @@ public class CodeBlockDrag : MonoBehaviour
 
     public void ReturnToPool()
     {
+
+        
         BlockContainerUI = null;
 
         HandGrabInteractable BlockHandGrab = GetComponent<HandGrabInteractable>();
@@ -357,14 +360,14 @@ public class CodeBlockDrag : MonoBehaviour
         _rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         _rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        _rectTransform.localPosition = Vector3.zero;
 
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
         matChanger.DisableXIcon();
-
-        _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
         EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, UIManager.Instance.BlockContainerLength - UIManager.Instance.BlockContainerManager.CountCodeBlockDragComponents());
         EventManager<UIEvent>.TriggerEvent(UIEvent.LoopBlockContainerBlockCount, UIManager.Instance.MakeLoopBlockContainerLength - UIManager.Instance.MakeLoopBlockContainerManager.CountCodeBlockDragComponents());
+
     }
 
     public SetConditionBlockUI GetConditionBlockUI()
@@ -375,7 +378,6 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("SetConditionBlockUI가 없습니다.");
             return null;
         }
     }
@@ -387,7 +389,6 @@ public class CodeBlockDrag : MonoBehaviour
         }
         else
         {
-            DebugBoxManager.Instance.Log("SetLoopBlockUI가 없습니다.");
             return null;
         }
     }

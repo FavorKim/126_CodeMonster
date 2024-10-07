@@ -59,7 +59,6 @@ public class CheckState : BaseState<Player>
 
         if (blockIndex == -1)
         {
-            DebugBoxManager.Instance.Log("플레이어 행동 종료.");
             // 행동이 종료됐는데도 적과 같이 있으면
             if(StageManager.Instance.CheckMonsterAndPlayerPos(Controller.playerPosition))
             {
@@ -116,22 +115,17 @@ public class CheckState : BaseState<Player>
         }
         else if (blockIndex == 8)
         {
-            DebugBoxManager.Instance.Log("8번 인덱스. 조건블록");
-            DebugBoxManager.Instance.Log($"현재 인덱스 : {Controller.CurrentIndex}");
             //Controller.IsIfUsed = true;
-            DebugBoxManager.Instance.Log($"isLoop : {Controller.isLoop}");
             if (Controller.isLoop == false)
             {
                 SetConditionBlockUI cond = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex(Controller.CurrentIndex).GetConditionBlockUI();
                 if (cond != null)
                 {
-                    DebugBoxManager.Instance.Log("컨디션블록 불러옴");
                     cond.EnableConditionBlockListImage();
                     Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
                 }
                 else
                 {
-                    DebugBoxManager.Instance.Log("컨디션 블록 널");
                 }
             }
             else
@@ -140,14 +134,12 @@ public class CheckState : BaseState<Player>
                 SetConditionBlockUI cond = loop.GetConditionByIndex(Controller.CurrentIndex);
                 if(cond != null)
                 {
-                    DebugBoxManager.Instance.Log("컨디션블록 불러옴");
                     
                     cond.EnableConditionBlockListImage();
                     Controller.playerStateMachine.ChangeState(PlayerStateName.ATTACK);
                 }
                 else
                 {
-                    DebugBoxManager.Instance.Log("컨디션 블록 널 (loop)");
 
                 }
 
@@ -155,9 +147,7 @@ public class CheckState : BaseState<Player>
         }
         else if (blockIndex == 9)
         {
-            DebugBoxManager.Instance.Log("9번 인덱스. 반복블록");
             SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex((int)Controller.CurrentIndex).GetLoopBlockUI();
-            DebugBoxManager.Instance.Log($"loop 차일드 카운트 : {loop.CountLoopBlockListBox()}");
             loop.EnableLoopBlockImage();
             Controller.OnEndLoop += loop.DisableLoopBlockImage;
             Controller.playerStateMachine.ChangeState(PlayerStateName.Loop);
@@ -222,7 +212,6 @@ public class AttackState : BaseState<Player>
     public override void OnEnterState()
     {
         int blockIndex = Controller.GetCurrentBlockIndex();
-        DebugBoxManager.Instance.Log($"현재 공격 블록의 인덱스 : {blockIndex}");
         Controller.Attack(blockIndex);
     }
 
@@ -243,7 +232,6 @@ public class LoopState : BaseState<Player>
         Controller.SetLoopBlock(loopBlock);
         Controller.SetMaxLoopIndex(loopBlock.LoopBlockList.Count);
         Controller.SetMaxLoopCount(loopBlock.LoopCount);
-        //DebugBoxManager.Instance.Log($"루프블록의 루프카운트 : {loopBlock.LoopCount}");
         Controller.CurLoopIndex = 0;
         Controller.CurLoopCount = 0;
 

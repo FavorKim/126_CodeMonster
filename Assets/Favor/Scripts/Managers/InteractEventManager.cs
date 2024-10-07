@@ -16,6 +16,7 @@ public enum PokeButton
     CONDITIONMAKE,
     LOOPRESET,
     CONDITIONRESET,
+    BACTTOMAIN,
 }
 public class InteractEventManager : Singleton<InteractEventManager>
 {
@@ -28,7 +29,8 @@ public class InteractEventManager : Singleton<InteractEventManager>
     [SerializeField] CustomPokedObject conditionMakeBtn;
     [SerializeField] CustomPokedObject loopResetBtn;
     [SerializeField] CustomPokedObject conditionResetBtn;
-    
+    [SerializeField] CustomPokedObject backToMain;
+
 
     private Dictionary<PokeButton, CustomPokedObject> btnDict = new Dictionary<PokeButton, CustomPokedObject>();
 
@@ -50,6 +52,7 @@ public class InteractEventManager : Singleton<InteractEventManager>
             btnDict.Add(PokeButton.CONDITIONMAKE, conditionMakeBtn);
             btnDict.Add(PokeButton.LOOPRESET, loopResetBtn);
             btnDict.Add(PokeButton.CONDITIONRESET, conditionResetBtn);
+            btnDict.Add(PokeButton.BACTTOMAIN, backToMain);
         }
     }
     public void RegistOnPokeBtn(PokeButton btn, UnityAction action)

@@ -259,7 +259,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
 
         if(LoadedMonsterList == null || LoadedMonsterList.Count == 0)
         {
-            DebugBoxManager.Instance.Log("로디드몬스터 설정안됨");
         }
 
         if (LoadedMonsterList.Count == 0 || !LoadedMonsterList.ContainsKey(name))
@@ -300,7 +299,6 @@ public class DataManagerTest : Singleton<DataManagerTest>
         MonsterType type = GetMonsterTypeData(monsterTypeIndex + 4);
         if (type == null)
         {
-            DebugBoxManager.Instance.Log("type null");
             return 0;
         }
         return type.Weakness - 4;

@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
             curLoopCount = value;
             if(curLoopCount >= maxLoopCount)
             {
-                DebugBoxManager.Instance.Log("루프카운트 초과로 인한 루프 비활성화");
                 isLoop = false;
                 OnEndLoop.Invoke();
                 OnEndLoop = null;
@@ -101,7 +100,6 @@ public class Player : MonoBehaviour
         CurLoopIndex = 0;
         CurLoopCount = 0;
         isLoop = false;
-        DebugBoxManager.Instance.Log("리셋으로 인한 루프 비활성화");
 
     }
 
@@ -131,6 +129,7 @@ public class Player : MonoBehaviour
         IsPlaying = false;
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.START, StartPlayerAction);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetPlayer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.BACTTOMAIN, ResetPlayer);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetPlayer);
     }
 
@@ -210,13 +209,11 @@ public class Player : MonoBehaviour
             if (GameRule.CheckPlayerPosAndMonster(position))
             {
                 transform.position = StageManager.Instance.GetPlayerPosWithMonsterStage(position);
-                //DebugBoxManager.Instance.Log("몬스터와 같은 자리에 위치함");
                 //UIManager.Instance.PrintUIText(TextTypeName.SMALLHINT);
                 
             }
             else if (GameRule.CheckPlayerPosInDeadzone(position))
             {
-                //DebugBoxManager.Instance.Log("잘못된 경로. 게임오버");
                 UIManager.Instance.BlockContainerManager.SetXIcon(CurrentIndex, true);
                 UIManager.Instance.PrintUITextByTextIndex(420, false);
                 stateMachine.ChangeState(PlayerStateName.DIEMOVE);
@@ -393,7 +390,6 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        DebugBoxManager.Instance.Log("플레이어 기절!");
         this.gameObject.SetActive(false);
     }
 

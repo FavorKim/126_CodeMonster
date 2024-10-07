@@ -54,9 +54,9 @@ public class CustomGrabObject : MonoBehaviour
         {
             if(OnGrab == null)
             {
-                DebugBoxManager.Instance.Log($"{gameObject.name}의 On Grab이 NULL");
             }
             OnGrab?.Invoke();
+            DebugBoxManager.Instance.Log("ongrabbed");
         }
 
         // Release 됐을 때
@@ -64,7 +64,6 @@ public class CustomGrabObject : MonoBehaviour
         {
             if (OnRelease == null)
             {
-                DebugBoxManager.Instance.Log($"{gameObject.name}의 OnRelease가 NULL");
             }
             OnRelease?.Invoke();
         }
