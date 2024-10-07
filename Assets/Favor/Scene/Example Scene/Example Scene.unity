@@ -2716,6 +2716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6177606429496094328, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6638874799941290386, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: OnPokeRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartLoadingOnBackToMainMenu
@@ -2738,7 +2742,7 @@ PrefabInstance:
       objectReference: {fileID: 56046}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: SelectChapterNum
-      value: 3000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8003467898889469816, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: m_LocalPosition.x

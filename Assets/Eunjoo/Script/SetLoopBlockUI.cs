@@ -24,6 +24,12 @@ public class SetLoopBlockUI : MonoBehaviour
         }
     }
 
+
+    private void Start()
+    {
+        DisableLoopBlockImage();
+    }
+
     public int CountLoopBlockListBox()
     {
         return LoopBlockListBox.transform.childCount;

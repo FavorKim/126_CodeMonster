@@ -201,14 +201,36 @@ public class SelectCharacterUIManager : MonoBehaviour
             typeIndexes.Add(index);
         }
         int temp = 0;
+
+        int fire = 0;
+        int grass = 0;
+        int water = 0;
         foreach (int weak in weaks)
         {
+            switch (weak)
+            {
+                case 1:
+                    fire++;
+                    break;
+                case 2:
+                    grass++;
+                    break;
+                case 3:
+                    water++;
+                    break;
+                default:
+                    break;
+            }
             if (typeIndexes.Contains(weak) == false)
             {
                 DebugBoxManager.Instance.Log($"{weak}번 타입 인덱스 없음");
                 Btn_StartStage.DisablePokeBtn();
                 temp++;
             }
+        }
+        if (fire > 1 || water > 1 || grass > 1)
+        {
+            temp++;
         }
         if (temp == 0)
             Btn_StartStage.EnablePokeBtn();

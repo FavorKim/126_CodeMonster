@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
             {
                 DebugBoxManager.Instance.Log("루프카운트 초과로 인한 루프 비활성화");
                 isLoop = false;
+                OnEndLoop.Invoke();
+                OnEndLoop = null;
                 currentIndex++;
             }
         }
@@ -67,10 +69,27 @@ public class Player : MonoBehaviour
     public bool isAttack = false;
     public bool isGameOver = false;
     public bool isLoop = false;
+    private bool isPlaying = false;
     public bool IsPlaying
     {
-        get;
-        private set;
+        get
+        {
+            return isPlaying;
+        }
+        private set
+        {
+            if (isPlaying == value) return;
+
+            isPlaying = value;
+            if(isPlaying == true)
+            {
+                UIManager.Instance.SetCheerStop(true);
+            }
+            else
+            {
+                UIManager.Instance.SetCheerStop(false);
+            }
+        }
     }
 
     
@@ -257,7 +276,9 @@ public class Player : MonoBehaviour
     public void EnableTypeMonsterPrefab(int monsterTypeIndex)
     {
         DisableTypeMonsterPrefab();
-        this.transform.GetChild(monsterTypeIndex - 4).gameObject.SetActive(true);
+        var mon = this.transform.GetChild(monsterTypeIndex - 4).gameObject;
+        mon.SetActive(true);
+        AnimationPlayer.SetTrigger("Attack", mon);
     }
 
 
@@ -369,6 +390,7 @@ public class Player : MonoBehaviour
         DebugBoxManager.Instance.ClearText();
     }
 
+
     public void Die()
     {
         DebugBoxManager.Instance.Log("플레이어 기절!");
@@ -389,4 +411,6 @@ public class Player : MonoBehaviour
     {
         isLoop = isloop;
     }
+
+    public event Action OnEndLoop;
 }

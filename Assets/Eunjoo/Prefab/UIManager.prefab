@@ -1456,6 +1456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dd2dfc7803bce47a32024e416ac0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IngameUI: {fileID: 0}
   BlockContainerUI: {fileID: 5417538294824181607}
   AttackBlockUI: {fileID: 7895903523279074623}
   MoveBlockUI: {fileID: 4776451766569959550}
@@ -1467,7 +1468,14 @@ MonoBehaviour:
   VictoryUI: {fileID: 3443666532820835426}
   GetMonsterUI: {fileID: 5641007280984063011}
   BlockCountObject: {fileID: 0}
-  TextBox: {fileID: 0}
+  DirectHintBox: {fileID: 0}
+  TMP_directBox: {fileID: 0}
+  IndirectHintBox: {fileID: 0}
+  TMP_IndirectBox: {fileID: 0}
+  CollectTextBox: {fileID: 0}
+  TMP_CollectTxt: {fileID: 0}
+  StageTextBox: {fileID: 0}
+  StageIndection: {fileID: 0}
   BlockContainerLength: 5
   BlockIndexList: 040000000500000006000000080000000700000007000000070000000700000008000000
   HintCount: 5
@@ -1475,6 +1483,10 @@ MonoBehaviour:
   LoopBlockList: 
   BlockContainerManager: {fileID: 0}
   MakeLoopBlockContainerManager: {fileID: 0}
+  SelectCharacterUIManager: {fileID: 0}
+  OutgameUIManager: {fileID: 0}
+  SelectChapterNum: 0
+  SelectStageNum: 0
 --- !u!1 &5417538294824181607
 GameObject:
   m_ObjectHideFlags: 0

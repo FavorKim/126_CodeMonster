@@ -21,7 +21,7 @@ public class BlockContainerManager : MonoBehaviour
     {
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, ResetBlockContainer);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetBlockContainer);
-        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetContainerBlockMaterial);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, ResetBlockContainer);
     }
 
     public void SetBlockContainerUISize(int BlockContainerLength)

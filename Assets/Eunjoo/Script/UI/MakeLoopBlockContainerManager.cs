@@ -15,6 +15,9 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, UIManager.Instance.MakeLoopBlockBoxEnable);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, GetMakeLoopBlocksName);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPRESET, LoseMakeLoopBlocksName);
+
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, LoseMakeLoopBlocksName);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, LoseMakeLoopBlocksName);
     }
     
 

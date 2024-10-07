@@ -53,7 +53,7 @@ public class BattleManager : Singleton<BattleManager>
                     bush.SetActive(false);
                     bush.transform.parent.gameObject.SetActive(false);
                     // 리셋 시 초기화를 위한 이벤트 구독
-                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
+                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
 
                     //DebugBoxManager.Instance.Log("조건 + 부시");
@@ -130,10 +130,11 @@ public class BattleManager : Singleton<BattleManager>
                 UnityEngine.Debug.Log("Attack successful! Monster defeated.");
                 UnityEngine.Debug.Log(dataManager.GetMonsterTypeData(attackBlockType).TypeViewName + "으로 공격함");
                 DebugBoxManager.Instance.Log("공격성공");
+
                 int stageBlockIndex = StageManager.instance.ChangePosToKeyValue(playerPosition);
                 Transform stageBlock = StageManager.instance.GetStageBlockPosition(stageBlockIndex);
                 FXManager.Instance.PlayFXAtPosition(stageBlock, (FXType)(attackBlockType - 4));
-
+                AnimationPlayer.SetTrigger("Hit" ,targetMonster);
 
                 //DebugBoxManager.Instance.Log($"{dataManager.GetMonsterTypeData(attackBlockType).TypeViewName} Type Attack");
                 // 승리 처리: 플레이어의 승리 메서드 호출
@@ -144,6 +145,7 @@ public class BattleManager : Singleton<BattleManager>
             {
                 UnityEngine.Debug.Log("Attack failed!");
                 DebugBoxManager.Instance.Log("공격실패");
+
                 UIManager.Instance.PrintUITextByTextIndex(410, false);
                 // 패배 처리: 플레이어의 패배 메서드 호출
                 UIManager.Instance.BlockContainerManager.SetXIcon(player.ForceGetCurrentIndex(), true);

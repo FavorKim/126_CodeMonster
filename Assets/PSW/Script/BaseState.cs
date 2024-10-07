@@ -159,6 +159,7 @@ public class CheckState : BaseState<Player>
             SetLoopBlockUI loop = UIManager.Instance.BlockContainerManager.GetCodeBlockByIndex((int)Controller.CurrentIndex).GetLoopBlockUI();
             DebugBoxManager.Instance.Log($"loop 차일드 카운트 : {loop.CountLoopBlockListBox()}");
             loop.EnableLoopBlockImage();
+            Controller.OnEndLoop += loop.DisableLoopBlockImage;
             Controller.playerStateMachine.ChangeState(PlayerStateName.Loop);
         }
 
@@ -205,7 +206,8 @@ public class MoveState : BaseState<Player>
 
     public override void OnUpdateState() 
     {
-        Controller.Move(direction);
+        if (Controller.IsPlaying)
+            Controller.Move(direction);
     }
 
     public override void OnExitState() { }

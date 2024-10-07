@@ -93,6 +93,7 @@ public class StageManager : Singleton<StageManager>
             GameObject enemy = MonsterObjPoolManger.Instance.GetMonsterPrefab(enemyID);
             enemy.SetActive(true);
             enemy.transform.position = enemyPosition;
+            enemy.transform.localRotation = Quaternion.Euler(new Vector3(0,180,0));
             monsterDic.Add(key, enemy);
             int bushIndex = 0;
             if (DataManagerTest.Instance.GetMonsterData(enemyID).TypeIndex == 0)

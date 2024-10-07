@@ -11,6 +11,12 @@ public class SetConditionBlockUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI FalseText;
     [SerializeField] GameObject ConditionBlockListImage;
 
+
+
+    private void Start()
+    {
+        DisableConditionBlockListImage();
+    }
     public void ResetBlock()
     {
         if (TrueBlockBox.transform.childCount > 0)
@@ -102,5 +108,23 @@ public class SetConditionBlockUI : MonoBehaviour
         CodeBlockDrag falseBlock = FalseBlockBox.transform.GetChild(0).GetComponent<CodeBlockDrag>();
         falseBlock.SetMaterial(MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
         trueBlock.SetMaterial(MaterialType.USE_CODEBLOCK_MATERIAL);
+    }
+
+    public void SetTrueText(int dropDownValue)
+    {
+        switch (dropDownValue)
+        {
+            case 1:
+                TrueText.text = "불속성 공격을 받으면";
+                break;
+            case 2:
+                TrueText.text = "물속성 공격을 받으면";
+                break;
+            case 3:
+                TrueText.text = "풀속성 공격을 받으면";
+                break;
+            default:
+                break;
+        }
     }
 }

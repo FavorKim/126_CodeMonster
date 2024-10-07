@@ -443,6 +443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poke: {fileID: 6747146410217699822}
+  Img_Btn: {fileID: 0}
+  Txt_Btn: {fileID: 0}
   OnPoke:
     m_PersistentCalls:
       m_Calls: []

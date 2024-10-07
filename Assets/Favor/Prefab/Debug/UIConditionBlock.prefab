@@ -497,6 +497,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grab: {fileID: -4889243595519333434}
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8320112786045644567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrueType: {fileID: 0}
   FalseType: {fileID: 0}
+  indexValueDebug: 0
 --- !u!114 &-6075006855654281152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7904294944168877116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1021,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9325acdecc40bb0438395ad769609507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &4597034632109303400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1045,6 +1053,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 855148496449761313, guid: 9b06f9c8643618844bb070300c4ba9fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de0df93e7e5fbc1479ec757369a3724e, type: 2}
     - target: {fileID: 5284406860404418498, guid: 9b06f9c8643618844bb070300c4ba9fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1565859

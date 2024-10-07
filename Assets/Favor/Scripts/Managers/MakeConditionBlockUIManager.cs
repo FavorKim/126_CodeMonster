@@ -32,6 +32,8 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
         base.Start();
 
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.CONDITIONRESET, ResetConditionContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, ResetConditionContainer);
+        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, ResetConditionContainer);
     }
 
     private void OnApplicationQuit()

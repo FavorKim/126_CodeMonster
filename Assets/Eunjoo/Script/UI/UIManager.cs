@@ -110,6 +110,7 @@ public class UIManager : Singleton<UIManager>
     {
         IngameUI.SetActive(true);
         BlockContainerLength = DataManagerTest.Instance.GetStageMapData(SelectChapterNum + SelectStageNum).BlockContainerLength;
+        EventManager<UIEvent>.TriggerEvent(UIEvent.BlockCountainerBlockCount, BlockContainerLength);
         StageManager.Instance.gameObject.SetActive(true);
         cheerCount = 0;
         hintStop = false;
@@ -126,7 +127,7 @@ public class UIManager : Singleton<UIManager>
     {
         BlockIndexLength = BlockIndexList.Length;
 
-        // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화 
+        // BlockIndexList에 있는 인덱스 숫자 체크 후 UI 활성화
         BlockIndexListCheck();
 
         // 컨테이너 박스의 길이를 현재 컨테이너에 들어있는 블록에 따라 조절하는 기능
@@ -274,11 +275,13 @@ public class UIManager : Singleton<UIManager>
 
     public void PrintStageDirectHint()
     {
+        StopPrintText(true);
         int curStageIndex = SelectChapterNum + SelectStageNum;
         PrintUITextByStageIndex(TextTypeName.BIGHINT, curStageIndex);
     }
     public void PrintStageInfo()
     {
+        StopPrintText(true);
         int curStageIndex = SelectChapterNum + SelectStageNum;
         PrintUITextByStageIndex(TextTypeName.STAGEINFO, curStageIndex);
     }
@@ -547,5 +550,10 @@ public class UIManager : Singleton<UIManager>
     public void DisableStageTextBox()
     {
         StageTextBox.SetActive(false);
+    }
+
+    public void SetCheerStop(bool isCheer)
+    {
+        hintStop = isCheer;
     }
 }

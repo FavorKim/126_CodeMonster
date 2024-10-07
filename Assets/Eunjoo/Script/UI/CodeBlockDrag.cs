@@ -225,9 +225,11 @@ public class CodeBlockDrag : MonoBehaviour
 
     private void GrabConditionCodeBlock()
     {
-
-        if (TryGetComponent(out SetConditionBlockUI SetConditionBlockUI))
-            SetConditionBlockUI.EnableConditionBlockListImage();
+        SetConditionBlockUI setcon;
+        if (TryGetComponent(out setcon))
+        {
+            setcon.EnableConditionBlockListImage();
+        }
         else
         {
             DebugBoxManager.Instance.Log("SetConditionBlockUI NULL!");
@@ -240,20 +242,21 @@ public class CodeBlockDrag : MonoBehaviour
             return;
         }
         condition = MakeConditionBlockUIManager.Instance.GetConditionBlockInfo();
-
         GameObject trueBlock = ObjectPoolManager.Instance.GetObject(condition.TrueBlock.BlockName);  // true block 이름
         HandGrabInteractable trueBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();
         BoxCollider trueBlockCodeBlockBoxCollider = trueBlock.GetComponent<BoxCollider>();
         trueBlockHandGrab.enabled = false;
         trueBlockCodeBlockBoxCollider.enabled = false;
-        SetConditionBlockUI.AddTrueBlock(trueBlock);
+        setcon.AddTrueBlock(trueBlock);
 
         GameObject falseBlock = ObjectPoolManager.Instance.GetObject(condition.FalseBlock.BlockName);  // false block 이름
         HandGrabInteractable falseBlockHandGrab = trueBlock.GetComponent<HandGrabInteractable>();
         BoxCollider falseBlockCodeBlockBoxCollider = trueBlock.GetComponent<BoxCollider>();
         falseBlockHandGrab.enabled = false;
         falseBlockCodeBlockBoxCollider.enabled = false;
-        SetConditionBlockUI.AddFalseBlock(falseBlock);
+        setcon.AddFalseBlock(falseBlock);
+
+        setcon.SetTrueText(condition.indexValue);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -356,6 +359,7 @@ public class CodeBlockDrag : MonoBehaviour
         _rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
         matChanger.ChangeMaterial(MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+        matChanger.DisableXIcon();
 
         _rectTransform.localPosition = Vector3.zero;
         ObjectPoolManager.Instance.ReturnObject(gameObject, BlockName);
