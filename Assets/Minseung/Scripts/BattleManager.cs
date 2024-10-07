@@ -51,6 +51,7 @@ public class BattleManager : Singleton<BattleManager>
                     pref.transform.position = bush.transform.position;
                     pref.transform.position = new Vector3(pref.transform.position.x, player.transform.position.y, pref.transform.position.z);
                     bush.SetActive(false);
+                    bush.transform.parent.gameObject.SetActive(false);
                     // 리셋 시 초기화를 위한 이벤트 구독
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESET, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
                     InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });

@@ -118,6 +118,7 @@ public class MonsterObjPoolManger : MonoBehaviour
 
     public bool CheckEnemyAllDead()
     {
+        Debug.LogError("체크 올 데드");
         foreach(List<GameObject> list in _monsterPrefabsPool.Values)
         {
             foreach(GameObject obj in list)
