@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         {
             return isPlaying;
         }
-        private set
+        set
         {
             if (isPlaying == value) return;
 

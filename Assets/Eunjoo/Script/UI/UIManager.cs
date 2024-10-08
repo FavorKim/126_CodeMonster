@@ -87,7 +87,8 @@ public class UIManager : Singleton<UIManager>
     public int SelectStageNum;
 
     int cheerCount;
-    bool hintStop;
+    [SerializeField] bool hintStop;
+    [SerializeField] float debugT;
 
     protected override void Start()
     {
@@ -160,18 +161,18 @@ public class UIManager : Singleton<UIManager>
         {
             if (hintStop == false)
             {
-                float t = 0;
-                while (t < HintCount)
+                debugT = 0;
+                while (debugT < HintCount)
                 {
-                    t += Time.deltaTime;
+                    debugT += Time.deltaTime;
                     if (hintStop == true)
                     {
-                        t = 0;
+                        debugT = 0;
                         break;
                     }
                     yield return null;
                 }
-                t = 0;
+                debugT = 0;
                 if (hintStop == true)
                     continue;
                 if (cheerCount < 5)

@@ -74,20 +74,21 @@ public class SelectCharacterUIManager : MonoBehaviour
         List<Transform> children = new List<Transform>();
         foreach (Transform child in MonsterAttributeBox.transform)
         {
-            children.Add(child);
+            Destroy(child.gameObject);
         }
 
-        // 저장한 리스트를 순회하면서 블록들을 리셋
-        foreach (Transform child in children)
-        {
-            CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
+        //// 저장한 리스트를 순회하면서 블록들을 리셋
+        //foreach (Transform child in children)
+        //{
+        //    CodeBlockDrag codeBlockDrag = child.GetComponent<CodeBlockDrag>();
 
 
-            if (codeBlockDrag != null)
-            {
-                codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
-            }
-        }
+        //    if (codeBlockDrag != null)
+        //    {
+        //        codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
+        //        codeBlockDrag.gameObject.SetActive(false);
+        //    }
+        //}
     }
 
     public List<GameObject> GetSelectedMonsters()
@@ -195,27 +196,22 @@ public class SelectCharacterUIManager : MonoBehaviour
         }
         int temp = 0;
 
-        int fire = 0;
-        int grass = 0;
-        int water = 0;
         foreach (int type in typeIndexesOfSelectedMonsters)
         {
-            switch (type)
-            {
-                case 1: fire++; break;
-                case 2: water++; break;
-                case 3: grass++; break;
-            }
-            if(weaksofThisStageMonsters.Contains(type) == false)
+            if(weaksofThisStageMonsters.Contains(type) == true)
             {
                 temp++;
             }
+            else
+            {
+                Btn_StartStage.DisablePokeBtn();
+                return;
+            }
         }
-        if (fire > 1 || water > 1 || grass > 1)
-        {
-            temp++;
-        }
-        if (temp == 0)
+        
+        if (temp == weaksofThisStageMonsters.Count)
             Btn_StartStage.EnablePokeBtn();
+        else
+            Btn_StartStage.DisablePokeBtn();
     }
 }
