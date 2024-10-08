@@ -179,8 +179,9 @@ public class MoveState : BaseState<Player>
             mon.Attack();
             Controller.Die();
         }
-        
+        AnimationPlayer.SetBool("isRun", Controller.gameObject, true);
         direction = GetDirectionFromBlock(blockIndex);
+        //Controller.RotatePlayer(direction);
     }
 
     private Vector2Int GetDirectionFromBlock(int blockIndex)
@@ -201,7 +202,10 @@ public class MoveState : BaseState<Player>
             Controller.Move(direction);
     }
 
-    public override void OnExitState() { }
+    public override void OnExitState() 
+    {
+        AnimationPlayer.SetBool("isRun", Controller.gameObject, false);
+    }
 }
 
 

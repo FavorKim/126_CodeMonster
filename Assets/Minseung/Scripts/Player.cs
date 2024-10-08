@@ -198,7 +198,8 @@ public class Player : MonoBehaviour
     {
         Vector2Int newPosition = position + direction;
         Vector3 movePos = new Vector3(newPosition.x, 0, newPosition.y);
-
+        Quaternion rot = GetPlayerRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.1f);
         transform.position = Vector3.Lerp(transform.position, movePos, 0.05f);
 
         if (Vector3.Distance(transform.position, movePos) <= 0.1f)
@@ -406,6 +407,35 @@ public class Player : MonoBehaviour
     public void SetIsLoop(bool isloop)
     {
         isLoop = isloop;
+    }
+
+    private Quaternion GetPlayerRotation(Vector2Int dir)
+    {
+        Quaternion rot = Quaternion.identity;
+        if(dir == Vector2Int.up)
+        {
+            rot =Quaternion.Euler( new Vector3(0, 180, 0));
+        }
+        else if(dir == Vector2Int.down)
+        {
+            rot = Quaternion.Euler(new Vector3(0, 0, 0));
+
+        }
+        else if (dir == Vector2Int.left)
+        {
+            rot = Quaternion.Euler(new Vector3(0, 90, 0));
+        }
+        else if (dir == Vector2Int.right)
+        {
+            rot = Quaternion.Euler(new Vector3(0, 270, 0));
+
+        }
+        return rot;
+    } 
+    public void RotatePlayer(Vector2Int dir)
+    {
+        Quaternion rot = GetPlayerRotation(dir);
+        transform.rotation = rot;
     }
 
     public event Action OnEndLoop;
