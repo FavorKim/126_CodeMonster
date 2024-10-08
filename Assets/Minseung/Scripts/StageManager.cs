@@ -42,6 +42,8 @@ public class StageManager : Singleton<StageManager>
 
     private void GenerateStage(GameObject[] floorPrefabs, GameObject[] wallPrefabs)
     {
+        int theme = UIManager.Instance.SelectChapterNum / 1000;
+        // 기존에 있던 맵은 삭제
         if(gameObject.transform.childCount != 0)
         {
             for(int i=0; i < transform.childCount; i++)
@@ -59,10 +61,19 @@ public class StageManager : Singleton<StageManager>
                 // ArrayInfo의 값에 따라 사용할 프리팹 리스트 선택
                 GameObject[] selectedPrefabs = currentStageMap.ArrayInfo[index] == 1 ? floorPrefabs : wallPrefabs;
 
+                // 활성화 할 테마 플랫폼 이름 설정
+                string themePrefab = string.Empty;
+                themePrefab = currentStageMap.ArrayInfo[index] == 1 ? $"Chap{theme}Move" : $"Chap{theme}Wall";
+
                 // 랜덤한 프리팹 선택
                 GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
                 GameObject block = Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity, gameObject.transform);
+
+                // 이름을 통해 테마 플랫폼을 챕터 별로 활성화
+                Transform themePlatform = block.transform.Find(themePrefab);
+                themePlatform.gameObject.SetActive(true);
+
                 stageBlockDic.Add(ChangePosToKeyValue(x, y), block);
                 index++;
             }
