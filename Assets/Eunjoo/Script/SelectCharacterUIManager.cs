@@ -96,7 +96,7 @@ public class SelectCharacterUIManager : MonoBehaviour
     }
     public List<int> GetSelectedTypeIndexes()
     {
-        List <int> indexes = new List<int>();
+        List<int> indexes = new List<int>();
         foreach (GameObject monster in selectedMonsters)
         {
             Monster mon = DataManagerTest.Instance.GetMonsterData(monster.name);
@@ -170,53 +170,44 @@ public class SelectCharacterUIManager : MonoBehaviour
 
     private void CheckCanStart()
     {
-        List<Monster> monsters = new List<Monster>();
-        foreach (GameObject mon in selectedMonsters)
+        List<Monster> selectedMonsters = new List<Monster>();
+        foreach (GameObject mon in this.selectedMonsters)
         {
-            Monster monster = DataManagerTest.Instance.GetMonsterData(mon.name);
-            monsters.Add(monster);
+            Monster selectedMon = DataManagerTest.Instance.GetMonsterData(mon.name);
+            selectedMonsters.Add(selectedMon);
         }
         int stageIndex = UIManager.Instance.SelectChapterNum + UIManager.Instance.SelectStageNum;
-        List<int> stageMonsterIndexes = GameManager.Instance.GetMonsterTypeInIndex(stageIndex);
+        List<int> indexesofThisStage = GameManager.Instance.GetMonsterTypeInIndex(stageIndex);
 
-        List<int> weaks = new List<int>();
-        foreach (int monIndex in stageMonsterIndexes)
+        List<int> weaksofThisStageMonsters = new List<int>();
+        foreach (int monIndex in indexesofThisStage)
         {
             int weakIndex = DataManagerTest.Instance.GetWeaknessIndexByMonsterTypeIndex(monIndex);
             if (weakIndex != 0)
-                weaks.Add(weakIndex);
+                weaksofThisStageMonsters.Add(weakIndex);
         }
 
-        List<int> typeIndexes = new List<int>();
-        foreach (Monster mon in monsters)
+        List<int> typeIndexesOfSelectedMonsters = new List<int>();
+        foreach (Monster mon in selectedMonsters)
         {
             int index = mon.TypeIndex;
-            typeIndexes.Add(index);
+            typeIndexesOfSelectedMonsters.Add(index);
         }
         int temp = 0;
 
         int fire = 0;
         int grass = 0;
         int water = 0;
-        foreach (int weak in weaks)
+        foreach (int type in typeIndexesOfSelectedMonsters)
         {
-            switch (weak)
+            switch (type)
             {
-                case 1:
-                    fire++;
-                    break;
-                case 2:
-                    grass++;
-                    break;
-                case 3:
-                    water++;
-                    break;
-                default:
-                    break;
+                case 1: fire++; break;
+                case 2: water++; break;
+                case 3: grass++; break;
             }
-            if (typeIndexes.Contains(weak) == false)
+            if(weaksofThisStageMonsters.Contains(type) == false)
             {
-                Btn_StartStage.DisablePokeBtn();
                 temp++;
             }
         }
