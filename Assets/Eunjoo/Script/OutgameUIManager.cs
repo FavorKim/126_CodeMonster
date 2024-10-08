@@ -11,6 +11,7 @@ public class OutgameUIManager : MonoBehaviour
     [SerializeField] GameObject SelectCharacterUI;
     [SerializeField] GameObject ClearUI;
     [SerializeField] TextMeshProUGUI ChapterText; // 챕터 텍스트 UI
+    [SerializeField] GameObject OutGameBackGround;
 
     string chapterNumber = ""; // 챕터 번호 저장 변수
     string stageNumber = ""; // 챕터 번호 저장 변수
@@ -58,13 +59,15 @@ public class OutgameUIManager : MonoBehaviour
     {
         StageUI.SetActive(true);
         SelectCharacterUI.SetActive(false);
+        OutGameBackGround.SetActive(true);
         UIManager.Instance.SelectStageNum = 0;
-        
+
     }
 
     public void ClickStartStage()
     {
         SelectCharacterUI.SetActive(false);
+        OutGameBackGround.SetActive(false);
         UIManager.Instance.OnStartStage();
     }
 

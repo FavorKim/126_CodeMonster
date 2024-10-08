@@ -144,11 +144,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         }
         objInstance = poolInfo.poolQueue.Dequeue();
         objInstance.SetActive(true);
-        //Renderer[] renders =objInstance.GetComponentsInChildren<Renderer>();
-        //foreach (Renderer render in renders)
-        //{
-        //    render.enabled = true;
-        //}
+      
 
         return objInstance;
     }
@@ -159,11 +155,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         PoolInfo poolInfo = GetPoolByType(type);
         poolInfo.poolQueue.Enqueue(obj);
         //obj.SetActive(false);
-        //Renderer[] renders = obj.GetComponentsInChildren<Renderer>();
-        //foreach(Renderer render in renders)
-        //{
-        //    render.enabled = false;
-        //}
+      
     }
 
     public void SetSelectedAttackCodeBlock()
