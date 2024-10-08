@@ -405,6 +405,11 @@ public class UIManager : Singleton<UIManager>
         List<string> text = new List<string>();
         string typeName = GetTypeNameByEnum(type);
         text = DataManagerTest.Instance.GetDescriptionByStageIndex(stageIndex, typeName);
+        if(text == null)
+        {
+            // 없으면 출력하지 않음
+            return;
+        }
         TMP_Text textBox;
         switch (type)
         {
