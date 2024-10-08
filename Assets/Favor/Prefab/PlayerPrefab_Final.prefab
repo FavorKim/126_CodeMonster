@@ -3363,7 +3363,7 @@ MonoBehaviour:
   StageIndection: {fileID: 3493114626368765910}
   BlockContainerLength: 11
   BlockIndexList: 000000000100000002000000030000000400000005000000060000000700000008000000
-  HintCount: 10
+  HintCount: 60
   MakeLoopBlockContainerLength: 6
   LoopBlockList: 
   BlockContainerManager: {fileID: 0}
@@ -3372,6 +3372,8 @@ MonoBehaviour:
   OutgameUIManager: {fileID: 6285455436350169211}
   SelectChapterNum: 1000
   SelectStageNum: 1
+  hintStop: 0
+  debugT: 0
 --- !u!1 &676003426785059907
 GameObject:
   m_ObjectHideFlags: 0
@@ -23363,7 +23365,7 @@ MonoBehaviour:
   conditionMakeBtn: {fileID: 1100306353464656786}
   loopResetBtn: {fileID: 6419626197699729624}
   conditionResetBtn: {fileID: 5742634841607438323}
-  backToMain: {fileID: 0}
+  backToMain: {fileID: 6676116619131467027}
 --- !u!1 &4437800405424848477
 GameObject:
   m_ObjectHideFlags: 0
@@ -36326,7 +36328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5537847500094917550
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41425,6 +41427,7 @@ MonoBehaviour:
   SelectCharacterUI: {fileID: 7271621356573516220}
   ClearUI: {fileID: 9126375762538928816}
   ChapterText: {fileID: 3390333598958711801}
+  OutGameBackGround: {fileID: 0}
 --- !u!1 &8092965920104305888
 GameObject:
   m_ObjectHideFlags: 0
@@ -43398,7 +43401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1766539612982453527
 RectTransform:
   m_ObjectHideFlags: 0
