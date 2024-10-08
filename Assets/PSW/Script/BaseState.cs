@@ -59,6 +59,7 @@ public class CheckState : BaseState<Player>
 
         if (blockIndex == -1)
         {
+            Controller.IsPlaying = false;
             // 행동이 종료됐는데도 적과 같이 있으면
             if(StageManager.Instance.CheckMonsterAndPlayerPos(Controller.playerPosition))
             {

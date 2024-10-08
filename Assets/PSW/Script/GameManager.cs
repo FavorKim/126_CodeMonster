@@ -121,9 +121,9 @@ public class GameManager : Singleton<GameManager>
         {
             List<int> list = stageInfo.MonsterIDList;
 
-            if (DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList != null)
+            if (stageInfo.BushMonsterIDList != null)
             {
-                foreach (var item in DataManagerTest.instance.GetStageMapData(stageIndex).BushMonsterIDList)
+                foreach (var item in stageInfo.BushMonsterIDList)
                 {
 
                     var replaceString = item.Replace("(", "").Replace(")", "");
