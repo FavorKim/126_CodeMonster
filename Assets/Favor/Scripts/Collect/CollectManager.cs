@@ -140,7 +140,7 @@ public class CollectManager : Singleton<CollectManager>
             }
             MoveSpawnedMonster();
         }
-        
+
     }
 
     void MoveSpawnedMonster()
@@ -148,9 +148,18 @@ public class CollectManager : Singleton<CollectManager>
         if (spawnedMonster == null) return;
         if (isCapturing)
         {
-            if (CaptureGauge < MaxCaptureGauge)
-                spawnedMonster.transform.position = Vector3.Lerp(MonsterSpawnPos.position, MonsterDestination.position, CaptureGauge / (MaxCaptureGauge - 2));
+            if (CaptureGauge < MaxCaptureGauge - 2)
+            {
+                AnimationPlayer.SetBool("isWalk", spawnedMonster, true);
+                AnimationPlayer.SetBool("isEating", spawnedMonster, false);
 
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterSpawnPos.position, MonsterDestination.position, CaptureGauge / (MaxCaptureGauge - 2));
+            }
+            else
+            {
+                AnimationPlayer.SetBool("isWalk", spawnedMonster, false);
+                AnimationPlayer.SetBool("isEating", spawnedMonster, true);
+            }
         }
         else
         {
@@ -160,6 +169,8 @@ public class CollectManager : Singleton<CollectManager>
             }
             else
             {
+                AnimationPlayer.SetBool("isWalk", spawnedMonster, true);
+                AnimationPlayer.SetBool("isEating", spawnedMonster, false);
                 spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / (MaxCaptureGauge - 2)));
             }
         }

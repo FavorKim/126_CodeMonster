@@ -59,21 +59,30 @@ public class StageManager : Singleton<StageManager>
                 Vector3 tilePosition = new Vector3(x, 0, y);
 
                 // ArrayInfo의 값에 따라 사용할 프리팹 리스트 선택
-                GameObject[] selectedPrefabs = currentStageMap.ArrayInfo[index] == 1 ? floorPrefabs : wallPrefabs;
+                GameObject[] selectedPrefabs = currentStageMap.ArrayInfo[index] == 1 ? floorPrefabs : (currentStageMap.ArrayInfo[index] == 2 ? wallPrefabs : null);
+                GameObject block = null;
+                if (selectedPrefabs != null)
+                {
 
-                // 활성화 할 테마 플랫폼 이름 설정
-                string themePrefab = string.Empty;
-                themePrefab = currentStageMap.ArrayInfo[index] == 1 ? $"Chap{theme}Move" : $"Chap{theme}Wall";
+                    // 활성화 할 테마 플랫폼 이름 설정
+                    string themePrefab = string.Empty;
+                    themePrefab = currentStageMap.ArrayInfo[index] == 1 ? $"Chap{theme}Move" : $"Chap{theme}Wall";
 
-                // 랜덤한 프리팹 선택
-                GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
+                    // 랜덤한 프리팹 선택
+                    GameObject prefabToInstantiate = selectedPrefabs[Random.Range(0, selectedPrefabs.Length)];
 
-                GameObject block = Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity, gameObject.transform);
+                    block = Instantiate(prefabToInstantiate, tilePosition, Quaternion.identity, gameObject.transform);
 
-                // 이름을 통해 테마 플랫폼을 챕터 별로 활성화
-                Transform themePlatform = block.transform.Find(themePrefab);
-                themePlatform.gameObject.SetActive(true);
-
+                    // 이름을 통해 테마 플랫폼을 챕터 별로 활성화
+                    Transform themePlatform = block.transform.Find(themePrefab);
+                    themePlatform.gameObject.SetActive(true);
+                }
+                if(block == null)
+                {
+                    block = new GameObject("EmptyPlatform");
+                    block.transform.SetParent(gameObject.transform, false);
+                    block.transform.position = tilePosition;
+                }
                 stageBlockDic.Add(ChangePosToKeyValue(x, y), block);
                 index++;
             }

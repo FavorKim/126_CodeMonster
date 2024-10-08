@@ -8,4 +8,8 @@ public class AnimationPlayer : MonoBehaviour
     {
         dest.GetComponentInChildren<Animator>().SetTrigger(pramName);
     }
+    public static void SetBool(string pramName, GameObject dest, bool isTrue)
+    {
+        dest.GetComponentInChildren<Animator>().SetBool(pramName, isTrue);
+    }
 }
