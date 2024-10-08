@@ -89,6 +89,7 @@ public class UIManager : Singleton<UIManager>
     int cheerCount;
     [SerializeField] bool hintStop;
     [SerializeField] float debugT;
+    bool isPraising = false;
 
     protected override void Start()
     {
@@ -104,7 +105,13 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(false);
 
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            PrintPraise();
+        }
+    }
     private void OnDisable()
     {
         DebugBoxManager.Instance.ClearText();
@@ -311,6 +318,10 @@ public class UIManager : Singleton<UIManager>
         List<string> text = DataManagerTest.Instance.GetPraiseByStageIndex(curStageIndex);
         SetText(text, TMP_directBox);
 
+        StartPraiseCoroutine();
+    }
+    private void StartPraiseCoroutine()
+    {
         if (SelectStageNum != 5 || SelectChapterNum + SelectStageNum == 4005)
             StartCoroutine(CorPraise());
         else
@@ -320,18 +331,22 @@ public class UIManager : Singleton<UIManager>
     }
     IEnumerator CorPraise()
     {
+        isPraising = true;
         while (DirectHintBox.activeSelf == true)
         {
             yield return null;
         }
+        isPraising = false;
         OutgameUIManager.SetClearUIActive(true);
     }
     IEnumerator CorPraiseOnBoss()
     {
+        isPraising = true;
         while(DirectHintBox.activeSelf == true)
         {
             yield return null;
         }
+        isPraising = false;
         Action action = GameManager.instance.StartCollectScene;
         GameManager.Instance.StartLoading(action);
     }
@@ -494,12 +509,17 @@ public class UIManager : Singleton<UIManager>
     }
     public void OnClickDirectBox()
     {
+
         StopPrintText(TextTypeName.BIGHINT);
     }
     public void StopPrintText(TextTypeName isDirectBox)
     {
-        StopAllCoroutines();
 
+        StopAllCoroutines();
+        if (isPraising)
+        {
+            StartPraiseCoroutine();
+        }
         switch (isDirectBox)
         {
             case TextTypeName.STAGEINFO:

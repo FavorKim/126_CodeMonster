@@ -46,6 +46,8 @@ public class OutgameUIManager : MonoBehaviour
         ChapterUI.SetActive(true);
         StageUI.SetActive(false);
         UIManager.Instance.SelectChapterNum = 0;
+        if (OutGameBackGround.activeSelf == false)
+            OutGameBackGround.SetActive(true);
     }
 
     // Select Stage UI -> Select Character UI

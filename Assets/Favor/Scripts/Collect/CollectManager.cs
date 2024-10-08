@@ -141,6 +141,7 @@ public class CollectManager : Singleton<CollectManager>
             MoveSpawnedMonster();
         }
 
+
     }
 
     void MoveSpawnedMonster()
@@ -171,7 +172,7 @@ public class CollectManager : Singleton<CollectManager>
             {
                 AnimationPlayer.SetBool("isWalk", spawnedMonster, true);
                 AnimationPlayer.SetBool("isEating", spawnedMonster, false);
-                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / (MaxCaptureGauge - 2)));
+                spawnedMonster.transform.position = Vector3.Lerp(MonsterDestination.position, MonsterSpawnPos.position, 1 - (CaptureGauge / (MaxCaptureGauge-2)));
             }
         }
     }
