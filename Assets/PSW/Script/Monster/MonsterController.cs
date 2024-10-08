@@ -68,7 +68,7 @@ public class MonsterController : MonoBehaviour
     public void Die()
     {
         AnimationPlayer.SetBool("isDead", gameObject, true);
-        GameManager.Instance.StartInvokeCallBack(DisableMonster, 1.0f);
+        GameManager.Instance.StartInvokeCallBack(DisableMonster, 2.0f);
     }
 
     public void DisableMonster()
@@ -79,7 +79,10 @@ public class MonsterController : MonoBehaviour
     private void OnReset_ResetHP()
     {
         hp = maxHP;
+        
+        AnimationPlayer.SetBool("isDead", gameObject, false);
+
     }
 
-   
+
 }
