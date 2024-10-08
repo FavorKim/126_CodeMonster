@@ -43,7 +43,8 @@ public class FieldManager : Singleton<FieldManager>
                 Vector3 randomPosition = GetRandomSpawnPosition();
                 GameObject monster = Instantiate(prefab, randomPosition, Quaternion.identity);
                 InitMonster(monster);
-                monster.transform.localScale = Vector3.one;
+                monster.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+
             }
         }
     }
@@ -149,7 +150,7 @@ public class FieldManager : Singleton<FieldManager>
         {
             monster.SetActive(true);
             monster.transform.SetParent(null);
-            monster.transform.localScale = Vector3.one;
+            monster.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             monster.transform.rotation = Quaternion.identity;
             Vector3 pos = GameManager.Instance.PlayerPrefab.transform.position;
             monster.transform.position = new Vector3(pos.x, -1, pos.z);

@@ -117,6 +117,7 @@ public class BattleManager : Singleton<BattleManager>
                 int stageBlockIndex = StageManager.instance.ChangePosToKeyValue(playerPosition);
                 Transform stageBlock = StageManager.instance.GetStageBlockPosition(stageBlockIndex);
                 FXManager.Instance.PlayFXAtPosition(stageBlock, (FXType)(attackBlockType - 4));
+                targetMonsterController.Hit();
                 AnimationPlayer.SetTrigger("Hit" ,targetMonster);
 
                 // 승리 처리: 플레이어의 승리 메서드 호출
@@ -163,7 +164,6 @@ public class BattleManager : Singleton<BattleManager>
 
     private void PlayerWin()
     {
-        targetMonsterController.Hit();
 
         player.Win();
 

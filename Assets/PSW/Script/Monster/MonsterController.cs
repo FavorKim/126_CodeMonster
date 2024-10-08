@@ -50,6 +50,7 @@ public class MonsterController : MonoBehaviour
     {
         //애니메이션 재생
 
+        AnimationPlayer.SetTrigger("Hit", gameObject);
         HP--;
 
     }
@@ -66,20 +67,11 @@ public class MonsterController : MonoBehaviour
 
     public void Die()
     {
-        /*
-        //애니메이션 재생
-        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);//현재 실행중인 애니메이션 얻어옴
-
-        float startTime = stateInfo.length + 0.5f;//애니메이션 재생시간
-        
-
-        Invoke(nameof(DisableMonster), startTime);
-        */
-
-        DisableMonster();
+        AnimationPlayer.SetBool("isDead", gameObject, true);
+        GameManager.Instance.StartInvokeCallBack(DisableMonster, 1.0f);
     }
 
-    private void DisableMonster()
+    public void DisableMonster()
     {
         this.gameObject.SetActive(false);
     }
