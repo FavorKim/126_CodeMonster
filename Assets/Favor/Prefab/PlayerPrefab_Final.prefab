@@ -3370,8 +3370,8 @@ MonoBehaviour:
   MakeLoopBlockContainerManager: {fileID: 0}
   SelectCharacterUIManager: {fileID: 5502109454462831571}
   OutgameUIManager: {fileID: 6285455436350169211}
-  SelectChapterNum: 3000
-  SelectStageNum: 2
+  SelectChapterNum: 1000
+  SelectStageNum: 5
   hintStop: 0
   debugT: 0
 --- !u!1 &676003426785059907

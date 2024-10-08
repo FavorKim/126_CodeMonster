@@ -118,11 +118,10 @@ public class BattleManager : Singleton<BattleManager>
                 Transform stageBlock = StageManager.instance.GetStageBlockPosition(stageBlockIndex);
                 FXManager.Instance.PlayFXAtPosition(stageBlock, (FXType)(attackBlockType - 4));
                 targetMonsterController.Hit();
-                AnimationPlayer.SetTrigger("Hit" ,targetMonster);
 
                 // 승리 처리: 플레이어의 승리 메서드 호출
                 //-> 플레이어의 공격 애니메이션과 이펙트가 끝나면
-                Invoke(nameof(PlayerWin), 2);
+                GameManager.Instance.StartInvokeCallBack(PlayerWin, 2.0f);
             }
             else
             {
@@ -142,7 +141,8 @@ public class BattleManager : Singleton<BattleManager>
             //-> 빗나가면 아무일도 없으니 승리 처리로 바꿈
             UIManager.Instance.BlockContainerManager.SetXIcon(player.GetCurrentBlockIndex(), true);
             targetMonster = null;
-            Invoke(nameof(PlayerWin), 2);
+            GameManager.Instance.StartInvokeCallBack(PlayerWin, 2.0f);
+
         }
 
 
