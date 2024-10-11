@@ -12,7 +12,6 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
 
     private void Start()
     {
-        InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, UIManager.Instance.MakeLoopBlockBoxEnable);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPMAKE, GetMakeLoopBlocksName);
         InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.LOOPRESET, LoseMakeLoopBlocksName);
 
@@ -105,6 +104,7 @@ public class MakeLoopBlockContainerManager : BlockContainerManager
             int codeBlockDrag = (int)transform.GetChild(i).GetComponent<CodeBlockDrag>().BlockName + 1;
             UIManager.Instance.LoopBlockList.Add(codeBlockDrag);
         }
+        UIManager.Instance.MakeLoopBlockBoxEnable();
     }
 
     public int GetLoopCount()
