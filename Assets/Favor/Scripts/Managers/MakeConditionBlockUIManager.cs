@@ -72,6 +72,7 @@ public class MakeConditionBlockUIManager : Singleton<MakeConditionBlockUIManager
     // 내부에 제작한 컨디션 블록 정보 저장
     public void InitConditionBlockInfo()
     {
+        if(trueBlock == null || falseBlock == null) return;
         conditionBlockInfo.InitConditionBlock(trueBlock, falseBlock, drop.GetSelectedValue() + 1);
         UIManager.Instance.MakeConditionalBlockBoxEnable();
     }

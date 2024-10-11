@@ -2674,6 +2674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1911415000511910266, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4786797580119439874, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
@@ -2682,6 +2686,10 @@ PrefabInstance:
       propertyPath: OutGameBackGround
       value: 
       objectReference: {fileID: 5357056911378045030}
+    - target: {fileID: 6306669516270896083, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6682440571799519469, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: dataManagerTest
       value: 
@@ -2692,7 +2700,7 @@ PrefabInstance:
       objectReference: {fileID: 1271099303}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: SelectStageNum
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: TMP_CollectTxt
@@ -2701,6 +2709,10 @@ PrefabInstance:
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: SelectChapterNum
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: MakeLoopBlockContainerLength
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8003467898889469816, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2743,7 +2755,8 @@ PrefabInstance:
       value: -2.789
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6306669516270896083, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
