@@ -4,7 +4,8 @@ using UnityMeshSimplifier;
 
 public class MyMeshSimplifier : MonoBehaviour
 {
-    static int oi;
+    [SerializeField] Mesh meshFilter;
+    [SerializeField] float quality = 0.5f;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -13,27 +14,19 @@ public class MyMeshSimplifier : MonoBehaviour
 
     private void SimpliFy()
     {
-        if (oi == 0)
-        {
-            var originalMesh = GetComponent<MeshFilter>().mesh;
-            float quality = 0.2f;
-            var meshSimplifier = new MeshSimplifier();
-            meshSimplifier.Initialize(originalMesh);
-            meshSimplifier.SimplifyMesh(quality);
-            var destMesh = meshSimplifier.ToMesh();
-            SaveMesh(destMesh, "simplified");
-            GetComponent<MeshFilter>().mesh = destMesh;
-            oi++;
-        }
+        var originalMesh = meshFilter;
+        var meshSimplifier = new MeshSimplifier();
+        meshSimplifier.Initialize(originalMesh);
+        meshSimplifier.SimplifyMesh(quality);
+        var destMesh = meshSimplifier.ToMesh();
+        SaveMesh(destMesh, "simplified");
+
     }
-    private void OnApplicationQuit()
-    {
-        oi = 0;
-    }
+
     public static void SaveMesh(Mesh mesh, string fileName)
     {
 #if UNITY_EDITOR
-        string path = "Assets/" + fileName + ".asset";
+        string path = "Assets/Favor/Meshes/" + fileName + ".asset";
 
         // 메쉬가 유니티 에셋으로 저장되지 않았다면 새로 생성
         if (!AssetDatabase.Contains(mesh))
