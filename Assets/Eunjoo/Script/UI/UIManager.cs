@@ -517,15 +517,19 @@ public class UIManager : Singleton<UIManager>
     {
 
         StopAllCoroutines();
+        DirectHintBox.gameObject.SetActive(false);
+        IndirectHintBox.gameObject.SetActive(false);
+        CollectTextBox.gameObject.SetActive(false);
+
         if (isPraising)
         {
             StartPraiseCoroutine();
         }
+
         switch (textType)
         {
             case TextTypeName.STAGEINFO:
             case TextTypeName.BIGHINT:
-                DirectHintBox.gameObject.SetActive(false);
                 hintStop = true;
                 StartCheerTimer();
                 hintStop = false;
@@ -533,13 +537,11 @@ public class UIManager : Singleton<UIManager>
             case TextTypeName.SMALLHINT:
             case TextTypeName.CHEER:
             case TextTypeName.PRAISE:
-                IndirectHintBox.gameObject.SetActive(false);
                 hintStop = true;
                 StartCheerTimer();
                 hintStop = false;
                 break;
             case TextTypeName.COLLECTINFO:
-                CollectTextBox.gameObject.SetActive(false);
                 break;
             default:
                 break;
