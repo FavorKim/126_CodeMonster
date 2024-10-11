@@ -68,7 +68,7 @@ public class CheckState : BaseState<Player>
                 {
                     mon.Attack();
                     Controller.Die();
-                    UIManager.Instance.PrintUITextByTextIndex(411, false);
+                    UIManager.Instance.PrintUITextByTextIndex(411, TextTypeName.SMALLHINT);
                     return;
                 }
             }
@@ -80,7 +80,7 @@ public class CheckState : BaseState<Player>
             }
             else
             {
-                UIManager.Instance.PrintUITextByTextIndex(400, false);
+                UIManager.Instance.PrintUITextByTextIndex(400, TextTypeName.SMALLHINT);
             }
             
             Controller.playerStateMachine.ChangeState(PlayerStateName.IDLE);

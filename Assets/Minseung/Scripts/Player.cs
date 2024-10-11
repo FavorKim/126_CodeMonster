@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
             else if (GameRule.CheckPlayerPosInDeadzone(position))
             {
                 UIManager.Instance.BlockContainerManager.SetXIcon(CurrentIndex, true);
-                UIManager.Instance.PrintUITextByTextIndex(420, false);
+                UIManager.Instance.PrintUITextByTextIndex(420, TextTypeName.SMALLHINT);
                 stateMachine.ChangeState(PlayerStateName.DIEMOVE);
                 return;
             }

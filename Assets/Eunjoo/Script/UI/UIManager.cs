@@ -185,12 +185,12 @@ public class UIManager : Singleton<UIManager>
                 if (cheerCount < 5)
                 {
                     int rand = UnityEngine.Random.Range(0, 4);
-                    PrintUITextByTextIndex(200 + rand, false);
+                    PrintUITextByTextIndex(200 + rand, TextTypeName.CHEER);
                 }
                 else
                 {
                     cheerCount = 0;
-                    PrintUITextByTextIndex(210, false);
+                    PrintUITextByTextIndex(210, TextTypeName.CHEER);
                 }
             }
             else
@@ -408,12 +408,13 @@ public class UIManager : Singleton<UIManager>
         SetText(text, TMP_CollectTxt);
     }
 
-    public void PrintUITextByTextIndex(int textIndex, bool isDirectBox)
+    public void PrintUITextByTextIndex(int textIndex, TextTypeName textTypeName)
     {
-        TMP_Text textBox;
-        textBox = isDirectBox ? TMP_directBox : TMP_IndirectBox;
+        StopPrintText(textTypeName);
+        TMP_Text textBox = GetBoxByTypeName(textTypeName);
         List<string> description = DataManagerTest.instance.GetDescriptionByTextIndex(textIndex);
-        SetText(description, textBox);
+        if (textBox != null & description != null)
+            SetText(description, textBox);
     }
 
     private void PrintUITextByStageIndex(TextTypeName type, int stageIndex = 0)//Text 출력을 요청하는 함수 ,필요시점에 호출하는 함수
@@ -512,7 +513,7 @@ public class UIManager : Singleton<UIManager>
 
         StopPrintText(TextTypeName.BIGHINT);
     }
-    public void StopPrintText(TextTypeName isDirectBox)
+    public void StopPrintText(TextTypeName textType)
     {
 
         StopAllCoroutines();
@@ -520,7 +521,7 @@ public class UIManager : Singleton<UIManager>
         {
             StartPraiseCoroutine();
         }
-        switch (isDirectBox)
+        switch (textType)
         {
             case TextTypeName.STAGEINFO:
             case TextTypeName.BIGHINT:
@@ -556,7 +557,30 @@ public class UIManager : Singleton<UIManager>
         IngameUI.SetActive(false);
     }
 
-
+    private TMP_Text GetBoxByTypeName(TextTypeName typeName)
+    {
+        TMP_Text box = null;
+        switch (typeName)
+        {
+            case TextTypeName.STAGEINFO:
+            case TextTypeName.BIGHINT:
+            case TextTypeName.PRAISE:
+                box = TMP_directBox;
+                break;
+            case TextTypeName.SMALLHINT:
+            case TextTypeName.CHEER:
+                box = TMP_IndirectBox;
+                break;
+            
+            case TextTypeName.COLLECTINFO:
+                box = TMP_CollectTxt;
+                break;
+            default:
+                box = null;
+                break;
+        }
+        return box;
+    }
 
     public void EnableDirectHintBox()
     {

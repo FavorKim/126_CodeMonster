@@ -2692,7 +2692,7 @@ PrefabInstance:
       objectReference: {fileID: 1271099303}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: SelectStageNum
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: TMP_CollectTxt
@@ -2700,7 +2700,11 @@ PrefabInstance:
       objectReference: {fileID: 56046}
     - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: SelectChapterNum
-      value: 3000
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: MakeLoopBlockContainerLength
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8003467898889469816, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: m_LocalPosition.x

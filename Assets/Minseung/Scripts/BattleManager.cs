@@ -47,12 +47,7 @@ public class BattleManager : Singleton<BattleManager>
                     pref.transform.position = new Vector3(pref.transform.position.x, player.transform.position.y, pref.transform.position.z);
                     //bush.transform.parent.gameObject.SetActive(false);
                     bush.transform.parent.gameObject.SetActive(false);
-                    /*
-                    // 리셋 시 초기화를 위한 이벤트 구독
-                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.PAUSE, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
-                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.RESTART, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
-                    InteractEventManager.Instance.RegistOnPokeBtn(PokeButton.BACTTOMAIN, () => { pref.SetActive(false); bush.gameObject.SetActive(true); });
-                    */
+                   
                 }
                 else
                 {
@@ -128,7 +123,7 @@ public class BattleManager : Singleton<BattleManager>
             {
                 UnityEngine.Debug.Log("Attack failed!");
 
-                UIManager.Instance.PrintUITextByTextIndex(410, false);
+                UIManager.Instance.PrintUITextByTextIndex(410, TextTypeName.SMALLHINT);
                 // 패배 처리: 플레이어의 패배 메서드 호출
                 UIManager.Instance.BlockContainerManager.SetXIcon(player.ForceGetCurrentIndex(), true);
 
