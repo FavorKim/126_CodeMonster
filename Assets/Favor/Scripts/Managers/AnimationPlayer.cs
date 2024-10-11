@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class AnimationPlayer : MonoBehaviour
 {
-    public static void SetTrigger(string pramName, GameObject dest)
+    public static void SetTrigger(string paramName, GameObject dest)
     {
-        dest.GetComponentInChildren<Animator>().SetTrigger(pramName);
+        Animator anim = dest.GetComponentInChildren<Animator>();
+        if (anim != null)
+            anim.SetTrigger(paramName);
     }
-    public static void SetBool(string pramName, GameObject dest, bool isTrue)
+    public static void SetBool(string paramName, GameObject dest, bool isTrue)
     {
-        dest.GetComponentInChildren<Animator>().SetBool(pramName, isTrue);
+        Animator anim = dest.GetComponentInChildren<Animator>();
+        if (anim != null)
+            anim.SetBool(paramName,isTrue);
     }
 }

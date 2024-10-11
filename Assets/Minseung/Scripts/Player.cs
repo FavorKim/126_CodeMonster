@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
             if(curLoopCount >= maxLoopCount)
             {
                 isLoop = false;
-                OnEndLoop.Invoke();
+                OnEndLoop?.Invoke();
                 OnEndLoop = null;
                 currentIndex++;
             }

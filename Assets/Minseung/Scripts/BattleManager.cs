@@ -45,7 +45,7 @@ public class BattleManager : Singleton<BattleManager>
                     GameObject bush = stageManager.GetMonsterWithPlayerPos(playerPosition).transform.GetChild(0).gameObject;
                     pref.transform.position = bush.transform.position;
                     pref.transform.position = new Vector3(pref.transform.position.x, player.transform.position.y, pref.transform.position.z);
-                    bush.SetActive(false);
+                    //bush.transform.parent.gameObject.SetActive(false);
                     bush.transform.parent.gameObject.SetActive(false);
                     /*
                     // 리셋 시 초기화를 위한 이벤트 구독
