@@ -14,6 +14,7 @@
     "com.unity.xr.arcore": "5.1.5",
     "com.unity.xr.management": "4.5.0",
     "com.unity.xr.oculus": "4.2.0",
+    "com.whinarn.unitymeshsimplifier": "https://github.com/Whinarn/UnityMeshSimplifier.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 154079862639034914}
   - component: {fileID: 554611430708796093}
   - component: {fileID: 8811343224012182915}
+  - component: {fileID: 7263989688009291521}
   m_Layer: 0
   m_Name: MeshBaker-mesh-mesh
   m_TagString: Untagged
@@ -72,7 +73,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2681530776903020747}
-  m_Mesh: {fileID: 4300000, guid: 0238660d929df9748adf48b30c709db9, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 86372a36d5a3d3d4d93f407ffe95b044, type: 2}
 --- !u!23 &8811343224012182915
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115,3 +116,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7263989688009291521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681530776903020747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b783c32c59989248a9b5d9d515c0efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
