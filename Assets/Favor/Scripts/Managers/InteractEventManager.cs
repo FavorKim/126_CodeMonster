@@ -60,6 +60,13 @@ public class InteractEventManager : Singleton<InteractEventManager>
         InitDict();
         btnDict[btn].OnPoke?.AddListener(action);// += action;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            btnDict[PokeButton.RESTART].OnPoke.Invoke();
+        }
+    }
 
 
 

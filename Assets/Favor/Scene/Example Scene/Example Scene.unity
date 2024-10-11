@@ -2694,6 +2694,10 @@ PrefabInstance:
       propertyPath: TMP_CollectTxt
       value: 
       objectReference: {fileID: 56046}
+    - target: {fileID: 7543425827463697806, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
+      propertyPath: SelectChapterNum
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 8003467898889469816, guid: d8d555bc5bec03c4b869c97a8abed8be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.35
