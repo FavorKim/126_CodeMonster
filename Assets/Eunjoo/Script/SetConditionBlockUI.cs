@@ -39,7 +39,7 @@ public class SetConditionBlockUI : MonoBehaviour
             {
                 codeBlockDrag.ReturnToPool(); // 블록을 풀로 반환
             }
-        } 
+        }
     }
 
 
@@ -55,17 +55,25 @@ public class SetConditionBlockUI : MonoBehaviour
 
     public void AddTrueBlock(GameObject newBlock)
     {
-        //newBlock.transform.parent = null;
+        foreach (Transform t in TrueBlockBox.transform)
+        {
+            if (t.TryGetComponent(out CodeBlockDrag code))
+                code.ReturnToPool();
+        }
+
         newBlock.transform.SetParent(TrueBlockBox.transform, false);
-        //newBlock.transform.parent = TrueBlockBox.transform;
         newBlock.transform.localScale = Vector3.one;
     }
 
     public void AddFalseBlock(GameObject newBlock)
     {
-        //newBlock.transform.parent = null;
+        foreach (Transform t in FalseBlockBox.transform)
+        {
+            if (t.TryGetComponent(out CodeBlockDrag code))
+                code.ReturnToPool();
+        }
+
         newBlock.transform.SetParent(FalseBlockBox.transform, false);
-        //newBlock.transform.parent = FalseBlockBox.transform;
         newBlock.transform.localScale = Vector3.one;
     }
 
