@@ -98,6 +98,7 @@ public class CheckState : BaseState<Player>
         else
         {
             SetLoopBlockUI loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(Controller.ForceGetCurrentIndex());
+            
             loopBlock.SetBlockMaterial(Controller.CurrentIndex, MaterialType.OUTLINE_CODEBLOCK_MATERIAL);
 
             if (Controller.CurrentIndex > 0)

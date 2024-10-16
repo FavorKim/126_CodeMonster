@@ -99,6 +99,22 @@ public class SetLoopBlockUI : MonoBehaviour
         materialChangers[index].ChangeMaterial(type);
     }
 
+    public void ResetBlockMaterial()
+    {
+        if (materialChangers.Count == 0)
+        {
+            for (int i = 0; i < LoopBlockListBox.transform.childCount; i++)
+            {
+                materialChangers.Add(LoopBlockListBox.transform.GetChild(i).GetComponent<MaterialChanger>());
+            }
+            
+        }
+        for(int i = 0; i < LoopBlockListBox.transform.childCount; i++)
+        {
+            SetBlockMaterial(i, MaterialType.NORMAL_CODEBLOCK_MATERIAL);
+        }
+    }
+
     public SetConditionBlockUI GetConditionByIndex(int index)
     {
 

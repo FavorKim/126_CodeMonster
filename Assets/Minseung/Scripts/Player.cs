@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
             {
                 CurLoopCount++;
                 curLoopIndex = 0;
+                SetLoopBlockUI loopBlock = UIManager.Instance.BlockContainerManager.GetLoopBlockByIndex(ForceGetCurrentIndex());
+                loopBlock.ResetBlockMaterial();
             }
         }
     }
