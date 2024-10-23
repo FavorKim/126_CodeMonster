@@ -7,10 +7,12 @@ public class StartServerManager : MonoBehaviour
 {
     [SerializeField] MetaNetManager NetManager;
 
+    [SerializeField] MetaNetworkManager MetaNetManager;
+
     [SerializeField] GameObject Obj_LoadingPopup;
 
     [SerializeField] bool IsStartAsServer;
-
+    
     public void Start()
     {
         if(NetManager == null)
@@ -35,6 +37,11 @@ public class StartServerManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (MetaNetManager != null && MetaNetManager.IsDisableClientConnectTry)
+        {
+            return;
+        }
+
         TryConnectToServer();
     }
 
